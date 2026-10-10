@@ -1,0 +1,20 @@
+*.iml
+.gradle
+/build
+!src/**/build
+.idea
+.DS_Store
+local.properties
+.kotlin
+captures
+*.hprof
+.cxx
+
+# Xcode & Apple
+*.xcuserstate
+project.xcworkspace
+xcuserdata
+DerivedData
+
+# Kotlin Toolchain
+.toolchain
