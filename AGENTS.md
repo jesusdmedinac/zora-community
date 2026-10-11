@@ -22,10 +22,20 @@ This repository strictly adheres to Behavior-Driven Development (BDD) and the 5-
 ## 4. Technology & Architecture Standards
 * **Build System & Toolchain:** Pure declarative `module.yaml` configuration via the official [Kotlin Toolchain](https://kotlin-toolchain.org) with standard Gradle fallback.
 * **100% Kotlin Foundation Alignment:**
-  * **UI:** Jetpack Compose Multiplatform + Material 3 (Dark/Light themes).
+  * **UI:** Jetpack Compose Multiplatform + Material 3 (Dark Titanium system).
+  * **Generative UI:** `json-to-compose` runtime for dynamic, agent-rendered chat widgets and interactive pickers.
+  * **AI & LLM Integration:** `kotlin-genai` (official Google Kotlin SDK) for structured schema calls with local fallback.
+  * **Local Persistence:** Room KMP (`androidx.room` 2.7.0+) with SQLite for vehicles, telemetry logs, and copilot memory.
   * **Architecture:** Clean Architecture + MVI/UDF (StateFlow, ViewModel from `androidx.lifecycle`).
   * **Navigation:** Jetpack Navigation Compose KMP.
   * **Dependency Injection:** Koin (`koin-compose`).
   * **Networking & Serialization:** Ktor Client 3.x + `kotlinx.serialization`.
   * **Testing:** Kotlin Test + Kotest assertions + Turbine for Flow testing.
 * **Domain Purity:** `:core:domain` has zero dependencies on UI frameworks or Android SDKs.
+
+## 5. UI & Ethical AI Principles
+* **Zero Technical Jargon in UI:** Never expose internal developer concepts (e.g. "Room", "KMP", "json-to-compose", "INT4") in end-user screens. Present only vehicle-focused value.
+* **Semantic Badges over Artificial Percentages:** Use concrete 2-word semantic badges (`HIGH PRIORITY`, `MAX SAVINGS`, `DIRECT FIT`) rather than arbitrary percentage matches.
+* **Local-First & Inspectable Privacy:** Data is stored locally by default. Memory items are inspectable and manually purgeable. Cloud AI features require explicit opt-in.
+* **On-Demand Visual Generation:** AI image renders are explicitly driver-triggered with visible quotas and disclaimers.
+

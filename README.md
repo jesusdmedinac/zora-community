@@ -17,11 +17,14 @@
 
 **Zora Community** is the free, open-source foundation of the Zora automotive ecosystem. It provides a complete, production-grade cross-platform mobile application for Android, iOS, and Desktop:
 
-- 🚗 **Vehicle Selector:** Interactive Year, Make, Model selection (e.g., 2021 Honda Civic EX 1.5L Turbo).
-- ⚙️ **Parts Catalog & Search:** Fast category filtering (Engine, Brakes, Transmission, Body) and OEM part number cross-referencing.
-- 🎨 **Modern Compose Multiplatform UI:** Fluid animations, responsive layout, and adaptive Material 3 theme (Dark/Light).
-- 🏗️ **Clean Architecture & MVI:** Strict domain separation, Koin dependency injection, and unidirectional state flow.
+- 💬 **Agentic Conversational Onboarding:** Natural vehicle setup with generative UI cards (`json-to-compose`) for interactive trim selection and semantic care priorities.
+- 🚗 **Virtual Garage & Telemetry:** Active vehicle dashboard with mileage tracking, 30-second fluid/tire quick check-in, and single-vehicle free slot governance.
+- 🧠 **Inspectable Copilot Memory Vault:** Local-first memory storage (3 slots in Free tier) powered by Room KMP on SQLite with manual per-item purge capabilities.
+- ⚙️ **Contextual Parts Feed:** Precision fitment parts, Yonke (salvage yard) used parts with donor VIN tracking, and on-demand 3D engine bay component blueprint generator.
+- 🤖 **Multi-Agent Network & Freemium Governance:** Autonomous multi-agent paywall showcasing Junkyard, Fuel, and Mechanic agents with Pro subscription tiers.
+- 🏗️ **Clean Architecture & MVI:** Strict domain separation, Koin dependency injection, `kotlin-genai` integration with offline fallback, and unidirectional state flow.
 - 🛠️ **Zero Gradle Configuration Debt:** Pre-configured with the official **Kotlin Toolchain (`kotlin-toolchain.org`)** using declarative `module.yaml` provisioning.
+
 
 ---
 
