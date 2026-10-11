@@ -7,6 +7,7 @@ Centralized BDD progress tracker for `zora-community` (Open-Source Mini-Zora & K
 ## Milestone: Stitch Design System & Mobile UI Specification
 - [x] Scenario: Configure Zora Dark Titanium design system tokens in Stitch (Project: `8449783824763659218`)
 - [x] Scenario: Generate 00_splash_screen (Ignition & Telemetry Boot with Local Room & Privacy badges)
+- [x] Scenario: Generate 01_empty_chat (Welcoming zero-state chat with centered Zora emblem and starter prompts)
 - [x] Scenario: Generate 01_onboarding_chat_genui (Guided Onboarding Chat with json-to-compose generative cards)
 - [ ] Scenario: Generate 02_garage_telemetry_vault (Virtual Garage with 30s fluid check-in and 3/3 memory slots)
 - [ ] Scenario: Generate 03_contextual_parts_feed (Contextual parts catalog with on-demand reference images)
