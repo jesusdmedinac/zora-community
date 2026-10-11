@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zora Automotive - Parts &amp; Intelligence</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Public+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#4c007c",
+            "inverse-primary": "#722ee7",
+            "background": "#121316",
+            "surface-container-highest": "#343538",
+            "secondary": "#e1b6ff",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed-dim": "#e1b6ff",
+            "tertiary": "#ffb0cb",
+            "on-tertiary-container": "#fffdff",
+            "on-background": "#e3e2e6",
+            "on-tertiary-fixed-variant": "#8d004f",
+            "tertiary-fixed-dim": "#ffb0cb",
+            "outline": "#958da1",
+            "surface-container": "#1f1f23",
+            "surface-variant": "#343538",
+            "on-secondary-container": "#eed2ff",
+            "inverse-surface": "#e3e2e6",
+            "on-primary": "#3d008f",
+            "primary-fixed-dim": "#d1bcff",
+            "on-primary-container": "#fffcff",
+            "on-tertiary-fixed": "#3e0020",
+            "surface-container-lowest": "#0d0e11",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#2e004e",
+            "on-primary-fixed-variant": "#5800c8",
+            "surface-container-high": "#292a2d",
+            "secondary-container": "#9201e7",
+            "secondary-fixed": "#f2daff",
+            "on-primary-fixed": "#24005b",
+            "tertiary-fixed": "#ffd9e3",
+            "surface-container-low": "#1b1b1f",
+            "surface-tint": "#d1bcff",
+            "primary-fixed": "#eaddff",
+            "outline-variant": "#4a4455",
+            "on-secondary-fixed-variant": "#6c00ad",
+            "error-container": "#93000a",
+            "on-surface-variant": "#ccc3d8",
+            "primary-container": "#894cff",
+            "on-tertiary": "#640037",
+            "on-surface": "#e3e2e6",
+            "primary": "#d1bcff",
+            "surface-bright": "#38393c",
+            "surface": "#121316",
+            "on-error": "#690005",
+            "tertiary-container": "#e20182",
+            "surface-dim": "#121316",
+            "inverse-on-surface": "#303034"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope", "sans-serif"],
+            "display": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Public Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 20px -3px rgba(137, 76, 255, 0.35);
+    }
+    .neon-border-glow {
+      box-shadow: 0 0 15px -2px rgba(226, 1, 130, 0.25);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen pb-24">
+<!-- Top App Bar (Shared Components Anchor Compliant) -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 px-4 h-14 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Brand Logo / Identity Icon -->
+<img alt="Zora Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mscsC-CHOW4wdgN87AI3XClQYUFClAL0mDK4IWHYUZmTDHHqyJHjspRiTn4tYw3o3QvEl1e_KcAVoAbCXZqgZn_pVevGq3frrHLhDRFBm1V-MhpVrIjYjl1710xbLp-s4ZGxHgE-KQDY9gQ8r94L61GxiMyPJ5u015c-iSASAxpFvDeECUwHhc7LpekHig_TZpl7h3wNLTDt6tjMAfZW0rSCD96yU70WMsFxqWsIBQzoUVbpVSKi7W_jDEmor5q1L7BjjAiS7Cs"/>
+<div>
+<h1 class="font-headline font-bold text-on-surface text-base tracking-tight leading-tight">Parts &amp; Intelligence</h1>
+<p class="font-label text-[10px] text-on-surface-variant font-medium tracking-wide flex items-center gap-1">
+<span>OEM DIRECT FIT</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline"></span>
+<span>TIER-1 TELEMETRY</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<!-- Shield / Secure Local Session Chip -->
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container border border-outline-variant/40 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-[15px] text-secondary">shield_with_heart</span>
+<span class="font-label text-[11px] font-semibold tracking-tight text-on-surface">Local-Only</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container hover:bg-surface-container-high active:scale-95 transition-transform flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[19px]">sensors</span>
+</button>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="max-w-xl mx-auto px-4 pt-3 space-y-5">
+<!-- Active Vehicle Selector Pill -->
+<div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-2xl">directions_car</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline font-bold text-sm text-on-surface">2018 Honda Civic EX</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-mono-code font-medium bg-surface-container-highest text-secondary">2.0L K20C2</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-[11px] font-medium text-emerald-400 tracking-tight">Fitment Active · Precision Match</span>
+</div>
+</div>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-lg">swap_horiz</span>
+</button>
+</div>
+<!-- Search Input & Scanner Bar -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-xl">search</span>
+<input class="w-full pl-11 pr-24 py-3 rounded-xl bg-surface-container border border-outline-variant/40 text-on-surface placeholder:text-outline text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search parts, part numbers, or symptoms..." type="text"/>
+<div class="absolute right-2 flex items-center gap-1">
+<button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary text-xs active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[17px]">barcode_scanner</span>
+<span class="font-label text-[11px] font-semibold">Scan</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Category Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1 -mx-4 px-4">
+<button class="shrink-0 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-container font-headline font-bold text-xs tracking-tight shadow-sm active:scale-95 transition-transform flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>All</span>
+</button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface-variant text-xs font-medium active:scale-95 transition-transform">
+        Brakes
+      </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface-variant text-xs font-medium active:scale-95 transition-transform">
+        Fluids &amp; Filters
+      </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface-variant text-xs font-medium active:scale-95 transition-transform">
+        Suspension
+      </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface-variant text-xs font-medium active:scale-95 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">recycling</span>
+<span>Junkyard Network</span>
+</button>
+</div>
+<!-- Section: Recommended Parts Feed -->
+<section class="space-y-3">
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<h2 class="font-headline font-bold text-base text-on-surface tracking-tight">Recommended For Your Civic</h2>
+<p class="font-body text-xs text-on-surface-variant">OEM Fitment Guaranteed &amp; Verified Against VIN</p>
+</div>
+<span class="text-[11px] font-mono-code text-secondary font-semibold">3 MATCHES</span>
+</div>
+<!-- Item 1: Brake Pads -->
+<article class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 hover:border-outline-variant transition-colors space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div class="space-y-1">
+<!-- Badge -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span>Direct Fit Guarantee</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface leading-snug">Akebono Ultra-Premium Ceramic Front Brake Pads</h3>
+<p class="font-mono-code text-[11px] text-outline">OEM Interchange: <span class="text-on-surface-variant font-medium">#45022-TBA-A01</span></p>
+</div>
+<div class="text-right shrink-0">
+<span class="font-headline font-bold text-base text-on-surface">$54.00</span>
+<div class="text-[11px] text-emerald-400 font-medium">In Stock</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-outline-variant/20">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">local_shipping</span>
+<span>Free Delivery by Tomorrow</span>
+</span>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-xs font-medium text-on-surface hover:bg-surface-container-high transition-colors">
+              View Specs
+            </button>
+<button class="px-3 py-1 rounded-lg bg-primary-container hover:bg-primary-container/90 text-on-primary-container text-xs font-semibold active:scale-95 transition-all">
+              Fitment Details
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 2: Engine Oil -->
+<article class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 hover:border-outline-variant transition-colors space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div class="space-y-1">
+<!-- Badge -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">water_drop</span>
+<span>Direct Fit Guarantee · Recommended by Fluid Check</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface leading-snug">Mobil 1 Advanced 0W-20 Full Synthetic Oil (5 Qt)</h3>
+<p class="font-body text-xs text-on-surface-variant">Optimal protection for Honda i-VTEC high-efficiency engines</p>
+</div>
+<div class="text-right shrink-0">
+<span class="font-headline font-bold text-base text-on-surface">$28.99</span>
+<div class="text-[11px] text-emerald-400 font-medium">Ready in 2 hrs</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-outline-variant/20">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">store</span>
+<span>Pickup at AutoZone (1.4 mi)</span>
+</span>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-xs font-medium text-on-surface hover:bg-surface-container-high transition-colors">
+              Specs
+            </button>
+<button class="px-3 py-1 rounded-lg bg-primary-container hover:bg-primary-container/90 text-on-primary-container text-xs font-semibold active:scale-95 transition-all">
+              Order Pickup
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 3: Salvage Alternator -->
+<article class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 hover:border-secondary/40 transition-colors space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div class="space-y-1">
+<!-- Salvage Badge -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 border border-secondary/40 text-secondary text-[10px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">precision_manufacturing</span>
+<span>Verified Salvage · Yonke Network</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface leading-snug">Original Denso Alternator (135A)</h3>
+<p class="font-mono-code text-[11px] text-outline">Donor VIN: <span class="text-on-surface-variant">1HGFC2...7391 (41k mi)</span></p>
+</div>
+<div class="text-right shrink-0">
+<span class="font-headline font-bold text-base text-on-surface">$85.00</span>
+<div class="text-[10px] text-secondary font-medium">(Save 65% vs $240 New)</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-outline-variant/20">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary">near_me</span>
+<span>9.2 mi away · Grade A Condition</span>
+</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs font-semibold text-secondary active:scale-95 transition-all">
+              Claim Part
+            </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Section 3: On-Demand Visual Reference Generator Card -->
+<section class="p-4 rounded-xl bg-surface-container-low border border-primary-container/40 neon-glow-primary relative overflow-hidden space-y-3">
+<!-- Glow Accent Orb -->
+<div class="absolute -right-10 -top-10 w-36 h-36 bg-primary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">auto_awesome</span>
+<h2 class="font-headline font-bold text-sm text-on-surface">Visual Component Reference</h2>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-0.5 leading-relaxed">
+            Not sure where a part is located on your car? Generate an AI-rendered reference of your engine bay or undercarriage.
+          </p>
+</div>
+</div>
+<!-- Quota Counter & Gradient Progress Bar -->
+<div class="p-2.5 rounded-lg bg-surface-container border border-outline-variant/30 space-y-1.5">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant text-[11px] font-medium">Free Monthly Visual Intelligence</span>
+<span class="font-mono-code text-[11px] text-secondary font-bold">1 of 3 Used</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full w-1/3 rounded-full bg-gradient-to-r from-primary-container via-secondary-container to-tertiary-container"></div>
+</div>
+</div>
+<!-- Visual Preview Stage (3D Engine Bay Render Representation) -->
+<div class="relative rounded-lg overflow-hidden border border-outline-variant/40 bg-surface-container-lowest">
+<!-- Render Graphic: stylized photographic representation with luminous neon violet component highlights -->
+<div class="relative h-44 w-full">
+<img class="w-full h-full object-cover opacity-85" data-alt="A high-tech digital 3D cutaway wireframe render of a modern automobile engine bay under dramatic dark studio lighting. Dark titanium surfaces with obsidian shadows and luminous glowing electric violet and neon purple highlights accentuating mechanical components such as the alternator and intake manifold. Crisp technical overlays, holographic HUD depth cues, and automotive precision aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABqcttHnJt92WXVFBqFdEDBPRzKCtpYs_i947air_LxVyYhc9rQ74arsTH1uaGahE8wnFwp8gbCFwa8CIxM-RZ2SGTOFh-2nllA_xdwPW48FivjzGbmLmNcDym_WoSHUwuFXXE7VwCpvcs2GMyqs8YxBpa48ZcM7FR9whLY8rF5iI0AFUknoqYQBd6Im2IHCl-KArwRSCDqoW0PcORAAdg2vNwOan2loMx-Q4_p7sZG5Yll2hYTgpldlANWjFS2eQnvr75tZXFTwQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<!-- Luminous Component Locator Pin -->
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+<div class="px-2 py-0.5 rounded-full bg-primary-container/90 text-on-primary-container text-[10px] font-mono-code font-bold tracking-tight shadow-lg border border-primary/50 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+<span>DENSO ALTERNATOR</span>
+</div>
+<div class="w-0.5 h-6 bg-gradient-to-b from-primary to-transparent"></div>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm border border-outline-variant/30 text-[10px] font-mono-code text-on-surface-variant">
+              Engine Bay (Front-Right Offset)
+            </span>
+<span class="px-1.5 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-[10px] text-emerald-400 font-mono-code">
+              100% Match
+            </span>
+</div>
+</div>
+</div>
+<p class="text-[10px] text-outline font-medium tracking-tight">
+        Note: AI-generated visual reference for illustration and component location only.
+      </p>
+<!-- Primary Action CTA -->
+<button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-primary-container via-secondary-container to-tertiary-container hover:opacity-95 active:scale-[0.98] transition-all text-on-primary-container font-headline font-bold text-xs flex items-center justify-center gap-1.5 shadow-md">
+<span class="material-symbols-outlined text-[16px]">arrow_back_ios_new</span>
+<span>Render Another Component</span>
+</button>
+</section>
+<!-- Section 4: Community Intelligence & Telemetry Section (Privacy Gated) -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline font-bold text-base text-on-surface tracking-tight">Community Insights</h2>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-mono-code font-medium bg-surface-container text-outline">FLEET v2.4</span>
+</div>
+</div>
+<!-- Locked Titanium Privacy Card -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 space-y-3 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+<div>
+<span class="inline-block px-2 py-0.5 rounded-full bg-surface-container-high text-secondary text-[10px] font-semibold border border-outline-variant/30">
+                Private Local Session Active
+              </span>
+<h3 class="font-headline font-bold text-xs text-on-surface mt-0.5">Fleet-wide Failure Trends</h3>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-lg">enhanced_encryption</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+          Aggregated failure patterns and replacement intervals from other Civic drivers require Cloud AI Opt-In. Your data currently stays 100% private on your phone.
+        </p>
+<!-- Question of the week teaser preview -->
+<div class="p-3 rounded-lg bg-surface-container border border-outline-variant/20 space-y-2">
+<div class="flex items-center gap-1.5 text-secondary text-[11px] font-semibold">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+<span>Question of the Week</span>
+</div>
+<p class="font-headline text-xs font-semibold text-on-surface">
+            At what mileage did Civic owners replace their front motor mount?
+          </p>
+<!-- Blurred data preview mockup -->
+<div class="relative pt-1 filter blur-[2.5px] select-none opacity-60">
+<div class="h-2 rounded bg-surface-container-highest w-3/4 mb-1.5"></div>
+<div class="flex justify-between text-[10px] font-mono-code text-outline">
+<span>Average: 78,400 mi</span>
+<span>Cluster spike: Year 6</span>
+</div>
+</div>
+</div>
+<!-- Privacy Action Button -->
+<button class="w-full py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-secondary text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[15px]">security</span>
+<span>Review Cloud AI Opt-In Settings</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Persistent Docked Nav Shell - Compliant with Shared Components JSON) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-2 bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/30">
+<!-- Tab 1: Garage / Telemetry -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors py-1 px-3 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">directions_car</span>
+<span class="font-label text-xs tracking-tight mt-0.5">Garage</span>
+</a>
+<!-- Tab 2: Parts (Active State mapped to style_active_navigation) -->
+<a class="flex flex-col items-center justify-center text-primary font-medium py-1 px-4 rounded-full bg-primary-container/20 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px] text-secondary">build</span>
+<span class="font-label text-xs tracking-tight mt-0.5 text-primary font-bold">Parts</span>
+</a>
+<!-- Tab 3: Copilot -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors py-1 px-3 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="font-label text-xs tracking-tight mt-0.5">Copilot</span>
+</a>
+<!-- Tab 4: System / Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors py-1 px-3 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label text-xs tracking-tight mt-0.5">Settings</span>
+</a>
+</nav>
+</body></html>

@@ -10,7 +10,7 @@ Centralized BDD progress tracker for `zora-community` (Open-Source Mini-Zora & K
 - [x] Scenario: Generate 01_empty_chat (Welcoming zero-state chat with centered Zora emblem and starter prompts)
 - [x] Scenario: Generate 01_onboarding_chat_genui (Guided Onboarding Chat with json-to-compose generative cards)
 - [x] Scenario: Generate 02_garage_telemetry_vault (Virtual Garage with 30s fluid check-in and 3/3 memory slots)
-- [ ] Scenario: Generate 03_contextual_parts_feed (Contextual parts catalog with on-demand reference images)
+- [x] Scenario: Generate 03_contextual_parts_feed (Contextual parts catalog with on-demand reference images)
 - [ ] Scenario: Generate 04_zora_pro_paywall (Zora Pro Multi-Agent Network and subscription paywall)
 
 ## Feature: Clean Architecture and Declarative Toolchain Setup (03)
