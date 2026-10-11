@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Zora Pro Upgrade | Autonomous Automotive Agent Network</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope, Inter, Public Sans, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Manrope:wght@600;700;800;900&amp;family=Public+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#722ee7",
+            "on-primary": "#3d008f",
+            "surface-container": "#1f1f23",
+            "secondary-fixed-dim": "#e1b6ff",
+            "outline-variant": "#4a4455",
+            "on-secondary-fixed": "#2e004e",
+            "tertiary-fixed-dim": "#ffb0cb",
+            "surface-container-highest": "#343538",
+            "on-surface": "#e3e2e6",
+            "primary": "#d1bcff",
+            "on-secondary-container": "#eed2ff",
+            "on-secondary": "#4c007c",
+            "inverse-surface": "#e3e2e6",
+            "error": "#ffb4ab",
+            "surface-container-low": "#1b1b1f",
+            "surface-variant": "#343538",
+            "tertiary-container": "#e20182",
+            "secondary-fixed": "#f2daff",
+            "on-tertiary-fixed-variant": "#8d004f",
+            "on-primary-fixed-variant": "#5800c8",
+            "primary-fixed": "#eaddff",
+            "on-surface-variant": "#ccc3d8",
+            "on-error": "#690005",
+            "on-primary-fixed": "#24005b",
+            "background": "#121316",
+            "outline": "#958da1",
+            "on-tertiary-container": "#fffdff",
+            "surface-dim": "#121316",
+            "secondary-container": "#9201e7",
+            "primary-container": "#894cff",
+            "on-primary-container": "#fffcff",
+            "secondary": "#e1b6ff",
+            "on-tertiary": "#640037",
+            "on-secondary-fixed-variant": "#6c00ad",
+            "on-error-container": "#ffdad6",
+            "surface-bright": "#38393c",
+            "primary-fixed-dim": "#d1bcff",
+            "on-background": "#e3e2e6",
+            "error-container": "#93000a",
+            "surface-tint": "#d1bcff",
+            "surface-container-high": "#292a2d",
+            "surface": "#121316",
+            "tertiary": "#ffb0cb",
+            "tertiary-fixed": "#ffd9e3",
+            "inverse-on-surface": "#303034",
+            "on-tertiary-fixed": "#3e0020",
+            "surface-container-lowest": "#0d0e11"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope", "sans-serif"],
+            "display": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Public Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom subtle glow & radial utility backgrounds */
+    .glow-aura {
+      background: radial-gradient(circle at 50% 10%, rgba(137, 76, 255, 0.22) 0%, rgba(205, 0, 236, 0.12) 35%, rgba(13, 14, 17, 0) 70%);
+    }
+    .brand-gradient-fill {
+      background: linear-gradient(135deg, #894CFF 0%, #CD00EC 52%, #ED158A 100%);
+    }
+    .brand-border-gradient {
+      border-image: linear-gradient(to bottom right, #894CFF, #CD00EC, #ED158A) 1;
+    }
+    .card-border-glow {
+      box-shadow: 0 0 24px -4px rgba(137, 76, 255, 0.35);
+    }
+    /* Hide scrollbars for clean mobile feel */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Container Wrapper -->
+<main class="relative max-w-md mx-auto min-h-screen bg-surface-container-lowest flex flex-col justify-between overflow-x-hidden pb-44">
+<!-- Atmospheric Background Ambient Glow -->
+<div class="absolute top-0 left-0 right-0 h-96 glow-aura pointer-events-none z-0"></div>
+<div class="absolute top-44 -right-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- 1. Header with dismissible trigger & brand pill -->
+<header class="relative z-10 pt-4 px-5 flex items-center justify-between w-full">
+<!-- Empty spacing balance -->
+<div class="w-10 h-10 flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+</div>
+<!-- Glowing Zora Pro Pill Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/60 shadow-lg shadow-primary-container/10 backdrop-blur-md">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-headline font-black text-[11px] tracking-widest text-primary uppercase">ZORA PRO</span>
+</div>
+<!-- Dismiss Button -->
+<button aria-label="Close" class="w-10 h-10 rounded-full bg-surface-container/80 border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high active:scale-95 transition-all" onclick="window.history.back()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</header>
+<!-- Top Visual / Emblem -->
+<section class="relative z-10 flex flex-col items-center pt-2 px-6">
+<div class="relative w-24 h-24 mb-3 flex items-center justify-center">
+<!-- Backlit halo -->
+<div class="absolute inset-0 bg-primary-container/30 blur-2xl rounded-full scale-110"></div>
+<img alt="Zora Emblem" class="relative w-20 h-20 object-contain drop-shadow-[0_0_20px_rgba(137,76,255,0.7)] hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChRJF-0IXclyhNHt1IaG7VSg92iBX-rSJCjUeAd1nnhdrT0d7BZi-WEDz_VLT9D-nm3uEzgJl5t2PuL05Xfau_dEXm-E4EaRy9wYUU1raFH-1haWFhQSvxoWT7SOp9h57OixtvsAUHvTNembo6AqxX02iop_2BWf07cwwFzE9eTRrpzANJBdDqPz20_VWE884Mf1bB_Ph-RLPRHMZ7EZeUV4LnPWcD-myA_BPoc72YSLCinWtiuTPGyjyZve6zPfqmwnoXapC6W9A"/>
+</div>
+<!-- 2. Hero Section -->
+<h1 class="font-headline font-extrabold text-2xl sm:text-3xl tracking-tight text-center text-on-surface leading-tight">
+        Your Autonomous<br/>
+<span class="bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text text-transparent">
+          Automotive Agent Network
+        </span>
+</h1>
+<p class="mt-2.5 text-xs sm:text-sm text-center text-on-surface-variant max-w-xs leading-relaxed font-body">
+        Put dedicated AI agents to work negotiating salvage parts, tracking live fuel savings, and protecting your car.
+      </p>
+</section>
+<!-- 3. The 3 Multi-Agent Capabilities (Feature Cards) -->
+<section class="relative z-10 px-4 mt-6">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">hub</span>
+<h2 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface-variant">Active Agent Nodes</h2>
+</div>
+<span class="font-mono text-[10px] text-outline px-2 py-0.5 rounded bg-surface-container-low border border-outline-variant/30">Local-First · Zero Leak</span>
+</div>
+<div class="space-y-3">
+<!-- Agent Card 1: Active Core (Salvage) -->
+<div class="p-4 rounded-xl bg-surface-container/90 border border-primary-container/40 relative overflow-hidden backdrop-blur-md transition-all duration-200">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between gap-3 mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant/50 text-primary">
+<span class="material-symbols-outlined text-[20px]">recycling</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Junkyard &amp; Salvage Agent</h3>
+<p class="font-mono text-[10px] text-outline">Cluster: YardMesh v4.2</p>
+</div>
+</div>
+<!-- Active Emerald Pill -->
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-label text-[10px] font-semibold tracking-wide shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+<span>ACTIVE NOW</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed pl-0.5">
+            Autonomously bids, negotiates, and secures verified used parts 24/7 across salvage yards while keeping your identity 100% anonymous.
+          </p>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/30 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
+<span class="text-primary-fixed-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> OEM Cross-check
+            </span>
+<span class="text-outline">Est. Savings: 68% avg</span>
+</div>
+</div>
+<!-- Agent Card 2: Live Fuel & Gas Station Agent -->
+<div class="p-4 rounded-xl bg-surface-container-low/80 border border-outline-variant/30 relative overflow-hidden backdrop-blur-md">
+<div class="flex items-start justify-between gap-3 mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant/40 text-secondary">
+<span class="material-symbols-outlined text-[20px]">local_gas_station</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Live Fuel &amp; Gas Station Agent</h3>
+<p class="font-mono text-[10px] text-outline">Real-Time Geo-Scout</p>
+</div>
+</div>
+<!-- Violet Pill -->
+<div class="px-2 py-0.5 rounded-full bg-primary-container/20 border border-primary-container/30 text-primary-fixed font-label text-[10px] font-medium tracking-tight shrink-0">
+              COMING SOON · INCLUDED
+            </div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed pl-0.5">
+            Monitors real-time pump prices along your daily routes to route you to the cheapest fuel.
+          </p>
+</div>
+<!-- Agent Card 3: Certified Mechanic Agent -->
+<div class="p-4 rounded-xl bg-surface-container-low/80 border border-outline-variant/30 relative overflow-hidden backdrop-blur-md">
+<div class="flex items-start justify-between gap-3 mb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant/40 text-tertiary">
+<span class="material-symbols-outlined text-[20px]">handyman</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Certified Mechanic Agent</h3>
+<p class="font-mono text-[10px] text-outline">Labor Rate Arbiter</p>
+</div>
+</div>
+<!-- Violet Pill -->
+<div class="px-2 py-0.5 rounded-full bg-primary-container/20 border border-primary-container/30 text-primary-fixed font-label text-[10px] font-medium tracking-tight shrink-0">
+              COMING SOON · INCLUDED
+            </div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed pl-0.5">
+            Estimates fair labor costs and connects you with vetted mechanics who install customer-provided parts.
+          </p>
+</div>
+</div>
+</section>
+<!-- 4. Pro Superpowers Grid (2x2 Card Matrix) -->
+<section class="relative z-10 px-4 mt-6">
+<div class="flex items-center gap-1.5 mb-3 px-1">
+<span class="material-symbols-outlined text-primary text-base">bolt</span>
+<h2 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface-variant">Pro Superpowers</h2>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Card A -->
+<div class="p-3.5 rounded-xl bg-surface-container/60 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="w-7 h-7 rounded-md bg-primary-container/20 text-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[17px]">photo_camera</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface leading-snug">Camera Visual Diagnosis</h4>
+<p class="mt-1 text-[11px] text-on-surface-variant leading-normal">
+              Snap photos of engine leaks or warning lights for instant AI analysis.
+            </p>
+</div>
+</div>
+<!-- Card B -->
+<div class="p-3.5 rounded-xl bg-surface-container/60 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="w-7 h-7 rounded-md bg-secondary-container/20 text-secondary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[17px]">garage</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface leading-snug">Unlimited Multi-Car Garage</h4>
+<p class="mt-1 text-[11px] text-on-surface-variant leading-normal">
+              Register every vehicle in your household with zero caps.
+            </p>
+</div>
+</div>
+<!-- Card C -->
+<div class="p-3.5 rounded-xl bg-surface-container/60 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="w-7 h-7 rounded-md bg-tertiary-container/20 text-tertiary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[17px]">psychology</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface leading-snug">Infinite Copilot Memory</h4>
+<p class="mt-1 text-[11px] text-on-surface-variant leading-normal">
+              Preserves all historical maintenance trails, symptoms, and preferences.
+            </p>
+</div>
+</div>
+<!-- Card D -->
+<div class="p-3.5 rounded-xl bg-surface-container/60 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="w-7 h-7 rounded-md bg-primary/20 text-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[17px]">view_in_ar</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface leading-snug">Unlimited Visual Renders</h4>
+<p class="mt-1 text-[11px] text-on-surface-variant leading-normal">
+              Generate unlimited engine bay and component location blueprints.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Pricing Plan Selector -->
+<section class="relative z-10 px-4 mt-6">
+<div class="flex items-center gap-1.5 mb-3 px-1">
+<span class="material-symbols-outlined text-primary text-base">payments</span>
+<h2 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface-variant">Select Membership Plan</h2>
+</div>
+<div class="space-y-3" id="plan-selector">
+<!-- Option A: Annual Membership (Selected / Highlighted) -->
+<div class="cursor-pointer relative p-4 rounded-xl bg-surface-container border-2 border-primary-container shadow-lg card-border-glow transition-all duration-200" id="plan-annual" onclick="selectPlan('annual')">
+<!-- Discount badge -->
+<div class="absolute -top-2.5 right-4 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 font-label font-bold text-[10px] tracking-wide flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">savings</span>
+<span>SAVE 33% · BEST VALUE</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-start gap-3">
+<!-- Custom Radio Button (Selected) -->
+<div class="mt-1 w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm" id="radio-annual">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div>
+<div class="font-headline font-bold text-sm text-on-surface">Annual Membership</div>
+<div class="font-mono text-xs text-primary font-semibold mt-0.5">$79.99 / year <span class="text-on-surface-variant font-normal font-body text-[11px]">($6.66/month)</span></div>
+<div class="text-[11px] text-outline mt-0.5 font-body">Billed annually · Full agent network access</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Option B: Monthly Membership -->
+<div class="cursor-pointer relative p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 hover:border-outline-variant transition-all duration-200" id="plan-monthly" onclick="selectPlan('monthly')">
+<div class="flex items-center justify-between">
+<div class="flex items-start gap-3">
+<!-- Custom Radio Button (Unselected) -->
+<div class="mt-1 w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center" id="radio-monthly">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+</div>
+<div>
+<div class="font-headline font-bold text-sm text-on-surface">Monthly Membership</div>
+<div class="font-mono text-xs text-on-surface font-semibold mt-0.5">$9.99 / month</div>
+<div class="text-[11px] text-outline mt-0.5 font-body">Flexible billing · Cancel anytime</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Sticky CTA & Trust Footer -->
+<div class="fixed bottom-0 left-0 right-0 z-30 max-w-md mx-auto px-4 pt-3 pb-6 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/95 to-transparent backdrop-blur-md">
+<!-- Glow Button -->
+<button class="w-full relative group overflow-hidden py-3.5 px-6 rounded-full brand-gradient-fill font-headline font-extrabold text-sm sm:text-base text-on-primary-container shadow-lg shadow-primary-container/30 active:scale-[0.98] transition-transform duration-150 flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span>Start 7-Day Free Trial</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+<!-- Trust Subtext -->
+<div class="mt-2.5 text-center">
+<p class="text-[11px] text-outline font-body flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[13px] text-primary">verified_user</span>
+<span>7 days free · Cancel anytime · Secured via App Store</span>
+</p>
+</div>
+<!-- Legal Links Row -->
+<div class="mt-2 flex items-center justify-center gap-4 text-[10px] text-outline font-label">
+<a class="hover:text-primary transition-colors" href="#restore">Restore Purchases</a>
+<span>·</span>
+<a class="hover:text-primary transition-colors" href="#terms">Terms of Service</a>
+<span>·</span>
+<a class="hover:text-primary transition-colors" href="#privacy">Privacy Policy</a>
+</div>
+</div>
+</main>
+<!-- Interactive Radio Toggle Micro-script -->
+<script>
+    function selectPlan(plan) {
+      const annualCard = document.getElementById('plan-annual');
+      const monthlyCard = document.getElementById('plan-monthly');
+      const radioAnnual = document.getElementById('radio-annual');
+      const radioMonthly = document.getElementById('radio-monthly');
+
+      if (plan === 'annual') {
+        annualCard.className = 'cursor-pointer relative p-4 rounded-xl bg-surface-container border-2 border-primary-container shadow-lg card-border-glow transition-all duration-200';
+        monthlyCard.className = 'cursor-pointer relative p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 hover:border-outline-variant transition-all duration-200';
+        
+        radioAnnual.className = 'mt-1 w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm';
+        radioAnnual.innerHTML = '<span class="material-symbols-outlined text-[14px] font-bold">check</span>';
+
+        radioMonthly.className = 'mt-1 w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center';
+        radioMonthly.innerHTML = '<span class="w-2 h-2 rounded-full bg-transparent"></span>';
+      } else {
+        monthlyCard.className = 'cursor-pointer relative p-4 rounded-xl bg-surface-container border-2 border-primary-container shadow-lg card-border-glow transition-all duration-200';
+        annualCard.className = 'cursor-pointer relative p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 hover:border-outline-variant transition-all duration-200';
+        
+        radioMonthly.className = 'mt-1 w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm';
+        radioMonthly.innerHTML = '<span class="material-symbols-outlined text-[14px] font-bold">check</span>';
+
+        radioAnnual.className = 'mt-1 w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center';
+        radioAnnual.innerHTML = '<span class="w-2 h-2 rounded-full bg-transparent"></span>';
+      }
+    }
+  </script>
+</body></html>
