@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zora Copilot - Onboarding</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Manrope:wght@500;600;700;800;900&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#24005b",
+            "on-tertiary-fixed": "#3e0020",
+            "inverse-surface": "#e3e2e6",
+            "primary": "#d1bcff",
+            "surface-container-low": "#1b1b1f",
+            "secondary-container": "#9201e7",
+            "surface": "#121316",
+            "secondary-fixed-dim": "#e1b6ff",
+            "secondary-fixed": "#f2daff",
+            "on-secondary-fixed": "#2e004e",
+            "primary-fixed-dim": "#d1bcff",
+            "on-surface": "#e3e2e6",
+            "inverse-on-surface": "#303034",
+            "tertiary": "#ffb0cb",
+            "surface-dim": "#121316",
+            "on-error": "#690005",
+            "primary-container": "#894cff",
+            "on-tertiary": "#640037",
+            "on-primary-fixed-variant": "#5800c8",
+            "inverse-primary": "#722ee7",
+            "on-tertiary-fixed-variant": "#8d004f",
+            "tertiary-fixed-dim": "#ffb0cb",
+            "surface-tint": "#d1bcff",
+            "surface-container": "#1f1f23",
+            "surface-container-high": "#292a2d",
+            "on-tertiary-container": "#fffdff",
+            "on-primary": "#3d008f",
+            "tertiary-container": "#e20182",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "error": "#ffb4ab",
+            "tertiary-fixed": "#ffd9e3",
+            "surface-variant": "#343538",
+            "primary-fixed": "#eaddff",
+            "surface-bright": "#38393c",
+            "on-secondary": "#4c007c",
+            "surface-container-lowest": "#0d0e11",
+            "on-background": "#e3e2e6",
+            "background": "#121316",
+            "on-secondary-fixed-variant": "#6c00ad",
+            "on-surface-variant": "#ccc3d8",
+            "secondary": "#e1b6ff",
+            "outline-variant": "#4a4455",
+            "on-primary-container": "#fffcff",
+            "surface-container-highest": "#343538",
+            "outline": "#958da1",
+            "on-secondary-container": "#eed2ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope", "sans-serif"],
+            "display": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Public Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .zora-gradient-bg {
+      background: linear-gradient(135deg, #894cff 0%, #a833fd 52%, #ec168a 100%);
+    }
+    .zora-gradient-border {
+      position: relative;
+      background: #16171d;
+    }
+    .zora-gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 0.85rem;
+      padding: 1px;
+      background: linear-gradient(135deg, #894cff 0%, #ec168a 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container pb-28">
+<!-- Shared Component: TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 transition-colors">
+<div class="max-w-xl mx-auto flex justify-between items-center w-full px-4 h-14">
+<div class="flex items-center space-x-3">
+<div class="relative w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center p-0.5 bg-surface-container-high border border-outline-variant/40 shadow-sm">
+<img alt="Zora Logo" class="w-full h-full object-cover rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqEo7pQhtaHDF-_KAM2K-rPfRBKNnyNeK29ZJ65mAXg1OexWgkV6jT3K69VL21U5vQuKUEnmzcx0tztCBBWW6EKg1Y1C9JU62_ceC4lvycN0ER3jn7ylPcBNgNtmE5h2Iixi5qvS_xk_7l8PPJI1H-7mtrEmo5dX3ja6ue57s2N0OenHgaTI-HWhf3cdJWBpOXH713vdUK1Zb88SEap4JYpPFgnmWWcZ4SOypskfpOwFDiBWAp82g72cLW7azKJAuVjYftYjpuPgM"/>
+</div>
+<div>
+<h1 class="font-headline font-bold text-on-surface text-base tracking-tight flex items-center gap-1.5">
+            Zora Copilot
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+</h1>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<!-- 100% Private Shield Pill -->
+<div class="flex items-center space-x-1.5 bg-surface-container-high/80 border border-outline-variant/50 rounded-full px-2.5 py-1 text-xs font-label">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+<span class="material-symbols-outlined text-[13px] text-primary" data-icon="lock">lock</span>
+<span class="font-mono text-[11px] font-medium text-on-surface-variant tracking-tight">100% Private</span>
+</div>
+<button class="p-1.5 rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Sensors and diagnostics">
+<span class="material-symbols-outlined text-sm" data-icon="sensors">sensors</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Conversation Canvas -->
+<main class="flex-1 w-full max-w-xl mx-auto px-4 pt-5 pb-6 space-y-5">
+<!-- Timeline Anchor -->
+<div class="flex items-center justify-center">
+<span class="text-[11px] font-mono tracking-wider text-outline uppercase bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant/30">
+        Local-First Secure Session · VIN Safe
+      </span>
+</div>
+<!-- Message 1: Copilot AI Greeting Bubble -->
+<div class="flex items-start space-x-3">
+<div class="relative flex-shrink-0 w-8 h-8 rounded-full overflow-hidden p-0.5 zora-gradient-bg shadow-sm shadow-primary/20">
+<img alt="Copilot Avatar" class="w-full h-full object-cover rounded-full bg-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqEo7pQhtaHDF-_KAM2K-rPfRBKNnyNeK29ZJ65mAXg1OexWgkV6jT3K69VL21U5vQuKUEnmzcx0tztCBBWW6EKg1Y1C9JU62_ceC4lvycN0ER3jn7ylPcBNgNtmE5h2Iixi5qvS_xk_7l8PPJI1H-7mtrEmo5dX3ja6ue57s2N0OenHgaTI-HWhf3cdJWBpOXH713vdUK1Zb88SEap4JYpPFgnmWWcZ4SOypskfpOwFDiBWAp82g72cLW7azKJAuVjYftYjpuPgM"/>
+</div>
+<div class="flex flex-col space-y-1 max-w-[85%]">
+<div class="flex items-baseline space-x-2">
+<span class="font-headline font-semibold text-xs text-primary">Zora AI</span>
+<span class="font-mono text-[10px] text-outline">Just now</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/40 rounded-xl rounded-tl-sm p-3.5 shadow-sm">
+<p class="text-sm text-on-surface leading-relaxed">
+            Hi! I'm Zora, your personal car copilot. Let's make sure you always find the right parts and care for your car. What vehicle do you drive?
+          </p>
+</div>
+</div>
+</div>
+<!-- Message 2: Driver User Reply Bubble -->
+<div class="flex flex-col items-end space-y-1 ml-auto max-w-[82%]">
+<div class="flex items-baseline space-x-1.5 self-end">
+<span class="font-headline font-semibold text-xs text-secondary-fixed-dim">Driver</span>
+<span class="font-mono text-[10px] text-outline">0.2s ago</span>
+</div>
+<div class="zora-gradient-bg text-on-primary-container rounded-xl rounded-tr-sm p-3.5 shadow-md shadow-primary-container/20">
+<p class="text-sm font-medium tracking-tight">
+          I drive a 2018 Honda Civic
+        </p>
+</div>
+<span class="text-[10px] font-mono text-outline flex items-center gap-1 pr-1">
+<span class="material-symbols-outlined text-[12px] text-primary" data-icon="done_all">done_all</span> Delivered
+      </span>
+</div>
+<!-- Message 3: Copilot Follow-up Bubble -->
+<div class="flex items-start space-x-3">
+<div class="relative flex-shrink-0 w-8 h-8 rounded-full overflow-hidden p-0.5 zora-gradient-bg shadow-sm">
+<img alt="Copilot Avatar" class="w-full h-full object-cover rounded-full bg-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqEo7pQhtaHDF-_KAM2K-rPfRBKNnyNeK29ZJ65mAXg1OexWgkV6jT3K69VL21U5vQuKUEnmzcx0tztCBBWW6EKg1Y1C9JU62_ceC4lvycN0ER3jn7ylPcBNgNtmE5h2Iixi5qvS_xk_7l8PPJI1H-7mtrEmo5dX3ja6ue57s2N0OenHgaTI-HWhf3cdJWBpOXH713vdUK1Zb88SEap4JYpPFgnmWWcZ4SOypskfpOwFDiBWAp82g72cLW7azKJAuVjYftYjpuPgM"/>
+</div>
+<div class="flex flex-col space-y-1.5 max-w-[90%] w-full">
+<div class="flex items-baseline space-x-2">
+<span class="font-headline font-semibold text-xs text-primary">Zora AI</span>
+<span class="font-mono text-[10px] text-outline">Matching OEM database</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/40 rounded-xl rounded-tl-sm p-3.5 shadow-sm">
+<p class="text-sm text-on-surface leading-relaxed">
+            Great car! To ensure every part fits perfectly, which engine or trim matches yours?
+          </p>
+</div>
+<!-- Section 4: Interactive Trim Selection Card (In-feed Bento Container) -->
+<div class="bg-surface-container-low border border-outline-variant/40 rounded-xl p-3 space-y-2 mt-1">
+<div class="flex items-center justify-between pb-1">
+<span class="font-mono text-[11px] text-outline uppercase tracking-wider">Select Engine Architecture</span>
+<span class="font-mono text-[11px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="bolt">bolt</span>
+              Civic 10th Gen
+            </span>
+</div>
+<!-- Option 1: Active Selected -->
+<button class="w-full text-left p-3 rounded-xl zora-gradient-border bg-surface-container-high/90 transition-all transform active:scale-[0.99] flex items-center justify-between shadow-lg shadow-primary-container/10">
+<div class="flex items-center space-x-3">
+<div class="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">2.0L 4-Cylinder (LX / EX)</p>
+<p class="font-mono text-[11px] text-outline">K20C2 · Naturally Aspirated · FWD</p>
+</div>
+</div>
+<span class="bg-primary/20 text-primary text-[10px] font-mono px-2 py-0.5 rounded-full border border-primary/30">Selected</span>
+</button>
+<!-- Option 2 -->
+<button class="w-full text-left p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 transition-all flex items-center justify-between group active:scale-[0.99]">
+<div class="flex items-center space-x-3">
+<div class="w-7 h-7 rounded-full border border-outline-variant/60 flex items-center justify-center text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xs" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-sm text-on-surface group-hover:text-primary transition-colors">1.5L Turbo (EX-T / Touring)</p>
+<p class="font-mono text-[11px] text-outline">L15B7 · Single-Scroll Turbo · Direct Inj</p>
+</div>
+</div>
+<span class="text-xs text-outline group-hover:text-on-surface transition-colors">Select</span>
+</button>
+<!-- Option 3 -->
+<button class="w-full text-left p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 transition-all flex items-center justify-between group active:scale-[0.99]">
+<div class="flex items-center space-x-3">
+<div class="w-7 h-7 rounded-full border border-outline-variant/60 flex items-center justify-center text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xs" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-sm text-on-surface group-hover:text-primary transition-colors">2.0L Turbo (Type R)</p>
+<p class="font-mono text-[11px] text-outline">K20C1 · High Output · Limited Slip</p>
+</div>
+</div>
+<span class="text-xs text-outline group-hover:text-on-surface transition-colors">Select</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section 5: Priority Care Cards (Guided Needs based on vehicle setup) -->
+<div class="pt-2 pl-11 space-y-3">
+<div class="flex items-center justify-between">
+<h2 class="font-headline font-bold text-xs uppercase tracking-wider text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="auto_awesome">auto_awesome</span>
+          Recommended Care Priorities:
+        </h2>
+<span class="font-mono text-[10px] text-primary">OEM Baseline Ready</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Card A: Preventive Maintenance -->
+<div class="bg-surface-container border border-outline-variant/40 rounded-xl p-3.5 relative overflow-hidden group hover:border-primary/50 transition-all shadow-sm">
+<div class="flex items-start justify-between mb-2">
+<span class="inline-flex items-center gap-1 font-mono text-[10px] font-semibold text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-2 py-0.5 rounded-full">
+<span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+              98% Match
+            </span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-lg" data-icon="build_circle">build_circle</span>
+</div>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface mb-1">Preventive Maintenance</h3>
+<p class="text-xs text-on-surface-variant leading-snug">
+            Keep track of brakes, 0W-20 oil &amp; transmission fluid replacement intervals.
+          </p>
+<div class="mt-3 pt-2 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="font-mono text-[10px] text-outline">Code: A1 / B12</span>
+<span class="text-xs font-semibold text-primary flex items-center gap-0.5">
+              Sync <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+</span>
+</div>
+</div>
+<!-- Card B: Junkyard & Used Parts -->
+<div class="bg-surface-container border border-outline-variant/40 rounded-xl p-3.5 relative overflow-hidden group hover:border-tertiary-container/50 transition-all shadow-sm">
+<div class="flex items-start justify-between mb-2">
+<span class="inline-flex items-center gap-1 font-mono text-[10px] font-semibold text-tertiary bg-tertiary-container/20 border border-tertiary-container/40 px-2 py-0.5 rounded-full">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+              85% Match
+            </span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-lg" data-icon="recycling">recycling</span>
+</div>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface mb-1">Junkyard &amp; Used Parts</h3>
+<p class="text-xs text-on-surface-variant leading-snug">
+            Find hard-to-locate original salvage body panels, sensors &amp; rims at low prices.
+          </p>
+<div class="mt-3 pt-2 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="font-mono text-[10px] text-outline">Civic Gen-10 Interchange</span>
+<span class="text-xs font-semibold text-tertiary flex items-center gap-0.5">
+              Explore <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 6: On-Demand Vehicle Reference Garage Card -->
+<div class="pl-11 pt-1">
+<div class="bg-surface-container border border-outline-variant/40 rounded-xl overflow-hidden shadow-lg">
+<!-- Visual Liquid Card Banner matching prompt visual inspiration -->
+<div class="relative h-28 w-full bg-surface-container-highest overflow-hidden flex items-center justify-center">
+<img alt="Garage Spec Liquid Card Preview" class="w-full h-full object-cover opacity-90 scale-105 filter contrast-125 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUpbWAo8rurvhzQFltWNM13vsreHSWU3C4rn5Tf3mlCHXkZqlYjMPaPilk7H1w8RFdlgPT9kaX3XYmaeInuhK4mfI_SkaTrEoJ-GNwy3wRI5sbj1jlqrAZJd2OAS4N56KTcEpFIKtv45j3PmE-tz4bGkWYbW9GWT5zftPyLLxCTbzH1_5x28hMpNWShdx1z5M6IWj5Dl00ouU1j7281HNtceUanZMh-x5plNb1ERhW7AHRydFYJbOD9Uyb98kC5k7g0QBBE3RMwQI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-surface-container/40 to-transparent"></div>
+<div class="absolute top-2.5 right-3 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-outline-variant/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="palette">palette</span>
+<span class="font-mono text-[10px] text-on-surface">3D Titanium Spec</span>
+</div>
+<div class="absolute bottom-2 left-3">
+<span class="font-headline font-extrabold text-sm tracking-tight text-white drop-shadow-md">
+              2018 Honda Civic · Garage Slot #01
+            </span>
+</div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="sparkles">arrow_back_ios_new</span>
+<p class="text-xs text-on-surface leading-relaxed">
+              Would you like to generate a visual reference of your car for your garage? <span class="font-semibold text-primary">(1 of 3 free this month)</span>
+</p>
+</div>
+<div class="flex items-center justify-between gap-3 pt-1">
+<button class="flex-1 py-2.5 px-4 rounded-xl zora-gradient-bg text-on-primary-container font-headline font-bold text-xs tracking-tight shadow-md shadow-primary-container/30 hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm" data-icon="magic_button">magic_button</span>
+              Generate Reference Image
+            </button>
+<button class="py-2.5 px-3 rounded-xl hover:bg-surface-container-high text-outline hover:text-on-surface font-headline font-medium text-xs transition-colors active:scale-95">
+              Skip for now
+            </button>
+</div>
+<p class="font-mono text-[9px] text-outline text-center">
+            Note: AI-generated visual reference for illustration only.
+          </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Docked Bottom Composer Bar -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-xl border-t border-outline-variant/20 py-2.5 px-4">
+<div class="max-w-xl mx-auto flex items-center space-x-2">
+<!-- Voice / Mic quick action -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Voice Input">
+<span class="material-symbols-outlined text-xl" data-icon="mic">mic</span>
+</button>
+<!-- Input Capsule -->
+<div class="flex-1 relative flex items-center">
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline text-xs rounded-full py-2.5 pl-4 pr-10 border border-outline-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body" placeholder="Type a message or describe an issue..." type="text"/>
+<button class="absolute right-2 text-outline hover:text-primary transition-colors p-1" title="Attach file or OBD diagnostic">
+<span class="material-symbols-outlined text-lg" data-icon="attach_file">attach_file</span>
+</button>
+</div>
+<!-- High-contrast Send Button -->
+<button class="w-10 h-10 rounded-full zora-gradient-bg text-on-primary-container flex items-center justify-center shadow-lg shadow-primary-container/30 hover:scale-105 active:scale-95 transition-transform flex-shrink-0" title="Send Message">
+<span class="material-symbols-outlined text-lg font-bold" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+</body></html>
