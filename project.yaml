@@ -1,6 +1,2 @@
-modules:
-  - .
-
-settings:
-  kotlin:
-    version: 2.1.20
+# Zora Community Root Project
+# Configured for Kotlin Toolchain 0.12+ / Amper
