@@ -1,12 +1,12 @@
 Feature: Clean Architecture and Modern Tech Stack
   As a mobile software engineer inspecting or extending Zora Community
-  I want a modular Clean Architecture setup powered by declarative tooling, Room KMP, kotlin-genai, and json-to-compose
-  So that I can build, test, and run on Android, iOS, and Desktop with zero boilerplate and robust local-first performance
+  I want a modular Clean Architecture setup powered by declarative tooling, SQLDelight, kotlin-genai, and json-to-compose
+  So that I can build, test, and run on Android, iOS, Desktop, and Web Wasm with zero boilerplate and robust local-first performance
 
   Scenario: Build project using declarative module.yaml
     Given the project root contains "module.yaml" configured with Kotlin Toolchain 0.12+
     When the multiplatform project is assembled
-    Then targets "android", "iosArm64", "iosSimulatorArm64", and "jvm" compile successfully
+    Then targets "android", "iosArm64", "iosSimulatorArm64", "jvm", and "wasmJs" compile successfully
     And zero imperative Gradle build scripts are required for module dependency wiring
 
   Scenario: Maintain unidirectional MVI state flow with ViewModel and StateFlow
@@ -18,10 +18,10 @@ Feature: Clean Architecture and Modern Tech Stack
   Scenario: Inject multiplatform dependencies with Koin
     Given the shared dependency graph is initialized
     When Koin modules are loaded on app startup
-    Then repositories, use cases, Room databases, and view models are resolved cleanly across all platforms
+    Then repositories, use cases, SQLDelight databases, and view models are resolved cleanly across all platforms
 
-  Scenario: Persist vehicles and telemetry locally with Room KMP
-    Given the Room database is configured with SQLite multiplatform driver
+  Scenario: Persist vehicles and telemetry locally with SQLDelight
+    Given the SQLDelight database is configured with multiplatform SQLite drivers (including Web Wasm)
     When vehicles, telemetry check-ins, parts cache, and copilot memory items are persisted
     Then data is stored in the local SQLite file on the device
     And queries execute asynchronously with Kotlin Coroutines and Flows

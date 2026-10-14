@@ -20,7 +20,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [ ] Scenario: Build project using declarative module.yaml
 - [ ] Scenario: Maintain unidirectional MVI state flow with ViewModel and StateFlow
 - [ ] Scenario: Inject multiplatform dependencies with Koin
-- [ ] Scenario: Persist vehicles and telemetry locally with Room KMP
+- [ ] Scenario: Persist vehicles and telemetry locally with SQLDelight
 - [ ] Scenario: Dynamically render agent generative UI with json-to-compose runtime
 - [ ] Scenario: Process structured vehicle queries with kotlin-genai and offline fallback
 
@@ -63,4 +63,4 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 ## Feature 06: KMP CLI Template Packaging
 - [ ] Scenario: Scaffold project without license requirements
 - [ ] Scenario: Bundle manifest and template metadata
-- [ ] Scenario: Bundle Generative UI and Room KMP starter templates
+- [ ] Scenario: Bundle Generative UI and SQLDelight starter templates

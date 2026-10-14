@@ -15,11 +15,11 @@
 
 ## 1. What is Zora Community?
 
-**Zora Community** is the free, open-source foundation of the Zora automotive ecosystem. It provides a complete, production-grade cross-platform mobile application for Android, iOS, and Desktop:
+**Zora Community** is the free, open-source foundation of the Zora automotive ecosystem. It provides a complete, production-grade cross-platform application for Android, iOS, Desktop, and Web:
 
 - 💬 **Agentic Conversational Onboarding:** Natural vehicle setup with generative UI cards (`json-to-compose`) for interactive trim selection and semantic care priorities.
 - 🚗 **Virtual Garage & Telemetry:** Active vehicle dashboard with mileage tracking, 30-second fluid/tire quick check-in, and single-vehicle free slot governance.
-- 🧠 **Inspectable Copilot Memory Vault:** Local-first memory storage (3 slots in Free tier) powered by Room KMP on SQLite with manual per-item purge capabilities.
+- 🧠 **Inspectable Copilot Memory Vault:** Local-first memory storage (3 slots in Free tier) powered by SQLDelight 2.x on SQLite with manual per-item purge capabilities.
 - ⚙️ **Contextual Parts Feed:** Precision fitment parts, Yonke (salvage yard) used parts with donor VIN tracking, and on-demand 3D engine bay component blueprint generator.
 - 🤖 **Multi-Agent Network & Freemium Governance:** Autonomous multi-agent paywall showcasing Junkyard, Fuel, and Mechanic agents with Pro subscription tiers.
 - 🏗️ **Clean Architecture & MVI:** Strict domain separation, Koin dependency injection, `kotlin-genai` integration with offline fallback, and unidirectional state flow.

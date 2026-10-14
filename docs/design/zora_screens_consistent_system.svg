@@ -1,0 +1,521 @@
+<svg width="2580" height="980" viewBox="0 0 2580 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Brand Gradient 135deg -->
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#894CFF"/>
+      <stop offset="50%" stop-color="#A833FD"/>
+      <stop offset="100%" stop-color="#EC168A"/>
+    </linearGradient>
+
+    <!-- Radial Ignition Glow -->
+    <radialGradient id="ignitionGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#894CFF" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#A833FD" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0D0E11" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glow Filter for CTA -->
+    <filter id="btnGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <style>
+      .hdr-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #E3E2E6; }
+      .pill-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #D1BCFF; }
+      .hero-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 20px; font-weight: 800; fill: #E3E2E6; letter-spacing: -0.4px; }
+      .hero-sub { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #A3AAC4; line-height: 18px; }
+      .card-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #E3E2E6; }
+      .card-sub { font-family: 'Inter', -apple-system, sans-serif; font-size: 11px; font-weight: 400; fill: #A3AAC4; }
+      .mono-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; fill: #10B981; }
+      .mono-code { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; fill: #D1BCFF; }
+      .badge-lbl { font-family: 'Inter', -apple-system, sans-serif; font-size: 10px; font-weight: 700; }
+      .screen-tag { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #D1BCFF; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- Canvas Backdrop -->
+  <rect width="2580" height="980" fill="#090A0D"/>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 1: SPLASH IGNITION (X=30, Y=50, 390x844)                       -->
+  <!-- ===================================================================== -->
+  <g transform="translate(30, 50)">
+    <text x="10" y="-16" class="screen-tag">01. SPLASH IGNITION</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+    
+    <!-- Background Ambient Glow -->
+    <circle cx="195" cy="400" r="180" fill="url(#ignitionGlow)"/>
+
+    <!-- Center Emblem -->
+    <g transform="translate(145, 330)">
+      <rect width="100" height="100" rx="24" fill="#12151C" stroke="#4A4455" stroke-opacity="0.5"/>
+      <path d="M50 22L78 38V70L50 86L22 70V38L50 22Z" fill="url(#brandGrad)"/>
+      <circle cx="50" cy="54" r="8" fill="#0D0E11"/>
+    </g>
+
+    <text x="195" y="475" text-anchor="middle" class="hero-title" style="font-size: 24px; letter-spacing: 1px;">ZORA</text>
+    <text x="195" y="500" text-anchor="middle" class="hero-sub" style="font-size: 12px; letter-spacing: 2px;">AUTOMOTIVE PRECISION COPILOT</text>
+
+    <!-- Bottom Indicator -->
+    <g transform="translate(45, 760)">
+      <rect width="300" height="4" rx="2" fill="#1B1B1F"/>
+      <rect width="120" height="4" rx="2" fill="url(#brandGrad)"/>
+      <text x="150" y="24" text-anchor="middle" class="card-sub" style="font-size: 11px;">Inicializando Telemetría Local-First &bull; KMP Core</text>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 2: COPILOT EMPTY STATE (X=450, Y=50, 390x844)                  -->
+  <!-- ===================================================================== -->
+  <g transform="translate(450, 50)">
+    <text x="10" y="-16" class="screen-tag">02. COPILOT WELCOMING</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+
+    <!-- TopAppBar (56px) -->
+    <g transform="translate(0, 0)">
+      <rect width="390" height="56" rx="32 32 0 0" fill="#12151C" fill-opacity="0.9" stroke="#4A4455" stroke-opacity="0.3"/>
+      <!-- Menu Button -->
+      <rect x="16" y="10" width="36" height="36" rx="8" fill="#1B1B1F"/>
+      <path d="M24 22H44M24 28H44M24 34H44" stroke="#E3E2E6" stroke-width="2" stroke-linecap="round"/>
+      <!-- Model Pill -->
+      <g transform="translate(95, 12)">
+        <rect width="200" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.5"/>
+        <circle cx="16" cy="16" r="4" fill="#10B981"/>
+        <text x="28" y="20" class="pill-text">⚡ Gemini 3.8 Flash</text>
+      </g>
+      <!-- User Avatar -->
+      <circle cx="356" cy="28" r="16" fill="url(#brandGrad)"/>
+      <circle cx="356" cy="28" r="14" fill="#12151C"/>
+      <text x="350" y="32" style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; fill: #D1BCFF;">JD</text>
+    </g>
+
+    <!-- Main Hero Center Area -->
+    <g transform="translate(24, 180)">
+      <circle cx="171" cy="70" r="50" fill="url(#ignitionGlow)"/>
+      <circle cx="171" cy="70" r="28" fill="#12151C" stroke="#894CFF" stroke-width="2"/>
+      <path d="M171 58L183 67V81L171 90L159 81V67L171 58Z" fill="url(#brandGrad)"/>
+
+      <text x="171" y="145" text-anchor="middle" class="hero-title">Hola Jesús</text>
+      <text x="171" y="170" text-anchor="middle" class="hero-sub">¿Qué revisamos en tu vehículo hoy?</text>
+    </g>
+
+    <!-- Prompt Starter Chips -->
+    <g transform="translate(16, 420)">
+      <g transform="translate(0, 0)">
+        <rect width="358" height="48" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="16" y="29" class="card-title" style="font-weight: 500;">🔧 ¿Cuándo toca cambio de bujías en mi BMW Serie 3?</text>
+      </g>
+      <g transform="translate(0, 58)">
+        <rect width="358" height="48" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="16" y="29" class="card-title" style="font-weight: 500;">🔍 Cotizar bomba de agua en Yonke local</text>
+      </g>
+      <g transform="translate(0, 116)">
+        <rect width="358" height="48" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="16" y="29" class="card-title" style="font-weight: 500;">📊 Ver telemetría de fluidos y neumáticos</text>
+      </g>
+    </g>
+
+    <!-- Docked Composer (68px) -->
+    <g transform="translate(0, 776)">
+      <rect width="390" height="68" rx="0 0 32 32" fill="#12151C" fill-opacity="0.95" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="12" width="308" height="44" rx="22" fill="#1B1B1F"/>
+      <text x="32" y="38" class="card-sub" style="font-size: 13px;">Escribe una consulta sobre tu auto...</text>
+      <circle cx="352" cy="34" r="20" fill="url(#brandGrad)"/>
+      <path d="M348 34L356 34M352 30L356 34L352 38" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 3: ONBOARDING COPILOT CHAT (X=870, Y=50, 390x844)              -->
+  <!-- ===================================================================== -->
+  <g transform="translate(870, 50)">
+    <text x="10" y="-16" class="screen-tag">03. ONBOARDING CHAT</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+
+    <!-- Unified TopAppBar (56px) -->
+    <g transform="translate(0, 0)">
+      <rect width="390" height="56" rx="32 32 0 0" fill="#12151C" fill-opacity="0.9" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="10" width="36" height="36" rx="8" fill="#1B1B1F"/>
+      <path d="M38 28L30 28M34 24L30 28L34 32" stroke="#E3E2E6" stroke-width="2" stroke-linecap="round"/>
+      <g transform="translate(95, 12)">
+        <rect width="200" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.5"/>
+        <circle cx="16" cy="16" r="4" fill="#10B981"/>
+        <text x="28" y="20" class="pill-text">⚡ Gemini 3.8 Flash</text>
+      </g>
+      <circle cx="356" cy="28" r="16" fill="url(#brandGrad)"/>
+      <circle cx="356" cy="28" r="14" fill="#12151C"/>
+      <text x="350" y="32" style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; fill: #D1BCFF;">JD</text>
+    </g>
+
+    <!-- Chat Messages Feed -->
+    <!-- Message 1: Copilot Bubble -->
+    <g transform="translate(16, 76)">
+      <rect width="310" height="64" rx="14" fill="#1B1B1F" stroke="#894CFF" stroke-opacity="0.5"/>
+      <text x="16" y="26" class="card-title" style="font-size: 12px; font-weight: 400;">¡Hola Jesús! He sincronizado el perfil de tu auto.</text>
+      <text x="16" y="46" class="card-title" style="font-size: 12px; font-weight: 600; fill: #D1BCFF;">Confirmando: BMW Serie 3 330i M Sport 2021.</text>
+    </g>
+
+    <!-- Message 2: Driver User Bubble -->
+    <g transform="translate(104, 150)">
+      <rect width="270" height="44" rx="14" fill="#894CFF"/>
+      <text x="16" y="27" style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; fill: #FFFFFF;">Correcto, tiene 84,200 km.</text>
+    </g>
+
+    <!-- Message 3: Copilot Card Response -->
+    <g transform="translate(16, 206)">
+      <rect width="320" height="80" rx="14" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <text x="16" y="26" class="card-title" style="font-size: 12px; font-weight: 400;">Perfecto. Según manual de servicio OEM:</text>
+      <text x="16" y="48" class="mono-code" style="font-size: 12px;">Próximo servicio: Bujías &bull; Filtro Cabina</text>
+      <text x="16" y="66" class="card-sub" style="color: #10B981;">Tiempo estimado restante: 1,800 km</text>
+    </g>
+
+    <!-- Section: Priority Care Guided Card -->
+    <g transform="translate(16, 300)">
+      <rect width="358" height="150" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <rect x="16" y="14" width="90" height="20" rx="6" fill="#10B981" fill-opacity="0.15"/>
+      <text x="22" y="28" style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; fill: #10B981;">PRIORIDAD ALTA</text>
+
+      <text x="16" y="54" class="card-title">Kit de 4 Bujías NGK Laser Iridium (OEM)</text>
+      <text x="16" y="74" class="mono-code">No. Parte: SILZKGR8B8S &bull; Motor B48 2.0L</text>
+
+      <!-- Action Button inside Card -->
+      <g transform="translate(16, 94)">
+        <rect width="326" height="40" rx="20" fill="url(#brandGrad)"/>
+        <text x="163" y="25" text-anchor="middle" class="cta-text" style="font-size: 12px;">BUSCAR EN DISPONIBILIDAD YONKE ($1,240 MXN)</text>
+      </g>
+    </g>
+
+    <!-- On-Demand Reference Card -->
+    <g transform="translate(16, 464)">
+      <rect width="358" height="100" rx="14" fill="#12151C" stroke="#4A4455" stroke-opacity="0.4"/>
+      <text x="16" y="30" class="card-title">Ficha Técnica Activa del Vehículo</text>
+      <text x="16" y="52" class="card-sub">Chasis G20 &bull; 255 HP &bull; Aceite: 5.25L 5W-30 LL-01</text>
+      <text x="16" y="74" class="mono-text" style="font-size: 11px;">Bóveda Local: Slot 1/3 Vinculado</text>
+    </g>
+
+    <!-- Docked Composer (68px) -->
+    <g transform="translate(0, 776)">
+      <rect width="390" height="68" rx="0 0 32 32" fill="#12151C" fill-opacity="0.95" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="12" width="308" height="44" rx="22" fill="#1B1B1F"/>
+      <text x="32" y="38" class="card-sub" style="font-size: 13px;">Escribe una consulta sobre tu auto...</text>
+      <circle cx="352" cy="34" r="20" fill="url(#brandGrad)"/>
+      <path d="M348 34L356 34M352 30L356 34L352 38" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 4: VIRTUAL GARAGE & TELEMETRY VAULT (X=1290, Y=50, 390x844)    -->
+  <!-- ===================================================================== -->
+  <g transform="translate(1290, 50)">
+    <text x="10" y="-16" class="screen-tag">04. GARAGE TELEMETRY &amp; VAULT</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+
+    <!-- Unified TopAppBar (56px) -->
+    <g transform="translate(0, 0)">
+      <rect width="390" height="56" rx="32 32 0 0" fill="#12151C" fill-opacity="0.9" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="10" width="36" height="36" rx="8" fill="#1B1B1F"/>
+      <path d="M24 22H44M24 28H44M24 34H44" stroke="#E3E2E6" stroke-width="2" stroke-linecap="round"/>
+      <g transform="translate(95, 12)">
+        <rect width="200" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.5"/>
+        <circle cx="16" cy="16" r="4" fill="#10B981"/>
+        <text x="28" y="20" class="pill-text">BMW Serie 3 2021</text>
+      </g>
+      <circle cx="356" cy="28" r="16" fill="url(#brandGrad)"/>
+      <circle cx="356" cy="28" r="14" fill="#12151C"/>
+      <text x="350" y="32" style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; fill: #D1BCFF;">JD</text>
+    </g>
+
+    <!-- Section 1: Hero Active Vehicle Card (16px radius) -->
+    <g transform="translate(16, 72)">
+      <rect width="358" height="150" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <rect x="16" y="16" width="326" height="60" rx="10" fill="#12151C"/>
+      <text x="30" y="42" class="hero-title" style="font-size: 16px;">BMW 330i M Sport (G20)</text>
+      <text x="30" y="62" class="mono-code">VIN: WBA5R1C58M8B94021 &bull; 84,200 km</text>
+
+      <g transform="translate(16, 92)">
+        <rect width="100" height="42" rx="8" fill="#25262B"/>
+        <text x="50" y="20" text-anchor="middle" class="card-sub">ESTADO</text>
+        <text x="50" y="34" text-anchor="middle" class="mono-text">ÓPTIMO</text>
+      </g>
+      <g transform="translate(128, 92)">
+        <rect width="100" height="42" rx="8" fill="#25262B"/>
+        <text x="50" y="20" text-anchor="middle" class="card-sub">PRÓX. SERV.</text>
+        <text x="50" y="34" text-anchor="middle" class="mono-code" style="color: #E1B6FF;">1,800 km</text>
+      </g>
+      <g transform="translate(240, 92)">
+        <rect width="102" height="42" rx="8" fill="#25262B"/>
+        <text x="51" y="20" text-anchor="middle" class="card-sub">SLOT</text>
+        <text x="51" y="34" text-anchor="middle" class="pill-text">1/1 (FREE)</text>
+      </g>
+    </g>
+
+    <!-- Section 2: 30-Sec Diagnostic Widget -->
+    <g transform="translate(16, 236)">
+      <rect width="358" height="170" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <text x="16" y="28" class="card-title">DIAGNÓSTICO RÁPIDO (30-SEC CHECK-IN)</text>
+      
+      <!-- Aceite -->
+      <g transform="translate(16, 42)">
+        <text x="0" y="14" class="card-sub">Nivel Aceite 5W-30 Sintético</text>
+        <text x="326" y="14" text-anchor="end" class="mono-text">94% Óptimo</text>
+        <rect y="22" width="326" height="6" rx="3" fill="#25262B"/>
+        <rect y="22" width="306" height="6" rx="3" fill="#10B981"/>
+      </g>
+      <!-- Llantas -->
+      <g transform="translate(16, 80)">
+        <text x="0" y="14" class="card-sub">Presión de Llantas (PSI)</text>
+        <text x="326" y="14" text-anchor="end" class="mono-text">32 PSI OK</text>
+        <rect y="22" width="326" height="6" rx="3" fill="#25262B"/>
+        <rect y="22" width="290" height="6" rx="3" fill="#10B981"/>
+      </g>
+      <!-- Refrigerante -->
+      <g transform="translate(16, 118)">
+        <text x="0" y="14" class="card-sub">Nivel de Refrigerante</text>
+        <text x="326" y="14" text-anchor="end" class="mono-text" style="color: #F59E0B;">Revisar en 2 sem</text>
+        <rect y="22" width="326" height="6" rx="3" fill="#25262B"/>
+        <rect y="22" width="220" height="6" rx="3" fill="#F59E0B"/>
+      </g>
+    </g>
+
+    <!-- Section 3: Copilot Memory Vault -->
+    <g transform="translate(16, 420)">
+      <rect width="358" height="190" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <text x="16" y="28" class="card-title">COPILOT MEMORY VAULT (LOCAL-FIRST)</text>
+      <text x="342" y="28" text-anchor="end" class="pill-text">3/3 Ranuras Usadas</text>
+
+      <g transform="translate(16, 42)">
+        <rect width="326" height="40" rx="8" fill="#12151C"/>
+        <circle cx="16" cy="20" r="4" fill="#894CFF"/>
+        <text x="30" y="24" class="card-sub" style="font-size: 11px; color: #E3E2E6;">Bujías NGK cambiadas a 81,000 km</text>
+      </g>
+      <g transform="translate(16, 90)">
+        <rect width="326" height="40" rx="8" fill="#12151C"/>
+        <circle cx="16" cy="20" r="4" fill="#894CFF"/>
+        <text x="30" y="24" class="card-sub" style="font-size: 11px; color: #E3E2E6;">Batería LTH 12V nueva en Noviembre 2025</text>
+      </g>
+      <g transform="translate(16, 138)">
+        <rect width="326" height="40" rx="8" fill="#12151C"/>
+        <circle cx="16" cy="20" r="4" fill="#894CFF"/>
+        <text x="30" y="24" class="card-sub" style="font-size: 11px; color: #E3E2E6;">Frenos Brembo delanteros a 78,500 km</text>
+      </g>
+    </g>
+
+    <!-- Bottom Navigation Bar (68px) -->
+    <g transform="translate(0, 776)">
+      <rect width="390" height="68" rx="0 0 32 32" fill="#12151C" fill-opacity="0.95" stroke="#4A4455" stroke-opacity="0.3"/>
+      <!-- Nav Item 1: Garage (Active) -->
+      <g transform="translate(50, 16)">
+        <circle cx="20" cy="16" r="16" fill="url(#brandGrad)"/>
+        <text x="20" y="42" text-anchor="middle" class="pill-text" style="color: #FFFFFF;">Garaje</text>
+      </g>
+      <!-- Nav Item 2: Copilot -->
+      <g transform="translate(175, 16)">
+        <rect x="4" y="0" width="32" height="32" rx="8" fill="#1B1B1F"/>
+        <text x="20" y="42" text-anchor="middle" class="card-sub">Copilot</text>
+      </g>
+      <!-- Nav Item 3: Refacciones -->
+      <g transform="translate(300, 16)">
+        <rect x="4" y="0" width="32" height="32" rx="8" fill="#1B1B1F"/>
+        <text x="20" y="42" text-anchor="middle" class="card-sub">Piezas</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 5: PARTS & SALVAGE INTELLIGENCE (X=1710, Y=50, 390x844)       -->
+  <!-- ===================================================================== -->
+  <g transform="translate(1710, 50)">
+    <text x="10" y="-16" class="screen-tag">05. PARTS &amp; SALVAGE FEED</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+
+    <!-- Unified TopAppBar (56px) -->
+    <g transform="translate(0, 0)">
+      <rect width="390" height="56" rx="32 32 0 0" fill="#12151C" fill-opacity="0.9" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="10" width="36" height="36" rx="8" fill="#1B1B1F"/>
+      <path d="M24 22H44M24 28H44M24 34H44" stroke="#E3E2E6" stroke-width="2" stroke-linecap="round"/>
+      <g transform="translate(95, 12)">
+        <rect width="200" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.5"/>
+        <circle cx="16" cy="16" r="4" fill="#10B981"/>
+        <text x="28" y="20" class="pill-text">Filtro: BMW Serie 3</text>
+      </g>
+      <circle cx="356" cy="28" r="16" fill="url(#brandGrad)"/>
+      <circle cx="356" cy="28" r="14" fill="#12151C"/>
+      <text x="350" y="32" style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; fill: #D1BCFF;">JD</text>
+    </g>
+
+    <!-- Search Input & Scanner Bar (48px) -->
+    <g transform="translate(16, 72)">
+      <rect width="358" height="48" rx="24" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <text x="24" y="29" class="card-sub" style="font-size: 13px;">Buscar refacción, OEM o código VIN...</text>
+      <rect x="314" y="8" width="32" height="32" rx="16" fill="#25262B"/>
+      <circle cx="330" cy="24" r="6" stroke="#D1BCFF" stroke-width="2"/>
+    </g>
+
+    <!-- Category Chips -->
+    <g transform="translate(16, 134)">
+      <rect width="80" height="32" rx="16" fill="url(#brandGrad)"/>
+      <text x="40" y="20" text-anchor="middle" class="pill-text" style="color: #FFFFFF;">Motor</text>
+
+      <rect x="90" width="80" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+      <text x="130" y="20" text-anchor="middle" class="card-sub">Frenos</text>
+
+      <rect x="180" width="100" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+      <text x="230" y="20" text-anchor="middle" class="card-sub">Suspensión</text>
+
+      <rect x="290" width="68" height="32" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+      <text x="324" y="20" text-anchor="middle" class="card-sub">Filtros</text>
+    </g>
+
+    <!-- Part Card 1: Direct Fit (Yonke) -->
+    <g transform="translate(16, 180)">
+      <rect width="358" height="150" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <rect x="16" y="16" width="90" height="20" rx="6" fill="#10B981" fill-opacity="0.15"/>
+      <text x="22" y="30" style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; fill: #10B981;">DIRECT FIT 100%</text>
+
+      <text x="16" y="56" class="card-title">Bomba de Agua Eléctrica OEM</text>
+      <text x="16" y="74" class="card-sub">Yonke El Álamo &bull; Tijuana, B.C. &bull; Donante 2022 (38k km)</text>
+      
+      <text x="16" y="104" class="hero-title" style="font-size: 18px; color: #10B981;">$1,850 MXN <tspan style="font-size: 12px; color: #A3AAC4; text-decoration: line-through;">$5,400 Agencia</tspan></text>
+
+      <rect x="240" y="90" width="102" height="36" rx="18" fill="url(#brandGrad)"/>
+      <text x="291" y="113" text-anchor="middle" class="cta-text" style="font-size: 11px;">COTIZAR</text>
+    </g>
+
+    <!-- Part Card 2: Alternador -->
+    <g transform="translate(16, 344)">
+      <rect width="358" height="140" rx="16" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.4"/>
+      <rect x="16" y="16" width="90" height="20" rx="6" fill="#894CFF" fill-opacity="0.15"/>
+      <text x="22" y="30" style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; fill: #D1BCFF;">OEM NUEVO</text>
+
+      <text x="16" y="56" class="card-title">Alternador Valeo 14V 180A</text>
+      <text x="16" y="74" class="card-sub">Distribuidores Asociados &bull; Envío 24 hrs</text>
+      <text x="16" y="104" class="hero-title" style="font-size: 18px;">$4,200 MXN</text>
+
+      <rect x="240" y="86" width="102" height="36" rx="18" fill="#25262B"/>
+      <text x="291" y="109" text-anchor="middle" class="card-title" style="font-size: 11px;">DETALLES</text>
+    </g>
+
+    <!-- Visual Blueprint Generator Banner -->
+    <g transform="translate(16, 498)">
+      <rect width="358" height="90" rx="16" fill="#12151C" stroke="#894CFF" stroke-opacity="0.4"/>
+      <text x="16" y="32" class="card-title" style="color: #D1BCFF;">Generador de Planos 3D del Motor</text>
+      <text x="16" y="52" class="card-sub">Genera diagramas esquemáticos con Gemini bajo demanda.</text>
+      <text x="16" y="74" class="mono-code" style="font-size: 11px;">[⚡ Generar Blueprint en 1-clic]</text>
+    </g>
+
+    <!-- Bottom Navigation Bar (68px) -->
+    <g transform="translate(0, 776)">
+      <rect width="390" height="68" rx="0 0 32 32" fill="#12151C" fill-opacity="0.95" stroke="#4A4455" stroke-opacity="0.3"/>
+      <g transform="translate(50, 16)">
+        <rect x="4" y="0" width="32" height="32" rx="8" fill="#1B1B1F"/>
+        <text x="20" y="42" text-anchor="middle" class="card-sub">Garaje</text>
+      </g>
+      <g transform="translate(175, 16)">
+        <rect x="4" y="0" width="32" height="32" rx="8" fill="#1B1B1F"/>
+        <text x="20" y="42" text-anchor="middle" class="card-sub">Copilot</text>
+      </g>
+      <g transform="translate(300, 16)">
+        <circle cx="20" cy="16" r="16" fill="url(#brandGrad)"/>
+        <text x="20" y="42" text-anchor="middle" class="pill-text" style="color: #FFFFFF;">Piezas</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- SCREEN 6: PRO PAYWALL & MULTI-AGENT NETWORK (X=2130, Y=50, 390x844)   -->
+  <!-- ===================================================================== -->
+  <g transform="translate(2130, 50)">
+    <text x="10" y="-16" class="screen-tag">06. MULTI-AGENT PRO PAYWALL</text>
+    <rect width="390" height="844" rx="32" fill="#0D0E11" stroke="#4A4455" stroke-opacity="0.3"/>
+
+    <!-- Dismissible Header (56px) -->
+    <g transform="translate(0, 0)">
+      <rect width="390" height="56" rx="32 32 0 0" fill="#12151C" fill-opacity="0.9" stroke="#4A4455" stroke-opacity="0.3"/>
+      <rect x="16" y="10" width="36" height="36" rx="8" fill="#1B1B1F"/>
+      <path d="M28 22L38 32M38 22L28 32" stroke="#E3E2E6" stroke-width="2" stroke-linecap="round"/>
+      <g transform="translate(130, 12)">
+        <rect width="130" height="32" rx="16" fill="url(#brandGrad)"/>
+        <text x="65" y="20" text-anchor="middle" class="pill-text" style="color: #FFFFFF;">ZORA PRO TIER</text>
+      </g>
+    </g>
+
+    <!-- Hero Value Prop -->
+    <g transform="translate(24, 76)">
+      <text x="171" y="24" text-anchor="middle" class="hero-title">Desbloquea la Red Multi-Agente</text>
+      <text x="171" y="46" text-anchor="middle" class="hero-sub">Inteligencia autónoma para tu garaje sin límites.</text>
+    </g>
+
+    <!-- 3 Specialized Autonomous Agents -->
+    <g transform="translate(16, 140)">
+      <!-- Agent 1: Junkyard Agent -->
+      <g transform="translate(0, 0)">
+        <rect width="358" height="60" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <circle cx="28" cy="30" r="14" fill="#894CFF" fill-opacity="0.2"/>
+        <text x="24" y="34" class="pill-text">🤖</text>
+        <text x="54" y="26" class="card-title">Agente Radar de Yonkes (Salvage)</text>
+        <text x="54" y="44" class="card-sub">Escanea inventarios en vivo y alerta de donantes VIN.</text>
+      </g>
+
+      <!-- Agent 2: Master Mechanic -->
+      <g transform="translate(0, 70)">
+        <rect width="358" height="60" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <circle cx="28" cy="30" r="14" fill="#10B981" fill-opacity="0.2"/>
+        <text x="24" y="34" class="pill-text">🔧</text>
+        <text x="54" y="26" class="card-title">Agente Mecánico de Diagnóstico</text>
+        <text x="54" y="44" class="card-sub">Cruza códigos OBD-II con boletines técnicos TSB.</text>
+      </g>
+
+      <!-- Agent 3: Fuel & Telemetry -->
+      <g transform="translate(0, 140)">
+        <rect width="358" height="60" rx="12" fill="#1B1B1F" stroke="#4A4455" stroke-opacity="0.3"/>
+        <circle cx="28" cy="30" r="14" fill="#EC168A" fill-opacity="0.2"/>
+        <text x="24" y="34" class="pill-text">⛽</text>
+        <text x="54" y="26" class="card-title">Agente de Rendimiento de Combustible</text>
+        <text x="54" y="44" class="card-sub">Optimiza hábitos y detecta inyectores tapados.</text>
+      </g>
+    </g>
+
+    <!-- 2x2 Superpowers Matrix -->
+    <g transform="translate(16, 360)">
+      <g transform="translate(0, 0)">
+        <rect width="172" height="70" rx="10" fill="#12151C" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="14" y="26" class="card-title" style="font-size: 12px;">Vehículos Ilimitados</text>
+        <text x="14" y="44" class="card-sub">Gestiona flotas enteras</text>
+      </g>
+      <g transform="translate(186, 0)">
+        <rect width="172" height="70" rx="10" fill="#12151C" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="14" y="26" class="card-title" style="font-size: 12px;">Memoria Sin Límites</text>
+        <text x="14" y="44" class="card-sub">Historial clínico eterno</text>
+      </g>
+      <g transform="translate(0, 80)">
+        <rect width="172" height="70" rx="10" fill="#12151C" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="14" y="26" class="card-title" style="font-size: 12px;">Planos 3D Ilimitados</text>
+        <text x="14" y="44" class="card-sub">Blueprints con Gemini</text>
+      </g>
+      <g transform="translate(186, 80)">
+        <rect width="172" height="70" rx="10" fill="#12151C" stroke="#4A4455" stroke-opacity="0.3"/>
+        <text x="14" y="26" class="card-title" style="font-size: 12px;">Alertas Push en Vivo</text>
+        <text x="14" y="44" class="card-sub">Radar de piezas 24/7</text>
+      </g>
+    </g>
+
+    <!-- Pricing Selector -->
+    <g transform="translate(16, 530)">
+      <rect width="358" height="60" rx="14" fill="#1B1B1F" stroke="#894CFF" stroke-width="1.5"/>
+      <circle cx="28" cy="30" r="8" fill="#894CFF"/>
+      <text x="48" y="28" class="card-title">Plan Anual Recomendado</text>
+      <text x="48" y="46" class="card-sub">$149 USD / año &bull; Ahorra 40%</text>
+      <text x="342" y="34" text-anchor="end" class="hero-title" style="font-size: 16px; color: #D1BCFF;">$12.40/m</text>
+    </g>
+
+    <!-- Sticky Glow CTA -->
+    <g transform="translate(16, 610)">
+      <rect width="358" height="52" rx="26" fill="url(#brandGrad)" filter="url(#btnGlow)" opacity="0.3"/>
+      <rect width="358" height="52" rx="26" fill="url(#brandGrad)"/>
+      <text x="179" y="32" text-anchor="middle" class="cta-text">&#9889; DESBLOQUEAR ZORA PRO AHORA</text>
+      
+      <text x="179" y="70" text-anchor="middle" class="card-sub" style="font-size: 11px;">Cancela en cualquier momento &bull; Garantía de 14 días</text>
+    </g>
+  </g>
+</svg>

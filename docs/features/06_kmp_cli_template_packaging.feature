@@ -16,8 +16,8 @@ Feature: KMP CLI Template Packaging
     Then `zora-community` is reported with tier "COMMUNITY", price "$0", and license "Apache 2.0"
     And status indicates "UNLOCKED" on all machines
 
-  Scenario: Bundle Generative UI and Room KMP starter templates
+  Scenario: Bundle Generative UI and SQLDelight starter templates
     Given the scaffolded project generated from `zora-community`
     When a developer examines the template architecture
-    Then standard bindings for `json-to-compose`, `kotlin-genai`, and Room KMP are pre-configured
+    Then standard bindings for `json-to-compose`, `kotlin-genai`, and SQLDelight are pre-configured
     And clean architecture layers (data, domain, presentation) are immediately ready for customization

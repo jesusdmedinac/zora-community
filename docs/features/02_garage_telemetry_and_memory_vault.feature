@@ -21,7 +21,7 @@ Feature: Garage Telemetry and Copilot Memory Vault
     Given the driver is on the Quick Health Check-in section
     When the driver updates the levels for Engine Oil, Coolant, Tire Pressure, and Battery
     Then the telemetry status shows "0W-20 Synthetic Normal Level", "Type 2 Blue Level OK", "32 PSI All Calibrated", and "12.6 Volts Healthy State"
-    And the last checked timestamp updates to the current timestamp in local Room storage
+    And the last checked timestamp updates to the current timestamp in local SQLite storage
 
   Scenario: Track copilot memory allocation within free 3-slot capacity
     Given the AI copilot has recorded 3 conversational memories
