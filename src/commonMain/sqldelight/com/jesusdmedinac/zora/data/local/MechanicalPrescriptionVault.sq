@@ -1,0 +1,93 @@
+import com.jesusdmedinac.zora.domain.model.prescription.PrescriptionSyncState;
+import com.jesusdmedinac.zora.domain.model.prescription.VehicleImpactQuadrant;
+import kotlin.collections.List;
+
+CREATE TABLE mechanical_prescription_vault (
+    symptom_id TEXT NOT NULL PRIMARY KEY,
+    vehicle_id TEXT NOT NULL,
+    vin_technical_prefix TEXT NOT NULL,
+    active_scope_corridor TEXT NOT NULL DEFAULT 'Tijuana/Otay',
+    preferred_condition TEXT NOT NULL DEFAULT 'OEM_USED',
+    raw_symptom_description TEXT NOT NULL,
+    dtc_codes_json TEXT NOT NULL DEFAULT '[]',
+    local_preliminary_hypothesis TEXT NOT NULL,
+    sync_state TEXT AS PrescriptionSyncState NOT NULL DEFAULT 'LOCAL_TRIAGE_ONLY',
+    opt_in_granted_at_ms INTEGER,
+    oem_part_number TEXT,
+    excluded_impact_zones TEXT AS List<VehicleImpactQuadrant>,
+    serialized_prescription_json TEXT,
+    generative_ui_payload_json TEXT,
+    created_at_ms INTEGER NOT NULL,
+    updated_at_ms INTEGER NOT NULL
+);
+
+CREATE INDEX idx_vault_vehicle_id ON mechanical_prescription_vault(vehicle_id);
+CREATE INDEX idx_vault_sync_state ON mechanical_prescription_vault(sync_state);
+CREATE INDEX idx_vault_oem_part ON mechanical_prescription_vault(oem_part_number);
+
+-- 1. Triage 100% On-Device ($0 Server Cost)
+insertLocalTriage:
+INSERT OR REPLACE INTO mechanical_prescription_vault(
+    symptom_id,
+    vehicle_id,
+    vin_technical_prefix,
+    active_scope_corridor,
+    preferred_condition,
+    raw_symptom_description,
+    dtc_codes_json,
+    local_preliminary_hypothesis,
+    sync_state,
+    created_at_ms,
+    updated_at_ms
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'LOCAL_TRIAGE_ONLY', ?, ?);
+
+-- 2. Value Gate Opt-In (Outbox Pattern)
+markOptInPendingSync:
+UPDATE mechanical_prescription_vault
+SET sync_state = 'OPT_IN_PENDING_NETWORK',
+    opt_in_granted_at_ms = ?,
+    updated_at_ms = ?
+WHERE symptom_id = ?;
+
+-- 3. Ingesta de la Receta Mecánica verificada por Cloud AI + Hook para json-to-compose
+updateWithCloudPrescription:
+UPDATE mechanical_prescription_vault
+SET sync_state = 'SYNCED_CLOUD_VERIFIED',
+    oem_part_number = ?,
+    excluded_impact_zones = ?,
+    serialized_prescription_json = ?,
+    generative_ui_payload_json = ?,
+    updated_at_ms = ?
+WHERE symptom_id = ?;
+
+-- 4. Single-Item Query by ID
+selectById:
+SELECT *
+FROM mechanical_prescription_vault
+WHERE symptom_id = ?;
+
+-- 5. Outbox Queue for SyncWorker (Mobile, Desktop & Web Wasm)
+selectPendingCloudSync:
+SELECT *
+FROM mechanical_prescription_vault
+WHERE sync_state = 'OPT_IN_PENDING_NETWORK'
+ORDER BY opt_in_granted_at_ms ASC;
+
+-- 6. User Sovereignty (Revoke Cloud Consent)
+revokeCloudConsent:
+UPDATE mechanical_prescription_vault
+SET sync_state = 'REVOKED_BY_USER',
+    updated_at_ms = ?
+WHERE symptom_id = ?;
+
+-- 7. Purge from Memory Vault
+purgeById:
+DELETE FROM mechanical_prescription_vault
+WHERE symptom_id = ?;
+
+-- 8. Reactive Observation by Vehicle ID
+observeByVehicle:
+SELECT *
+FROM mechanical_prescription_vault
+WHERE vehicle_id = ?
+ORDER BY created_at_ms DESC;

@@ -64,3 +64,12 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [ ] Scenario: Scaffold project without license requirements
 - [ ] Scenario: Bundle manifest and template metadata
 - [ ] Scenario: Bundle Generative UI and SQLDelight starter templates
+
+---
+
+## Feature 07: Diagnostic Triage, Value Gate, and Mechanical Prescription
+- [ ] Scenario: Record vehicle symptom via insertLocalTriage without network traffic
+- [ ] Scenario: Unlock Mechanical Prescription with donor matrix and collision quadrant exclusion
+- [ ] Scenario: Offline outbox queuing in garage or Web Wasm with background sync on reconnection
+- [ ] Scenario: Aggregate verified demand in Tijuana/Otay for commercial yard activation
+

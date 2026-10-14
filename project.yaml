@@ -1,0 +1,6 @@
+modules:
+  - .
+
+settings:
+  kotlin:
+    version: 2.1.20
