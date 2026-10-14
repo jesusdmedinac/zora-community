@@ -68,8 +68,8 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 ---
 
 ## Feature 07: Diagnostic Triage, Value Gate, and Mechanical Prescription
-- [ ] Scenario: Record vehicle symptom via insertLocalTriage without network traffic
-- [ ] Scenario: Unlock Mechanical Prescription with donor matrix and collision quadrant exclusion
-- [ ] Scenario: Offline outbox queuing in garage or Web Wasm with background sync on reconnection
-- [ ] Scenario: Aggregate verified demand in Tijuana/Otay for commercial yard activation
+- [x] Scenario: Record vehicle symptom via insertLocalTriage without network traffic
+- [x] Scenario: Unlock Mechanical Prescription with donor matrix and collision quadrant exclusion
+- [x] Scenario: Offline outbox queuing in garage or Web Wasm with background sync on reconnection
+- [x] Scenario: Aggregate verified demand in Tijuana/Otay for commercial yard activation
 
