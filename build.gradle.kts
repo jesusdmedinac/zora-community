@@ -1,10 +1,19 @@
 plugins {
-    kotlin("multiplatform") version "2.1.20"
-    kotlin("plugin.serialization") version "2.1.20"
-    id("app.cash.sqldelight") version "2.1.0"
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.androidApplication)
 }
 
 kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        }
+    }
+
     jvm {
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -13,38 +22,107 @@ kotlin {
     
     @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
-        nodejs()
+        browser {
+            commonWebpackConfig {
+                outputFileName = "zora-community.js"
+            }
+        }
+        binaries.executable()
     }
-    iosArm64()
-    iosSimulatorArm64()
+
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ZoraCommunity"
+            isStatic = true
+        }
+    }
 
     sourceSets {
         commonMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
-            implementation("app.cash.sqldelight:runtime:2.1.0")
-            implementation("app.cash.sqldelight:coroutines-extensions:2.1.0")
-            implementation("app.cash.sqldelight:primitive-adapters:2.1.0")
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines)
+            implementation(libs.sqldelight.primitive.adapters)
+            implementation(libs.navigation3.runtime)
         }
         commonTest.dependencies {
-            implementation(kotlin("test"))
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.sqldelight.driver.android)
         }
         jvmMain.dependencies {
-            implementation("app.cash.sqldelight:sqlite-driver:2.1.0")
+            implementation(compose.desktop.currentOs)
+            implementation(libs.sqldelight.driver.sqlite)
         }
         jvmTest.dependencies {
-            implementation("app.cash.sqldelight:sqlite-driver:2.1.0")
+            implementation(libs.sqldelight.driver.sqlite)
         }
         getByName("wasmJsMain").dependencies {
-            implementation("app.cash.sqldelight:web-worker-driver:2.1.0")
+            implementation(libs.sqldelight.driver.webworker)
         }
         getByName("iosArm64Main").dependencies {
-            implementation("app.cash.sqldelight:native-driver:2.1.0")
+            implementation(libs.sqldelight.driver.native)
         }
         getByName("iosSimulatorArm64Main").dependencies {
-            implementation("app.cash.sqldelight:native-driver:2.1.0")
+            implementation(libs.sqldelight.driver.native)
+        }
+    }
+}
+
+android {
+    namespace = "com.jesusdmedinac.zora"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    defaultConfig {
+        applicationId = "com.jesusdmedinac.zora"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.jesusdmedinac.zora.MainKt"
+        nativeDistributions {
+            targetFormats(
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+            )
+            packageName = "com.jesusdmedinac.zora"
+            packageVersion = "1.0.0"
         }
     }
 }

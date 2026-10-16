@@ -27,36 +27,38 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 ---
 
 ## Feature 01: Agentic Onboarding and Generative UI
-- [ ] Scenario: Display clean startup splash screen
-- [ ] Scenario: Welcome driver in empty chat state with quick starter chips
-- [ ] Scenario: Render interactive vehicle trim selector via Generative UI
-- [ ] Scenario: Present care priorities with semantic two-word badges
-- [ ] Scenario: Offer on-demand visual reference generation with disclaimer
+- [x] Scenario: Display clean startup splash screen
+- [x] Scenario: Wire Jetpack Navigation 3 runtime with type-safe NavKey routes (Splash, CopilotHome, OnboardingChat, GarageVault)
+- [x] Scenario: Welcome driver in empty chat state with quick starter chips and Copilot Home
+- [x] Scenario: Implement Shifted Screen Scrim Card drawer transition (nodes VeQvH and RktHH)
+- [x] Scenario: Render interactive vehicle engine selector card (node RFkA1)
+- [x] Scenario: Present care priorities with semantic two-word badges
+- [x] Scenario: Offer on-demand visual reference generation with disclaimer
 
 ---
 
 ## Feature 02: Garage Telemetry and Copilot Memory Vault
-- [ ] Scenario: Display primary vehicle showcase with mileage and health score
-- [ ] Scenario: Enforce single-vehicle garage slot limit for free tier
-- [ ] Scenario: Perform 30-second fluid and tire health check-in
-- [ ] Scenario: Track copilot memory allocation within free 3-slot capacity
-- [ ] Scenario: Delete individual copilot memory items on-demand
+- [x] Scenario: Display primary vehicle showcase with mileage and health score
+- [x] Scenario: Track copilot memory allocation within free 3-slot capacity
+- [x] Scenario: Enforce single-vehicle garage slot limit for free tier
+- [x] Scenario: Perform 30-second fluid and tire health check-in
+- [x] Scenario: Delete individual copilot memory items on-demand
 
 ---
 
 ## Feature 03: Contextual Parts Feed and Visual Component Engine
-- [ ] Scenario: Filter parts feed by guaranteed vehicle fitment and category chips
-- [ ] Scenario: Highlight Yonke salvage yard parts with donor VIN and savings calculation
-- [ ] Scenario: Generate on-demand 3D component visual blueprint with monthly quota
-- [ ] Scenario: Gate fleet-wide community insights behind explicit Cloud AI Opt-In
+- [x] Scenario: Filter parts feed by guaranteed vehicle fitment and category chips
+- [x] Scenario: Highlight Yonke salvage yard parts with donor VIN and savings calculation
+- [x] Scenario: Generate on-demand 3D component visual blueprint with monthly quota
+- [x] Scenario: Gate fleet-wide community insights behind explicit Cloud AI Opt-In
 
 ---
 
 ## Feature 04: Multi-Agent Paywall and Freemium Governance
-- [ ] Scenario: Present autonomous multi-agent network status and nodes
-- [ ] Scenario: Display Pro superpowers matrix
-- [ ] Scenario: Toggle between annual and monthly subscription pricing
-- [ ] Scenario: Trigger paywall when exceeding free limits
+- [x] Scenario: Present autonomous multi-agent network status and nodes
+- [x] Scenario: Display Pro superpowers matrix
+- [x] Scenario: Toggle between annual and monthly subscription pricing
+- [x] Scenario: Trigger paywall when exceeding free limits
 
 ---
 
@@ -72,4 +74,13 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Unlock Mechanical Prescription with donor matrix and collision quadrant exclusion
 - [x] Scenario: Offline outbox queuing in garage or Web Wasm with background sync on reconnection
 - [x] Scenario: Aggregate verified demand in Tijuana/Otay for commercial yard activation
+
+---
+
+## Feature 08: Living Foundation and Platform Runners (`docs/features/08_living_foundation_and_platform_runners.feature`)
+- [x] Scenario: Launch Android mobile application runner
+- [x] Scenario: Launch Desktop JVM application runner
+- [x] Scenario: Launch WebAssembly Wasm browser runner
+- [x] Scenario: Export iOS ComposeUIViewController entry point
+
 
