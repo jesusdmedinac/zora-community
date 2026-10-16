@@ -25,6 +25,7 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraSuggestionsRow
 import com.jesusdmedinac.zora.ui.home.component.ZoraTopAppBar
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.badge_local_first
 
 /**
  * Screen / M3 - 01 Copilot Home and HIG - 01 Copilot Home.
@@ -70,7 +71,7 @@ fun CopilotHomeScreen(
                 onOpenDrawer = { drawerOpen = true },
                 onGarageClick = onNavigateToGarage,
                 vehicleTitle = "HONDA CIVIC 2018",
-                statusBadge = "LOCAL-FIRST",
+                statusBadge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_local_first),
             )
 
             // 2. Central Automotive Telemetry Card & Status

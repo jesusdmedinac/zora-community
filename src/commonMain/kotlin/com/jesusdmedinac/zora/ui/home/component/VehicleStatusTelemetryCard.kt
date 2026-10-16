@@ -19,6 +19,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.telemetry_battery
+import zora_community.generated.resources.telemetry_can_bus_status
+import zora_community.generated.resources.telemetry_dtc_active
+import zora_community.generated.resources.telemetry_prescription
+import zora_community.generated.resources.telemetry_status_clean
+import zora_community.generated.resources.telemetry_status_normal
+import zora_community.generated.resources.telemetry_status_secure
 
 /**
  * Automotive CAN-Bus connection and telemetry summary card.
@@ -26,7 +33,7 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 @Composable
 fun VehicleStatusTelemetryCard(
     vehicleName: String = "Honda Civic EX 2.0L",
-    canBusStatus: String = "CAN-BUS CONECTADO",
+    canBusStatus: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_can_bus_status),
     batteryVoltage: String = "12.6 V",
     dtcCount: String = "0",
     prescriptionStatus: String = "Vault OK",
@@ -80,9 +87,21 @@ fun VehicleStatusTelemetryCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                TelemetryMetric(label = "Batería", value = batteryVoltage, status = "Normal")
-                TelemetryMetric(label = "DTC Activos", value = dtcCount, status = "Limpio")
-                TelemetryMetric(label = "Prescripción", value = prescriptionStatus, status = "Seguro")
+                TelemetryMetric(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_battery),
+                    value = batteryVoltage,
+                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_normal),
+                )
+                TelemetryMetric(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_dtc_active),
+                    value = dtcCount,
+                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_clean),
+                )
+                TelemetryMetric(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_prescription),
+                    value = prescriptionStatus,
+                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_secure),
+                )
             }
         }
     }

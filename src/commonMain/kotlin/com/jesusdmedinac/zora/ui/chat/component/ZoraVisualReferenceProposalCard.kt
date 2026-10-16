@@ -23,6 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.action_generate_reference_image
+import zora_community.generated.resources.action_skip
+import zora_community.generated.resources.visual_reference_title
 
 /**
  * Visual reference generation proposal card for Garage Slot #01.
@@ -53,7 +56,7 @@ fun ZoraVisualReferenceProposalCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "REFERENCIA VISUAL DE VEHÍCULO",
+                    text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.visual_reference_title),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -122,7 +125,7 @@ fun ZoraVisualReferenceProposalCard(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = "Generate Reference Image",
+                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_generate_reference_image),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -142,7 +145,7 @@ fun ZoraVisualReferenceProposalCard(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = "Skip for now",
+                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_skip),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,

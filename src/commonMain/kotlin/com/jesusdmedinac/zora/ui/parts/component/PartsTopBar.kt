@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.parts_fitment_active
 
 /**
  * Top navigation bar for the parts catalog featuring vehicle fitment verification indicator.
@@ -76,7 +77,7 @@ fun PartsTopBar(
                             .background(ZoraTokens.StatusSuccess)
                     )
                     Text(
-                        text = "Fitment Active · Precision Match",
+                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.parts_fitment_active),
                         fontFamily = ZoraTokens.FontMono,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,

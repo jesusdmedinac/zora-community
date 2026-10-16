@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.garage_telemetry_subtitle
+import zora_community.generated.resources.nav_garage
 
 /**
  * Top header for Virtual Garage screen with navigation back action.
@@ -57,7 +59,7 @@ fun GarageTopBar(
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "VIRTUAL GARAGE",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.nav_garage),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
@@ -65,7 +67,7 @@ fun GarageTopBar(
                 letterSpacing = 0.5.sp,
             )
             Text(
-                text = "TELEMETRÍA Y BÓVEDA LOCAL",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_telemetry_subtitle),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
                 color = ZoraTokens.Primary,

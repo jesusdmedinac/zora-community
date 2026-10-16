@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.chat_top_bar_title
 
 /**
  * Top navigation header for Onboarding Chat with back button and active vehicle title.
@@ -61,7 +62,7 @@ fun ChatTopBar(
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
             Text(
-                text = "DIAGNÓSTICO ZORA",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.chat_top_bar_title),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,

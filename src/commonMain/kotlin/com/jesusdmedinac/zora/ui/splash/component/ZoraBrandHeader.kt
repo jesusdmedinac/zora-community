@@ -12,6 +12,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.app_name
+import zora_community.generated.resources.splash_tagline
 
 /**
  * Brand wordmark and precision tagline for splash screen.
@@ -26,7 +28,7 @@ fun ZoraBrandHeader(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = "ZORA",
+            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.app_name).uppercase(),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 34.sp,
@@ -38,7 +40,7 @@ fun ZoraBrandHeader(
         )
 
         Text(
-            text = "PRECISION AUTOMOTIVE INTELLIGENCE",
+            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.splash_tagline),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,

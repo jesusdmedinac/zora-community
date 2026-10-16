@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.care_priorities_title
 
 enum class CarePriorityBadgeType {
     EMERALD_HIGH_PRIORITY,
@@ -52,7 +53,7 @@ fun ZoraCarePrioritiesCard(
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(
-                text = "PRIORIDADES DE CUIDADO RECOMENDADAS",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.care_priorities_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,

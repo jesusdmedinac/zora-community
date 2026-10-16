@@ -68,7 +68,7 @@ fun CanBusProgressLoader(
 
         // 2. CAN-bus Telemetry Ticker Text
         Text(
-            text = stage.tickerText,
+            text = org.jetbrains.compose.resources.stringResource(stage.textRes),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,

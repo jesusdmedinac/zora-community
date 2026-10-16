@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.AgentNode
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
+import zora_community.generated.resources.network_title
 
 /**
  * Status card showcasing the multi-agent autonomous network and local-first privacy guarantee.
@@ -44,7 +47,7 @@ fun AgentNetworkCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "RED AUTÓNOMA DE AGENTES",
+                    text = stringResource(Res.string.network_title),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,

@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.nav_paywall
+import zora_community.generated.resources.network_title
 
 /**
  * Top header for Zora Pro Paywall screen with dismiss button.
@@ -57,7 +59,7 @@ fun PaywallTopBar(
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "ZORA PRO",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.nav_paywall),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
@@ -65,7 +67,7 @@ fun PaywallTopBar(
                 letterSpacing = 1.sp,
             )
             Text(
-                text = "AUTONOMOUS AGENT NETWORK",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.network_title),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 9.sp,
                 color = ZoraTokens.Primary,

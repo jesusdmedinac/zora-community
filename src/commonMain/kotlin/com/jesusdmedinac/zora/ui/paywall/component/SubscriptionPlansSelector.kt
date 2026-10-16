@@ -23,6 +23,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
+import zora_community.generated.resources.plan_annual
+import zora_community.generated.resources.plan_annual_price
+import zora_community.generated.resources.plan_annual_savings
+import zora_community.generated.resources.plan_monthly
+import zora_community.generated.resources.plan_monthly_price
+import zora_community.generated.resources.subscription_title
 
 /**
  * Radio selector for Annual vs Monthly subscription tiers.
@@ -38,7 +46,7 @@ fun SubscriptionPlansSelector(
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text(
-            text = "PLANES DE SUSCRIPCIÓN",
+            text = stringResource(Res.string.subscription_title),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
@@ -71,7 +79,7 @@ fun SubscriptionPlansSelector(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = "Annual Membership",
+                            text = stringResource(Res.string.plan_annual),
                             fontFamily = ZoraTokens.FontBody,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
@@ -85,7 +93,7 @@ fun SubscriptionPlansSelector(
                                 .padding(horizontal = 6.dp, vertical = 2.dp),
                         ) {
                             Text(
-                                text = "SAVE 33% · BEST VALUE",
+                                text = stringResource(Res.string.plan_annual_savings),
                                 fontFamily = ZoraTokens.FontMono,
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.Bold,
@@ -94,7 +102,7 @@ fun SubscriptionPlansSelector(
                         }
                     }
                     Text(
-                        text = "$79.99 / year ($6.66/month)",
+                        text = stringResource(Res.string.plan_annual_price),
                         fontFamily = ZoraTokens.FontMono,
                         fontSize = 12.sp,
                         color = ZoraTokens.Primary,
@@ -147,14 +155,14 @@ fun SubscriptionPlansSelector(
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     Text(
-                        text = "Monthly Membership",
+                        text = stringResource(Res.string.plan_monthly),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         color = ZoraTokens.OnSurface,
                     )
                     Text(
-                        text = "$9.99 / month · flexible cancellation",
+                        text = stringResource(Res.string.plan_monthly_price),
                         fontFamily = ZoraTokens.FontMono,
                         fontSize = 12.sp,
                         color = ZoraTokens.OnSurfaceVariant,

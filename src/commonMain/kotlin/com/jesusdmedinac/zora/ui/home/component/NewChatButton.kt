@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.action_new_chat
 
 /**
  * Action button to initiate a new diagnostic conversation in the drawer.
@@ -50,7 +51,7 @@ fun NewChatButton(
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = "Nueva conversación",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_new_chat),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,

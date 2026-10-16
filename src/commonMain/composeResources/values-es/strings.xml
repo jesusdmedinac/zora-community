@@ -1,0 +1,171 @@
+<resources>
+    <!-- Brand & Common -->
+    <string name="app_name">Zora</string>
+    <string name="splash_tagline">INTELIGENCIA AUTOMOTRIZ DE PRECISIÓN</string>
+    <string name="splash_can_bus_progress">INICIALIZANDO CAN BUS ISO 15765-4 • 500 KBPS</string>
+    <string name="boot_stage_memory_vault">CALIBRANDO BAÚL DE MEMORIA LOCAL...</string>
+    <string name="boot_stage_privacy_gate">ACTIVANDO PROTOCOLO DE PRIVACIDAD LOCAL OBD-II...</string>
+    <string name="boot_stage_ignition_ready">COPILOTO AUTÓNOMO ZORA LISTO • EN LÍNEA</string>
+    <string name="security_protocol_footer">Cifrado Local Activo • Cero Fugas a la Nube</string>
+
+    <!-- Top App Bars -->
+    <string name="nav_copilot">01 COPILOTO</string>
+    <string name="nav_assistant">02 ASISTENTE</string>
+    <string name="nav_garage">03 GARAJE</string>
+    <string name="nav_parts">04 REFACCIONES</string>
+    <string name="nav_paywall">05 ZORA PRO</string>
+    <string name="status_online">EN LÍNEA</string>
+    <string name="status_active_query">CONSULTA ACTIVA</string>
+    <string name="status_fleet">ESTADO DE FLOTA</string>
+    <string name="status_salvage_yard">YONKE VIRTUAL</string>
+    <string name="status_full_unlock">DESBLOQUEO TOTAL</string>
+    <string name="chat_top_bar_title">DIAGNÓSTICO ZORA</string>
+    <string name="garage_telemetry_subtitle">TELEMETRÍA Y BÓVEDA LOCAL</string>
+
+    <!-- Home: Telemetry & Status -->
+    <string name="primary_vehicle_label">VEHÍCULO PRINCIPAL</string>
+    <string name="memory_slots_free">03/03 SLOTS LIBRES</string>
+    <string name="memory_label">MEMORIA</string>
+    <string name="telemetry_system_ready">SISTEMA LISTO</string>
+    <string name="telemetry_can_bus_connected">Módulos CAN en línea y diagnósticos al 100%</string>
+    <string name="telemetry_can_bus_status">CAN-BUS CONECTADO</string>
+    <string name="telemetry_battery">Batería</string>
+    <string name="telemetry_dtc_active">DTC Activos</string>
+    <string name="telemetry_prescription">Prescripción</string>
+    <string name="telemetry_status_normal">Normal</string>
+    <string name="telemetry_status_clean">Limpio</string>
+    <string name="telemetry_status_secure">Seguro</string>
+    <string name="telemetry_tire_pressure">PRESIÓN LLANTAS</string>
+    <string name="telemetry_tire_pressure_val">32 PSI</string>
+    <string name="telemetry_tire_pressure_status">Óptimo</string>
+    <string name="telemetry_fluids">FLUIDOS</string>
+    <string name="telemetry_fluids_val">98%</string>
+    <string name="telemetry_fluids_status">Refrigerante</string>
+
+    <!-- Home: Prompt Hero, Composer & Suggestions -->
+    <string name="copilot_hero_title">¿Cómo te ayudo hoy con tu auto?</string>
+    <string name="copilot_hero_subtitle">Respuestas mecánicas y diagnóstico local en tu dispositivo.</string>
+    <string name="prompt_placeholder">Escribe un síntoma o pregunta mecánica...</string>
+    <string name="prompt_send">ENVIAR</string>
+    <string name="suggestion_oil_change">¿Cómo cambio el aceite en Tacoma TRD 2021?</string>
+    <string name="suggestion_brake_noise">Diagnosticar chillido de frenos a baja velocidad</string>
+    <string name="suggestion_spark_plugs">Inspeccionar bujías y torque recomendado</string>
+    <string name="suggestion_vibrate_braking">¿Por qué tiembla al frenar?</string>
+    <string name="suggestion_change_tire">¿Cómo cambio una llanta?</string>
+    <string name="suggestion_check_dtc">Checar códigos DTC</string>
+    <string name="suggestion_mechanical_prescription">Prescripción Mecánica</string>
+    <string name="suggestion_battery_12v">Estado de Batería 12V</string>
+
+    <!-- Home: Drawer Navigation -->
+    <string name="action_new_chat">NUEVA CONVERSACIÓN</string>
+    <string name="action_new_chat_desc">Iniciar sesión limpia</string>
+    <string name="drawer_recent_chats">Recientes</string>
+    <string name="drawer_menu_garage">Garaje Virtual</string>
+    <string name="drawer_menu_parts">Yonke virtual</string>
+    <string name="drawer_menu_mechanic">Mecánico</string>
+    <string name="drawer_menu_gas_stations">Gasolineras</string>
+    <string name="drawer_menu_settings">Ajustes del Sistema</string>
+    <string name="drawer_menu_close">Cerrar Menú</string>
+    <string name="badge_coming_soon">Próximamente</string>
+    <string name="user_local_driver">CONDUCTOR LOCAL</string>
+    <string name="tier_pro">Cuenta Pro</string>
+    <string name="plan_free_tier">Plan Gratuito</string>
+    <string name="plan_zora_pro">ZORA PRO</string>
+    <string name="plan_full_access">ACCESO TOTAL</string>
+
+    <!-- Chat & Onboarding Components -->
+    <string name="engine_selector_title">CONFIGURACIÓN DE MOTOR</string>
+    <string name="engine_selector_subtitle">3.5L V6 DOHC 24V Ciclo Atkinson</string>
+    <string name="action_confirm_engine">Confirmar motor</string>
+    <string name="badge_direct_fit">AJUSTE DIRECTO</string>
+    <string name="badge_high_priority">ALTA PRIORIDAD</string>
+    <string name="care_priorities_title">PRIORIDADES DE CUIDADO RECOMENDADAS</string>
+    <string name="care_priority_1">Reemplazo de balatas en 1,200 km</string>
+    <string name="care_priority_2">Cambio de fluido en caja de transferencia</string>
+    <string name="visual_reference_title">REFERENCIA VISUAL DE VEHÍCULO</string>
+    <string name="visual_reference_disclaimer">Nota: Referencia visual generada por IA para ilustración.</string>
+    <string name="action_generate_reference_image">Generar imagen de referencia</string>
+    <string name="action_skip">Omitir por ahora</string>
+    <string name="starter_prompt_1">¿Por qué vibra el volante a 80 km/h?</string>
+    <string name="starter_prompt_2">Diagnóstico de código check engine P0420</string>
+    <string name="starter_prompt_3">Viscosidad de aceite recomendada para invierno</string>
+
+    <!-- Garage Components -->
+    <string name="badge_active_vehicle">Vehículo Principal</string>
+    <string name="vehicle_name">TACOMA TRD SPORT</string>
+    <string name="vehicle_specs">2021 • 45,200 KM</string>
+    <string name="vehicle_health_score">PUNTUACIÓN DE SALUD 94/100</string>
+    <string name="obd2_linked">OBD-II Enlazado</string>
+    <string name="odometer_label">Odómetro</string>
+    <string name="general_health_label">Salud General</string>
+    <string name="garage_capacity_title">ESPACIOS DE GARAJE</string>
+    <string name="garage_capacity_val">1 de 1 Espacio Gratuito Usado</string>
+    <string name="garage_capacity_upgrade">Actualiza a Zora Pro para desbloquear espacios ilimitados y telemetría multi-vehículo.</string>
+    <string name="action_add_vehicle">+ Agregar Otro Vehículo</string>
+    <string name="quick_checkin_title">CHEQUEO RÁPIDO (30S)</string>
+    <string name="quick_checkin_action">INICIAR CHEQUEO</string>
+    <string name="quick_checkin_done">TODOS LOS NIVELES VERIFICADOS</string>
+    <string name="last_calibration_recent">Última calibración: Reciente</string>
+    <string name="fluid_engine_oil">Aceite de Motor</string>
+    <string name="fluid_coolant">Refrigerante</string>
+    <string name="memory_vault_title">COPILOT MEMORY VAULT</string>
+    <string name="memory_vault_capacity">3 / 3 SLOTS USADOS</string>
+    <string name="memory_vault_local_assurance">🔒 Almacenado estrictamente en el dispositivo. Cero fugas a la nube.</string>
+    <string name="badge_local_first">LOCAL-FIRST</string>
+    <string name="memory_item_1">Prefiere aceite Mobil 1 Sintético 0W-20</string>
+    <string name="memory_item_2">Balatas delanteras cambiadas a los 42,000 km</string>
+    <string name="memory_item_3">Ligero silbido en bomba de dirección en frío</string>
+    <string name="action_delete_memory">Eliminar</string>
+
+    <!-- Parts Catalog Components -->
+    <string name="parts_fitment_active">Compatibilidad Activa · Ajuste Exacto</string>
+    <string name="category_all">Todo</string>
+    <string name="category_engine">Motor</string>
+    <string name="category_brakes">Frenos</string>
+    <string name="category_fluids_and_filters">Fluidos y Filtros</string>
+    <string name="category_suspension">Suspensión</string>
+    <string name="category_transmission">Transmisión</string>
+    <string name="category_junkyard_network">Red de Yonkes</string>
+    <string name="badge_max_savings">AHORRO MÁXIMO</string>
+    <string name="badge_yonke_salvage">PIEZA DE YONKE</string>
+    <string name="part_alternator_title">Alternador OEM 130A Denso</string>
+    <string name="part_alternator_donor">Donante: 2020 Tacoma (Impacto trasero, frente intacto)</string>
+    <string name="part_price_savings">$140 USD (Ahorra 65% vs $400 OEM Nuevo)</string>
+    <string name="part_brake_rotors_title">Rotores Delanteros Brembo Ventilados (Par)</string>
+    <string name="part_rotors_donor">Nuevo Certificado Ajuste Directo</string>
+    <string name="part_rotors_price">$185 USD</string>
+    <string name="blueprint_title">DIAGRAMA EXPLOTADO 3D</string>
+    <string name="blueprint_quota">Cuota mensual: 2 / 5 generados</string>
+    <string name="action_generate_blueprint">GENERAR RENDER 3D</string>
+    <string name="insights_title">INTELIGENCIA COLECTIVA DE FLOTA</string>
+    <string name="insights_gate_desc">Se requiere autorización de Cloud AI para compartir telemetría anónima y ver patrones de falla de flota.</string>
+    <string name="action_opt_in_cloud_ai">ACTIVAR CLOUD AI</string>
+
+    <!-- Paywall Components -->
+    <string name="network_title">RED AUTÓNOMA DE AGENTES</string>
+    <string name="network_nodes_active">4 NODOS ESPECIALISTAS ACTIVOS</string>
+    <string name="node_triage">Agente de Triaje de Diagnóstico</string>
+    <string name="node_parts">Agente de Búsqueda de Refacciones</string>
+    <string name="node_specs">Agente de Torques y Diagramas OEM</string>
+    <string name="node_telemetry">Vigilante de Telemetría en Tiempo Real</string>
+    <string name="superpowers_title">SUPERPODERES PRO</string>
+    <string name="superpower_unlimited_garage">Vehículos Ilimitados en Garaje</string>
+    <string name="superpower_unlimited_garage_desc">Gestiona toda la flota familiar o vehículos de taller</string>
+    <string name="superpower_unlimited_memory">Baúl de Memoria Ilimitado</string>
+    <string name="superpower_unlimited_memory_desc">Historial permanente de reparaciones, torques y fluidos</string>
+    <string name="superpower_yard_concierge">Agente de Búsqueda de Yonke en Otay/Tijuana</string>
+    <string name="superpower_yard_concierge_desc">Búsqueda automática en más de 40 yonkes de Otay/Tijuana</string>
+    <string name="superpower_3d_blueprints">Diagramas 3D Visuales Ilimitados</string>
+    <string name="superpower_3d_blueprints_desc">Diagramas de componentes explotados en alta resolución</string>
+    <string name="subscription_title">PLANES DE SUSCRIPCIÓN</string>
+    <string name="plan_annual">Membresía Anual</string>
+    <string name="plan_annual_price">$79.99 / año ($6.66/mes)</string>
+    <string name="plan_annual_savings">AHORRA 33% · MEJOR VALOR</string>
+    <string name="plan_monthly">Membresía Mensual</string>
+    <string name="plan_monthly_price">$9.99 / mes · cancelación flexible</string>
+    <string name="plan_monthly_desc">Mes a mes flexible</string>
+    <string name="action_start_trial">Comenzar Prueba Gratuita de 7 Días</string>
+    <string name="paywall_trial_disclaimer">7 días gratis · Cancela en cualquier momento · Pago seguro</string>
+    <string name="action_unlock_pro">DESBLOQUEAR ZORA PRO AHORA</string>
+    <string name="cta_guarantee">Cancela cuando quieras • Sin contratos • Garantía de reembolso</string>
+</resources>

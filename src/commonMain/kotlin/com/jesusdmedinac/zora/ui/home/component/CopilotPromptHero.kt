@@ -11,14 +11,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.copilot_hero_subtitle
+import zora_community.generated.resources.copilot_hero_title
 
 /**
  * Centered hero invitation greeting the driver and prompting for diagnostic questions.
  */
 @Composable
 fun CopilotPromptHero(
-    title: String = "¿Cómo te ayudo hoy con tu auto?",
-    subtitle: String = "Respuestas mecánicas y diagnóstico local en tu dispositivo.",
+    title: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.copilot_hero_title),
+    subtitle: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.copilot_hero_subtitle),
     modifier: Modifier = Modifier,
 ) {
     Column(

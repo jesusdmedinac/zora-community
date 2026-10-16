@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.tier_pro
 
 /**
  * Pinned user profile footer inside navigation drawer with avatar and settings button.
@@ -27,7 +28,7 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 fun DrawerUserFooter(
     userName: String = "Jesús Medina",
     userInitials: String = "JM",
-    accountTier: String = "Cuenta Pro",
+    accountTier: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.tier_pro),
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

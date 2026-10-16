@@ -19,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.action_start_trial
+import zora_community.generated.resources.paywall_trial_disclaimer
 
 /**
  * Bottom call-to-action area with trial initiation and app store disclaimer.
@@ -45,7 +47,7 @@ fun PaywallCtaArea(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "Start 7-Day Free Trial",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_start_trial),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
@@ -54,7 +56,7 @@ fun PaywallCtaArea(
         }
 
         Text(
-            text = "7 days free · Cancel anytime · Secured via App Store",
+            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.paywall_trial_disclaimer),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             color = ZoraTokens.OnSurfaceVariant,

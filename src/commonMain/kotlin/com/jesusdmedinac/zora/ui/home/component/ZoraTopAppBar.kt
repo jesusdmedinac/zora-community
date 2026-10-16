@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.badge_local_first
 
 /**
  * Top App Bar for Zora Copilot Home (Screen / M3 - 01 Copilot Home & HIG - 01).
@@ -32,7 +33,7 @@ fun ZoraTopAppBar(
     onOpenDrawer: () -> Unit,
     onGarageClick: () -> Unit,
     vehicleTitle: String = "HONDA CIVIC 2018",
-    statusBadge: String = "LOCAL-FIRST",
+    statusBadge: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_local_first),
     modifier: Modifier = Modifier,
 ) {
     Row(

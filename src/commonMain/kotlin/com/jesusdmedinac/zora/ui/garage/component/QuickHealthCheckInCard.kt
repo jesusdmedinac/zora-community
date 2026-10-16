@@ -18,6 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.fluid_coolant
+import zora_community.generated.resources.fluid_engine_oil
+import zora_community.generated.resources.last_calibration_recent
+import zora_community.generated.resources.quick_checkin_title
+import zora_community.generated.resources.telemetry_battery
+import zora_community.generated.resources.telemetry_tire_pressure
 
 /**
  * Rapid 30-second fluid and battery health check-in card.
@@ -37,14 +43,14 @@ fun QuickHealthCheckInCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "QUICK HEALTH CHECK-IN (30S)",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.quick_checkin_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = ZoraTokens.Primary,
             )
             Text(
-                text = "Última calibración: Reciente",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.last_calibration_recent),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
                 color = ZoraTokens.OnSurfaceVariant,
@@ -60,10 +66,22 @@ fun QuickHealthCheckInCard(
                 .padding(14.dp),
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                TelemetryRow(label = "Engine Oil", value = telemetry.engineOil)
-                TelemetryRow(label = "Coolant", value = telemetry.coolant)
-                TelemetryRow(label = "Tire Pressure", value = telemetry.tirePressure)
-                TelemetryRow(label = "Battery", value = telemetry.battery)
+                TelemetryRow(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.fluid_engine_oil),
+                    value = telemetry.engineOil
+                )
+                TelemetryRow(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.fluid_coolant),
+                    value = telemetry.coolant
+                )
+                TelemetryRow(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_tire_pressure),
+                    value = telemetry.tirePressure
+                )
+                TelemetryRow(
+                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_battery),
+                    value = telemetry.battery
+                )
             }
         }
     }

@@ -22,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.action_confirm_engine
+import zora_community.generated.resources.engine_selector_title
 
 data class EngineOption(
     val id: String,
@@ -67,7 +69,7 @@ fun ZoraEngineSelectionCard(
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             // Header
             Text(
-                text = "CONFIGURACIÓN DE MOTOR",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.engine_selector_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -147,7 +149,7 @@ fun ZoraEngineSelectionCard(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
-                        text = "Confirmar motor",
+                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_confirm_engine),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,

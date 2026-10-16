@@ -50,7 +50,7 @@ fun PartsCategoryChips(
                     .padding(horizontal = 10.dp, vertical = 6.dp),
             ) {
                 Text(
-                    text = category.displayName,
+                    text = org.jetbrains.compose.resources.stringResource(category.titleRes),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,

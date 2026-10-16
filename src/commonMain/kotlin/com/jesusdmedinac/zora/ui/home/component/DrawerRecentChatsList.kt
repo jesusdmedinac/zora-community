@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.drawer_recent_chats
 
 /**
  * Recent questions list inside the navigation drawer.
@@ -33,7 +34,7 @@ fun DrawerRecentChatsList(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = "Recientes",
+            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_recent_chats),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,

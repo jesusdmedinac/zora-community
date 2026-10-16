@@ -17,6 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.ProSuperpower
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
+import zora_community.generated.resources.superpowers_title
 
 /**
  * 2x2 grid matrix displaying Zora Pro features and unlocked capabilities.
@@ -31,7 +34,7 @@ fun ProSuperpowersMatrix(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = "SUPERPODERES PRO",
+            text = stringResource(Res.string.superpowers_title),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,

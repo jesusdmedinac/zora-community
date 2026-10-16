@@ -1,11 +1,14 @@
 package com.jesusdmedinac.zora.ui.parts.model
 
-enum class PartCategory(val displayName: String) {
-    ALL("All"),
-    BRAKES("Brakes"),
-    FLUIDS_AND_FILTERS("Fluids & Filters"),
-    SUSPENSION("Suspension"),
-    JUNKYARD_NETWORK("Junkyard Network"),
+import org.jetbrains.compose.resources.StringResource
+import zora_community.generated.resources.*
+
+enum class PartCategory(val displayName: String, val titleRes: StringResource) {
+    ALL("All", Res.string.category_all),
+    BRAKES("Brakes", Res.string.category_brakes),
+    FLUIDS_AND_FILTERS("Fluids & Filters", Res.string.category_fluids_and_filters),
+    SUSPENSION("Suspension", Res.string.category_suspension),
+    JUNKYARD_NETWORK("Junkyard Network", Res.string.category_junkyard_network),
 }
 
 data class PartItem(

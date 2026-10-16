@@ -20,6 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.action_add_vehicle
+import zora_community.generated.resources.garage_capacity_title
+import zora_community.generated.resources.garage_capacity_upgrade
+import zora_community.generated.resources.garage_capacity_val
 
 /**
  * Garage vehicle slots section enforcing free tier 1-slot limit with Pro upgrade prompt.
@@ -40,14 +44,14 @@ fun GarageSlotsCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "ESPACIOS DE GARAJE",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = ZoraTokens.Primary,
             )
             Text(
-                text = "1 of 1 Free Slot Used",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_val),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 11.sp,
                 color = ZoraTokens.OnSurfaceVariant,
@@ -77,7 +81,7 @@ fun GarageSlotsCard(
                         color = ZoraTokens.Outline,
                     )
                     Text(
-                        text = "+ Add Another Vehicle",
+                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_add_vehicle),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
@@ -112,7 +116,7 @@ fun GarageSlotsCard(
                     .padding(12.dp),
             ) {
                 Text(
-                    text = "Upgrade to Zora Pro to unlock unlimited garage slots and multi-vehicle telemetry.",
+                    text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_upgrade),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 12.sp,
                     color = ZoraTokens.OnSurface,

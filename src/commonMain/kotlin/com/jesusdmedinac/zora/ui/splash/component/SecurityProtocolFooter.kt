@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import zora_community.generated.resources.security_protocol_footer
 
 /**
  * Security Protocol Footer:
@@ -83,7 +84,7 @@ fun SecurityProtocolFooter(
 
             // Security Text
             Text(
-                text = "Local-First Encryption Active • Zero Cloud Leak",
+                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.security_protocol_footer),
                 style = TextStyle(
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
