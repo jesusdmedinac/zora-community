@@ -37,3 +37,10 @@ Feature: UI Component Atomization and Preview Suite
     When auditing geometry, 135° Core Spectrum gradient, and ambient halo against zora-community.pen
     Then 100% visual parity is confirmed across nominal coordinates and token hexes
     And Card - Zora Ignition Glyph is backported and registered into M3 and HIG Component Library frames in zora-community.pen
+
+  Scenario: Align ZoraIgnitionGlyph with canonical 4-triangle square geometry and bounded Core Spectrum gradient
+    Given the canonical 4-triangle square emblem ic_zora_transparent in design/zora-community.pen
+    When rendering the vector paths in DrawScope with bounded 135° Core Spectrum gradient
+    Then the procedural Canvas matches the 4-triangle geometry and aspect ratio
+    And offscreen preview screenshots confirm sharp vector rendering across targets
+

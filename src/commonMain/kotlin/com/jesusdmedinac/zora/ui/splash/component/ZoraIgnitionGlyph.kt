@@ -82,72 +82,76 @@ fun ZoraIgnitionGlyph(
                 )
             )
 
-            // 2. Geometric Crystal Facets
+            // 2. Geometric Crystal Facets (Canonical 4-Triangle Square Isotype)
             drawZoraGlyph(
-                canvasSize = this.size,
-                brush = ZoraTokens.CoreSpectrumBrush
+                canvasSize = this.size
             )
         }
     }
 }
 
 /**
- * Renders the 6 interlocking facets of the Zora geometric emblem scaled to canvasSize.
+ * Renders the 4 interlocking facets of the canonical Zora square emblem (ic_zora_transparent)
+ * with the exact bounded 135° Core Spectrum gradient.
  */
-private fun DrawScope.drawZoraGlyph(canvasSize: Size, brush: Brush) {
-    val nominalWidth = 2360f
-    val nominalHeight = 1180f
-    val scaleX = (canvasSize.width * 0.85f) / nominalWidth
-    val scaleY = (canvasSize.height * 0.85f * (nominalHeight / nominalWidth)) / nominalHeight
-    val uniformScale = minOf(scaleX, scaleY)
+private fun DrawScope.drawZoraGlyph(canvasSize: Size) {
+    val nominalWidth = 1160f
+    val nominalHeight = 1158f
+    val scale = minOf(
+        (canvasSize.width * 0.85f) / nominalWidth,
+        (canvasSize.height * 0.85f) / nominalHeight
+    )
 
-    val offsetX = (canvasSize.width - (nominalWidth * uniformScale)) / 2f
-    val offsetY = (canvasSize.height - (nominalHeight * uniformScale)) / 2f
+    val scaledWidth = nominalWidth * scale
+    val scaledHeight = nominalHeight * scale
+    val offsetX = (canvasSize.width - scaledWidth) / 2f
+    val offsetY = (canvasSize.height - scaledHeight) / 2f
 
-    fun sx(x: Float): Float = (x * uniformScale) + offsetX
-    fun sy(y: Float): Float = (y * uniformScale) + offsetY
+    fun sx(x: Float): Float = (x * scale) + offsetX
+    fun sy(y: Float): Float = (y * scale) + offsetY
 
     val path = Path().apply {
-        // Facet 1: Right-side outer triangle
-        moveTo(sx(1775.86f), sy(1171.72f))
-        lineTo(sx(1775.86f), sy(595.86f))
-        lineTo(sx(2351.72f), sy(595.86f))
+        // Triangle 1: Bottom inverted triangle (apex pointing up in center)
+        moveTo(sx(1145.86f), sy(1158.00f))
+        lineTo(sx(14.14f), sy(1158.00f))
+        lineTo(sx(580.00f), sy(592.14f))
         close()
 
-        // Facet 2: Bottom-center inverted triangle
-        moveTo(sx(1741.72f), sy(1165.86f))
-        lineTo(sx(610.00f), sy(1165.86f))
-        lineTo(sx(1175.86f), sy(600.00f))
+        // Triangle 2: Bottom-right flank triangle
+        moveTo(sx(1160.00f), sy(1143.86f))
+        lineTo(sx(604.14f), sy(588.00f))
+        lineTo(sx(1160.00f), sy(588.00f))
         close()
 
-        // Facet 3: Right-middle inner triangle
-        moveTo(sx(1755.86f), sy(1151.72f))
-        lineTo(sx(1200.00f), sy(595.86f))
-        lineTo(sx(1755.86f), sy(595.86f))
+        // Triangle 3: Top-left flank triangle
+        moveTo(sx(555.86f), sy(568.00f))
+        lineTo(sx(0.00f), sy(568.00f))
+        lineTo(sx(0.00f), sy(12.14f))
         close()
 
-        // Facet 4: Left-side outer triangle
-        moveTo(sx(575.86f), sy(575.86f))
-        lineTo(sx(0.00f), sy(575.86f))
-        lineTo(sx(575.86f), sy(0.00f))
-        close()
-
-        // Facet 5: Left-middle inner triangle
-        moveTo(sx(1151.72f), sy(575.86f))
-        lineTo(sx(595.86f), sy(575.86f))
-        lineTo(sx(595.86f), sy(20.00f))
-        close()
-
-        // Facet 6: Top-center triangle
-        moveTo(sx(1739.72f), sy(7.86f))
-        lineTo(sx(1175.86f), sy(571.72f))
-        lineTo(sx(612.00f), sy(7.86f))
+        // Triangle 4: Top upright triangle (apex pointing down in center)
+        moveTo(sx(1143.86f), sy(0.00f))
+        lineTo(sx(580.00f), sy(563.86f))
+        lineTo(sx(16.14f), sy(0.00f))
         close()
     }
 
+    // Exact bounded 135° Core Spectrum gradient across the glyph box
+    val boundedCoreSpectrum = Brush.linearGradient(
+        colors = listOf(
+            Color(0xFF8A4DFF),
+            Color(0xFFA732FD),
+            Color(0xFFCD00EC),
+            Color(0xFFE200C1),
+            Color(0xFFED158A)
+        ),
+        start = Offset(offsetX, offsetY),
+        end = Offset(offsetX + scaledWidth, offsetY + scaledHeight)
+    )
+
     drawPath(
         path = path,
-        brush = brush
+        brush = boundedCoreSpectrum
     )
 }
 
