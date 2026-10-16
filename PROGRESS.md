@@ -90,4 +90,14 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Equip all atomic and screen composable functions with dedicated @Preview composables wrapped in ZoraTheme
 - [x] Scenario: Configure compose.components.uiToolingPreview and verify JVM test compilation
 
+---
+
+## Feature 10: Multiplatform Branding and App Icons (`docs/features/10_multiplatform_branding_and_app_icons.feature`)
+- [x] Scenario: Display Zora adaptive launcher icon on Android
+- [x] Scenario: Display Zora 1024x1024 AppIcon in iOS xcassets
+- [x] Scenario: Configure Zora window icon on Desktop JVM runner
+- [x] Scenario: Mount Zora favicons and touch icons on WebAssembly Wasm runner
+
+
+
 

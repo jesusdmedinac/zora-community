@@ -125,6 +125,15 @@ compose.desktop {
             )
             packageName = "com.jesusdmedinac.zora"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/jvmMain/resources/icon.icns"))
+            }
+            windows {
+                iconFile.set(project.file("src/jvmMain/resources/icon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("src/jvmMain/resources/icon-256.png"))
+            }
         }
     }
 }
