@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -48,7 +49,7 @@ fun GarageVaultScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
     ) {
         // 1. Top Header
         GarageTopBar(onBack = onBack)

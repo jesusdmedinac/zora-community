@@ -25,6 +25,7 @@ import com.jesusdmedinac.zora.ui.chat.component.ZoraEngineSelectionCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraVisualReferenceProposalCard
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -84,7 +85,7 @@ fun OnboardingChatScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         // 1. Top Header with Back Button

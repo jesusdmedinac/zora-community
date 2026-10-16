@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
 import zora_community.generated.resources.security_protocol_footer
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -41,7 +42,7 @@ fun SecurityProtocolFooter(
                 start = 16.dp,
                 end = 16.dp,
                 top = 8.dp,
-                bottom = if (platform == ZoraPlatformVariant.HUMAN_INTERFACE) 12.dp else 16.dp
+                bottom = zoraBottomEdgePadding()
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)

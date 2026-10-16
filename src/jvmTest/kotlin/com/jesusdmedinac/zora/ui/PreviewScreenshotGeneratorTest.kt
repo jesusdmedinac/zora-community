@@ -36,10 +36,14 @@ import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.splash.ZoraSplashScreen
 import com.jesusdmedinac.zora.ui.splash.component.ZoraIgnitionGlyph
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
+import com.jesusdmedinac.zora.ui.theme.zoraTopEdgePadding
 import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * Headless off-screen screenshot generator using Compose Desktop's ImageComposeScene.
@@ -51,11 +55,12 @@ class PreviewScreenshotGeneratorTest {
         name: String,
         width: Int = 390,
         height: Int = 844,
+        platformVariant: ZoraPlatformVariant = ZoraPlatformVariant.MATERIAL3,
         content: @Composable () -> Unit,
     ) {
         val scene = ImageComposeScene(width = width, height = height, density = Density(1f))
         scene.setContent {
-            ZoraTheme {
+            ZoraTheme(platformVariant = platformVariant) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -251,6 +256,71 @@ class PreviewScreenshotGeneratorTest {
                 )
             }
         }
+    }
+
+    @Test
+    fun captureHigScreenPreviews() {
+        // HIG Variant Screen Previews (iOS Dynamic Island 54dp + Home Indicator 24dp)
+        capture("00_splash_screen_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraSplashScreen()
+        }
+
+        capture("01_copilot_home_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            CopilotHomeScreen(
+                onNavigateToChat = {},
+                onNavigateToGarage = {},
+            )
+        }
+
+        capture("02_onboarding_chat_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            OnboardingChatScreen(
+                initialSymptom = "Vibración al frenar a más de 80 km/h",
+                onBack = {},
+            )
+        }
+
+        capture("03_garage_vault_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            GarageVaultScreen(onBack = {})
+        }
+
+        capture("04_parts_feed_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            PartsFeedScreen(onBack = {})
+        }
+
+        capture("05_zora_pro_paywall_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraProPaywallScreen(onClose = {})
+        }
+    }
+
+    @Test
+    fun verifyAdaptiveEdgePaddingCalculations() {
+        var m3Top = 0.dp
+        var m3Bottom = 0.dp
+        var higTop = 0.dp
+        var higBottom = 0.dp
+
+        val sceneM3 = ImageComposeScene(width = 390, height = 844, density = Density(1f))
+        sceneM3.setContent {
+            ZoraTheme(platformVariant = ZoraPlatformVariant.MATERIAL3) {
+                m3Top = zoraTopEdgePadding()
+                m3Bottom = zoraBottomEdgePadding()
+            }
+        }
+        sceneM3.render()
+
+        val sceneHIG = ImageComposeScene(width = 390, height = 844, density = Density(1f))
+        sceneHIG.setContent {
+            ZoraTheme(platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+                higTop = zoraTopEdgePadding()
+                higBottom = zoraBottomEdgePadding()
+            }
+        }
+        sceneHIG.render()
+
+        assertEquals(ZoraTokens.StatusBarHeightM3, m3Top)
+        assertEquals(ZoraTokens.NavigationBarHeightM3, m3Bottom)
+        assertEquals(ZoraTokens.StatusBarHeightHIG, higTop)
+        assertEquals(ZoraTokens.HomeIndicatorHeightHIG, higBottom)
     }
 }
 

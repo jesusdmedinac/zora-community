@@ -109,6 +109,14 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Define localized Spanish string resources in composeResources/values-es/strings.xml
 - [x] Scenario: Refactor UI components to consume stringResource from Res.string
 
+---
+
+## Feature 12: Platform Adaptive System Insets and Edge Spacing (`docs/features/12_platform_adaptive_system_insets_and_edge_spacing.feature`)
+- [x] Scenario: Calculate adaptive top edge spacing for Android and iOS
+- [x] Scenario: Calculate adaptive bottom edge spacing for Android and iOS
+- [x] Scenario: Apply adaptive edge padding across all core application screens
+
+
 
 
 

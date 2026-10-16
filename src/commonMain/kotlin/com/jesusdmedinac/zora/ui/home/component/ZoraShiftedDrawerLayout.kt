@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import zora_community.generated.resources.badge_coming_soon
 import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
@@ -71,7 +72,7 @@ fun ZoraShiftedDrawerLayout(
                 .width(drawerWidth)
                 .fillMaxHeight()
                 .background(ZoraTokens.Canvas)
-                .padding(vertical = ZoraTokens.SpacingMd),
+                .zoraEdgePadding(),
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Column(

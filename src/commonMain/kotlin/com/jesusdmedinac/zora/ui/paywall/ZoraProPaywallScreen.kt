@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
 import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -48,7 +49,7 @@ fun ZoraProPaywallScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         // 1. Top Header with Close Button

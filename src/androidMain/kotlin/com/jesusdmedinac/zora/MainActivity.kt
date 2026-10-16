@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.jesusdmedinac.zora.ui.ZoraApp
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 
 /**
  * Android Application Runner for Zora Community Edition.
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            ZoraApp()
+            ZoraApp(platformVariant = ZoraPlatformVariant.MATERIAL3)
         }
     }
 }

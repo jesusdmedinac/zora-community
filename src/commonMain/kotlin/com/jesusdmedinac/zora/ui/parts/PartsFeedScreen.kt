@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.parts.model.PartCategory
 import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
 import com.jesusdmedinac.zora.ui.parts.model.defaultPartsCatalog
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -56,7 +57,7 @@ fun PartsFeedScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
     ) {
         // 1. Top Bar with Fitment Pill & Subtitle
         PartsTopBar(
