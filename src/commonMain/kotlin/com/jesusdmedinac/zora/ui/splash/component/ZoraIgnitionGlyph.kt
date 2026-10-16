@@ -78,7 +78,7 @@ fun ZoraIgnitionGlyph(
                         Color.Transparent
                     ),
                     center = Offset(canvasWidth / 2f, canvasHeight / 2f),
-                    radius = canvasWidth * 0.65f
+                    radius = minOf(canvasWidth, canvasHeight) * 0.65f
                 )
             )
 
@@ -93,50 +93,47 @@ fun ZoraIgnitionGlyph(
 /**
  * Renders the 4 interlocking facets of the canonical Zora square emblem (ic_zora_transparent)
  * with the exact bounded 135° Core Spectrum gradient.
+ *
+ * Guarantees a strict 1:1 square aspect ratio centered within the given canvasSize.
  */
 private fun DrawScope.drawZoraGlyph(canvasSize: Size) {
-    val nominalWidth = 1160f
-    val nominalHeight = 1158f
-    val scale = minOf(
-        (canvasSize.width * 0.85f) / nominalWidth,
-        (canvasSize.height * 0.85f) / nominalHeight
-    )
+    val nominalDimension = 1160f
+    val glyphSide = minOf(canvasSize.width, canvasSize.height) * 0.85f
+    val scale = glyphSide / nominalDimension
 
-    val scaledWidth = nominalWidth * scale
-    val scaledHeight = nominalHeight * scale
-    val offsetX = (canvasSize.width - scaledWidth) / 2f
-    val offsetY = (canvasSize.height - scaledHeight) / 2f
+    val offsetX = (canvasSize.width - glyphSide) / 2f
+    val offsetY = (canvasSize.height - glyphSide) / 2f
 
     fun sx(x: Float): Float = (x * scale) + offsetX
     fun sy(y: Float): Float = (y * scale) + offsetY
 
     val path = Path().apply {
         // Triangle 1: Bottom inverted triangle (apex pointing up in center)
-        moveTo(sx(1145.86f), sy(1158.00f))
-        lineTo(sx(14.14f), sy(1158.00f))
-        lineTo(sx(580.00f), sy(592.14f))
+        moveTo(sx(1145.86f), sy(1160.00f))
+        lineTo(sx(14.14f), sy(1160.00f))
+        lineTo(sx(580.00f), sy(594.14f))
         close()
 
         // Triangle 2: Bottom-right flank triangle
-        moveTo(sx(1160.00f), sy(1143.86f))
-        lineTo(sx(604.14f), sy(588.00f))
-        lineTo(sx(1160.00f), sy(588.00f))
+        moveTo(sx(1160.00f), sy(1145.86f))
+        lineTo(sx(604.14f), sy(590.00f))
+        lineTo(sx(1160.00f), sy(590.00f))
         close()
 
         // Triangle 3: Top-left flank triangle
-        moveTo(sx(555.86f), sy(568.00f))
-        lineTo(sx(0.00f), sy(568.00f))
-        lineTo(sx(0.00f), sy(12.14f))
+        moveTo(sx(555.86f), sy(570.00f))
+        lineTo(sx(0.00f), sy(570.00f))
+        lineTo(sx(0.00f), sy(14.14f))
         close()
 
         // Triangle 4: Top upright triangle (apex pointing down in center)
-        moveTo(sx(1143.86f), sy(0.00f))
-        lineTo(sx(580.00f), sy(563.86f))
-        lineTo(sx(16.14f), sy(0.00f))
+        moveTo(sx(1145.86f), sy(0.00f))
+        lineTo(sx(580.00f), sy(565.86f))
+        lineTo(sx(14.14f), sy(0.00f))
         close()
     }
 
-    // Exact bounded 135° Core Spectrum gradient across the glyph box
+    // Exact bounded 135° Core Spectrum gradient across the strictly square glyph box
     val boundedCoreSpectrum = Brush.linearGradient(
         colors = listOf(
             Color(0xFF8A4DFF),
@@ -146,7 +143,7 @@ private fun DrawScope.drawZoraGlyph(canvasSize: Size) {
             Color(0xFFED158A)
         ),
         start = Offset(offsetX, offsetY),
-        end = Offset(offsetX + scaledWidth, offsetY + scaledHeight)
+        end = Offset(offsetX + glyphSide, offsetY + glyphSide)
     )
 
     drawPath(
