@@ -38743,6 +38743,177 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "card_glyph_m3",
+              "name": "Card - Zora Ignition Glyph",
+              "width": "fill_container",
+              "fill": "$surfaceContainer",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "card_glyph_m3_meta",
+                  "name": "Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "card_glyph_m3_meta_left",
+                      "name": "Meta Left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "card_glyph_m3_name_txt",
+                          "name": "Component Name",
+                          "fill": "$onSurface",
+                          "content": "Atom / Emblem / Zora Ignition Glyph (M3)",
+                          "fontFamily": "$fontHeadline",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "card_glyph_m3_tag_frame",
+                          "name": "Type Tag",
+                          "fill": "$surfaceContainerHighest",
+                          "cornerRadius": 6,
+                          "padding": [
+                            2,
+                            6
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "card_glyph_m3_tag_txt",
+                              "name": "Tag Text",
+                              "fill": "$primary",
+                              "content": "ÁTOMO",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 10,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "card_glyph_m3_status_txt",
+                      "name": "Status",
+                      "fill": "$statusSuccess",
+                      "content": "STABLE • M3",
+                      "fontFamily": "$fontBody",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "card_glyph_m3_desc_txt",
+                  "name": "Comp Desc",
+                  "fill": "$onSurfaceVariant",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Glifo geométrico de 6 facetas triangulares entrelazadas de precisión automotriz con gradiente Core Spectrum de 135° (5 paradas: #8A4DFF a #ED158A). Tamaño canónico de 96×96px (proporción vectorial 2:1) con halo radial de ignición ambiental y animación respiratoria de encendido en el arranque.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$fontBody",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "card_glyph_m3_usage_txt",
+                  "name": "Comp Usage",
+                  "fill": "$onSurfaceVariant",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Cómo utilizarse: Instanciar ZoraIgnitionGlyph(size = 96.dp, animated = true) en pantallas de Splash (00) y hero central de Copilot Home (01). En modo estático (animated = false) sirve como insignia de cabecera de marca.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$fontBody",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "card_glyph_m3_preview_box",
+                  "name": "Preview Container",
+                  "width": "fill_container",
+                  "fill": "#000000",
+                  "cornerRadius": 10,
+                  "stroke": "$outlineVariant",
+                  "gap": 24,
+                  "padding": 24,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "card_glyph_m3_instance_96",
+                      "name": "Zora Ignition Glyph (M3)",
+                      "reusable": true,
+                      "width": 96,
+                      "height": 96,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "card_glyph_m3_path",
+                          "x": -46.0685595703125,
+                          "y": 0.9714399719238281,
+                          "geometry": "M1775.8569 1171.717l0-575.86001 575.8601 0-575.8601 575.86001z m-34.1399-5.8599l-1131.717 0 565.8569-565.8571 565.8601 565.8571z m14.1399-14.1401l-555.8569-555.86001 555.8569 0 0 555.86001z m-1179.99991-575.86001l-575.85699 0 575.85699-575.85699 0 575.85699z m575.85701 0l-555.85701 0 0-555.85699 555.85701 555.85699z m588.003-567.99999l-563.8601 563.85699-563.8569-563.85699 1127.717 0z",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": -90,
+                            "size": {
+                              "height": 1.0000000085127296
+                            },
+                            "colors": [
+                              {
+                                "color": "#8A4DFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#A732FD",
+                                "position": 0.25
+                              },
+                              {
+                                "color": "#CD00EC",
+                                "position": 0.5
+                              },
+                              {
+                                "color": "#E200C1",
+                                "position": 0.75
+                              },
+                              {
+                                "color": "#ED158A",
+                                "position": 1
+                              }
+                            ],
+                            "center": {
+                              "x": 0.5000000019724617,
+                              "y": 2.9951955412612215e-10
+                            }
+                          },
+                          "width": 188.1373583984375,
+                          "height": 93.73735885620117
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -41309,6 +41480,177 @@
                           "fontFamily": "$fontBody",
                           "fontSize": 11,
                           "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "card_glyph_hig",
+              "name": "Card - Zora Ignition Glyph",
+              "width": "fill_container",
+              "fill": "$surfaceContainer",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "card_glyph_hig_meta",
+                  "name": "Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "card_glyph_hig_meta_left",
+                      "name": "Meta Left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "card_glyph_hig_name_txt",
+                          "name": "Component Name",
+                          "fill": "$onSurface",
+                          "content": "Atom / Emblem / Zora Ignition Glyph (HIG)",
+                          "fontFamily": "$fontHeadline",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "card_glyph_hig_tag_frame",
+                          "name": "Type Tag",
+                          "fill": "$surfaceContainerHighest",
+                          "cornerRadius": 6,
+                          "padding": [
+                            2,
+                            6
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "card_glyph_hig_tag_txt",
+                              "name": "Tag Text",
+                              "fill": "$primary",
+                              "content": "ÁTOMO",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 10,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "card_glyph_hig_status_txt",
+                      "name": "Status",
+                      "fill": "$statusSuccess",
+                      "content": "STABLE • HIG",
+                      "fontFamily": "$fontBody",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "card_glyph_hig_desc_txt",
+                  "name": "Comp Desc",
+                  "fill": "$onSurfaceVariant",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Glifo geométrico de 6 facetas triangulares entrelazadas de precisión automotriz con gradiente Core Spectrum de 135° (5 paradas: #8A4DFF a #ED158A). Tamaño canónico de 96×96px (proporción vectorial 2:1) con halo radial de ignición ambiental y animación respiratoria de encendido en el arranque.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$fontBody",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "card_glyph_hig_usage_txt",
+                  "name": "Comp Usage",
+                  "fill": "$onSurfaceVariant",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Cómo utilizarse: Instanciar ZoraIgnitionGlyph(size = 96.dp, animated = true) en pantallas de Splash (00) y hero central de Copilot Home (01). En modo estático (animated = false) sirve como insignia de cabecera de marca.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$fontBody",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "card_glyph_hig_preview_box",
+                  "name": "Preview Container",
+                  "width": "fill_container",
+                  "fill": "#000000",
+                  "cornerRadius": 10,
+                  "stroke": "$outlineVariant",
+                  "gap": 24,
+                  "padding": 24,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "card_glyph_hig_instance_96",
+                      "name": "Zora Ignition Glyph (HIG)",
+                      "reusable": true,
+                      "width": 96,
+                      "height": 96,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "card_glyph_hig_path",
+                          "x": -46.0685595703125,
+                          "y": 0.9714399719238281,
+                          "geometry": "M1775.8569 1171.717l0-575.86001 575.8601 0-575.8601 575.86001z m-34.1399-5.8599l-1131.717 0 565.8569-565.8571 565.8601 565.8571z m14.1399-14.1401l-555.8569-555.86001 555.8569 0 0 555.86001z m-1179.99991-575.86001l-575.85699 0 575.85699-575.85699 0 575.85699z m575.85701 0l-555.85701 0 0-555.85699 555.85701 555.85699z m588.003-567.99999l-563.8601 563.85699-563.8569-563.85699 1127.717 0z",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": -90,
+                            "size": {
+                              "height": 1.0000000085127296
+                            },
+                            "colors": [
+                              {
+                                "color": "#8A4DFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#A732FD",
+                                "position": 0.25
+                              },
+                              {
+                                "color": "#CD00EC",
+                                "position": 0.5
+                              },
+                              {
+                                "color": "#E200C1",
+                                "position": 0.75
+                              },
+                              {
+                                "color": "#ED158A",
+                                "position": 1
+                              }
+                            ],
+                            "center": {
+                              "x": 0.5000000019724617,
+                              "y": 2.9951955412612215e-10
+                            }
+                          },
+                          "width": 188.1373583984375,
+                          "height": 93.73735885620117
                         }
                       ]
                     }

@@ -35,6 +35,7 @@ import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
 import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.splash.ZoraSplashScreen
+import com.jesusdmedinac.zora.ui.splash.component.ZoraIgnitionGlyph
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import java.io.File
@@ -222,4 +223,34 @@ class PreviewScreenshotGeneratorTest {
             }
         }
     }
+
+    @Test
+    fun captureZoraIgnitionGlyph() {
+        // Canonical 96dp Ignition Glyph preview
+        capture("glyph_zora_ignition_96", width = 200, height = 200) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = androidx.compose.ui.Alignment.Center
+            ) {
+                ZoraIgnitionGlyph(
+                    size = 96.dp,
+                    animated = false
+                )
+            }
+        }
+
+        // High-definition 160dp detail inspection
+        capture("glyph_zora_ignition_160", width = 300, height = 300) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = androidx.compose.ui.Alignment.Center
+            ) {
+                ZoraIgnitionGlyph(
+                    size = 160.dp,
+                    animated = false
+                )
+            }
+        }
+    }
 }
+

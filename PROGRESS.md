@@ -91,6 +91,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Configure compose.components.uiToolingPreview and verify JVM test compilation
 - [x] Scenario: Configure compose.uiTooling debug runtime adapter for Android Studio layout preview rendering
 - [x] Scenario: Render headless offscreen screenshots of all core screen previews and atomic UI cards
+- [x] Scenario: Audit ZoraIgnitionGlyph against zora-community.pen and backport atomic component to Component Library
 
 ---
 

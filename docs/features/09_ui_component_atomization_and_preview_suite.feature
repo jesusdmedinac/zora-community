@@ -31,3 +31,9 @@ Feature: UI Component Atomization and Preview Suite
     When rendering the atomized preview composables in a simulated mobile viewport
     Then high-resolution PNG screenshots are exported for all primary screens and component cards
     And screenshots are saved for visual verification and artifact presentation
+
+  Scenario: Audit ZoraIgnitionGlyph against zora-community.pen and backport atomic component to Component Library
+    Given the atomic Composable function ZoraIgnitionGlyph
+    When auditing geometry, 135° Core Spectrum gradient, and ambient halo against zora-community.pen
+    Then 100% visual parity is confirmed across nominal coordinates and token hexes
+    And Card - Zora Ignition Glyph is backported and registered into M3 and HIG Component Library frames in zora-community.pen
