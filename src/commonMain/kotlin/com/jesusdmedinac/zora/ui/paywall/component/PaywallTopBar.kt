@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.nav_paywall
 import zora_community.generated.resources.network_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Top header for Zora Pro Paywall screen with dismiss button.
@@ -78,7 +79,7 @@ fun PaywallTopBar(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PaywallTopBarPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

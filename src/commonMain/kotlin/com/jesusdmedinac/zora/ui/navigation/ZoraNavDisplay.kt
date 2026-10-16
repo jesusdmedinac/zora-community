@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Pure Kotlin Multiplatform NavDisplay for Navigation 3.
@@ -40,7 +41,7 @@ fun <T : Any> NavDisplay(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun NavDisplayPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

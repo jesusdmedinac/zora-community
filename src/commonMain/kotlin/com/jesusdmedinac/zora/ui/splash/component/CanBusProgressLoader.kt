@@ -20,6 +20,7 @@ import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * CAN-bus Loader Block with telemetry ticker text and 135° ignition progress bar.
@@ -82,7 +83,7 @@ fun CanBusProgressLoader(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CanBusProgressLoaderPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_start_trial
 import zora_community.generated.resources.paywall_trial_disclaimer
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Bottom call-to-action area with trial initiation and app store disclaimer.
@@ -64,7 +65,7 @@ fun PaywallCtaArea(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PaywallCtaAreaPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

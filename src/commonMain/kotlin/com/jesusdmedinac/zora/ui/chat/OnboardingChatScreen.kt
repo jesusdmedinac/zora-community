@@ -25,6 +25,7 @@ import com.jesusdmedinac.zora.ui.chat.component.ZoraEngineSelectionCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraVisualReferenceProposalCard
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Chat message model hierarchy for dynamic onboarding stream.
@@ -195,7 +196,7 @@ fun OnboardingChatScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun OnboardingChatScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

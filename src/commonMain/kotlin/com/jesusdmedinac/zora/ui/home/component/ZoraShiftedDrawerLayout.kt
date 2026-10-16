@@ -32,6 +32,7 @@ import zora_community.generated.resources.badge_coming_soon
 import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Navigation Drawer with Shifted Screen Scrim Card transition.
@@ -180,7 +181,7 @@ fun ZoraShiftedDrawerLayout(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraShiftedDrawerLayoutPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

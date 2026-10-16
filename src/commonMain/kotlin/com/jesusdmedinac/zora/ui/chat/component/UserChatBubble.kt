@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Chat bubble displaying driver queries aligned to the right.
@@ -43,7 +44,7 @@ fun UserChatBubble(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun UserChatBubblePreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

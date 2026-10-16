@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.copilot_hero_subtitle
 import zora_community.generated.resources.copilot_hero_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Centered hero invitation greeting the driver and prompting for diagnostic questions.
@@ -44,7 +45,7 @@ fun CopilotPromptHero(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CopilotPromptHeroPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -20,6 +20,7 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.resources.stringResource
 import zora_community.generated.resources.Res
 import zora_community.generated.resources.superpowers_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * 2x2 grid matrix displaying Zora Pro features and unlocked capabilities.
@@ -79,7 +80,7 @@ fun ProSuperpowersMatrix(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ProSuperpowersMatrixPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -25,6 +25,7 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraSuggestionsRow
 import com.jesusdmedinac.zora.ui.home.component.ZoraTopAppBar
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.badge_local_first
 
 /**
@@ -116,7 +117,7 @@ fun CopilotHomeScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CopilotHomeScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

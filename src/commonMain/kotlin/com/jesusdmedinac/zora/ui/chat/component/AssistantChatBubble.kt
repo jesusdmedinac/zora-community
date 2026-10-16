@@ -11,6 +11,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Chat bubble displaying AI assistant responses with dark surface border.
@@ -37,7 +38,7 @@ fun AssistantChatBubble(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun AssistantChatBubblePreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

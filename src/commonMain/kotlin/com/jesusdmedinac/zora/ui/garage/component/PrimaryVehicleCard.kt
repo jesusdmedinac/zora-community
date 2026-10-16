@@ -24,6 +24,7 @@ import zora_community.generated.resources.general_health_label
 import zora_community.generated.resources.obd2_linked
 import zora_community.generated.resources.odometer_label
 import zora_community.generated.resources.primary_vehicle_label
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Card showcasing the driver's primary vehicle, OBD-II link, masked VIN, and general health.
@@ -157,7 +158,7 @@ fun PrimaryVehicleCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PrimaryVehicleCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.chat_top_bar_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Top navigation header for Onboarding Chat with back button and active vehicle title.
@@ -95,7 +96,7 @@ fun ChatTopBar(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ChatTopBarPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

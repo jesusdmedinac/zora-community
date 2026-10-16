@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.care_priorities_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 enum class CarePriorityBadgeType {
     EMERALD_HIGH_PRIORITY,
@@ -141,7 +142,7 @@ fun defaultCarePriorityItems(): List<CarePriorityItem> = listOf(
     ),
 )
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraCarePrioritiesCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

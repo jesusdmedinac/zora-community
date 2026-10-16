@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.action_new_chat
 
 /**
@@ -61,7 +62,7 @@ fun NewChatButton(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun NewChatButtonPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

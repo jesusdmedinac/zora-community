@@ -26,6 +26,7 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_generate_reference_image
 import zora_community.generated.resources.action_skip
 import zora_community.generated.resources.visual_reference_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Visual reference generation proposal card for Garage Slot #01.
@@ -157,7 +158,7 @@ fun ZoraVisualReferenceProposalCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraVisualReferenceProposalCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -31,6 +31,7 @@ import zora_community.generated.resources.plan_annual_savings
 import zora_community.generated.resources.plan_monthly
 import zora_community.generated.resources.plan_monthly_price
 import zora_community.generated.resources.subscription_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Radio selector for Annual vs Monthly subscription tiers.
@@ -195,7 +196,7 @@ fun SubscriptionPlansSelector(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun SubscriptionPlansSelectorPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

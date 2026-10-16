@@ -24,6 +24,7 @@ import zora_community.generated.resources.action_add_vehicle
 import zora_community.generated.resources.garage_capacity_title
 import zora_community.generated.resources.garage_capacity_upgrade
 import zora_community.generated.resources.garage_capacity_val
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Garage vehicle slots section enforcing free tier 1-slot limit with Pro upgrade prompt.
@@ -126,7 +127,7 @@ fun GarageSlotsCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun GarageSlotsCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -26,6 +26,7 @@ import zora_community.generated.resources.telemetry_prescription
 import zora_community.generated.resources.telemetry_status_clean
 import zora_community.generated.resources.telemetry_status_normal
 import zora_community.generated.resources.telemetry_status_secure
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Automotive CAN-Bus connection and telemetry summary card.
@@ -107,7 +108,7 @@ fun VehicleStatusTelemetryCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun VehicleStatusTelemetryCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

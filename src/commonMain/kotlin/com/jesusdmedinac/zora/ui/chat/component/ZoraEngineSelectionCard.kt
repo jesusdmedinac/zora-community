@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_confirm_engine
 import zora_community.generated.resources.engine_selector_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 data class EngineOption(
     val id: String,
@@ -167,7 +168,7 @@ fun ZoraEngineSelectionCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraEngineSelectionCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

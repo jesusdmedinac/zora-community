@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.app_name
 import zora_community.generated.resources.splash_tagline
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Brand wordmark and precision tagline for splash screen.
@@ -53,7 +54,7 @@ fun ZoraBrandHeader(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraBrandHeaderPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

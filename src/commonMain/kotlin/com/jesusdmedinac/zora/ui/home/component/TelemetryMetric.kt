@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Atomic metric tile displaying automotive telemetry values (voltage, DTCs, health).
@@ -54,7 +55,7 @@ fun TelemetryMetric(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun TelemetryMetricPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

@@ -24,6 +24,7 @@ import zora_community.generated.resources.last_calibration_recent
 import zora_community.generated.resources.quick_checkin_title
 import zora_community.generated.resources.telemetry_battery
 import zora_community.generated.resources.telemetry_tire_pressure
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Rapid 30-second fluid and battery health check-in card.
@@ -87,7 +88,7 @@ fun QuickHealthCheckInCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun QuickHealthCheckInCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

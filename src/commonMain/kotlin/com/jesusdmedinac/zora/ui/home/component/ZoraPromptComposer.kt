@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Floating prompt composer with input field, audio trigger, and primary send action.
@@ -115,7 +116,7 @@ fun ZoraPromptComposer(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraPromptComposerPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

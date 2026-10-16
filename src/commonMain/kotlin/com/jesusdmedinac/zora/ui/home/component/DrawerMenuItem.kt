@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Atomic navigation row for drawer items with icon, label, and optional status badge.
@@ -86,7 +87,7 @@ fun DrawerMenuItem(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun DrawerMenuItemPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

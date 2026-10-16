@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
 import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Screen / M3 - Zora Pro Multi-Agent Network & Subscription Paywall.
@@ -80,7 +81,7 @@ fun ZoraProPaywallScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraProPaywallScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

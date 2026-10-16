@@ -5,6 +5,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 enum class ZoraPlatformVariant {
     MATERIAL3,
@@ -47,7 +48,7 @@ fun ZoraTheme(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraThemePreview() {
     ZoraTheme {

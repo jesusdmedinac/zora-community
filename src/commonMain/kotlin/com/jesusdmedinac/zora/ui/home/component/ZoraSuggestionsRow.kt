@@ -25,6 +25,7 @@ import zora_community.generated.resources.suggestion_change_tire
 import zora_community.generated.resources.suggestion_check_dtc
 import zora_community.generated.resources.suggestion_mechanical_prescription
 import zora_community.generated.resources.suggestion_vibrate_braking
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Quick diagnostic suggestions row from Copilot Home (v2.21).
@@ -70,7 +71,7 @@ fun ZoraSuggestionsRow(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraSuggestionsRowPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

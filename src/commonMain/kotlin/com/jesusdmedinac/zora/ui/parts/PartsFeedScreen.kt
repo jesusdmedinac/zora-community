@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.parts.model.PartCategory
 import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
 import com.jesusdmedinac.zora.ui.parts.model.defaultPartsCatalog
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Screen / M3 - Contextual Parts Feed, Salvage Yonke Network & 3D Component Engine.
@@ -106,7 +107,7 @@ fun PartsFeedScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PartsFeedScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

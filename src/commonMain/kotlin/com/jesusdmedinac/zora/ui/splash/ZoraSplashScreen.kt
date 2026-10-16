@@ -28,6 +28,7 @@ import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootState
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 
 /**
@@ -120,7 +121,7 @@ fun ZoraSplashScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraSplashScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

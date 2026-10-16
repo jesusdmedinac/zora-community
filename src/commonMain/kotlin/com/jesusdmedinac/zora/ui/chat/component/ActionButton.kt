@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Micro-action button with circular icon indicator for chat interactions.
@@ -35,7 +36,7 @@ fun ActionButton(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ActionButtonPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

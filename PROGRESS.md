@@ -105,9 +105,9 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 ---
 
 ## Feature 11: Multiplatform Internationalization and String Resources (`docs/features/11_multiplatform_i18n_and_string_resources.feature`)
-- [ ] Scenario: Define base English string resources in composeResources/values/strings.xml
-- [ ] Scenario: Define localized Spanish string resources in composeResources/values-es/strings.xml
-- [ ] Scenario: Refactor UI components to consume stringResource from Res.string
+- [x] Scenario: Define base English string resources in composeResources/values/strings.xml
+- [x] Scenario: Define localized Spanish string resources in composeResources/values-es/strings.xml
+- [x] Scenario: Refactor UI components to consume stringResource from Res.string
 
 
 

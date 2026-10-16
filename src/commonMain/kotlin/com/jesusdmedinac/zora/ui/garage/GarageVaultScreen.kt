@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Screen / M3 - Virtual Garage, Quick Telemetry Check-in & Copilot Memory Vault.
@@ -84,7 +85,7 @@ fun GarageVaultScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun GarageVaultScreenPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

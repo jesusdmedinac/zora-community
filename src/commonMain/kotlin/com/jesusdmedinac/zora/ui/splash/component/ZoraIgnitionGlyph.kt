@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Zora Precision Geometric Ignition Glyph.
@@ -152,7 +153,7 @@ private fun DrawScope.drawZoraGlyph(canvasSize: Size) {
     )
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraIgnitionGlyphPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

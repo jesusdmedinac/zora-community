@@ -23,6 +23,7 @@ import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.memory_vault_local_assurance
 import zora_community.generated.resources.memory_vault_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * On-device copilot memory vault tracking 3 capacity slots with granular deletion.
@@ -144,7 +145,7 @@ fun CopilotMemoryVaultCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CopilotMemoryVaultCardPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

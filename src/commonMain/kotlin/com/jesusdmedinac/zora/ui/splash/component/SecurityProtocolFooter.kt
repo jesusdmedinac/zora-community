@@ -22,6 +22,7 @@ import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.security_protocol_footer
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Security Protocol Footer:
@@ -107,7 +108,7 @@ fun SecurityProtocolFooter(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun SecurityProtocolFooterPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {

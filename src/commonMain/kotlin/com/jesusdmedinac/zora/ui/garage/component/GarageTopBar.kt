@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.garage_telemetry_subtitle
 import zora_community.generated.resources.nav_garage
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Top header for Virtual Garage screen with navigation back action.
@@ -78,7 +79,7 @@ fun GarageTopBar(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun GarageTopBarPreview() {
     com.jesusdmedinac.zora.ui.theme.ZoraTheme {
