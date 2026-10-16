@@ -18,3 +18,4 @@ DerivedData
 
 # Kotlin Toolchain
 .toolchain
+kotlin-js-store/

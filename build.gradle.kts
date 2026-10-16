@@ -146,3 +146,7 @@ sqldelight {
         }
     }
 }
+
+dependencies {
+    debugImplementation(compose.uiTooling)
+}

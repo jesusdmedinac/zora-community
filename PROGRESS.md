@@ -85,10 +85,11 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 
 ---
 
-## Feature 09: UI Component Atomization and Preview Suite
+## Feature 09: UI Component Atomization and Preview Suite (`docs/features/09_ui_component_atomization_and_preview_suite.feature`)
 - [x] Scenario: Decompose monolithic screens into atomic components under component packages with zero private composables
 - [x] Scenario: Equip all atomic and screen composable functions with dedicated @Preview composables wrapped in ZoraTheme
 - [x] Scenario: Configure compose.components.uiToolingPreview and verify JVM test compilation
+- [x] Scenario: Configure compose.uiTooling debug runtime adapter for Android Studio layout preview rendering
 
 ---
 
