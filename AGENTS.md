@@ -39,3 +39,38 @@ This repository strictly adheres to Behavior-Driven Development (BDD) and the 5-
 * **Local-First & Inspectable Privacy:** Data is stored locally by default. Memory items are inspectable and manually purgeable. Cloud AI features require explicit opt-in.
 * **On-Demand Visual Generation:** AI image renders are explicitly driver-triggered with visible quotas and disclaimers.
 
+## 6. UI Design Audit & Bi-Directional Synchronization (`zora-community.pen`)
+Whenever any Composable screen, component, or layout is created, modified, or atomized in `zora-community`, agents MUST strictly adhere to the following 4-stage audit and synchronization protocol:
+
+### Stage 1: Automated Headless Screenshot Generation
+* **Mandatory Preview Requirement:** Every Composable function (screen or atomic component) MUST have a dedicated `@Preview` Composable wrapped in `ZoraTheme`.
+* **Headless Skia Offscreen Rendering:** Agents MUST run the offscreen screenshot generator suite:
+  ```bash
+  JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradlew --no-daemon jvmTest --tests com.jesusdmedinac.zora.ui.PreviewScreenshotGeneratorTest
+  ```
+* Generated PNGs are saved to `build/screenshots/` (rendered at 390x844 mobile viewport for screens, or bounding height for atomic cards).
+
+### Stage 2: Cross-Audit against `design/zora-community.pen`
+* Locate the matching target frame, node, or component in [`design/zora-community.pen`](file:///Users/jesusdmedinac/proyectos/Zora/zora-community/design/zora-community.pen):
+  * Screen frames: `Screen / M3 - *` (e.g., `00 Splash Ignition`, `01 Copilot Home`, `02 Navigation Drawer`, `03 Onboarding Chat`, `06 Garaje Virtual`, `07 Yonke Virtual & Refacciones`, `08 Zora Pro Paywall`) and their corresponding `Screen / HIG - *` counterparts.
+  * Component library frames: `Zora M3 Components - Component Library` (`OTJwL`), `Zora HIG Components - Component Library` (`p9FUa`).
+* Inspect and compare all visual properties:
+  * **Color Tokens:** Verify hex values and opacity against `ZoraTokens` (`Canvas`, `SurfaceContainer`, `Primary`, `SecondaryContainer`, `OutlineVariant`, etc.).
+  * **Typography:** Confirm font family (`FontHeadline`, `FontBody`, `FontMono`), weights (`FontWeight.ExtraBold`, `SemiBold`, `Normal`), font size (`sp`), and letter spacing.
+  * **Geometry & Spacing:** Validate paddings, child gaps, layout hierarchy, and corner radius tokens (`ShapeSm`, `ShapeMd`, `ShapeLg`, `ShapePill`).
+  * **Semantic Labels:** Verify exact copy, status indicators, and 2-word badges (`LOCAL-FIRST`, `DIRECT FIT`, `VAULT OK`).
+
+### Stage 3: Bi-Directional Synchronization & Component Backporting
+* **Direction A (Code Alignment to Design):** If the Compose code diverges visually or structurally from `zora-community.pen` without documented architectural justification, refactor the Composable code to achieve 100% parity with the design.
+* **Direction B (Design Alignment to Code / Component Backporting):**
+  * When decomposing a monolithic screen into atomic components under `com.jesusdmedinac.zora.ui.*.component`, if any atomic component was not previously defined as an isolated component in `zora-community.pen`, agents MUST update `design/zora-community.pen`.
+  * Register the new atomic component into the Component Library frames (`Zora M3 Components` / `Zora HIG Components`) using the `pen` CLI (`pen --in design/zora-community.pen --out design/zora-community.pen --prompt "..."`) or structured JSON node insertion.
+  * Ensure `design/zora-community.pen` remains the living, authoritative Single Source of Truth (SSOT).
+
+### Stage 4: Visual Verification, Artifacts & BDD Tracking
+* Copy exported screenshots into `<appDataDir>/brain/<conversation-id>/screenshots/`.
+* Present the screenshots to the user in a Markdown artifact with visual carousels and comparative tables.
+* Record the audit outcome and sync status in [`PROGRESS.md`](file:///Users/jesusdmedinac/proyectos/Zora/zora-community/PROGRESS.md) and the corresponding `docs/features/*.feature` file.
+* Commit atomically with an English commit message referencing the audited scenario (e.g., `refactor(ui): align component X with zora-community.pen design spec`).
+
+
