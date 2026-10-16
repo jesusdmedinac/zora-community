@@ -90,6 +90,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Equip all atomic and screen composable functions with dedicated @Preview composables wrapped in ZoraTheme
 - [x] Scenario: Configure compose.components.uiToolingPreview and verify JVM test compilation
 - [x] Scenario: Configure compose.uiTooling debug runtime adapter for Android Studio layout preview rendering
+- [x] Scenario: Render headless offscreen screenshots of all core screen previews and atomic UI cards
 
 ---
 

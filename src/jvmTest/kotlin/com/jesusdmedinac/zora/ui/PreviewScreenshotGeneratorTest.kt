@@ -1,0 +1,225 @@
+package com.jesusdmedinac.zora.ui
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.ImageComposeScene
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
+import org.jetbrains.skia.EncodedImageFormat
+import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
+import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
+import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
+import com.jesusdmedinac.zora.ui.garage.component.GarageSlotsCard
+import com.jesusdmedinac.zora.ui.garage.component.PrimaryVehicleCard
+import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
+import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
+import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
+import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
+import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
+import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
+import com.jesusdmedinac.zora.ui.parts.component.CommunityInsightsCard
+import com.jesusdmedinac.zora.ui.parts.component.PartCard
+import com.jesusdmedinac.zora.ui.parts.component.VisualBlueprintCard
+import com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState
+import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
+import com.jesusdmedinac.zora.ui.parts.model.defaultPartsCatalog
+import com.jesusdmedinac.zora.ui.paywall.ZoraProPaywallScreen
+import com.jesusdmedinac.zora.ui.paywall.component.AgentNetworkCard
+import com.jesusdmedinac.zora.ui.paywall.component.ProSuperpowersMatrix
+import com.jesusdmedinac.zora.ui.paywall.component.SubscriptionPlansSelector
+import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
+import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
+import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
+import com.jesusdmedinac.zora.ui.splash.ZoraSplashScreen
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
+import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import java.io.File
+import kotlin.test.Test
+
+/**
+ * Headless off-screen screenshot generator using Compose Desktop's ImageComposeScene.
+ * Renders high-fidelity PNG screenshots for all atomized screens and key UI cards.
+ */
+class PreviewScreenshotGeneratorTest {
+
+    private fun capture(
+        name: String,
+        width: Int = 390,
+        height: Int = 844,
+        content: @Composable () -> Unit,
+    ) {
+        val scene = ImageComposeScene(width = width, height = height, density = Density(1f))
+        scene.setContent {
+            ZoraTheme {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(ZoraTokens.Canvas)
+                ) {
+                    content()
+                }
+            }
+        }
+        // First render initializes state, second produces the settled frame
+        scene.render()
+        val image = scene.render()
+        val data = image.encodeToData(EncodedImageFormat.PNG)
+        val dir = File("build/screenshots")
+        dir.mkdirs()
+        val file = File(dir, "$name.png")
+        file.writeBytes(data!!.bytes)
+        println("Generated preview screenshot: ${file.name} (${file.length()} bytes)")
+    }
+
+    @Test
+    fun captureAllScreenPreviews() {
+        // 1. Splash Screen
+        capture("00_splash_screen", width = 390, height = 844) {
+            ZoraSplashScreen()
+        }
+
+        // 2. Copilot Home (Empty chat state with prompt composer)
+        capture("01_copilot_home", width = 390, height = 844) {
+            CopilotHomeScreen(
+                onNavigateToChat = {},
+                onNavigateToGarage = {},
+            )
+        }
+
+        // 3. Shifted Screen Scrim Card Drawer (Open navigation drawer)
+        capture("01b_shifted_drawer_open", width = 390, height = 844) {
+            ZoraShiftedDrawerLayout(
+                drawerOpen = true,
+                onCloseDrawer = {},
+                onNewChatClick = {},
+                onYonkeClick = {},
+                onRecentQuestionClick = {},
+                onSettingsClick = {},
+            ) {
+                CopilotHomeScreen(
+                    onNavigateToChat = {},
+                    onNavigateToGarage = {},
+                )
+            }
+        }
+
+        // 4. Onboarding Chat (Interactive diagnostic triage stream)
+        capture("02_onboarding_chat", width = 390, height = 844) {
+            OnboardingChatScreen(
+                initialSymptom = "Vibración al frenar a más de 80 km/h",
+                onBack = {},
+            )
+        }
+
+        // 5. Garage Vault (Primary vehicle telemetry, 30s checkin, memory slots)
+        capture("03_garage_vault", width = 390, height = 844) {
+            GarageVaultScreen(onBack = {})
+        }
+
+        // 6. Contextual Parts Feed (Yonke salvage network & 3D cutaway blueprint)
+        capture("04_parts_feed", width = 390, height = 844) {
+            PartsFeedScreen(onBack = {})
+        }
+
+        // 7. Zora Pro Paywall (Multi-agent network, superpowers grid, plan selector)
+        capture("05_zora_pro_paywall", width = 390, height = 844) {
+            ZoraProPaywallScreen(onClose = {})
+        }
+    }
+
+    @Test
+    fun captureAtomicComponentCards() {
+        // Primary Vehicle Card
+        capture("card_primary_vehicle", width = 390, height = 230) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                PrimaryVehicleCard()
+            }
+        }
+
+        // Quick Health Check-In Card
+        capture("card_quick_health_checkin", width = 390, height = 230) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                QuickHealthCheckInCard(
+                    telemetry = TelemetryCheckInState(),
+                )
+            }
+        }
+
+        // Copilot Memory Vault Card
+        capture("card_copilot_memory_vault", width = 390, height = 320) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                CopilotMemoryVaultCard(
+                    memories = defaultCopilotMemories(),
+                    onDeleteMemory = {},
+                )
+            }
+        }
+
+        // Garage Slots Card
+        capture("card_garage_slots", width = 390, height = 200) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                GarageSlotsCard(
+                    showProModal = false,
+                    onSlotClick = {},
+                )
+            }
+        }
+
+        // Yonke Salvage Part Card
+        capture("card_part_salvage", width = 390, height = 280) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                val salvagePart = defaultPartsCatalog().first { it.isSalvage }
+                PartCard(item = salvagePart)
+            }
+        }
+
+        // Visual Blueprint Card
+        capture("card_visual_blueprint", width = 390, height = 340) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                VisualBlueprintCard(
+                    blueprintState = VisualBlueprintState(quotaCount = 1),
+                    onRequestBlueprint = {},
+                )
+            }
+        }
+
+        // Community Insights Privacy Gate Card
+        capture("card_community_insights", width = 390, height = 320) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                CommunityInsightsCard(
+                    communityState = CommunityInsightsState(),
+                    showOptInModal = false,
+                    onOptInClick = {},
+                )
+            }
+        }
+
+        // Autonomous Agent Network Card
+        capture("card_agent_network", width = 390, height = 280) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                AgentNetworkCard(agentNodes = defaultAgentNodes())
+            }
+        }
+
+        // Pro Superpowers Matrix
+        capture("card_superpowers_matrix", width = 390, height = 240) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ProSuperpowersMatrix(superpowers = defaultProSuperpowers())
+            }
+        }
+
+        // Subscription Plans Selector
+        capture("card_subscription_selector", width = 390, height = 230) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                SubscriptionPlansSelector(
+                    selectedBilling = SubscriptionBilling.ANNUAL,
+                    onSelectBilling = {},
+                )
+            }
+        }
+    }
+}

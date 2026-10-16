@@ -25,3 +25,9 @@ Feature: UI Component Atomization and Preview Suite
     When adding compose.uiTooling to the debugImplementation classpath
     Then the Android debug variant compiles with androidx.compose.ui.tooling.ComposeViewAdapter available
     And Android Studio successfully inflates and renders @Preview composables without ClassNotFoundException
+
+  Scenario: Render headless offscreen screenshots of all core screen previews and atomic UI cards
+    Given the Compose Desktop offscreen rendering engine ImageComposeScene
+    When rendering the atomized preview composables in a simulated mobile viewport
+    Then high-resolution PNG screenshots are exported for all primary screens and component cards
+    And screenshots are saved for visual verification and artifact presentation
