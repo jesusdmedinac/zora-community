@@ -37,6 +37,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ZoraCommunity"
             isStatic = true
+            binaryOption("bundleId", "com.jesusdmedinac.zora")
         }
     }
 
@@ -47,6 +48,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)

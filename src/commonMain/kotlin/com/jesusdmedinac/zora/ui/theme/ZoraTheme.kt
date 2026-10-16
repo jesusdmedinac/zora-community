@@ -46,3 +46,15 @@ fun ZoraTheme(
         )
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraThemePreview() {
+    ZoraTheme {
+        androidx.compose.material3.Text(
+            text = "Zora Precision Intelligence",
+            color = ZoraTokens.Primary,
+        )
+    }
+}
+

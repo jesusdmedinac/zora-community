@@ -10,7 +10,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,23 +17,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 
 /**
@@ -83,90 +75,12 @@ fun ZoraShiftedDrawerLayout(
                     .padding(horizontal = ZoraTokens.SpacingMd)
             ) {
                 // Header: Brand & Close Button
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    ) {
-                        // Mini Glyph
-                        Box(
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clip(CircleShape)
-                                .background(ZoraTokens.CoreSpectrumBrush),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(8.dp)
-                                    .clip(CircleShape)
-                                    .background(Color.White)
-                            )
-                        }
-                        Text(
-                            text = "Zora",
-                            fontFamily = ZoraTokens.FontHeadline,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = ZoraTokens.OnSurface,
-                        )
-                    }
-
-                    // Close Drawer Button
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .background(ZoraTokens.SurfaceContainerLow)
-                            .clickable(onClick = onCloseDrawer),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = "✕",
-                            color = ZoraTokens.OnSurface,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                }
+                DrawerHeader(onCloseDrawer = onCloseDrawer)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // New Chat Button
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(44.dp)
-                        .clip(CircleShape)
-                        .background(ZoraTokens.SurfaceContainerHigh)
-                        .border(1.dp, ZoraTokens.OutlineVariant, CircleShape)
-                        .clickable(onClick = onNewChatClick)
-                        .padding(horizontal = 16.dp),
-                    contentAlignment = Alignment.CenterStart,
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    ) {
-                        Text(
-                            text = "+",
-                            color = ZoraTokens.Primary,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = "Nueva conversación",
-                            fontFamily = ZoraTokens.FontBody,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = ZoraTokens.OnSurface,
-                        )
-                    }
-                }
+                NewChatButton(onClick = onNewChatClick)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -198,40 +112,9 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Recent Chats Section
-                Text(
-                    text = "Recientes",
-                    fontFamily = ZoraTokens.FontBody,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = ZoraTokens.Outline,
-                    modifier = Modifier.padding(start = 8.dp, bottom = 8.dp),
+                DrawerRecentChatsList(
+                    onRecentQuestionClick = onRecentQuestionClick,
                 )
-
-                val recentQuestions = listOf(
-                    "¿Cuánto aire necesitan mis llantas?",
-                    "¿Qué es la bujía?",
-                    "¿Qué significa el Check Engine?",
-                )
-
-                recentQuestions.forEach { question ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(36.dp)
-                            .clip(CircleShape)
-                            .clickable { onRecentQuestionClick(question) }
-                            .padding(horizontal = 8.dp),
-                        contentAlignment = Alignment.CenterStart,
-                    ) {
-                        Text(
-                            text = question,
-                            fontFamily = ZoraTokens.FontBody,
-                            fontSize = 13.sp,
-                            color = ZoraTokens.OnSurfaceVariant,
-                            maxLines = 1,
-                        )
-                    }
-                }
             }
 
             // Pinned Footer (User Account & Settings)
@@ -240,65 +123,9 @@ fun ZoraShiftedDrawerLayout(
                     .fillMaxWidth()
                     .padding(horizontal = ZoraTokens.SpacingMd)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    ) {
-                        // User Avatar
-                        Box(
-                            modifier = Modifier
-                                .size(36.dp)
-                                .clip(CircleShape)
-                                .background(ZoraTokens.PrimaryContainer),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Text(
-                                text = "JM",
-                                color = ZoraTokens.OnPrimaryContainer,
-                                fontSize = 13.sp,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-
-                        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                            Text(
-                                text = "Jesús Medina",
-                                fontFamily = ZoraTokens.FontBody,
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = ZoraTokens.OnSurface,
-                            )
-                            Text(
-                                text = "Cuenta Pro",
-                                fontFamily = ZoraTokens.FontBody,
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = ZoraTokens.Primary,
-                            )
-                        }
-                    }
-
-                    // Settings Icon Button
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .clickable(onClick = onSettingsClick),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = "⚙️",
-                            fontSize = 18.sp,
-                        )
-                    }
-                }
+                DrawerUserFooter(
+                    onSettingsClick = onSettingsClick,
+                )
             }
         }
 
@@ -349,62 +176,20 @@ fun ZoraShiftedDrawerLayout(
     }
 }
 
+@org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
-private fun DrawerMenuItem(
-    icon: String,
-    label: String,
-    badge: String? = null,
-    enabled: Boolean = true,
-    onClick: () -> Unit = {},
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(44.dp)
-            .clip(CircleShape)
-            .clickable(enabled = enabled, onClick = onClick)
-            .padding(horizontal = 12.dp),
-        contentAlignment = Alignment.CenterStart,
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
+private fun ZoraShiftedDrawerLayoutPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraShiftedDrawerLayout(
+            drawerOpen = true,
+            onCloseDrawer = {},
+            onNewChatClick = {},
+            onYonkeClick = {},
+            onRecentQuestionClick = {},
+            onSettingsClick = {},
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                Text(
-                    text = icon,
-                    fontSize = 16.sp,
-                )
-                Text(
-                    text = label,
-                    fontFamily = ZoraTokens.FontBody,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = if (enabled) ZoraTokens.OnSurface else ZoraTokens.OnSurfaceVariant,
-                )
-            }
-
-            if (badge != null) {
-                Box(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .background(ZoraTokens.SurfaceContainerHigh)
-                        .padding(horizontal = 8.dp, vertical = 3.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = badge,
-                        fontFamily = ZoraTokens.FontBody,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = ZoraTokens.Primary,
-                    )
-                }
-            }
+            androidx.compose.material3.Text("Main Content")
         }
     }
 }
+

@@ -114,3 +114,16 @@ fun ZoraPromptComposer(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraPromptComposerPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraPromptComposer(
+            value = "¿Por qué tiembla el volante a 80 km/h?",
+            onValueChange = {},
+            onSend = {},
+        )
+    }
+}
+

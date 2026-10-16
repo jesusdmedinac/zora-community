@@ -153,3 +153,14 @@ fun ZoraVisualReferenceProposalCard(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraVisualReferenceProposalCardPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraVisualReferenceProposalCard(
+            onGenerate = {},
+            onSkip = {},
+        )
+    }
+}

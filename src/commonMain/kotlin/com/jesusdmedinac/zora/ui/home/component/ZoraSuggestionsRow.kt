@@ -64,3 +64,12 @@ fun ZoraSuggestionsRow(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraSuggestionsRowPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraSuggestionsRow(onSuggestionClick = {})
+    }
+}
+

@@ -150,3 +150,12 @@ private fun DrawScope.drawZoraGlyph(canvasSize: Size, brush: Brush) {
         brush = brush
     )
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraIgnitionGlyphPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraIgnitionGlyph()
+    }
+}
+

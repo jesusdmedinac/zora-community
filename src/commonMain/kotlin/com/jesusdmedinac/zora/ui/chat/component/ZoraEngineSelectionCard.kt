@@ -164,3 +164,16 @@ fun ZoraEngineSelectionCard(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraEngineSelectionCardPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraEngineSelectionCard(
+            selectedEngineId = "2.0L_NA",
+            onSelectEngine = {},
+            onConfirm = {},
+        )
+    }
+}
+

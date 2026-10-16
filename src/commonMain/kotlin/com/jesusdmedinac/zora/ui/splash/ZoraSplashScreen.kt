@@ -4,18 +4,24 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.splash.component.CanBusProgressLoader
 import com.jesusdmedinac.zora.ui.splash.component.SecurityProtocolFooter
+import com.jesusdmedinac.zora.ui.splash.component.ZoraBrandHeader
 import com.jesusdmedinac.zora.ui.splash.component.ZoraIgnitionGlyph
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootState
@@ -96,34 +102,7 @@ fun ZoraSplashScreen(
                     )
 
                     // 2. Brand Typography Block
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Text(
-                            text = "ZORA",
-                            style = TextStyle(
-                                fontFamily = ZoraTokens.FontHeadline,
-                                fontSize = 34.sp,
-                                fontWeight = FontWeight.ExtraBold,
-                                letterSpacing = 2.sp,
-                                color = ZoraTokens.OnSurface,
-                                textAlign = TextAlign.Center
-                            )
-                        )
-
-                        Text(
-                            text = "PRECISION AUTOMOTIVE INTELLIGENCE",
-                            style = TextStyle(
-                                fontFamily = ZoraTokens.FontMono,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                letterSpacing = 1.2.sp,
-                                color = ZoraTokens.OnSurfaceVariant,
-                                textAlign = TextAlign.Center
-                            )
-                        )
-                    }
+                    ZoraBrandHeader()
 
                     // 3. CAN-bus Loader Block
                     CanBusProgressLoader(
@@ -140,3 +119,13 @@ fun ZoraSplashScreen(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraSplashScreenPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraSplashScreen()
+    }
+}
+
+

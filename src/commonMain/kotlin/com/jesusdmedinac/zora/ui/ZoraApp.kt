@@ -105,3 +105,10 @@ fun ZoraApp(
         )
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraAppPreview() {
+    ZoraApp()
+}
+

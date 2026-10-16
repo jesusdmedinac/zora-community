@@ -81,3 +81,16 @@ fun CanBusProgressLoader(
         )
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun CanBusProgressLoaderPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        CanBusProgressLoader(
+            progress = 0.65f,
+            stage = TelemetryBootStage.CAN_BUS_INIT,
+        )
+    }
+}
+
+

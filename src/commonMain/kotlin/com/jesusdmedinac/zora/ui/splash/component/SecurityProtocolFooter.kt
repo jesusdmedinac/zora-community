@@ -105,3 +105,12 @@ fun SecurityProtocolFooter(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun SecurityProtocolFooterPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        SecurityProtocolFooter()
+    }
+}
+

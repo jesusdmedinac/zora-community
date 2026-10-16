@@ -111,3 +111,15 @@ fun ZoraTopAppBar(
         }
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraTopAppBarPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraTopAppBar(
+            onOpenDrawer = {},
+            onGarageClick = {},
+        )
+    }
+}
+

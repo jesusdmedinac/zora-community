@@ -39,3 +39,19 @@ fun <T : Any> NavDisplay(
         entry.Content()
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun NavDisplayPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        NavDisplay(
+            backstack = listOf("Home"),
+            entryProvider = { key ->
+                NavEntry(key) {
+                    androidx.compose.material3.Text("Route: $key")
+                }
+            }
+        )
+    }
+}
+

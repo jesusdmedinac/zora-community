@@ -139,3 +139,12 @@ fun defaultCarePriorityItems(): List<CarePriorityItem> = listOf(
         badgeType = CarePriorityBadgeType.VIOLET_MAX_SAVINGS,
     ),
 )
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun ZoraCarePrioritiesCardPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        ZoraCarePrioritiesCard()
+    }
+}
+

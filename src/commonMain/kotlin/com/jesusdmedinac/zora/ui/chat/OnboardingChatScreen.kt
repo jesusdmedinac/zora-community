@@ -1,55 +1,59 @@
 package com.jesusdmedinac.zora.ui.chat
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.jesusdmedinac.zora.ui.chat.component.CarePriorityItem
+import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
+import com.jesusdmedinac.zora.ui.chat.component.ChatTopBar
+import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
 import com.jesusdmedinac.zora.ui.chat.component.ZoraCarePrioritiesCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraEngineSelectionCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraVisualReferenceProposalCard
-import com.jesusdmedinac.zora.ui.chat.component.defaultCarePriorityItems
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 
+/**
+ * Chat message model hierarchy for dynamic onboarding stream.
+ */
 sealed interface ChatMessage {
-    data class User(val text: String) : ChatMessage
+    val id: String
+
+    data class User(
+        val text: String,
+        override val id: String = "user_${text.hashCode()}_${RandomSource.next()}",
+    ) : ChatMessage
+
     data class Assistant(
         val text: String,
         val hasEngineCard: Boolean = false,
         val hasCarePriorities: Boolean = false,
         val hasVisualProposal: Boolean = false,
+        override val id: String = "asst_${text.hashCode()}_${RandomSource.next()}",
     ) : ChatMessage
+}
+
+private object RandomSource {
+    private var counter = 0
+    fun next(): Int = ++counter
 }
 
 /**
  * Screen / M3 - 03 Onboarding Chat & HIG - 03.
+ * Atomized guided diagnostic conversation with AI mechanic.
  */
 @Composable
 fun OnboardingChatScreen(
@@ -83,67 +87,10 @@ fun OnboardingChatScreen(
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         // 1. Top Header with Back Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(horizontal = ZoraTokens.SpacingMd),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .background(ZoraTokens.SurfaceContainerHigh)
-                    .border(1.dp, ZoraTokens.OutlineVariant, CircleShape)
-                    .clickable(onClick = onBack),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = "←",
-                    color = ZoraTokens.OnSurface,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(2.dp),
-            ) {
-                Text(
-                    text = "DIAGNÓSTICO ZORA",
-                    fontFamily = ZoraTokens.FontHeadline,
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = ZoraTokens.OnSurface,
-                    letterSpacing = 0.5.sp,
-                )
-                Text(
-                    text = vehicleModel,
-                    fontFamily = ZoraTokens.FontMono,
-                    fontSize = 11.sp,
-                    color = ZoraTokens.Primary,
-                )
-            }
-
-            // Status Indicator
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .background(ZoraTokens.SurfaceContainerHigh),
-                contentAlignment = Alignment.Center,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(10.dp)
-                        .clip(CircleShape)
-                        .background(ZoraTokens.StatusSuccess)
-                )
-            }
-        }
+        ChatTopBar(
+            vehicleModel = vehicleModel,
+            onBack = onBack,
+        )
 
         // 2. Chat Stream Content
         Column(
@@ -157,26 +104,7 @@ fun OnboardingChatScreen(
             messages.forEach { msg ->
                 when (msg) {
                     is ChatMessage.User -> {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 48.dp),
-                            contentAlignment = Alignment.CenterEnd,
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .clip(ZoraTokens.ShapeLg)
-                                    .background(ZoraTokens.PrimaryContainer)
-                                    .padding(14.dp),
-                            ) {
-                                Text(
-                                    text = msg.text,
-                                    fontFamily = ZoraTokens.FontBody,
-                                    fontSize = 14.sp,
-                                    color = ZoraTokens.OnPrimaryContainer,
-                                )
-                            }
-                        }
+                        UserChatBubble(text = msg.text)
                     }
 
                     is ChatMessage.Assistant -> {
@@ -186,21 +114,7 @@ fun OnboardingChatScreen(
                                 .padding(end = 24.dp),
                             verticalArrangement = Arrangement.spacedBy(10.dp),
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .clip(ZoraTokens.ShapeLg)
-                                    .background(ZoraTokens.SurfaceContainer)
-                                    .border(1.dp, ZoraTokens.OutlineVariant, ZoraTokens.ShapeLg)
-                                    .padding(14.dp),
-                            ) {
-                                Text(
-                                    text = msg.text,
-                                    fontFamily = ZoraTokens.FontBody,
-                                    fontSize = 14.sp,
-                                    color = ZoraTokens.OnSurface,
-                                    lineHeight = 20.sp,
-                                )
-                            }
+                            AssistantChatBubble(text = msg.text)
 
                             if (msg.hasEngineCard) {
                                 ZoraEngineSelectionCard(
@@ -280,3 +194,15 @@ fun OnboardingChatScreen(
         )
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun OnboardingChatScreenPreview() {
+    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+        OnboardingChatScreen(
+            initialSymptom = "¿Por qué hace ruido el motor al acelerar?",
+            onBack = {},
+        )
+    }
+}
+

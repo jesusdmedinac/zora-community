@@ -83,4 +83,11 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Launch WebAssembly Wasm browser runner
 - [x] Scenario: Export iOS ComposeUIViewController entry point
 
+---
+
+## Feature 09: UI Component Atomization and Preview Suite
+- [x] Scenario: Decompose monolithic screens into atomic components under component packages with zero private composables
+- [x] Scenario: Equip all atomic and screen composable functions with dedicated @Preview composables wrapped in ZoraTheme
+- [x] Scenario: Configure compose.components.uiToolingPreview and verify JVM test compilation
+
 
