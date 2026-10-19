@@ -11,15 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.VehicleStatusTelemetryCard
@@ -47,27 +43,13 @@ fun CopilotHomeScreen(
     onNavigateToChat: (symptom: String?) -> Unit,
     onNavigateToGarage: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: CopilotHomeViewModel? = null,
+    viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
 ) {
-    val actualViewModel = viewModel ?: run {
-        val owner = runCatching { LocalViewModelStoreOwner.current }.getOrNull()
-        if (owner != null) {
-            viewModel { CopilotHomeViewModel() }
-        } else {
-            remember { CopilotHomeViewModel() }
-        }
-    }
-
-    val hasLifecycle = runCatching { LocalLifecycleOwner.current }.isSuccess
-    val uiState by if (hasLifecycle) {
-        actualViewModel.uiState.collectAsStateWithLifecycle()
-    } else {
-        actualViewModel.uiState.collectAsState()
-    }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     CopilotHomeScreenContent(
         uiState = uiState,
-        onIntent = actualViewModel::processIntent,
+        onIntent = viewModel::processIntent,
         onNavigateToChat = onNavigateToChat,
         onNavigateToGarage = onNavigateToGarage,
         modifier = modifier,

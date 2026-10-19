@@ -5,11 +5,20 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
@@ -62,13 +71,31 @@ class PreviewScreenshotGeneratorTest {
     ) {
         val scene = ImageComposeScene(width = width, height = height, density = Density(1f))
         scene.setContent {
-            ZoraTheme(platformVariant = platformVariant) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(ZoraTokens.Canvas)
-                ) {
-                    content()
+            val lifecycleOwner: LifecycleOwner = remember {
+                object : LifecycleOwner {
+                    override val lifecycle: Lifecycle = LifecycleRegistry.createUnsafe(this).apply {
+                        currentState = Lifecycle.State.RESUMED
+                    }
+                }
+            }
+            val viewModelStoreOwner: ViewModelStoreOwner = remember {
+                val store = ViewModelStore()
+                object : ViewModelStoreOwner {
+                    override val viewModelStore: ViewModelStore = store
+                }
+            }
+            CompositionLocalProvider(
+                LocalLifecycleOwner provides lifecycleOwner,
+                LocalViewModelStoreOwner provides viewModelStoreOwner,
+            ) {
+                ZoraTheme(platformVariant = platformVariant) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(ZoraTokens.Canvas)
+                    ) {
+                        content()
+                    }
                 }
             }
         }
