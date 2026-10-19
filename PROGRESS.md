@@ -18,7 +18,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 
 ## Feature 05: Clean Architecture and Modern Tech Stack (Foundation)
 - [ ] Scenario: Build project using declarative module.yaml
-- [x] Scenario: Maintain unidirectional MVI state flow with ViewModel and StateFlow
+- [x] Scenario: Maintain unidirectional MVI state flow with Orbit MVI 12 (OrbitContainerHost, side effects, and collectAsState/collectSideEffect)
 - [ ] Scenario: Inject multiplatform dependencies with Koin
 - [ ] Scenario: Persist vehicles and telemetry locally with SQLDelight
 - [ ] Scenario: Dynamically render agent generative UI with json-to-compose runtime
