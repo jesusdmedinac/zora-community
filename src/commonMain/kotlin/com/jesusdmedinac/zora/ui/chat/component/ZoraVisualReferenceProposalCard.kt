@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.action_generate_reference_image
 import zora_community.generated.resources.action_skip
 import zora_community.generated.resources.visual_reference_title
@@ -58,7 +60,7 @@ fun ZoraVisualReferenceProposalCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.visual_reference_title),
+                    text = stringResource(Res.string.visual_reference_title),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -127,7 +129,7 @@ fun ZoraVisualReferenceProposalCard(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_generate_reference_image),
+                        text = stringResource(Res.string.action_generate_reference_image),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -147,7 +149,7 @@ fun ZoraVisualReferenceProposalCard(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_skip),
+                        text = stringResource(Res.string.action_skip),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,

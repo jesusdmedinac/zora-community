@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.nav_paywall
 import zora_community.generated.resources.network_title
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -61,7 +63,7 @@ fun PaywallTopBar(
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.nav_paywall),
+                text = stringResource(Res.string.nav_paywall),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
@@ -69,7 +71,7 @@ fun PaywallTopBar(
                 letterSpacing = 1.sp,
             )
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.network_title),
+                text = stringResource(Res.string.network_title),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 9.sp,
                 color = ZoraTokens.Primary,

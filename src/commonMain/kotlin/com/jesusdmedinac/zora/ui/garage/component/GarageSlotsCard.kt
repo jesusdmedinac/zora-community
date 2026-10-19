@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.action_add_vehicle
 import zora_community.generated.resources.garage_capacity_title
 import zora_community.generated.resources.garage_capacity_upgrade
@@ -46,14 +48,14 @@ fun GarageSlotsCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_title),
+                text = stringResource(Res.string.garage_capacity_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = ZoraTokens.Primary,
             )
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_val),
+                text = stringResource(Res.string.garage_capacity_val),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 11.sp,
                 color = ZoraTokens.OnSurfaceVariant,
@@ -83,7 +85,7 @@ fun GarageSlotsCard(
                         color = ZoraTokens.Outline,
                     )
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_add_vehicle),
+                        text = stringResource(Res.string.action_add_vehicle),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
@@ -118,7 +120,7 @@ fun GarageSlotsCard(
                     .padding(12.dp),
             ) {
                 Text(
-                    text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_capacity_upgrade),
+                    text = stringResource(Res.string.garage_capacity_upgrade),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 12.sp,
                     color = ZoraTokens.OnSurface,

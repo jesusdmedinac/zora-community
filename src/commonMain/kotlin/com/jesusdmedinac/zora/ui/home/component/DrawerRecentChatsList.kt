@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.drawer_recent_chats
 
 /**
@@ -36,7 +38,7 @@ fun DrawerRecentChatsList(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_recent_chats),
+            text = stringResource(Res.string.drawer_recent_chats),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,

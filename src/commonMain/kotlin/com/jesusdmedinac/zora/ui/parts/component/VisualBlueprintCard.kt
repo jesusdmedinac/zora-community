@@ -156,7 +156,7 @@ fun VisualBlueprintCard(
 private fun VisualBlueprintCardPreview() {
     ZoraTheme {
         VisualBlueprintCard(
-            blueprintState = com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState(),
+            blueprintState = VisualBlueprintState(),
             onRequestBlueprint = {},
         )
     }

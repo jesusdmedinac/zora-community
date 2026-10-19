@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
@@ -236,7 +237,7 @@ class PreviewScreenshotGeneratorTest {
         capture("glyph_zora_ignition_96", width = 200, height = 200) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 ZoraIgnitionGlyph(
                     size = 96.dp,
@@ -249,7 +250,7 @@ class PreviewScreenshotGeneratorTest {
         capture("glyph_zora_ignition_160", width = 300, height = 300) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 ZoraIgnitionGlyph(
                     size = 160.dp,

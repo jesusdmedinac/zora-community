@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.tier_pro
 
 /**
@@ -30,7 +32,7 @@ import zora_community.generated.resources.tier_pro
 fun DrawerUserFooter(
     userName: String = "Jesús Medina",
     userInitials: String = "JM",
-    accountTier: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.tier_pro),
+    accountTier: String = stringResource(Res.string.tier_pro),
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

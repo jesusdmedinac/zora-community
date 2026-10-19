@@ -145,7 +145,7 @@ fun CommunityInsightsCard(
 private fun CommunityInsightsCardPreview() {
     ZoraTheme {
         CommunityInsightsCard(
-            communityState = com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState(),
+            communityState = CommunityInsightsState(),
             showOptInModal = false,
             onOptInClick = {},
         )

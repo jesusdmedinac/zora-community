@@ -21,6 +21,7 @@ import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -70,7 +71,7 @@ fun CanBusProgressLoader(
 
         // 2. CAN-bus Telemetry Ticker Text
         Text(
-            text = org.jetbrains.compose.resources.stringResource(stage.textRes),
+            text = stringResource(stage.textRes),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,

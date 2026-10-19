@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,11 +31,13 @@ import androidx.compose.ui.unit.dp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.badge_coming_soon
 import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Navigation Drawer with Shifted Screen Scrim Card transition.
@@ -94,7 +97,7 @@ fun ZoraShiftedDrawerLayout(
                 // Menu items
                 DrawerMenuItem(
                     icon = "📦",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_parts),
+                    label = stringResource(Res.string.drawer_menu_parts),
                     onClick = onYonkeClick,
                 )
 
@@ -102,8 +105,8 @@ fun ZoraShiftedDrawerLayout(
 
                 DrawerMenuItem(
                     icon = "🔧",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_mechanic),
-                    badge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_coming_soon),
+                    label = stringResource(Res.string.drawer_menu_mechanic),
+                    badge = stringResource(Res.string.badge_coming_soon),
                     enabled = false,
                 )
 
@@ -111,8 +114,8 @@ fun ZoraShiftedDrawerLayout(
 
                 DrawerMenuItem(
                     icon = "⛽",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_gas_stations),
-                    badge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_coming_soon),
+                    label = stringResource(Res.string.drawer_menu_gas_stations),
+                    badge = stringResource(Res.string.badge_coming_soon),
                     enabled = false,
                 )
 
@@ -195,7 +198,7 @@ private fun ZoraShiftedDrawerLayoutPreview() {
             onRecentQuestionClick = {},
             onSettingsClick = {},
         ) {
-            androidx.compose.material3.Text("Main Content")
+            Text("Main Content")
         }
     }
 }

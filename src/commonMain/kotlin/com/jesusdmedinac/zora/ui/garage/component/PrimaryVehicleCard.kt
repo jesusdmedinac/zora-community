@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.general_health_label
 import zora_community.generated.resources.obd2_linked
 import zora_community.generated.resources.odometer_label
@@ -61,7 +63,7 @@ fun PrimaryVehicleCard(
                         .padding(horizontal = 8.dp, vertical = 3.dp),
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.primary_vehicle_label),
+                        text = stringResource(Res.string.primary_vehicle_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -77,7 +79,7 @@ fun PrimaryVehicleCard(
                         .padding(horizontal = 8.dp, vertical = 3.dp),
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.obd2_linked),
+                        text = stringResource(Res.string.obd2_linked),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -126,7 +128,7 @@ fun PrimaryVehicleCard(
             ) {
                 Column {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.odometer_label),
+                        text = stringResource(Res.string.odometer_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         color = ZoraTokens.OnSurfaceVariant,
@@ -141,7 +143,7 @@ fun PrimaryVehicleCard(
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.general_health_label),
+                        text = stringResource(Res.string.general_health_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         color = ZoraTokens.OnSurfaceVariant,

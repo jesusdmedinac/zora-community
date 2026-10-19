@@ -21,12 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.suggestion_battery_12v
 import zora_community.generated.resources.suggestion_change_tire
 import zora_community.generated.resources.suggestion_check_dtc
 import zora_community.generated.resources.suggestion_mechanical_prescription
 import zora_community.generated.resources.suggestion_vibrate_braking
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Quick diagnostic suggestions row from Copilot Home (v2.21).
@@ -36,11 +38,11 @@ fun ZoraSuggestionsRow(
     onSuggestionClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     suggestions: List<String> = listOf(
-        org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.suggestion_vibrate_braking),
-        org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.suggestion_change_tire),
-        org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.suggestion_check_dtc),
-        org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.suggestion_mechanical_prescription),
-        org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.suggestion_battery_12v),
+        stringResource(Res.string.suggestion_vibrate_braking),
+        stringResource(Res.string.suggestion_change_tire),
+        stringResource(Res.string.suggestion_check_dtc),
+        stringResource(Res.string.suggestion_mechanical_prescription),
+        stringResource(Res.string.suggestion_battery_12v),
     ),
 ) {
     Row(

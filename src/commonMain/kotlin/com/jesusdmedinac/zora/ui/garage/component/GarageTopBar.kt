@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.garage_telemetry_subtitle
 import zora_community.generated.resources.nav_garage
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -61,7 +63,7 @@ fun GarageTopBar(
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.nav_garage),
+                text = stringResource(Res.string.nav_garage),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
@@ -69,7 +71,7 @@ fun GarageTopBar(
                 letterSpacing = 0.5.sp,
             )
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.garage_telemetry_subtitle),
+                text = stringResource(Res.string.garage_telemetry_subtitle),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
                 color = ZoraTokens.Primary,

@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.ProSuperpower
+import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.resources.stringResource
@@ -86,7 +87,7 @@ fun ProSuperpowersMatrix(
 private fun ProSuperpowersMatrixPreview() {
     ZoraTheme {
         ProSuperpowersMatrix(
-            superpowers = com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers(),
+            superpowers = defaultProSuperpowers(),
         )
     }
 }

@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.action_new_chat
 
 /**
@@ -53,7 +55,7 @@ fun NewChatButton(
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_new_chat),
+                text = stringResource(Res.string.action_new_chat),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,

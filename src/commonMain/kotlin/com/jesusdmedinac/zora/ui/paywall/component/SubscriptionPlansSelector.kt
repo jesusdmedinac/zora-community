@@ -202,7 +202,7 @@ fun SubscriptionPlansSelector(
 private fun SubscriptionPlansSelectorPreview() {
     ZoraTheme {
         SubscriptionPlansSelector(
-            selectedBilling = com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling.ANNUAL,
+            selectedBilling = SubscriptionBilling.ANNUAL,
             onSelectBilling = {},
         )
     }

@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -69,12 +71,12 @@ fun ZoraTheme(
 object ZoraTheme {
     val icons: ZoraIconSet
         @Composable
-        @androidx.compose.runtime.ReadOnlyComposable
+        @ReadOnlyComposable
         get() = LocalZoraIcons.current
 
     val platform: ZoraPlatformVariant
         @Composable
-        @androidx.compose.runtime.ReadOnlyComposable
+        @ReadOnlyComposable
         get() = LocalZoraPlatform.current
 }
 
@@ -126,7 +128,7 @@ fun Modifier.zoraEdgePadding(
 @Composable
 private fun ZoraThemePreview() {
     ZoraTheme {
-        androidx.compose.material3.Text(
+        Text(
             text = "Zora Precision Intelligence",
             color = ZoraTokens.Primary,
         )

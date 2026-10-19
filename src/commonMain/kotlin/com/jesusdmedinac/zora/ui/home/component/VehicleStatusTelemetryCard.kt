@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.telemetry_battery
 import zora_community.generated.resources.telemetry_can_bus_status
 import zora_community.generated.resources.telemetry_dtc_active
@@ -27,7 +30,6 @@ import zora_community.generated.resources.telemetry_prescription
 import zora_community.generated.resources.telemetry_status_clean
 import zora_community.generated.resources.telemetry_status_normal
 import zora_community.generated.resources.telemetry_status_secure
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Automotive CAN-Bus connection and telemetry summary card.
@@ -35,7 +37,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun VehicleStatusTelemetryCard(
     vehicleName: String = "Honda Civic EX 2.0L",
-    canBusStatus: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_can_bus_status),
+    canBusStatus: String = stringResource(Res.string.telemetry_can_bus_status),
     batteryVoltage: String = "12.6 V",
     dtcCount: String = "0",
     prescriptionStatus: String = "Vault OK",
@@ -90,19 +92,19 @@ fun VehicleStatusTelemetryCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 TelemetryMetric(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_battery),
+                    label = stringResource(Res.string.telemetry_battery),
                     value = batteryVoltage,
-                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_normal),
+                    status = stringResource(Res.string.telemetry_status_normal),
                 )
                 TelemetryMetric(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_dtc_active),
+                    label = stringResource(Res.string.telemetry_dtc_active),
                     value = dtcCount,
-                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_clean),
+                    status = stringResource(Res.string.telemetry_status_clean),
                 )
                 TelemetryMetric(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_prescription),
+                    label = stringResource(Res.string.telemetry_prescription),
                     value = prescriptionStatus,
-                    status = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_status_secure),
+                    status = stringResource(Res.string.telemetry_status_secure),
                 )
             }
         }

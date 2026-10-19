@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -44,7 +46,7 @@ fun ZoraIgnitionGlyph(
             label = "IgnitionScale"
         )
     } else {
-        androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(1f) }
+        remember { mutableStateOf(1f) }
     }
 
     val glowAlpha by if (animated) {
@@ -58,7 +60,7 @@ fun ZoraIgnitionGlyph(
             label = "GlowAlpha"
         )
     } else {
-        androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(0.4f) }
+        remember { mutableStateOf(0.4f) }
     }
 
     Box(

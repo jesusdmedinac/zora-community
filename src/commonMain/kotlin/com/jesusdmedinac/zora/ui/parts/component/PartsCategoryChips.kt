@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.parts.model.PartCategory
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
@@ -52,7 +53,7 @@ fun PartsCategoryChips(
                     .padding(horizontal = 10.dp, vertical = 6.dp),
             ) {
                 Text(
-                    text = org.jetbrains.compose.resources.stringResource(category.titleRes),
+                    text = stringResource(category.titleRes),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
@@ -68,7 +69,7 @@ fun PartsCategoryChips(
 private fun PartsCategoryChipsPreview() {
     ZoraTheme {
         PartsCategoryChips(
-            selectedCategory = com.jesusdmedinac.zora.ui.parts.model.PartCategory.ALL,
+            selectedCategory = PartCategory.ALL,
             onSelectCategory = {},
         )
     }
