@@ -54,4 +54,11 @@ Feature: UI Component Atomization and Preview Suite
     And clicking the action button sends the prompt message
     And live voice call mode is strictly locked and cannot be activated
 
+  Scenario: Align CopilotPromptHero with Centered Welcome Hero in zora-community.pen and backport to Component Library
+    Given the Centered Welcome Hero specification (node IP21f in M3 and J062l in HIG) in design/zora-community.pen
+    When rendering CopilotPromptHero with the 96dp ZoraIgnitionGlyph and 24sp Bold ignition headline
+    Then 100% visual and token parity is achieved across M3 and HIG viewports
+    And Card - Copilot Prompt Hero is backported into M3 and HIG Component Library frames in zora-community.pen
+    And headless offscreen preview screenshots card_copilot_prompt_hero and card_copilot_prompt_hero_hig are verified
+
 

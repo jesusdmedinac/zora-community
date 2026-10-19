@@ -29,6 +29,7 @@ import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
+import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
@@ -283,6 +284,35 @@ class PreviewScreenshotGeneratorTest {
                     size = 160.dp,
                     animated = false
                 )
+            }
+        }
+    }
+
+    @Test
+    fun captureCopilotPromptHero() {
+        // M3 Prompt Hero (node IP21f)
+        capture("card_copilot_prompt_hero", width = 390, height = 260, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(ZoraTokens.Canvas)
+                    .padding(24.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                CopilotPromptHero(animated = false)
+            }
+        }
+
+        // HIG Prompt Hero (node J062l)
+        capture("card_copilot_prompt_hero_hig", width = 390, height = 260, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(ZoraTokens.Canvas)
+                    .padding(24.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                CopilotPromptHero(animated = false)
             }
         }
     }

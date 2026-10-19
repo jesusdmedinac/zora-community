@@ -53,7 +53,8 @@ fun CopilotHomeScreen(
         when (sideEffect) {
             is CopilotHomeSideEffect.NavigateToChat -> onNavigateToChat(sideEffect.initialPrompt)
             is CopilotHomeSideEffect.NavigateToGarage -> onNavigateToGarage()
-            is CopilotHomeSideEffect.ShowSnackbar -> { /* Display toast/snackbar if needed */ }
+            is CopilotHomeSideEffect.ShowSnackbar -> { /* Display toast/snackbar if needed */
+            }
         }
     }
 
@@ -95,7 +96,7 @@ fun CopilotHomeScreenContent(
                 statusBadge = stringResource(Res.string.badge_local_first),
             )
 
-            // 2. Central Automotive Telemetry Card & Status
+            // 2. Centered Welcome Hero
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -105,17 +106,6 @@ fun CopilotHomeScreenContent(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
             ) {
-                // Vehicle Status Card
-                VehicleStatusTelemetryCard(
-                    vehicleName = uiState.activeVehicleName,
-                    batteryVoltage = uiState.batteryVoltage,
-                    dtcCount = uiState.dtcCount,
-                    prescriptionStatus = uiState.prescriptionStatus,
-                )
-
-                Spacer(modifier = Modifier.height(24.dp))
-
-                // Diagnostic Prompt Invitation Hero
                 CopilotPromptHero()
             }
 
