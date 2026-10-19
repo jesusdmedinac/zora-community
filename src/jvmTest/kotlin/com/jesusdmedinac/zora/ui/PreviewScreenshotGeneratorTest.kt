@@ -19,6 +19,7 @@ import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
+import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
 import com.jesusdmedinac.zora.ui.parts.component.CommunityInsightsCard
@@ -253,6 +254,53 @@ class PreviewScreenshotGeneratorTest {
                 ZoraIgnitionGlyph(
                     size = 160.dp,
                     animated = false
+                )
+            }
+        }
+    }
+
+    @Test
+    fun capturePromptComposerVariants() {
+        // M3 - Empty (Voice waves button)
+        capture("composer_m3_voice_waves", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // M3 - Populated (Send button)
+        capture("composer_m3_send", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "¿Por qué tiembla el volante a 80 km/h?",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // HIG - Empty (Voice waves button)
+        capture("composer_hig_voice_waves", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // HIG - Populated (Send button)
+        capture("composer_hig_send", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "¿Por qué tiembla el volante a 80 km/h?",
+                    onValueChange = {},
+                    onSend = {},
                 )
             }
         }

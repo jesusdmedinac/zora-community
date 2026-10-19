@@ -44,3 +44,14 @@ Feature: UI Component Atomization and Preview Suite
     Then the procedural Canvas matches the 4-triangle geometry and aspect ratio
     And offscreen preview screenshots confirm sharp vector rendering across targets
 
+  Scenario: Adaptive ZoraPromptComposer with dynamic voicewaves and send action swap
+    Given the floating prompt composer component ZoraPromptComposer
+    When the prompt text input is empty
+    Then the right action button displays the adaptive voiceWaves icon
+    And clicking the action button initiates live voice call mode
+    When the user types at least one character of prompt text
+    Then the right action button swaps immediately to the adaptive send icon
+    And clicking the action button sends the prompt message
+    And live voice call mode is strictly locked and cannot be activated
+
+

@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,7 +33,6 @@ import zora_community.generated.resources.app_name
 import zora_community.generated.resources.badge_local_first
 import zora_community.generated.resources.cd_open_drawer
 import zora_community.generated.resources.cd_open_garage
-import zora_community.generated.resources.chat_top_bar_title
 
 /**
  * Top App Bar for Zora Copilot Home (Screen / M3 - 01 Copilot Home & HIG - 01).

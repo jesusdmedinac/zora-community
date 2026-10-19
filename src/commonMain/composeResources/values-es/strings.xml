@@ -23,6 +23,10 @@
     <string name="garage_telemetry_subtitle">TELEMETRÍA Y BÓVEDA LOCAL</string>
     <string name="cd_open_drawer">Abrir menú de navegación</string>
     <string name="cd_open_garage">Abrir garaje virtual</string>
+    <string name="cd_add_attachment">Adjuntar archivo</string>
+    <string name="cd_dictation">Dictado por voz</string>
+    <string name="cd_live_voice">Iniciar llamada de voz en vivo</string>
+    <string name="cd_send_message">Enviar mensaje</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">VEHÍCULO PRINCIPAL</string>

@@ -6,6 +6,8 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import org.jetbrains.compose.resources.DrawableResource
 import zora_community.generated.resources.Res
+import zora_community.generated.resources.ic_add_hig
+import zora_community.generated.resources.ic_add_m3
 import zora_community.generated.resources.ic_avatar_hig
 import zora_community.generated.resources.ic_avatar_m3
 import zora_community.generated.resources.ic_dropdown_hig
@@ -14,6 +16,12 @@ import zora_community.generated.resources.ic_garage_hig
 import zora_community.generated.resources.ic_garage_m3
 import zora_community.generated.resources.ic_menu_hig
 import zora_community.generated.resources.ic_menu_m3
+import zora_community.generated.resources.ic_mic_hig
+import zora_community.generated.resources.ic_mic_m3
+import zora_community.generated.resources.ic_send_hig
+import zora_community.generated.resources.ic_send_m3
+import zora_community.generated.resources.ic_voice_waves_hig
+import zora_community.generated.resources.ic_voice_waves_m3
 
 /**
  * Universal icon set contract for Zora Automotive Intelligence.
@@ -25,6 +33,10 @@ data class ZoraIconSet(
     val garage: DrawableResource,
     val avatar: DrawableResource,
     val dropdown: DrawableResource,
+    val add: DrawableResource,
+    val mic: DrawableResource,
+    val voiceWaves: DrawableResource,
+    val send: DrawableResource,
 )
 
 /**
@@ -35,6 +47,10 @@ val ZoraM3Icons = ZoraIconSet(
     garage = Res.drawable.ic_garage_m3,
     avatar = Res.drawable.ic_avatar_m3,
     dropdown = Res.drawable.ic_dropdown_m3,
+    add = Res.drawable.ic_add_m3,
+    mic = Res.drawable.ic_mic_m3,
+    voiceWaves = Res.drawable.ic_voice_waves_m3,
+    send = Res.drawable.ic_send_m3,
 )
 
 /**
@@ -45,6 +61,10 @@ val ZoraHIGIcons = ZoraIconSet(
     garage = Res.drawable.ic_garage_hig,
     avatar = Res.drawable.ic_avatar_hig,
     dropdown = Res.drawable.ic_dropdown_hig,
+    add = Res.drawable.ic_add_hig,
+    mic = Res.drawable.ic_mic_hig,
+    voiceWaves = Res.drawable.ic_voice_waves_hig,
+    send = Res.drawable.ic_send_hig,
 )
 
 /**
@@ -77,4 +97,24 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.dropdown
+
+    val add: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.add
+
+    val mic: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.mic
+
+    val voiceWaves: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.voiceWaves
+
+    val send: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.send
 }
