@@ -21,6 +21,8 @@
     <string name="status_full_unlock">DESBLOQUEO TOTAL</string>
     <string name="chat_top_bar_title">DIAGNÓSTICO ZORA</string>
     <string name="garage_telemetry_subtitle">TELEMETRÍA Y BÓVEDA LOCAL</string>
+    <string name="cd_open_drawer">Abrir menú de navegación</string>
+    <string name="cd_open_garage">Abrir garaje virtual</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">VEHÍCULO PRINCIPAL</string>

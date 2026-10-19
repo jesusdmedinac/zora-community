@@ -21,6 +21,8 @@
     <string name="status_full_unlock">FULL UNLOCK</string>
     <string name="chat_top_bar_title">ZORA DIAGNOSTIC</string>
     <string name="garage_telemetry_subtitle">LOCAL TELEMETRY &amp; VAULT</string>
+    <string name="cd_open_drawer">Open Navigation Drawer</string>
+    <string name="cd_open_garage">Open Garage Vault</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">PRIMARY VEHICLE</string>

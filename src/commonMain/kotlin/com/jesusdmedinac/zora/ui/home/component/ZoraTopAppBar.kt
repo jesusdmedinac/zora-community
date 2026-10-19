@@ -12,36 +12,70 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.badge_local_first
+import zora_community.generated.resources.cd_open_drawer
+import zora_community.generated.resources.cd_open_garage
+import zora_community.generated.resources.ic_garage_hig
+import zora_community.generated.resources.ic_garage_m3
+import zora_community.generated.resources.ic_menu_hig
+import zora_community.generated.resources.ic_menu_m3
 
 /**
  * Top App Bar for Zora Copilot Home (Screen / M3 - 01 Copilot Home & HIG - 01).
- * Features drawer menu trigger, vehicle status badge, and user avatar.
+ * Features platform-adaptive vector iconography and dimensions for Material 3 and Apple HIG.
  */
 @Composable
 fun ZoraTopAppBar(
     onOpenDrawer: () -> Unit,
     onGarageClick: () -> Unit,
     vehicleTitle: String = "HONDA CIVIC 2018",
-    statusBadge: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_local_first),
+    statusBadge: String = stringResource(Res.string.badge_local_first),
     modifier: Modifier = Modifier,
 ) {
+    val platform = LocalZoraPlatform.current
+
+    val barHeight = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> 52.dp
+        ZoraPlatformVariant.MATERIAL3 -> 64.dp
+    }
+    val buttonSize = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> 34.dp
+        ZoraPlatformVariant.MATERIAL3 -> 40.dp
+    }
+    val iconSize = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> 18.dp
+        ZoraPlatformVariant.MATERIAL3 -> 20.dp
+    }
+    val menuIcon = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> Res.drawable.ic_menu_hig
+        ZoraPlatformVariant.MATERIAL3 -> Res.drawable.ic_menu_m3
+    }
+    val garageIcon = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> Res.drawable.ic_garage_hig
+        ZoraPlatformVariant.MATERIAL3 -> Res.drawable.ic_garage_m3
+    }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .height(barHeight)
             .padding(horizontal = ZoraTokens.SpacingMd),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -49,18 +83,18 @@ fun ZoraTopAppBar(
         // Left: Drawer Menu Button
         Box(
             modifier = Modifier
-                .size(36.dp)
+                .size(buttonSize)
                 .clip(CircleShape)
                 .background(ZoraTokens.SurfaceContainerHigh)
                 .border(1.dp, ZoraTokens.OutlineVariant, CircleShape)
                 .clickable(onClick = onOpenDrawer),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = "☰",
-                color = ZoraTokens.OnSurface,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
+            Icon(
+                painter = painterResource(menuIcon),
+                contentDescription = stringResource(Res.string.cd_open_drawer),
+                tint = ZoraTokens.OnSurface,
+                modifier = Modifier.size(iconSize),
             )
         }
 
@@ -100,16 +134,18 @@ fun ZoraTopAppBar(
         // Right: Garage Vault Button
         Box(
             modifier = Modifier
-                .size(36.dp)
+                .size(buttonSize)
                 .clip(CircleShape)
                 .background(ZoraTokens.SurfaceContainerHigh)
                 .border(1.dp, ZoraTokens.OutlineVariant, CircleShape)
                 .clickable(onClick = onGarageClick),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = "🚗",
-                fontSize = 16.sp,
+            Icon(
+                painter = painterResource(garageIcon),
+                contentDescription = stringResource(Res.string.cd_open_garage),
+                tint = ZoraTokens.OnSurface,
+                modifier = Modifier.size(iconSize),
             )
         }
     }
@@ -125,4 +161,3 @@ private fun ZoraTopAppBarPreview() {
         )
     }
 }
-
