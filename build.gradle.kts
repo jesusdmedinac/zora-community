@@ -67,10 +67,12 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.sqldelight.driver.android)
+            implementation(libs.kotlinx.coroutines.android)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.sqldelight.driver.sqlite)
+            implementation(libs.kotlinx.coroutines.swing)
         }
         jvmTest.dependencies {
             implementation(libs.sqldelight.driver.sqlite)
