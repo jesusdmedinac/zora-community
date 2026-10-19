@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
 import zora_community.generated.resources.copilot_hero_subtitle
 import zora_community.generated.resources.copilot_hero_title
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -21,9 +22,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun CopilotPromptHero(
-    title: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.copilot_hero_title),
-    subtitle: String = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.copilot_hero_subtitle),
     modifier: Modifier = Modifier,
+    title: String = stringResource(zora_community.generated.resources.Res.string.copilot_hero_title),
+    subtitle: String = stringResource(zora_community.generated.resources.Res.string.copilot_hero_subtitle),
 ) {
     Column(
         modifier = modifier,

@@ -56,6 +56,9 @@ kotlin {
             implementation(libs.sqldelight.coroutines)
             implementation(libs.sqldelight.primitive.adapters)
             implementation(libs.navigation3.runtime)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
