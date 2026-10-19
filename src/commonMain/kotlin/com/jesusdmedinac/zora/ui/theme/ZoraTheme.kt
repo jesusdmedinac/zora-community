@@ -47,12 +47,35 @@ fun ZoraTheme(
     platformVariant: ZoraPlatformVariant = ZoraPlatformVariant.MATERIAL3,
     content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(LocalZoraPlatform provides platformVariant) {
+    val iconSet = when (platformVariant) {
+        ZoraPlatformVariant.MATERIAL3 -> ZoraM3Icons
+        ZoraPlatformVariant.HUMAN_INTERFACE -> ZoraHIGIcons
+    }
+
+    CompositionLocalProvider(
+        LocalZoraPlatform provides platformVariant,
+        LocalZoraIcons provides iconSet,
+    ) {
         MaterialTheme(
             colorScheme = ZoraDarkColorScheme,
             content = content
         )
     }
+}
+
+/**
+ * Accessor object for Zora Theme tokens and icon systems.
+ */
+object ZoraTheme {
+    val icons: ZoraIconSet
+        @Composable
+        @androidx.compose.runtime.ReadOnlyComposable
+        get() = LocalZoraIcons.current
+
+    val platform: ZoraPlatformVariant
+        @Composable
+        @androidx.compose.runtime.ReadOnlyComposable
+        get() = LocalZoraPlatform.current
 }
 
 /**

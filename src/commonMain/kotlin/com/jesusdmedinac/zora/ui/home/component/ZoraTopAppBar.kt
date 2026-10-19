@@ -21,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
@@ -32,14 +31,10 @@ import zora_community.generated.resources.Res
 import zora_community.generated.resources.badge_local_first
 import zora_community.generated.resources.cd_open_drawer
 import zora_community.generated.resources.cd_open_garage
-import zora_community.generated.resources.ic_garage_hig
-import zora_community.generated.resources.ic_garage_m3
-import zora_community.generated.resources.ic_menu_hig
-import zora_community.generated.resources.ic_menu_m3
 
 /**
  * Top App Bar for Zora Copilot Home (Screen / M3 - 01 Copilot Home & HIG - 01).
- * Features platform-adaptive vector iconography and dimensions for Material 3 and Apple HIG.
+ * Features platform-adaptive vector iconography from [ZoraTheme.icons] and dimensions for Material 3 and Apple HIG.
  */
 @Composable
 fun ZoraTopAppBar(
@@ -49,7 +44,7 @@ fun ZoraTopAppBar(
     statusBadge: String = stringResource(Res.string.badge_local_first),
     modifier: Modifier = Modifier,
 ) {
-    val platform = LocalZoraPlatform.current
+    val platform = ZoraTheme.platform
 
     val barHeight = when (platform) {
         ZoraPlatformVariant.HUMAN_INTERFACE -> 52.dp
@@ -62,14 +57,6 @@ fun ZoraTopAppBar(
     val iconSize = when (platform) {
         ZoraPlatformVariant.HUMAN_INTERFACE -> 18.dp
         ZoraPlatformVariant.MATERIAL3 -> 20.dp
-    }
-    val menuIcon = when (platform) {
-        ZoraPlatformVariant.HUMAN_INTERFACE -> Res.drawable.ic_menu_hig
-        ZoraPlatformVariant.MATERIAL3 -> Res.drawable.ic_menu_m3
-    }
-    val garageIcon = when (platform) {
-        ZoraPlatformVariant.HUMAN_INTERFACE -> Res.drawable.ic_garage_hig
-        ZoraPlatformVariant.MATERIAL3 -> Res.drawable.ic_garage_m3
     }
 
     Row(
@@ -91,7 +78,7 @@ fun ZoraTopAppBar(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                painter = painterResource(menuIcon),
+                painter = painterResource(ZoraTheme.icons.menu),
                 contentDescription = stringResource(Res.string.cd_open_drawer),
                 tint = ZoraTokens.OnSurface,
                 modifier = Modifier.size(iconSize),
@@ -142,7 +129,7 @@ fun ZoraTopAppBar(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                painter = painterResource(garageIcon),
+                painter = painterResource(ZoraTheme.icons.garage),
                 contentDescription = stringResource(Res.string.cd_open_garage),
                 tint = ZoraTokens.OnSurface,
                 modifier = Modifier.size(iconSize),
