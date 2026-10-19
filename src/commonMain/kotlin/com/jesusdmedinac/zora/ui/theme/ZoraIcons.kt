@@ -8,6 +8,8 @@ import org.jetbrains.compose.resources.DrawableResource
 import zora_community.generated.resources.Res
 import zora_community.generated.resources.ic_avatar_hig
 import zora_community.generated.resources.ic_avatar_m3
+import zora_community.generated.resources.ic_dropdown_hig
+import zora_community.generated.resources.ic_dropdown_m3
 import zora_community.generated.resources.ic_garage_hig
 import zora_community.generated.resources.ic_garage_m3
 import zora_community.generated.resources.ic_menu_hig
@@ -22,6 +24,7 @@ data class ZoraIconSet(
     val menu: DrawableResource,
     val garage: DrawableResource,
     val avatar: DrawableResource,
+    val dropdown: DrawableResource,
 )
 
 /**
@@ -31,6 +34,7 @@ val ZoraM3Icons = ZoraIconSet(
     menu = Res.drawable.ic_menu_m3,
     garage = Res.drawable.ic_garage_m3,
     avatar = Res.drawable.ic_avatar_m3,
+    dropdown = Res.drawable.ic_dropdown_m3,
 )
 
 /**
@@ -40,12 +44,13 @@ val ZoraHIGIcons = ZoraIconSet(
     menu = Res.drawable.ic_menu_hig,
     garage = Res.drawable.ic_garage_hig,
     avatar = Res.drawable.ic_avatar_hig,
+    dropdown = Res.drawable.ic_dropdown_hig,
 )
 
 /**
  * CompositionLocal providing the active [ZoraIconSet].
  */
-val LocalZoraIcons = staticCompositionLocalOf<ZoraIconSet> {
+val LocalZoraIcons = staticCompositionLocalOf {
     ZoraM3Icons
 }
 
@@ -67,4 +72,9 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.avatar
+
+    val dropdown: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.dropdown
 }

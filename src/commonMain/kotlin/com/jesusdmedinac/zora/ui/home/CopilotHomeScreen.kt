@@ -73,7 +73,6 @@ fun CopilotHomeScreen(
             ZoraTopAppBar(
                 onOpenDrawer = { drawerOpen = true },
                 onGarageClick = onNavigateToGarage,
-                vehicleTitle = "HONDA CIVIC 2018",
                 statusBadge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_local_first),
             )
 

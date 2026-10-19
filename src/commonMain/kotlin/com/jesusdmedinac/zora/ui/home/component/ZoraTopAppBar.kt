@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -28,9 +30,11 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.Res
+import zora_community.generated.resources.app_name
 import zora_community.generated.resources.badge_local_first
 import zora_community.generated.resources.cd_open_drawer
 import zora_community.generated.resources.cd_open_garage
+import zora_community.generated.resources.chat_top_bar_title
 
 /**
  * Top App Bar for Zora Copilot Home (Screen / M3 - 01 Copilot Home & HIG - 01).
@@ -40,9 +44,8 @@ import zora_community.generated.resources.cd_open_garage
 fun ZoraTopAppBar(
     onOpenDrawer: () -> Unit,
     onGarageClick: () -> Unit,
-    vehicleTitle: String = "HONDA CIVIC 2018",
-    statusBadge: String = stringResource(Res.string.badge_local_first),
     modifier: Modifier = Modifier,
+    statusBadge: String = stringResource(Res.string.badge_local_first),
 ) {
     val platform = ZoraTheme.platform
 
@@ -86,36 +89,35 @@ fun ZoraTopAppBar(
         }
 
         // Center: Vehicle & Local-First Status Badge
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(2.dp),
+        Row(
+            modifier = Modifier,
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = vehicleTitle,
+                text = stringResource(Res.string.app_name),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
                 color = ZoraTokens.OnSurface,
                 letterSpacing = 0.5.sp,
             )
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(6.dp)
-                        .clip(CircleShape)
-                        .background(ZoraTokens.StatusSuccess)
+            Spacer(
+                modifier = Modifier.width(8.dp),
                 )
-                Text(
-                    text = statusBadge,
-                    fontFamily = ZoraTokens.FontMono,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = ZoraTokens.Primary,
-                )
-            }
+            Text(
+                text = statusBadge,
+                fontFamily = ZoraTokens.FontMono,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = ZoraTokens.StatusSuccess,
+            )
+            Icon(
+                painter = painterResource(ZoraTheme.icons.dropdown),
+                contentDescription = null,
+                tint = ZoraTokens.OnSurface,
+                modifier = Modifier.size(12.dp),
+            )
         }
 
         // Right: Garage Vault Button
@@ -129,7 +131,7 @@ fun ZoraTopAppBar(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                painter = painterResource(ZoraTheme.icons.garage),
+                painter = painterResource(ZoraTheme.icons.avatar),
                 contentDescription = stringResource(Res.string.cd_open_garage),
                 tint = ZoraTokens.OnSurface,
                 modifier = Modifier.size(iconSize),
