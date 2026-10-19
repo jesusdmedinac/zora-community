@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.garage_telemetry_subtitle
 import zora_community.generated.resources.nav_garage
@@ -82,7 +83,7 @@ fun GarageTopBar(
 @Preview
 @Composable
 private fun GarageTopBarPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         GarageTopBar(onBack = {})
     }
 }

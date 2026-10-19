@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -39,7 +40,7 @@ fun ActionButton(
 @Preview
 @Composable
 private fun ActionButtonPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ActionButton(icon = "📋", onClick = {})
     }
 }

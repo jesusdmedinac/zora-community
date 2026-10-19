@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.chat_top_bar_title
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -99,7 +100,7 @@ fun ChatTopBar(
 @Preview
 @Composable
 private fun ChatTopBarPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ChatTopBar(
             vehicleModel = "Honda Civic 2018",
             onBack = {},

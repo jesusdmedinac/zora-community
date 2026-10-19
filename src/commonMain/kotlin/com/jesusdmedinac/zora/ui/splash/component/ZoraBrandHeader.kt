@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.app_name
 import zora_community.generated.resources.splash_tagline
@@ -57,7 +58,7 @@ fun ZoraBrandHeader(
 @Preview
 @Composable
 private fun ZoraBrandHeaderPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraBrandHeader()
     }
 }

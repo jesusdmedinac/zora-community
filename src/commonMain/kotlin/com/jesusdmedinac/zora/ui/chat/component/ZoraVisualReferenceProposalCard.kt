@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_generate_reference_image
 import zora_community.generated.resources.action_skip
@@ -161,7 +162,7 @@ fun ZoraVisualReferenceProposalCard(
 @Preview
 @Composable
 private fun ZoraVisualReferenceProposalCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraVisualReferenceProposalCard(
             onGenerate = {},
             onSkip = {},

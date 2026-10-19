@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.copilot_hero_subtitle
 import zora_community.generated.resources.copilot_hero_title
@@ -48,7 +49,7 @@ fun CopilotPromptHero(
 @Preview
 @Composable
 private fun CopilotPromptHeroPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CopilotPromptHero()
     }
 }

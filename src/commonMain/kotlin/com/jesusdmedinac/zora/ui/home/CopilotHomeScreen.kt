@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraSuggestionsRow
 import com.jesusdmedinac.zora.ui.home.component.ZoraTopAppBar
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -121,7 +122,7 @@ fun CopilotHomeScreen(
 @Preview
 @Composable
 private fun CopilotHomeScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CopilotHomeScreen(
             onNavigateToChat = {},
             onNavigateToGarage = {},

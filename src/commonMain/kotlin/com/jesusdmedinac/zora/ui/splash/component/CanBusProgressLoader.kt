@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -86,7 +87,7 @@ fun CanBusProgressLoader(
 @Preview
 @Composable
 private fun CanBusProgressLoaderPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CanBusProgressLoader(
             progress = 0.65f,
             stage = TelemetryBootStage.CAN_BUS_INIT,

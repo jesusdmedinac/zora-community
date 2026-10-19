@@ -23,6 +23,7 @@ import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
 import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -89,7 +90,7 @@ fun GarageVaultScreen(
 @Preview
 @Composable
 private fun GarageVaultScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         GarageVaultScreen(
             onBack = {},
             onUpgradeToPro = {},

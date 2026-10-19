@@ -24,6 +24,7 @@ import com.jesusdmedinac.zora.ui.chat.component.ZoraCarePrioritiesCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraEngineSelectionCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraVisualReferenceProposalCard
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -200,7 +201,7 @@ fun OnboardingChatScreen(
 @Preview
 @Composable
 private fun OnboardingChatScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         OnboardingChatScreen(
             initialSymptom = "¿Por qué hace ruido el motor al acelerar?",
             onBack = {},

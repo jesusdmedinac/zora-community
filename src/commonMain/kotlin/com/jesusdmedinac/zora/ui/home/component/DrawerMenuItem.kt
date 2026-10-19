@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -90,7 +91,7 @@ fun DrawerMenuItem(
 @Preview
 @Composable
 private fun DrawerMenuItemPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         DrawerMenuItem(
             icon = "📦",
             label = "Yonke virtual",

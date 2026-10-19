@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_confirm_engine
 import zora_community.generated.resources.engine_selector_title
@@ -171,7 +172,7 @@ fun ZoraEngineSelectionCard(
 @Preview
 @Composable
 private fun ZoraEngineSelectionCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraEngineSelectionCard(
             selectedEngineId = "2.0L_NA",
             onSelectEngine = {},

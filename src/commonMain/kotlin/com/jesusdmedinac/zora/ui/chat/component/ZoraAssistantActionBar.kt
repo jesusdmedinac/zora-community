@@ -7,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 
 /**
  * Node ekGY6: Assistant micro-action bar (copy, like, retry).
@@ -32,7 +33,7 @@ fun ZoraAssistantActionBar(
 @Preview
 @Composable
 private fun ZoraAssistantActionBarPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraAssistantActionBar()
     }
 }

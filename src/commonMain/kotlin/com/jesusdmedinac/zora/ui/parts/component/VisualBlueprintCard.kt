@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -153,7 +154,7 @@ fun VisualBlueprintCard(
 @Preview
 @Composable
 private fun VisualBlueprintCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         VisualBlueprintCard(
             blueprintState = com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState(),
             onRequestBlueprint = {},

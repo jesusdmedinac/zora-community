@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.care_priorities_title
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -145,7 +146,7 @@ fun defaultCarePriorityItems(): List<CarePriorityItem> = listOf(
 @Preview
 @Composable
 private fun ZoraCarePrioritiesCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraCarePrioritiesCard()
     }
 }

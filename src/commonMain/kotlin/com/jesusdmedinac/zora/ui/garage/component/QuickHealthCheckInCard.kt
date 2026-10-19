@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.fluid_coolant
 import zora_community.generated.resources.fluid_engine_oil
@@ -91,7 +92,7 @@ fun QuickHealthCheckInCard(
 @Preview
 @Composable
 private fun QuickHealthCheckInCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         QuickHealthCheckInCard(
             telemetry = TelemetryCheckInState(),
         )

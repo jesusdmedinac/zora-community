@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import zora_community.generated.resources.badge_coming_soon
@@ -185,7 +186,7 @@ fun ZoraShiftedDrawerLayout(
 @Preview
 @Composable
 private fun ZoraShiftedDrawerLayoutPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraShiftedDrawerLayout(
             drawerOpen = true,
             onCloseDrawer = {},

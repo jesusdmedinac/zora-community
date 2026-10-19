@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_add_vehicle
 import zora_community.generated.resources.garage_capacity_title
@@ -130,7 +131,7 @@ fun GarageSlotsCard(
 @Preview
 @Composable
 private fun GarageSlotsCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         GarageSlotsCard(
             showProModal = false,
             onSlotClick = {},

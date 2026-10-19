@@ -23,6 +23,7 @@ import com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState
 import com.jesusdmedinac.zora.ui.parts.model.PartCategory
 import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
 import com.jesusdmedinac.zora.ui.parts.model.defaultPartsCatalog
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -111,7 +112,7 @@ fun PartsFeedScreen(
 @Preview
 @Composable
 private fun PartsFeedScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PartsFeedScreen(
             onBack = {},
             onReviewOptInSettings = {},

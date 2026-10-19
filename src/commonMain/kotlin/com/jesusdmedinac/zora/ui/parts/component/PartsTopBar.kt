@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.parts_fitment_active
@@ -104,7 +105,7 @@ fun PartsTopBar(
 @Preview
 @Composable
 private fun PartsTopBarPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PartsTopBar(
             activeVehicle = "2018 Honda Civic EX 2.0L K20C2",
             onBack = {},

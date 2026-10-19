@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
 import zora_community.generated.resources.security_protocol_footer
@@ -112,7 +113,7 @@ fun SecurityProtocolFooter(
 @Preview
 @Composable
 private fun SecurityProtocolFooterPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         SecurityProtocolFooter()
     }
 }

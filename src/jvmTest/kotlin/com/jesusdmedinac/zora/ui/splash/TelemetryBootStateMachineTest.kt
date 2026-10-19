@@ -19,7 +19,7 @@ class TelemetryBootStateMachineTest {
     fun testMidProgressTransitionsToMemoryVault() {
         val stage = TelemetryBootStage.fromProgress(0.45f)
         assertEquals(TelemetryBootStage.MEMORY_VAULT_INIT, stage)
-        assertEquals("CALIBRATING LOCAL MEMORY VAULT (SQLDELIGHT 2.X)...", stage.tickerText)
+        assertEquals("CALIBRATING LOCAL MEMORY VAULT...", stage.tickerText)
     }
 
     @Test

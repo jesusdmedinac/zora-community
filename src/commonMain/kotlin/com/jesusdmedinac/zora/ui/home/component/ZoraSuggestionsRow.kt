@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.suggestion_battery_12v
 import zora_community.generated.resources.suggestion_change_tire
@@ -74,7 +75,7 @@ fun ZoraSuggestionsRow(
 @Preview
 @Composable
 private fun ZoraSuggestionsRowPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraSuggestionsRow(onSuggestionClick = {})
     }
 }

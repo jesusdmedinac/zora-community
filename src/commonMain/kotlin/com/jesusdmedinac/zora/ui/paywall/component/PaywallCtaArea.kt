@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.action_start_trial
 import zora_community.generated.resources.paywall_trial_disclaimer
@@ -68,7 +69,7 @@ fun PaywallCtaArea(
 @Preview
 @Composable
 private fun PaywallCtaAreaPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PaywallCtaArea(onStartTrial = {})
     }
 }

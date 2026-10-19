@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.AgentNode
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.resources.stringResource
 import zora_community.generated.resources.Res
@@ -128,7 +129,7 @@ fun AgentNetworkCard(
 @Preview
 @Composable
 private fun AgentNetworkCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         AgentNetworkCard(
             agentNodes = com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes(),
         )

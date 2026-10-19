@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.general_health_label
 import zora_community.generated.resources.obd2_linked
@@ -161,7 +162,7 @@ fun PrimaryVehicleCard(
 @Preview
 @Composable
 private fun PrimaryVehicleCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PrimaryVehicleCard()
     }
 }

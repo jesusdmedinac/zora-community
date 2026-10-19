@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.tier_pro
@@ -95,7 +96,7 @@ fun DrawerUserFooter(
 @Preview
 @Composable
 private fun DrawerUserFooterPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         DrawerUserFooter(onSettingsClick = {})
     }
 }

@@ -27,6 +27,7 @@ import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootState
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraTopEdgePadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -124,7 +125,7 @@ fun ZoraSplashScreen(
 @Preview
 @Composable
 private fun ZoraSplashScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraSplashScreen()
     }
 }

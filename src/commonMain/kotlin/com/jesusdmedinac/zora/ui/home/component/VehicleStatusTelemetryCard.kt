@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.telemetry_battery
 import zora_community.generated.resources.telemetry_can_bus_status
@@ -111,7 +112,7 @@ fun VehicleStatusTelemetryCard(
 @Preview
 @Composable
 private fun VehicleStatusTelemetryCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         VehicleStatusTelemetryCard()
     }
 }

@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import zora_community.generated.resources.memory_vault_local_assurance
 import zora_community.generated.resources.memory_vault_title
@@ -148,7 +149,7 @@ fun CopilotMemoryVaultCard(
 @Preview
 @Composable
 private fun CopilotMemoryVaultCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CopilotMemoryVaultCard(
             memories = com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories(),
             onDeleteMemory = {},
