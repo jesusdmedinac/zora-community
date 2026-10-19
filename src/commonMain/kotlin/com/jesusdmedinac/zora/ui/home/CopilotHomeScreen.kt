@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.VehicleStatusTelemetryCard
@@ -24,19 +23,22 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraSuggestionsRow
 import com.jesusdmedinac.zora.ui.home.component.ZoraTopAppBar
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
+import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 import zora_community.generated.resources.Res
 import zora_community.generated.resources.badge_local_first
 
 /**
  * Screen / M3 - 01 Copilot Home and HIG - 01 Copilot Home.
  * Main hub for automotive telemetry, vehicle status, and local-first diagnostics.
- * Stateful container connecting to [CopilotHomeViewModel].
+ * Stateful container connecting to [CopilotHomeViewModel] via Orbit MVI.
  */
 @Composable
 fun CopilotHomeScreen(
@@ -45,13 +47,19 @@ fun CopilotHomeScreen(
     modifier: Modifier = Modifier,
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.collectAsState()
+
+    viewModel.collectSideEffect { sideEffect ->
+        when (sideEffect) {
+            is CopilotHomeSideEffect.NavigateToChat -> onNavigateToChat(sideEffect.initialPrompt)
+            is CopilotHomeSideEffect.NavigateToGarage -> onNavigateToGarage()
+            is CopilotHomeSideEffect.ShowSnackbar -> { /* Display toast/snackbar if needed */ }
+        }
+    }
 
     CopilotHomeScreenContent(
         uiState = uiState,
         onIntent = viewModel::processIntent,
-        onNavigateToChat = onNavigateToChat,
-        onNavigateToGarage = onNavigateToGarage,
         modifier = modifier,
     )
 }
@@ -63,28 +71,15 @@ fun CopilotHomeScreen(
 fun CopilotHomeScreenContent(
     uiState: CopilotHomeUiState,
     onIntent: (CopilotHomeIntent) -> Unit,
-    onNavigateToChat: (symptom: String?) -> Unit,
-    onNavigateToGarage: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     ZoraShiftedDrawerLayout(
         drawerOpen = uiState.isDrawerOpen,
         onCloseDrawer = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
-        onNewChatClick = {
-            onIntent(CopilotHomeIntent.SetDrawerOpen(false))
-            onNavigateToChat(null)
-        },
-        onYonkeClick = {
-            onIntent(CopilotHomeIntent.SetDrawerOpen(false))
-            onNavigateToGarage()
-        },
-        onRecentQuestionClick = { question ->
-            onIntent(CopilotHomeIntent.SetDrawerOpen(false))
-            onNavigateToChat(question)
-        },
-        onSettingsClick = {
-            onIntent(CopilotHomeIntent.SetDrawerOpen(false))
-        },
+        onNewChatClick = { onIntent(CopilotHomeIntent.OpenNewChat) },
+        onYonkeClick = { onIntent(CopilotHomeIntent.OpenGarage) },
+        onRecentQuestionClick = { question -> onIntent(CopilotHomeIntent.SelectRecentChat(question)) },
+        onSettingsClick = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
     ) {
         Column(
             modifier = modifier
@@ -96,7 +91,7 @@ fun CopilotHomeScreenContent(
             // 1. Top App Bar
             ZoraTopAppBar(
                 onOpenDrawer = { onIntent(CopilotHomeIntent.SetDrawerOpen(true)) },
-                onGarageClick = onNavigateToGarage,
+                onGarageClick = { onIntent(CopilotHomeIntent.OpenGarage) },
                 statusBadge = stringResource(Res.string.badge_local_first),
             )
 
@@ -127,7 +122,7 @@ fun CopilotHomeScreenContent(
             // 3. Quick Suggestions Row
             ZoraSuggestionsRow(
                 onSuggestionClick = { symptom ->
-                    onNavigateToChat(symptom)
+                    onIntent(CopilotHomeIntent.SelectSuggestion(symptom))
                 },
                 modifier = Modifier.padding(bottom = 12.dp),
             )
@@ -137,9 +132,7 @@ fun CopilotHomeScreenContent(
                 value = uiState.promptText,
                 onValueChange = { onIntent(CopilotHomeIntent.UpdatePromptText(it)) },
                 onSend = { text ->
-                    val symptom = text.takeIf { it.isNotBlank() }
                     onIntent(CopilotHomeIntent.SendPrompt(text))
-                    onNavigateToChat(symptom)
                 },
                 modifier = Modifier.padding(horizontal = ZoraTokens.SpacingMd, vertical = 4.dp),
             )
@@ -154,8 +147,6 @@ private fun CopilotHomeScreenPreview() {
         CopilotHomeScreenContent(
             uiState = CopilotHomeUiState(),
             onIntent = {},
-            onNavigateToChat = {},
-            onNavigateToGarage = {},
         )
     }
 }

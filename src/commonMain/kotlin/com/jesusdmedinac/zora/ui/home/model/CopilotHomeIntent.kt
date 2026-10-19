@@ -8,5 +8,9 @@ sealed interface CopilotHomeIntent {
     data object ClearPromptText : CopilotHomeIntent
     data class SetDrawerOpen(val isOpen: Boolean) : CopilotHomeIntent
     data class SendPrompt(val text: String) : CopilotHomeIntent
+    data class SelectSuggestion(val symptom: String) : CopilotHomeIntent
+    data object OpenNewChat : CopilotHomeIntent
+    data class SelectRecentChat(val question: String) : CopilotHomeIntent
+    data object OpenGarage : CopilotHomeIntent
     data object RefreshTelemetry : CopilotHomeIntent
 }
