@@ -6,6 +6,8 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import org.jetbrains.compose.resources.DrawableResource
 import zora_community.generated.resources.Res
+import zora_community.generated.resources.ic_avatar_hig
+import zora_community.generated.resources.ic_avatar_m3
 import zora_community.generated.resources.ic_garage_hig
 import zora_community.generated.resources.ic_garage_m3
 import zora_community.generated.resources.ic_menu_hig
@@ -19,6 +21,7 @@ import zora_community.generated.resources.ic_menu_m3
 data class ZoraIconSet(
     val menu: DrawableResource,
     val garage: DrawableResource,
+    val avatar: DrawableResource,
 )
 
 /**
@@ -27,6 +30,7 @@ data class ZoraIconSet(
 val ZoraM3Icons = ZoraIconSet(
     menu = Res.drawable.ic_menu_m3,
     garage = Res.drawable.ic_garage_m3,
+    avatar = Res.drawable.ic_avatar_m3,
 )
 
 /**
@@ -35,6 +39,7 @@ val ZoraM3Icons = ZoraIconSet(
 val ZoraHIGIcons = ZoraIconSet(
     menu = Res.drawable.ic_menu_hig,
     garage = Res.drawable.ic_garage_hig,
+    avatar = Res.drawable.ic_avatar_hig,
 )
 
 /**
@@ -57,4 +62,9 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.garage
+
+    val avatar: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.avatar
 }
