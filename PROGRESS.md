@@ -100,7 +100,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align AssistantChatBubble with containerless design specification in zora-community.pen
 - [x] Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
 - [x] Scenario: Align ActionButton with transparent background and OnSurface typography matching AssistantChatBubble
-- [x] Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
+- [x] Scenario: Animated copy-to-checkmark transition, clipboard integration, and bottom toast notification
 
 ---
 

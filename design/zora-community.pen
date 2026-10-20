@@ -40333,6 +40333,102 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "CardToastM3",
+              "name": "Card - Zora Toast Notification",
+              "width": "fill_container",
+              "fill": "",
+              "cornerRadius": 16,
+              "stroke": "",
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "metaToastM3",
+                  "name": "Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nameToastM3",
+                      "name": "Comp Name",
+                      "fill": "",
+                      "content": "Zora Toast Notification",
+                      "fontFamily": "",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "idToastM3",
+                      "name": "Comp Id",
+                      "fill": "",
+                      "content": "ID: ZoraToast \u2022 Feedback Toast",
+                      "fontFamily": "",
+                      "fontSize": 10,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "previewBoxToastM3",
+                  "name": "Preview Box",
+                  "width": "fill_container",
+                  "height": 72,
+                  "fill": "",
+                  "cornerRadius": 12,
+                  "stroke": "",
+                  "padding": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pillToastM3",
+                      "name": "Component / Feedback / Toast",
+                      "reusable": true,
+                      "fill": "",
+                      "stroke": "",
+                      "cornerRadius": "",
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "icCheckToastM3",
+                          "name": "Check Icon",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "fill": ""
+                        },
+                        {
+                          "type": "text",
+                          "id": "txtToastM3",
+                          "name": "Toast Text",
+                          "content": "Text copied",
+                          "fill": "",
+                          "fontFamily": "",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -43481,6 +43577,102 @@
                           "fontFamily": "$fontBody",
                           "fontSize": 14,
                           "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CardToastHIG",
+              "name": "Card - Zora Toast Notification",
+              "width": "fill_container",
+              "fill": "",
+              "cornerRadius": 16,
+              "stroke": "",
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "metaToastHIG",
+                  "name": "Meta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nameToastHIG",
+                      "name": "Comp Name",
+                      "fill": "",
+                      "content": "Zora Toast Notification",
+                      "fontFamily": "",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "idToastHIG",
+                      "name": "Comp Id",
+                      "fill": "",
+                      "content": "ID: ZoraToastHIG \u2022 Feedback Toast",
+                      "fontFamily": "",
+                      "fontSize": 10,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "previewBoxToastHIG",
+                  "name": "Preview Box",
+                  "width": "fill_container",
+                  "height": 72,
+                  "fill": "",
+                  "cornerRadius": 12,
+                  "stroke": "",
+                  "padding": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pillToastHIG",
+                      "name": "Component / Feedback / Toast",
+                      "reusable": true,
+                      "fill": "",
+                      "stroke": "",
+                      "cornerRadius": "",
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "icCheckToastHIG",
+                          "name": "Check Icon",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "fill": ""
+                        },
+                        {
+                          "type": "text",
+                          "id": "txtToastHIG",
+                          "name": "Toast Text",
+                          "content": "Texto copiado",
+                          "fill": "",
+                          "fontFamily": "",
+                          "fontSize": 14,
+                          "fontWeight": "500"
                         }
                       ]
                     }

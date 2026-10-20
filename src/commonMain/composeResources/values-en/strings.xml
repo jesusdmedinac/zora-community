@@ -27,6 +27,15 @@
     <string name="cd_dictation">Voice dictation</string>
     <string name="cd_live_voice">Start live voice call</string>
     <string name="cd_send_message">Send message</string>
+    <string name="cd_copy_response">Copy response</string>
+    <string name="cd_copied_response">Text copied</string>
+    <string name="toast_text_copied">Text copied</string>
+    <string name="cd_audio_response">Play audio response</string>
+    <string name="cd_retry_response">Retry response</string>
+    <string name="cd_like_response">Good response</string>
+    <string name="cd_dislike_response">Poor response</string>
+    <string name="cd_share_response">Share response</string>
+    <string name="cd_more_actions">More options</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">PRIMARY VEHICLE</string>

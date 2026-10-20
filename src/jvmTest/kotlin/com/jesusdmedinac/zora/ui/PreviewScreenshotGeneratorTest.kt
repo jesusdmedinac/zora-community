@@ -25,6 +25,8 @@ import com.jesusdmedinac.zora.ui.chat.component.ActionButton
 import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
+import com.jesusdmedinac.zora.ui.chat.component.ZoraToast
+import com.jesusdmedinac.zora.ui.chat.component.rememberZoraToastState
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
 import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
 import com.jesusdmedinac.zora.ui.garage.component.GarageSlotsCard
@@ -374,6 +376,45 @@ class PreviewScreenshotGeneratorTest {
                     onClick = {},
                 )
             }
+        }
+
+        // Toast Previews (Floating Dark Titanium capsule)
+        capture("card_toast_m3", width = 200, height = 56, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ZoraToast(text = "Text copied")
+            }
+        }
+
+        capture("card_toast_hig", width = 200, height = 56, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ZoraToast(text = "Texto copiado")
+            }
+        }
+
+        // Full-screen Copilot Home with active Toast notification
+        capture("01d_copilot_home_active_toast", width = 390, height = 844, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
+                toastState = rememberZoraToastState(initialMessage = "Text copied"),
+            )
         }
     }
 

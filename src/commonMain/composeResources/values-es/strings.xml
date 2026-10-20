@@ -27,6 +27,15 @@
     <string name="cd_dictation">Dictado por voz</string>
     <string name="cd_live_voice">Iniciar llamada de voz en vivo</string>
     <string name="cd_send_message">Enviar mensaje</string>
+    <string name="cd_copy_response">Copiar respuesta</string>
+    <string name="cd_copied_response">Texto copiado</string>
+    <string name="toast_text_copied">Texto copiado</string>
+    <string name="cd_audio_response">Reproducir respuesta de audio</string>
+    <string name="cd_retry_response">Reintentar respuesta</string>
+    <string name="cd_like_response">Buena respuesta</string>
+    <string name="cd_dislike_response">Mala respuesta</string>
+    <string name="cd_share_response">Compartir respuesta</string>
+    <string name="cd_more_actions">Más opciones</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">VEHÍCULO PRINCIPAL</string>

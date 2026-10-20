@@ -99,6 +99,16 @@ Feature: UI Component Atomization and Preview Suite
     And the button provides circular ripple indication on interaction
     And headless offscreen preview screenshots card_action_button_m3 and card_action_button_hig are verified
 
+  Scenario: Animated copy-to-checkmark transition, clipboard integration, and bottom toast notification
+    Given the assistant message action bar in active chat
+    When the user clicks the copy action button
+    Then the message text is copied to the system clipboard
+    And the copy icon animates smoothly to a checkmark with positive confirmation
+    And a floating Dark Titanium toast slides in from the bottom with localized text
+    And after a duration the checkmark reverts to the copy icon and the toast slides down
+    And headless offscreen preview screenshots card_toast_m3, card_toast_hig, and 01d_copilot_home_active_toast are verified
+
+
 
 
 

@@ -29,6 +29,7 @@ fun CopilotChatList(
     messages: List<CopilotChatMessage>,
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),
+    onCopyMessage: ((String) -> Unit)? = null,
 ) {
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
@@ -59,7 +60,10 @@ fun CopilotChatList(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         AssistantChatBubble(text = message.text)
-                        ZoraAssistantActionBar()
+                        ZoraAssistantActionBar(
+                            messageText = message.text,
+                            onCopy = { onCopyMessage?.invoke(message.text) },
+                        )
                     }
                 }
             }
