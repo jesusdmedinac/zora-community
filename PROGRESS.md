@@ -104,6 +104,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align ZoraShiftedDrawerLayout and atomic navigation drawer components with zora-community.pen
 - [x] Scenario: Align ZoraDrawerHeader with canonical ignition glyph and accessible close button
 - [x] Scenario: Align ZoraNewChatButton with dynamic press feedback and parameterized slot contract
+- [x] Scenario: Align ZoraDrawerMenuItem with active selection state and press micro-interactions
 
 ---
 

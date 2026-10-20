@@ -1,7 +1,12 @@
 package com.jesusdmedinac.zora.ui.home.component
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -13,9 +18,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,28 +37,57 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
- * Atomic navigation row for drawer items with vector icon, label, and optional status badge.
+ * Atomic navigation row for drawer items with vector icon, label, selection state, and status badge.
  * Synchronized with nodes m2wOA, kzDef & HeQx3 from `zora-community.pen`.
  */
 @Composable
-fun DrawerMenuItem(
+fun ZoraDrawerMenuItem(
     icon: DrawableResource,
     label: String,
+    modifier: Modifier = Modifier,
     badge: String? = null,
+    selected: Boolean = false,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
-    modifier: Modifier = Modifier,
 ) {
-    val contentColor = if (enabled) ZoraTokens.OnSurface else ZoraTokens.OnSurfaceVariant
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed && enabled) 0.985f else 1.0f,
+        animationSpec = tween(durationMillis = 100),
+        label = "DrawerMenuItemScale",
+    )
+
+    val containerColor by animateColorAsState(
+        targetValue = when {
+            selected -> ZoraTokens.SurfaceContainerHigh
+            isPressed && enabled -> ZoraTokens.SurfaceContainerHigh.copy(alpha = 0.5f)
+            else -> Color.Transparent
+        },
+        animationSpec = tween(durationMillis = 150),
+        label = "DrawerMenuItemContainer",
+    )
+
+    val contentColor = when {
+        !enabled -> ZoraTokens.OnSurfaceVariant
+        selected -> ZoraTokens.Primary
+        else -> ZoraTokens.OnSurface
+    }
 
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(44.dp)
+            .scale(scale)
             .clip(CircleShape)
-            .then(
-                if (enabled) Modifier.clickable(onClick = onClick)
-                else Modifier
+            .background(containerColor)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                role = Role.Button,
+                onClick = onClick,
             )
             .padding(horizontal = 12.dp),
         contentAlignment = Alignment.CenterStart,
@@ -72,7 +111,7 @@ fun DrawerMenuItem(
                     text = label,
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
                     color = contentColor,
                 )
             }
@@ -98,11 +137,33 @@ fun DrawerMenuItem(
     }
 }
 
+/**
+ * Backward compatibility alias for [ZoraDrawerMenuItem].
+ */
+@Composable
+fun DrawerMenuItem(
+    icon: DrawableResource,
+    label: String,
+    modifier: Modifier = Modifier,
+    badge: String? = null,
+    selected: Boolean = false,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+) = ZoraDrawerMenuItem(
+    icon = icon,
+    label = label,
+    modifier = modifier,
+    badge = badge,
+    selected = selected,
+    enabled = enabled,
+    onClick = onClick,
+)
+
 @Preview
 @Composable
-private fun DrawerMenuItemPreview() {
+private fun ZoraDrawerMenuItemPreview() {
     ZoraTheme {
-        DrawerMenuItem(
+        ZoraDrawerMenuItem(
             icon = ZoraIcons.packageIcon,
             label = "Yonke virtual",
             badge = "Próximamente",

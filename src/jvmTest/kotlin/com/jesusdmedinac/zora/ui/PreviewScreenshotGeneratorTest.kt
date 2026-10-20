@@ -39,7 +39,7 @@ import com.jesusdmedinac.zora.ui.home.CopilotHomeScreenContent
 import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
-import com.jesusdmedinac.zora.ui.home.component.DrawerMenuItem
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerMenuItem
 import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
 import com.jesusdmedinac.zora.ui.home.component.DrawerUserFooter
 import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
@@ -449,7 +449,7 @@ class PreviewScreenshotGeneratorTest {
         // Drawer Menu Item (M3 & HIG)
         capture("card_drawer_menu_item_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerMenuItem(
+                ZoraDrawerMenuItem(
                     icon = ZoraTheme.icons.wrench,
                     label = "Mecánico",
                     badge = "Próximamente",
@@ -459,11 +459,33 @@ class PreviewScreenshotGeneratorTest {
         }
         capture("card_drawer_menu_item_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerMenuItem(
+                ZoraDrawerMenuItem(
                     icon = ZoraTheme.icons.wrench,
                     label = "Mecánico",
                     badge = "Próximamente",
                     enabled = false,
+                )
+            }
+        }
+
+        // Drawer Menu Item Selected / Active (M3 & HIG)
+        capture("card_drawer_menu_item_selected_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.packageIcon,
+                    label = "Yonke virtual",
+                    selected = true,
+                    onClick = {},
+                )
+            }
+        }
+        capture("card_drawer_menu_item_selected_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.packageIcon,
+                    label = "Yonke virtual",
+                    selected = true,
+                    onClick = {},
                 )
             }
         }

@@ -136,6 +136,17 @@ Feature: UI Component Atomization and Preview Suite
     And the component provides semantic Role.Button accessibility and backward compatibility alias
     And headless offscreen preview screenshots card_drawer_new_chat_button_m3 and card_drawer_new_chat_button_hig are verified
 
+  Scenario: Align ZoraDrawerMenuItem with active selection state and press micro-interactions
+    Given the drawer navigation menu items defined in nodes m2wOA, kzDef, and HeQx3 of zora-community.pen
+    When rendering ZoraDrawerMenuItem with 44dp capsule container and 12dp horizontal padding
+    Then the item supports resting, pressed, and active selected states
+    And resting state displays OnSurface or OnSurfaceVariant with transparent container fill
+    And selected state transitions to SurfaceContainerHigh background and semibold label styling
+    And pressing the item triggers an animated scale micro-interaction to 0.985x
+    And upcoming features render a pill badge with SurfaceContainerHigh background and Primary amber label
+    And the component provides semantic Role.Button accessibility and backward compatibility alias
+    And headless offscreen preview screenshots card_drawer_menu_item_m3, card_drawer_menu_item_hig, card_drawer_menu_item_selected_m3, and card_drawer_menu_item_selected_hig are verified
+
 
 
 

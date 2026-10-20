@@ -96,7 +96,7 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 // Menu items (nodes m2wOA, kzDef, HeQx3)
-                DrawerMenuItem(
+                ZoraDrawerMenuItem(
                     icon = ZoraIcons.packageIcon,
                     label = stringResource(Res.string.drawer_menu_parts),
                     onClick = onYonkeClick,
@@ -104,7 +104,7 @@ fun ZoraShiftedDrawerLayout(
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                DrawerMenuItem(
+                ZoraDrawerMenuItem(
                     icon = ZoraIcons.wrench,
                     label = stringResource(Res.string.drawer_menu_mechanic),
                     badge = stringResource(Res.string.badge_coming_soon),
@@ -113,7 +113,7 @@ fun ZoraShiftedDrawerLayout(
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                DrawerMenuItem(
+                ZoraDrawerMenuItem(
                     icon = ZoraIcons.fuel,
                     label = stringResource(Res.string.drawer_menu_gas_stations),
                     badge = stringResource(Res.string.badge_coming_soon),
