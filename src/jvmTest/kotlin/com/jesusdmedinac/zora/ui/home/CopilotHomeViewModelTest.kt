@@ -142,6 +142,26 @@ class CopilotHomeViewModelTest {
     }
 
     @Test
+    fun `OpenPaywall intent from mechanic closes drawer and posts NavigateToPaywall side effect`() = runTest {
+        val viewModel = CopilotHomeViewModel()
+        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(isDrawerOpen = true)) {
+            containerHost.processIntent(CopilotHomeIntent.OpenPaywall(sourceReason = "drawer_menu_mechanic"))
+            expectInternalState { copy(isDrawerOpen = false) }
+            expectSideEffect(CopilotHomeSideEffect.NavigateToPaywall(sourceReason = "drawer_menu_mechanic"))
+        }
+    }
+
+    @Test
+    fun `OpenPaywall intent from gas stations closes drawer and posts NavigateToPaywall side effect`() = runTest {
+        val viewModel = CopilotHomeViewModel()
+        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(isDrawerOpen = true)) {
+            containerHost.processIntent(CopilotHomeIntent.OpenPaywall(sourceReason = "drawer_menu_gas_stations"))
+            expectInternalState { copy(isDrawerOpen = false) }
+            expectSideEffect(CopilotHomeSideEffect.NavigateToPaywall(sourceReason = "drawer_menu_gas_stations"))
+        }
+    }
+
+    @Test
     fun `RefreshTelemetry intent updates sensor data`() = runTest {
         val viewModel = CopilotHomeViewModel()
         viewModel.testWithInternalState(

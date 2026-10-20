@@ -50,6 +50,8 @@ fun ZoraShiftedDrawerLayout(
     onCloseDrawer: () -> Unit,
     onNewChatClick: () -> Unit,
     onYonkeClick: () -> Unit,
+    onMechanicClick: () -> Unit = {},
+    onGasStationsClick: () -> Unit = {},
     onRecentQuestionClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
     content: @Composable () -> Unit,
@@ -108,7 +110,7 @@ fun ZoraShiftedDrawerLayout(
                     icon = ZoraIcons.wrench,
                     label = stringResource(Res.string.drawer_menu_mechanic),
                     badge = stringResource(Res.string.badge_coming_soon),
-                    enabled = false,
+                    onClick = onMechanicClick,
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -117,7 +119,7 @@ fun ZoraShiftedDrawerLayout(
                     icon = ZoraIcons.fuel,
                     label = stringResource(Res.string.drawer_menu_gas_stations),
                     badge = stringResource(Res.string.badge_coming_soon),
-                    enabled = false,
+                    onClick = onGasStationsClick,
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))

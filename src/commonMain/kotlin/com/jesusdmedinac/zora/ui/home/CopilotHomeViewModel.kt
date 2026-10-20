@@ -37,6 +37,7 @@ class CopilotHomeViewModel(
             is CopilotHomeIntent.OpenNewChat -> openNewChat()
             is CopilotHomeIntent.SelectRecentChat -> selectRecentChat(intent.question)
             is CopilotHomeIntent.OpenGarage -> openGarage()
+            is CopilotHomeIntent.OpenPaywall -> openPaywall(intent.sourceReason)
             is CopilotHomeIntent.RefreshTelemetry -> refreshTelemetry()
             is CopilotHomeIntent.ClearChat -> clearChat()
         }
@@ -123,6 +124,11 @@ class CopilotHomeViewModel(
     fun openGarage() = intent {
         reduce { state.copy(isDrawerOpen = false) }
         postSideEffect(CopilotHomeSideEffect.NavigateToGarage)
+    }
+
+    fun openPaywall(sourceReason: String? = null) = intent {
+        reduce { state.copy(isDrawerOpen = false) }
+        postSideEffect(CopilotHomeSideEffect.NavigateToPaywall(sourceReason))
     }
 
     fun refreshTelemetry() = intent {

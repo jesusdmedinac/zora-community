@@ -49,6 +49,9 @@ fun ZoraApp(
                         onNavigateToGarage = {
                             backStack.add(ZoraRoute.GarageVault)
                         },
+                        onNavigateToPaywall = { sourceReason ->
+                            backStack.add(ZoraRoute.ProPaywall(sourceReason = sourceReason))
+                        },
                     )
                 }
 
@@ -87,8 +90,9 @@ fun ZoraApp(
                     )
                 }
 
-                entry<ZoraRoute.ProPaywall> {
+                entry<ZoraRoute.ProPaywall> { route ->
                     ZoraProPaywallScreen(
+                        sourceReason = route.sourceReason,
                         onClose = {
                             if (backStack.size > 1) {
                                 backStack.removeAt(backStack.lastIndex)

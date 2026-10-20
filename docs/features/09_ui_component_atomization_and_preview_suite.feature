@@ -147,6 +147,14 @@ Feature: UI Component Atomization and Preview Suite
     And the component provides semantic Role.Button accessibility and backward compatibility alias
     And headless offscreen preview screenshots card_drawer_menu_item_m3, card_drawer_menu_item_hig, card_drawer_menu_item_selected_m3, and card_drawer_menu_item_selected_hig are verified
 
+  Scenario: Navigate to Zora Pro Paywall from drawer mechanic and gas stations menu items
+    Given the shifted drawer open with upcoming Pro menu items drawer_menu_mechanic and drawer_menu_gas_stations
+    When the user clicks on the Mechanic or Gas Stations navigation row
+    Then the drawer closes automatically
+    And the application navigates to ZoraRoute.ProPaywall with the corresponding sourceReason
+    And the Pro Paywall renders the Autonomous Multi-Agent Network and subscription options
+
+
 
 
 

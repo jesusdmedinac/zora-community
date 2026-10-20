@@ -48,6 +48,7 @@ fun ZoraDrawerMenuItem(
     badge: String? = null,
     selected: Boolean = false,
     enabled: Boolean = true,
+    contentColor: Color? = null,
     onClick: () -> Unit = {},
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -69,9 +70,10 @@ fun ZoraDrawerMenuItem(
         label = "DrawerMenuItemContainer",
     )
 
-    val contentColor = when {
+    val resolvedContentColor = contentColor ?: when {
         !enabled -> ZoraTokens.OnSurfaceVariant
         selected -> ZoraTokens.Primary
+        badge != null -> ZoraTokens.OnSurfaceVariant
         else -> ZoraTokens.OnSurface
     }
 
@@ -104,7 +106,7 @@ fun ZoraDrawerMenuItem(
                 Icon(
                     painter = painterResource(icon),
                     contentDescription = null,
-                    tint = contentColor,
+                    tint = resolvedContentColor,
                     modifier = Modifier.size(20.dp),
                 )
                 Text(
@@ -112,7 +114,7 @@ fun ZoraDrawerMenuItem(
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 14.sp,
                     fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
-                    color = contentColor,
+                    color = resolvedContentColor,
                 )
             }
 
@@ -148,6 +150,7 @@ fun DrawerMenuItem(
     badge: String? = null,
     selected: Boolean = false,
     enabled: Boolean = true,
+    contentColor: Color? = null,
     onClick: () -> Unit = {},
 ) = ZoraDrawerMenuItem(
     icon = icon,
@@ -156,6 +159,7 @@ fun DrawerMenuItem(
     badge = badge,
     selected = selected,
     enabled = enabled,
+    contentColor = contentColor,
     onClick = onClick,
 )
 

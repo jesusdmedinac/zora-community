@@ -40,6 +40,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun ZoraProPaywallScreen(
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
+    sourceReason: String? = null,
     onStartTrial: (() -> Unit)? = null,
 ) {
     var selectedBilling by remember { mutableStateOf(SubscriptionBilling.ANNUAL) }

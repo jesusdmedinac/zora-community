@@ -52,6 +52,7 @@ fun CopilotHomeScreen(
     modifier: Modifier = Modifier,
     onNavigateToChat: (symptom: String?) -> Unit = {},
     onNavigateToGarage: () -> Unit = {},
+    onNavigateToPaywall: (sourceReason: String?) -> Unit = {},
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
 ) {
     val uiState by viewModel.collectAsState()
@@ -62,6 +63,7 @@ fun CopilotHomeScreen(
         when (sideEffect) {
             is CopilotHomeSideEffect.NavigateToChat -> onNavigateToChat(sideEffect.initialPrompt)
             is CopilotHomeSideEffect.NavigateToGarage -> onNavigateToGarage()
+            is CopilotHomeSideEffect.NavigateToPaywall -> onNavigateToPaywall(sideEffect.sourceReason)
             is CopilotHomeSideEffect.ShowSnackbar -> {
                 coroutineScope.launch {
                     toastState.showToast(sideEffect.message)
@@ -97,6 +99,8 @@ fun CopilotHomeScreenContent(
         onCloseDrawer = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
         onNewChatClick = { onIntent(CopilotHomeIntent.OpenNewChat) },
         onYonkeClick = { onIntent(CopilotHomeIntent.OpenGarage) },
+        onMechanicClick = { onIntent(CopilotHomeIntent.OpenPaywall("drawer_menu_mechanic")) },
+        onGasStationsClick = { onIntent(CopilotHomeIntent.OpenPaywall("drawer_menu_gas_stations")) },
         onRecentQuestionClick = { question -> onIntent(CopilotHomeIntent.SelectRecentChat(question)) },
         onSettingsClick = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
     ) {

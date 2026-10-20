@@ -12,6 +12,7 @@ sealed interface CopilotHomeIntent {
     data object OpenNewChat : CopilotHomeIntent
     data class SelectRecentChat(val question: String) : CopilotHomeIntent
     data object OpenGarage : CopilotHomeIntent
+    data class OpenPaywall(val sourceReason: String? = null) : CopilotHomeIntent
     data object RefreshTelemetry : CopilotHomeIntent
     data object ClearChat : CopilotHomeIntent
 }
