@@ -163,6 +163,17 @@ Feature: UI Component Atomization and Preview Suite
     And the component provides semantic Role.Button accessibility and backward compatibility alias
     And headless offscreen preview screenshots card_drawer_user_footer_m3 and card_drawer_user_footer_hig are verified
 
+  Scenario: Align ZoraDrawerRecentChatsList and ZoraDrawerRecentChatItem with active selection and press micro-interactions
+    Given the recent chats section defined in node fnMOF of zora-community.pen
+    When rendering ZoraDrawerRecentChatsList with 4dp vertical item spacing
+    Then the section header renders "Recent" in FontBody 11sp semibold with Outline fill
+    And each recent chat item displays the question text in FontBody 13sp with single line ellipsis truncation
+    And clicking a recent question applies spring-damped 0.985x press feedback and triggers onRecentQuestionClick
+    And selected recent questions transition to SurfaceContainerHigh container background and Primary label tint
+    And the component provides semantic Role.Button accessibility and backward compatibility aliases
+    And headless offscreen preview screenshots card_drawer_recent_chats_m3, card_drawer_recent_chats_hig, card_drawer_recent_chats_selected_m3, and card_drawer_recent_chats_selected_hig are verified
+
+
 
 
 

@@ -54,6 +54,7 @@ fun ZoraShiftedDrawerLayout(
     onGasStationsClick: () -> Unit = {},
     onRecentQuestionClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
+    selectedRecentQuestion: String? = null,
     content: @Composable () -> Unit,
 ) {
     val drawerWidth = 280.dp
@@ -125,8 +126,9 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Recent Chats Section (node fnMOF)
-                DrawerRecentChatsList(
+                ZoraDrawerRecentChatsList(
                     onRecentQuestionClick = onRecentQuestionClick,
+                    selectedQuestion = selectedRecentQuestion,
                 )
             }
 

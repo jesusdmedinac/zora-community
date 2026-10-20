@@ -40,7 +40,8 @@ import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerMenuItem
-import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerRecentChatItem
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerRecentChatsList
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerUserFooter
 import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
@@ -491,14 +492,30 @@ class PreviewScreenshotGeneratorTest {
         }
 
         // Drawer Recent Chats (M3 & HIG)
-        capture("card_drawer_recent_chats_m3", width = 280, height = 200, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+        capture("card_drawer_recent_chats_m3", width = 280, height = 220, platformVariant = ZoraPlatformVariant.MATERIAL3) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerRecentChatsList(onRecentQuestionClick = {})
+                ZoraDrawerRecentChatsList(onRecentQuestionClick = {})
             }
         }
-        capture("card_drawer_recent_chats_hig", width = 280, height = 200, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+        capture("card_drawer_recent_chats_hig", width = 280, height = 220, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerRecentChatsList(onRecentQuestionClick = {})
+                ZoraDrawerRecentChatsList(onRecentQuestionClick = {})
+            }
+        }
+        capture("card_drawer_recent_chats_selected_m3", width = 280, height = 220, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(
+                    onRecentQuestionClick = {},
+                    selectedQuestion = "¿Qué es la bujía?",
+                )
+            }
+        }
+        capture("card_drawer_recent_chats_selected_hig", width = 280, height = 220, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(
+                    onRecentQuestionClick = {},
+                    selectedQuestion = "¿Qué es la bujía?",
+                )
             }
         }
 

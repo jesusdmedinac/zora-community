@@ -107,6 +107,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align ZoraDrawerMenuItem with active selection state and press micro-interactions
 - [x] Scenario: Navigate to Zora Pro Paywall from drawer mechanic and gas stations menu items
 - [x] Scenario: Align ZoraDrawerUserFooter with pinned layout, shader fade, and interactive gear settings button
+- [x] Scenario: Align ZoraDrawerRecentChatsList and ZoraDrawerRecentChatItem with active selection and press micro-interactions
 
 ---
 

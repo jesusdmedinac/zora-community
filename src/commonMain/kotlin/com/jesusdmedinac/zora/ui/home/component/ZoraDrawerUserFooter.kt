@@ -53,10 +53,10 @@ import zora_community.generated.resources.tier_pro
  */
 @Composable
 fun ZoraDrawerUserFooter(
-    userName: String = "Jesús Medina",
-    accountTier: String = stringResource(Res.string.tier_pro),
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
+    userName: String = "Jesús Medina",
+    accountTier: String = stringResource(Res.string.tier_pro),
     onProfileClick: (() -> Unit)? = null,
 ) {
     val settingsInteractionSource = remember { MutableInteractionSource() }
@@ -234,10 +234,10 @@ fun ZoraDrawerUserFooter(
  */
 @Composable
 fun DrawerUserFooter(
-    userName: String = "Jesús Medina",
-    accountTier: String = stringResource(Res.string.tier_pro),
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
+    userName: String = "Jesús Medina",
+    accountTier: String = stringResource(Res.string.tier_pro),
     onProfileClick: (() -> Unit)? = null,
 ) = ZoraDrawerUserFooter(
     userName = userName,
