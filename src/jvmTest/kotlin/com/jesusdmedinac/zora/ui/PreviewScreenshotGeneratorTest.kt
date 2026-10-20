@@ -23,6 +23,7 @@ import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
 import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
+import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
 import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
 import com.jesusdmedinac.zora.ui.garage.component.GarageSlotsCard
@@ -330,6 +331,20 @@ class PreviewScreenshotGeneratorTest {
                 AssistantChatBubble(
                     text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en rotores delanteros.",
                 )
+            }
+        }
+
+        // Assistant Action Bar (Material 3)
+        capture("card_assistant_action_bar", width = 390, height = 64, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraAssistantActionBar()
+            }
+        }
+
+        // Assistant Action Bar (HIG)
+        capture("card_assistant_action_bar_hig", width = 390, height = 64, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraAssistantActionBar()
             }
         }
     }

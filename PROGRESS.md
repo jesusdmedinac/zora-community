@@ -98,6 +98,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: In-place conversational chat stream and zero-state conditional switching in Copilot Home
 - [x] Scenario: Align UserChatBubble with Component Library specification in zora-community.pen
 - [x] Scenario: Align AssistantChatBubble with containerless design specification in zora-community.pen
+- [x] Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
 
 ---
 

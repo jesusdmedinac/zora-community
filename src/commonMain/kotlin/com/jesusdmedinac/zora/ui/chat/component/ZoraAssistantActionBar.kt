@@ -6,35 +6,71 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
+import zora_community.generated.resources.cd_copy_response
+import zora_community.generated.resources.cd_dislike_response
+import zora_community.generated.resources.cd_like_response
+import zora_community.generated.resources.cd_retry_response
 
 /**
- * Node ekGY6: Assistant micro-action bar (copy, like, retry).
+ * Node ekGY6 / iqjWy / WIZZ0: Assistant micro-action bar (copy, retry, like, dislike).
+ * Conforms 100% to design/zora-community.pen specification:
+ * 32x32dp circular buttons with 15x15dp vector icons and 10dp gap.
  */
 @Composable
 fun ZoraAssistantActionBar(
-    onCopy: () -> Unit = {},
-    onLike: () -> Unit = {},
-    onRetry: () -> Unit = {},
     modifier: Modifier = Modifier,
+    onCopy: () -> Unit = {},
+    onRetry: () -> Unit = {},
+    onLike: () -> Unit = {},
+    onDislike: () -> Unit = {},
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        ActionButton(icon = "📋", onClick = onCopy)
-        ActionButton(icon = "👍", onClick = onLike)
-        ActionButton(icon = "🔄", onClick = onRetry)
+        ActionButton(
+            icon = ZoraTheme.icons.copy,
+            contentDescription = stringResource(Res.string.cd_copy_response),
+            onClick = onCopy,
+        )
+        ActionButton(
+            icon = ZoraTheme.icons.retry,
+            contentDescription = stringResource(Res.string.cd_retry_response),
+            onClick = onRetry,
+        )
+        ActionButton(
+            icon = ZoraTheme.icons.thumbsUp,
+            contentDescription = stringResource(Res.string.cd_like_response),
+            onClick = onLike,
+        )
+        ActionButton(
+            icon = ZoraTheme.icons.thumbsDown,
+            contentDescription = stringResource(Res.string.cd_dislike_response),
+            onClick = onDislike,
+        )
     }
 }
 
 @Preview
 @Composable
-private fun ZoraAssistantActionBarPreview() {
-    ZoraTheme {
+private fun ZoraAssistantActionBarM3Preview() {
+    ZoraTheme(platformVariant = ZoraPlatformVariant.MATERIAL3) {
         ZoraAssistantActionBar()
     }
 }
+
+@Preview
+@Composable
+private fun ZoraAssistantActionBarHIGPreview() {
+    ZoraTheme(platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+        ZoraAssistantActionBar()
+    }
+}
+
 

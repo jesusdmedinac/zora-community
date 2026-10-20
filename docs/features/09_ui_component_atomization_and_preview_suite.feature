@@ -85,6 +85,14 @@ Feature: UI Component Atomization and Preview Suite
     And generative UI cards and ZoraAssistantActionBar align organically underneath
     And headless offscreen preview screenshots card_chat_assistant_message and card_chat_assistant_message_hig are verified
 
+  Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
+    Given the Assistant Action Bar specification (node iqjWy in M3 and WIZZ0 in HIG) in design/zora-community.pen
+    When rendering ZoraAssistantActionBar with 32x32dp circular buttons and SurfaceContainerLow background
+    Then the action buttons display vector icons for copy, retry, like, and dislike tinted with OnSurfaceVariant
+    And emojis are strictly prohibited and replaced with crisp multiplatform vector drawables
+    And headless offscreen preview screenshots card_assistant_action_bar and card_assistant_action_bar_hig are verified
+
+
 
 
 
