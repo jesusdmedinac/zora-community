@@ -154,6 +154,16 @@ Feature: UI Component Atomization and Preview Suite
     And the application navigates to ZoraRoute.ProPaywall with the corresponding sourceReason
     And the Pro Paywall renders the Autonomous Multi-Agent Network and subscription options
 
+  Scenario: Align ZoraDrawerUserFooter with pinned layout, shader fade, and interactive gear settings button
+    Given the pinned user footer defined in node cBBbL of zora-community.pen
+    When rendering ZoraDrawerUserFooter with 28dp top shader fade and exact padding [4, 16, 12, 16]
+    Then the user avatar displays the circular 36dp container with outline border and user icon
+    And the user text column renders the user name in FontBody 14sp semibold and account tier in Primary 11sp medium
+    And the settings button responds to press events with 0.92x scale damping and 25-degree gear rotation
+    And the component provides semantic Role.Button accessibility and backward compatibility alias
+    And headless offscreen preview screenshots card_drawer_user_footer_m3 and card_drawer_user_footer_hig are verified
+
+
 
 
 

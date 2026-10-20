@@ -41,7 +41,7 @@ import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerMenuItem
 import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
-import com.jesusdmedinac.zora.ui.home.component.DrawerUserFooter
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerUserFooter
 import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
@@ -504,10 +504,10 @@ class PreviewScreenshotGeneratorTest {
 
         // Drawer User Footer (M3 & HIG)
         capture("card_drawer_user_footer_m3", width = 280, height = 100, platformVariant = ZoraPlatformVariant.MATERIAL3) {
-            DrawerUserFooter(onSettingsClick = {})
+            ZoraDrawerUserFooter(onSettingsClick = {})
         }
         capture("card_drawer_user_footer_hig", width = 280, height = 100, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
-            DrawerUserFooter(onSettingsClick = {})
+            ZoraDrawerUserFooter(onSettingsClick = {})
         }
     }
 

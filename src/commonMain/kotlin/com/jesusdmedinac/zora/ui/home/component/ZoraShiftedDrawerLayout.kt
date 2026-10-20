@@ -131,7 +131,7 @@ fun ZoraShiftedDrawerLayout(
             }
 
             // Pinned Footer with Shader Fade Strip (node cBBbL)
-            DrawerUserFooter(
+            ZoraDrawerUserFooter(
                 onSettingsClick = onSettingsClick,
             )
         }
