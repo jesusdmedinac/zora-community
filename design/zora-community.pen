@@ -14557,7 +14557,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -14579,7 +14579,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -14601,7 +14601,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -14623,7 +14623,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -14645,7 +14645,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -14667,7 +14667,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -15042,7 +15042,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15064,7 +15064,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15086,7 +15086,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15108,7 +15108,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15130,7 +15130,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15152,7 +15152,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -15871,7 +15871,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15893,7 +15893,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15915,7 +15915,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15937,7 +15937,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15959,7 +15959,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -15981,7 +15981,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -16368,7 +16368,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -16390,7 +16390,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -16412,7 +16412,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -16434,7 +16434,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -16456,7 +16456,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -16478,7 +16478,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -17263,7 +17263,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17285,7 +17285,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17307,7 +17307,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17329,7 +17329,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17351,7 +17351,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17373,7 +17373,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -17614,7 +17614,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17636,7 +17636,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17658,7 +17658,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17680,7 +17680,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17702,7 +17702,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -17724,7 +17724,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -18237,7 +18237,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -18259,7 +18259,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -18281,7 +18281,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -18303,7 +18303,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -18325,7 +18325,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -18347,7 +18347,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -19066,7 +19066,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19088,7 +19088,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19110,7 +19110,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19132,7 +19132,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19154,7 +19154,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19176,7 +19176,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -19429,7 +19429,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19451,7 +19451,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19473,7 +19473,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19495,7 +19495,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19517,7 +19517,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -19539,7 +19539,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -20043,7 +20043,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20065,7 +20065,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20087,7 +20087,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20109,7 +20109,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20131,7 +20131,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20153,7 +20153,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -20938,7 +20938,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20960,7 +20960,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -20982,7 +20982,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21004,7 +21004,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21026,7 +21026,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21048,7 +21048,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -21289,7 +21289,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21311,7 +21311,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21333,7 +21333,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21355,7 +21355,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21377,7 +21377,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21399,7 +21399,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -21912,7 +21912,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21934,7 +21934,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21956,7 +21956,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -21978,7 +21978,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22000,7 +22000,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22022,7 +22022,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -22461,7 +22461,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22483,7 +22483,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22505,7 +22505,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22527,7 +22527,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22549,7 +22549,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -22571,7 +22571,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -23290,7 +23290,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23312,7 +23312,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23334,7 +23334,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23356,7 +23356,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23378,7 +23378,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23400,7 +23400,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -23653,7 +23653,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23675,7 +23675,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23697,7 +23697,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23719,7 +23719,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23741,7 +23741,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -23763,7 +23763,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -24267,7 +24267,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24289,7 +24289,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24311,7 +24311,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24333,7 +24333,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24355,7 +24355,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24377,7 +24377,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -24828,7 +24828,7 @@
                           "height": 16,
                           "icon": "copy",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24850,7 +24850,7 @@
                           "height": 16,
                           "icon": "volume-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24872,7 +24872,7 @@
                           "height": 16,
                           "icon": "thumbs-up",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24894,7 +24894,7 @@
                           "height": 16,
                           "icon": "thumbs-down",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24916,7 +24916,7 @@
                           "height": 16,
                           "icon": "share-2",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     },
@@ -24938,7 +24938,7 @@
                           "height": 16,
                           "icon": "ellipsis",
                           "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "fill": "$onSurface"
                         }
                       ]
                     }
@@ -40053,7 +40053,7 @@
                   "fill": "$onSurfaceVariant",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Fila de micro-botones circulares de 32dp con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y Más opciones.",
+                  "content": "Fila de micro-botones circulares de 32dp con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y M\u00e1s opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 12,
                   "fontWeight": "normal"
@@ -40065,7 +40065,7 @@
                   "fill": "$primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Cómo utilizarse: Colocar al pie de cada respuesta de Zora en el feed de chat para permitir copiar, reproducir audio, calificar, compartir o desplegar más opciones.",
+                  "content": "C\u00f3mo utilizarse: Colocar al pie de cada respuesta de Zora en el feed de chat para permitir copiar, reproducir audio, calificar, compartir o desplegar m\u00e1s opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -40096,7 +40096,6 @@
                           "name": "Copy Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40109,7 +40108,7 @@
                               "height": 15,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -40119,7 +40118,6 @@
                           "name": "Audio Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40132,7 +40130,7 @@
                               "height": 15,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -40142,7 +40140,6 @@
                           "name": "Like Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40155,7 +40152,7 @@
                               "height": 15,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -40165,7 +40162,6 @@
                           "name": "Dislike Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40178,7 +40174,7 @@
                               "height": 15,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -40188,7 +40184,6 @@
                           "name": "Share Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40201,7 +40196,7 @@
                               "height": 15,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -40211,7 +40206,6 @@
                           "name": "More Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -40224,7 +40218,7 @@
                               "height": 15,
                               "icon": "more-horizontal",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -43215,7 +43209,7 @@
                   "fill": "$onSurfaceVariant",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Fila de micro-botones circulares de 32pt con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y Más opciones.",
+                  "content": "Fila de micro-botones circulares de 32pt con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y M\u00e1s opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 12,
                   "fontWeight": "normal"
@@ -43257,7 +43251,6 @@
                           "name": "Copy Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43270,7 +43263,7 @@
                               "height": 15,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -43280,7 +43273,6 @@
                           "name": "Audio Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43293,7 +43285,7 @@
                               "height": 15,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -43303,7 +43295,6 @@
                           "name": "Like Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43316,7 +43307,7 @@
                               "height": 15,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -43326,7 +43317,6 @@
                           "name": "Dislike Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43339,7 +43329,7 @@
                               "height": 15,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -43349,7 +43339,6 @@
                           "name": "Share Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43362,7 +43351,7 @@
                               "height": 15,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -43372,7 +43361,6 @@
                           "name": "More Button (Instance)",
                           "width": 32,
                           "height": 32,
-                          "fill": "$surfaceContainerLow",
                           "cornerRadius": "$radiusFull",
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -43385,7 +43373,7 @@
                               "height": 15,
                               "icon": "more-horizontal",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -53488,7 +53476,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -53510,7 +53498,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -53532,7 +53520,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -53554,7 +53542,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -53576,7 +53564,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -53598,7 +53586,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -53985,7 +53973,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -54007,7 +53995,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -54029,7 +54017,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -54051,7 +54039,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -54073,7 +54061,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -54095,7 +54083,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -57383,7 +57371,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57405,7 +57393,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57427,7 +57415,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57449,7 +57437,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57471,7 +57459,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57493,7 +57481,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -57752,7 +57740,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57774,7 +57762,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57796,7 +57784,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57818,7 +57806,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57840,7 +57828,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -57862,7 +57850,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -58366,7 +58354,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -58388,7 +58376,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -58410,7 +58398,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -58432,7 +58420,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -58454,7 +58442,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -58476,7 +58464,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -59287,7 +59275,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59309,7 +59297,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59331,7 +59319,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59353,7 +59341,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59375,7 +59363,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59397,7 +59385,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -59656,7 +59644,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59678,7 +59666,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59700,7 +59688,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59722,7 +59710,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59744,7 +59732,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -59766,7 +59754,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -60270,7 +60258,7 @@
                                   "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -60292,7 +60280,7 @@
                                   "height": 16,
                                   "icon": "volume-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -60314,7 +60302,7 @@
                                   "height": 16,
                                   "icon": "thumbs-up",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -60336,7 +60324,7 @@
                                   "height": 16,
                                   "icon": "thumbs-down",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -60358,7 +60346,7 @@
                                   "height": 16,
                                   "icon": "share-2",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             },
@@ -60380,7 +60368,7 @@
                                   "height": 16,
                                   "icon": "ellipsis",
                                   "library": "lucide",
-                                  "fill": "$onSurfaceVariant"
+                                  "fill": "$onSurface"
                                 }
                               ]
                             }
@@ -67479,7 +67467,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67501,7 +67489,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67523,7 +67511,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67545,7 +67533,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67567,7 +67555,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67589,7 +67577,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -67976,7 +67964,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -67998,7 +67986,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -68020,7 +68008,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -68042,7 +68030,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -68064,7 +68052,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -68086,7 +68074,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -69592,7 +69580,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69614,7 +69602,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69636,7 +69624,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69658,7 +69646,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69680,7 +69668,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69702,7 +69690,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -69961,7 +69949,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -69983,7 +69971,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70005,7 +69993,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70027,7 +70015,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70049,7 +70037,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70071,7 +70059,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -70575,7 +70563,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70597,7 +70585,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70619,7 +70607,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70641,7 +70629,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70663,7 +70651,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -70685,7 +70673,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -72371,7 +72359,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72393,7 +72381,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72415,7 +72403,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72437,7 +72425,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72459,7 +72447,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72481,7 +72469,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -72740,7 +72728,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72762,7 +72750,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72784,7 +72772,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72806,7 +72794,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72828,7 +72816,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -72850,7 +72838,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -73360,7 +73348,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73382,7 +73370,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73404,7 +73392,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73426,7 +73414,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73448,7 +73436,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73470,7 +73458,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }
@@ -73921,7 +73909,7 @@
                               "height": 16,
                               "icon": "copy",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73943,7 +73931,7 @@
                               "height": 16,
                               "icon": "volume-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73965,7 +73953,7 @@
                               "height": 16,
                               "icon": "thumbs-up",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -73987,7 +73975,7 @@
                               "height": 16,
                               "icon": "thumbs-down",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -74009,7 +73997,7 @@
                               "height": 16,
                               "icon": "share-2",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         },
@@ -74031,7 +74019,7 @@
                               "height": 16,
                               "icon": "ellipsis",
                               "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "fill": "$onSurface"
                             }
                           ]
                         }

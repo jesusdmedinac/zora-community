@@ -21,6 +21,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
+import com.jesusdmedinac.zora.ui.chat.component.ActionButton
 import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
@@ -345,6 +346,33 @@ class PreviewScreenshotGeneratorTest {
         capture("card_assistant_action_bar_hig", width = 390, height = 64, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
                 ZoraAssistantActionBar()
+            }
+        }
+
+        // Action Button Atomic Previews (32x32dp, transparent background, OnSurface icon tint)
+        capture("card_action_button_m3", width = 80, height = 64, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ActionButton(
+                    icon = ZoraTheme.icons.copy,
+                    contentDescription = "Copy",
+                    onClick = {},
+                )
+            }
+        }
+
+        capture("card_action_button_hig", width = 80, height = 64, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ActionButton(
+                    icon = ZoraTheme.icons.copy,
+                    contentDescription = "Copy",
+                    onClick = {},
+                )
             }
         }
     }

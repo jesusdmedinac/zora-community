@@ -87,10 +87,18 @@ Feature: UI Component Atomization and Preview Suite
 
   Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
     Given the Assistant Action Bar specification (node iqjWy in M3 and WIZZ0 in HIG) in design/zora-community.pen
-    When rendering ZoraAssistantActionBar with 32x32dp circular buttons and SurfaceContainerLow background
-    Then the action buttons display vector icons for copy, retry, like, and dislike tinted with OnSurfaceVariant
+    When rendering ZoraAssistantActionBar with 32x32dp circular action buttons and 10dp gap
+    Then the action bar displays 6 micro-actions: copy, audio, thumbs up, thumbs down, share, and more
     And emojis are strictly prohibited and replaced with crisp multiplatform vector drawables
     And headless offscreen preview screenshots card_assistant_action_bar and card_assistant_action_bar_hig are verified
+
+  Scenario: Align ActionButton with transparent background and OnSurface typography matching AssistantChatBubble
+    Given the ActionButton component used in ZoraAssistantActionBar
+    When rendering ActionButton with 32x32dp circular touch target and transparent background
+    Then the action icon tint is aligned with AssistantChatBubble text color in OnSurface
+    And the button provides circular ripple indication on interaction
+    And headless offscreen preview screenshots card_action_button_m3 and card_action_button_hig are verified
+
 
 
 

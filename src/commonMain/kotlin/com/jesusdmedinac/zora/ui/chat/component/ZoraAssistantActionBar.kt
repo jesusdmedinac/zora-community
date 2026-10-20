@@ -16,7 +16,6 @@ import zora_community.generated.resources.cd_copy_response
 import zora_community.generated.resources.cd_dislike_response
 import zora_community.generated.resources.cd_like_response
 import zora_community.generated.resources.cd_more_actions
-import zora_community.generated.resources.cd_retry_response
 import zora_community.generated.resources.cd_share_response
 
 /**
@@ -33,7 +32,6 @@ fun ZoraAssistantActionBar(
     onDislike: () -> Unit = {},
     onShare: () -> Unit = {},
     onMore: () -> Unit = {},
-    onRetry: () -> Unit = {},
 ) {
     Row(
         modifier = modifier,
