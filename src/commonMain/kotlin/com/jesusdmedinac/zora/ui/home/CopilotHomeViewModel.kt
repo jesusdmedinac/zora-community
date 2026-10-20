@@ -1,6 +1,7 @@
 package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
+import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
@@ -10,7 +11,11 @@ import org.orbitmvi.orbit.viewmodel.orbitContainer
 /**
  * ViewModel managing the state, intents, and side effects for Copilot Home via Orbit MVI.
  */
-class CopilotHomeViewModel :
+class CopilotHomeViewModel(
+    private val messageIdGenerator: (prefix: String) -> String = { prefix ->
+        "${prefix}_${kotlin.random.Random.nextInt(100000, 999999)}"
+    },
+) :
     ViewModel(),
     OrbitContainerHost<CopilotHomeUiState, CopilotHomeUiState, CopilotHomeSideEffect> {
 
@@ -33,6 +38,7 @@ class CopilotHomeViewModel :
             is CopilotHomeIntent.SelectRecentChat -> selectRecentChat(intent.question)
             is CopilotHomeIntent.OpenGarage -> openGarage()
             is CopilotHomeIntent.RefreshTelemetry -> refreshTelemetry()
+            is CopilotHomeIntent.ClearChat -> clearChat()
         }
     }
 
@@ -50,22 +56,68 @@ class CopilotHomeViewModel :
 
     fun sendPrompt(text: String) = intent {
         val trimmed = text.trim()
-        reduce { state.copy(promptText = "") }
-        postSideEffect(CopilotHomeSideEffect.NavigateToChat(trimmed.ifEmpty { null }))
+        if (trimmed.isBlank()) return@intent
+
+        val userMessage = CopilotChatMessage.User(
+            text = trimmed,
+            id = messageIdGenerator("user"),
+        )
+        val assistantMessage = CopilotChatMessage.Assistant(
+            text = resolveAssistantReply(trimmed, state.activeVehicleName),
+            id = messageIdGenerator("asst"),
+        )
+
+        reduce {
+            state.copy(
+                promptText = "",
+                messages = state.messages + userMessage + assistantMessage,
+            )
+        }
+        postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
     }
 
     fun selectSuggestion(symptom: String) = intent {
-        postSideEffect(CopilotHomeSideEffect.NavigateToChat(symptom))
+        val userMessage = CopilotChatMessage.User(
+            text = symptom,
+            id = messageIdGenerator("user"),
+        )
+        val assistantMessage = CopilotChatMessage.Assistant(
+            text = resolveAssistantReply(symptom, state.activeVehicleName),
+            id = messageIdGenerator("asst"),
+        )
+
+        reduce {
+            state.copy(
+                messages = state.messages + userMessage + assistantMessage,
+            )
+        }
+        postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
     }
 
     fun openNewChat() = intent {
-        reduce { state.copy(isDrawerOpen = false) }
-        postSideEffect(CopilotHomeSideEffect.NavigateToChat(null))
+        reduce {
+            state.copy(
+                isDrawerOpen = false,
+                messages = emptyList(),
+                promptText = "",
+            )
+        }
     }
 
     fun selectRecentChat(question: String) = intent {
-        reduce { state.copy(isDrawerOpen = false) }
-        postSideEffect(CopilotHomeSideEffect.NavigateToChat(question))
+        val userMessage = CopilotChatMessage.User(text = question)
+        val assistantMessage = CopilotChatMessage.Assistant(
+            text = resolveAssistantReply(question, state.activeVehicleName),
+        )
+
+        reduce {
+            state.copy(
+                isDrawerOpen = false,
+                messages = listOf(userMessage, assistantMessage),
+                promptText = "",
+            )
+        }
+        postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
     }
 
     fun openGarage() = intent {
@@ -81,6 +133,27 @@ class CopilotHomeViewModel :
                 prescriptionStatus = "Vault OK",
                 isCanBusConnected = true,
             )
+        }
+    }
+
+    fun clearChat() = intent {
+        reduce { state.copy(messages = emptyList()) }
+    }
+
+    companion object {
+        fun resolveAssistantReply(prompt: String, vehicle: String): String {
+            return when {
+                prompt.contains("freno", ignoreCase = true) || prompt.contains("brake", ignoreCase = true) ->
+                    "Análisis para $vehicle: Si el pedal vibra al frenar a alta velocidad, suele indicar alabeo en los discos de freno delanteros o desgaste irregular de balatas. Se recomienda inspección de grosor de rotores."
+                prompt.contains("aceite", ignoreCase = true) || prompt.contains("oil", ignoreCase = true) ->
+                    "Especificación de servicio para $vehicle: Capacidad 4.2 L con cambio de filtro. Viscosidad recomendada: 0W-20 sintético. Intervalo cada 8,000 km."
+                prompt.contains("batería", ignoreCase = true) || prompt.contains("battery", ignoreCase = true) ->
+                    "Diagnóstico de batería para $vehicle: Voltaje nominal 12.6V verificado. Alternador cargando dentro de rango (14.2V). Bóveda de salud al 100%."
+                prompt.contains("humo", ignoreCase = true) || prompt.contains("smoke", ignoreCase = true) ->
+                    "Alerta para $vehicle: Humo azul indica quema de aceite en cámara de combustión (posibles sellos de válvula o anillos de pistón gastados)."
+                else ->
+                    "He registrado \"$prompt\" en tu bóveda mecánica local para $vehicle. Consultando telemetría de abordo y especificaciones de taller..."
+            }
         }
     }
 }

@@ -3,10 +3,8 @@ package com.jesusdmedinac.zora.ui.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,12 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
-import com.jesusdmedinac.zora.ui.home.component.VehicleStatusTelemetryCard
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraSuggestionsRow
 import com.jesusdmedinac.zora.ui.home.component.ZoraTopAppBar
+import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
@@ -42,8 +41,8 @@ import zora_community.generated.resources.badge_local_first
  */
 @Composable
 fun CopilotHomeScreen(
-    onNavigateToChat: (symptom: String?) -> Unit,
-    onNavigateToGarage: () -> Unit,
+    onNavigateToChat: (symptom: String?) -> Unit = {},
+    onNavigateToGarage: () -> Unit = {},
     modifier: Modifier = Modifier,
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
 ) {
@@ -53,8 +52,8 @@ fun CopilotHomeScreen(
         when (sideEffect) {
             is CopilotHomeSideEffect.NavigateToChat -> onNavigateToChat(sideEffect.initialPrompt)
             is CopilotHomeSideEffect.NavigateToGarage -> onNavigateToGarage()
-            is CopilotHomeSideEffect.ShowSnackbar -> { /* Display toast/snackbar if needed */
-            }
+            is CopilotHomeSideEffect.ShowSnackbar -> { /* Display toast/snackbar if needed */ }
+            is CopilotHomeSideEffect.ScrollToBottom -> { /* Handled reactively by CopilotChatList */ }
         }
     }
 
@@ -96,28 +95,39 @@ fun CopilotHomeScreenContent(
                 statusBadge = stringResource(Res.string.badge_local_first),
             )
 
-            // 2. Centered Welcome Hero
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = ZoraTokens.SpacingMd, vertical = ZoraTokens.SpacingMd),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-            ) {
-                CopilotPromptHero()
+            // 2. Central Conversational Area: Welcome Hero vs Active Chat Stream
+            if (uiState.messages.isEmpty()) {
+                // Centered Welcome Hero (Zero-State / New Chat)
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .padding(horizontal = ZoraTokens.SpacingMd, vertical = ZoraTokens.SpacingMd),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    CopilotPromptHero()
+                }
+
+                // Quick Suggestions Row (Zero-State)
+                ZoraSuggestionsRow(
+                    onSuggestionClick = { symptom ->
+                        onIntent(CopilotHomeIntent.SelectSuggestion(symptom))
+                    },
+                    modifier = Modifier.padding(bottom = 12.dp),
+                )
+            } else {
+                // Active Conversational Chat Stream
+                CopilotChatList(
+                    messages = uiState.messages,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(bottom = 8.dp),
+                )
             }
 
-            // 3. Quick Suggestions Row
-            ZoraSuggestionsRow(
-                onSuggestionClick = { symptom ->
-                    onIntent(CopilotHomeIntent.SelectSuggestion(symptom))
-                },
-                modifier = Modifier.padding(bottom = 12.dp),
-            )
-
-            // 4. Bottom Prompt Composer
+            // 3. Bottom Prompt Composer
             ZoraPromptComposer(
                 value = uiState.promptText,
                 onValueChange = { onIntent(CopilotHomeIntent.UpdatePromptText(it)) },
@@ -136,6 +146,24 @@ private fun CopilotHomeScreenPreview() {
     ZoraTheme {
         CopilotHomeScreenContent(
             uiState = CopilotHomeUiState(),
+            onIntent = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun CopilotHomeScreenActiveChatPreview() {
+    ZoraTheme {
+        CopilotHomeScreenContent(
+            uiState = CopilotHomeUiState(
+                messages = listOf(
+                    CopilotChatMessage.User(text = "¿Por qué vibra el volante a alta velocidad?"),
+                    CopilotChatMessage.Assistant(
+                        text = "Para Honda Civic EX 2.0L: la vibración al frenar suele deberse a alabeo en los discos delanteros. Te sugiero revisar el grosor de los rotores.",
+                    ),
+                ),
+            ),
             onIntent = {},
         )
     }

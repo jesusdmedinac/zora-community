@@ -14,4 +14,5 @@ data class CopilotHomeUiState(
     val dtcCount: String = "0",
     val prescriptionStatus: String = "Vault OK",
     val isCanBusConnected: Boolean = true,
+    val messages: List<CopilotChatMessage> = emptyList(),
 )

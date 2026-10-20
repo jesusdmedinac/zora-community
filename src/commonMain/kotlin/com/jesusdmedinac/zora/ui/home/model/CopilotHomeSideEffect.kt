@@ -7,4 +7,5 @@ sealed interface CopilotHomeSideEffect {
     data class NavigateToChat(val initialPrompt: String? = null) : CopilotHomeSideEffect
     data object NavigateToGarage : CopilotHomeSideEffect
     data class ShowSnackbar(val message: String) : CopilotHomeSideEffect
+    data object ScrollToBottom : CopilotHomeSideEffect
 }

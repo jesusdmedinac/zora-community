@@ -29,9 +29,13 @@ import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
+import com.jesusdmedinac.zora.ui.home.CopilotHomeScreenContent
+import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
+import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
+import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
 import com.jesusdmedinac.zora.ui.parts.component.CommunityInsightsCard
 import com.jesusdmedinac.zora.ui.parts.component.PartCard
@@ -123,6 +127,25 @@ class PreviewScreenshotGeneratorTest {
             CopilotHomeScreen(
                 onNavigateToChat = {},
                 onNavigateToGarage = {},
+            )
+        }
+
+        // 2b. Copilot Home (Active chat stream with user and assistant bubbles)
+        capture("01c_copilot_home_active_chat", width = 390, height = 844) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
             )
         }
 
@@ -257,6 +280,24 @@ class PreviewScreenshotGeneratorTest {
                 )
             }
         }
+
+        // Copilot Chat List Card
+        capture("card_copilot_chat_list", width = 390, height = 320) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                CopilotChatList(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                )
+            }
+        }
     }
 
     @Test
@@ -375,6 +416,24 @@ class PreviewScreenshotGeneratorTest {
             CopilotHomeScreen(
                 onNavigateToChat = {},
                 onNavigateToGarage = {},
+            )
+        }
+
+        capture("01c_copilot_home_active_chat_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
             )
         }
 

@@ -1,5 +1,6 @@
 package com.jesusdmedinac.zora.ui.home
 
+import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
@@ -24,6 +25,7 @@ class CopilotHomeViewModelTest {
         assertEquals("0", state.dtcCount)
         assertEquals("Vault OK", state.prescriptionStatus)
         assertTrue(state.isCanBusConnected)
+        assertEquals(emptyList(), state.messages)
     }
 
     @Test
@@ -56,21 +58,76 @@ class CopilotHomeViewModelTest {
     }
 
     @Test
-    fun `SendPrompt intent clears prompt text and posts NavigateToChat side effect`() = runTest {
-        val viewModel = CopilotHomeViewModel()
-        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(promptText = "¿Por qué vibra el volante?")) {
-            containerHost.processIntent(CopilotHomeIntent.SendPrompt("¿Por qué vibra el volante?"))
-            expectInternalState { copy(promptText = "") }
-            expectSideEffect(CopilotHomeSideEffect.NavigateToChat("¿Por qué vibra el volante?"))
+    fun `SendPrompt intent appends messages to chat stream and posts ScrollToBottom side effect`() = runTest {
+        var idCount = 0
+        val viewModel = CopilotHomeViewModel(messageIdGenerator = { prefix -> "${prefix}_${++idCount}" })
+        val prompt = "¿Por qué vibra el volante?"
+        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(promptText = prompt)) {
+            containerHost.processIntent(CopilotHomeIntent.SendPrompt(prompt))
+            expectInternalState {
+                copy(
+                    promptText = "",
+                    messages = listOf(
+                        CopilotChatMessage.User(text = prompt, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(prompt, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                    ),
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
         }
     }
 
     @Test
-    fun `SelectSuggestion intent posts NavigateToChat side effect`() = runTest {
-        val viewModel = CopilotHomeViewModel()
+    fun `SelectSuggestion intent adds messages to chat stream and posts ScrollToBottom side effect`() = runTest {
+        var idCount = 0
+        val viewModel = CopilotHomeViewModel(messageIdGenerator = { prefix -> "${prefix}_${++idCount}" })
+        val symptom = "Humo azul"
         viewModel.testWithInternalState(this) {
-            containerHost.processIntent(CopilotHomeIntent.SelectSuggestion("Humo azul"))
-            expectSideEffect(CopilotHomeSideEffect.NavigateToChat("Humo azul"))
+            containerHost.processIntent(CopilotHomeIntent.SelectSuggestion(symptom))
+            expectInternalState {
+                copy(
+                    messages = listOf(
+                        CopilotChatMessage.User(text = symptom, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(symptom, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                    ),
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
+    }
+
+    @Test
+    fun `OpenNewChat intent clears chat messages and closes drawer`() = runTest {
+        val viewModel = CopilotHomeViewModel()
+        val existingMessages = listOf(
+            CopilotChatMessage.User("Consulta previa"),
+            CopilotChatMessage.Assistant("Respuesta previa"),
+        )
+        viewModel.testWithInternalState(
+            this,
+            initialState = CopilotHomeUiState(isDrawerOpen = true, messages = existingMessages),
+        ) {
+            containerHost.processIntent(CopilotHomeIntent.OpenNewChat)
+            expectInternalState { copy(isDrawerOpen = false, messages = emptyList(), promptText = "") }
+        }
+    }
+
+    @Test
+    fun `ClearChat intent empties message list`() = runTest {
+        val viewModel = CopilotHomeViewModel()
+        val existingMessages = listOf(CopilotChatMessage.User("Consulta"))
+        viewModel.testWithInternalState(
+            this,
+            initialState = CopilotHomeUiState(messages = existingMessages),
+        ) {
+            containerHost.processIntent(CopilotHomeIntent.ClearChat)
+            expectInternalState { copy(messages = emptyList()) }
         }
     }
 

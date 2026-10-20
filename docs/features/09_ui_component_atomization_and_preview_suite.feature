@@ -61,4 +61,15 @@ Feature: UI Component Atomization and Preview Suite
     And Card - Copilot Prompt Hero is backported into M3 and HIG Component Library frames in zora-community.pen
     And headless offscreen preview screenshots card_copilot_prompt_hero and card_copilot_prompt_hero_hig are verified
 
+  Scenario: In-place conversational chat stream and zero-state conditional switching in Copilot Home
+    Given a driver on the Copilot Home screen
+    When the conversational message list is empty
+    Then the screen presents the Centered Welcome Hero and quick suggestions row
+    When the driver selects a suggestion chip or sends a prompt text
+    Then the Centered Welcome Hero and suggestions row are hidden
+    And the conversational chat stream (CopilotChatList) renders the user bubble and copilot assistant reply
+    And sending new messages automatically scrolls to the bottom
+    And triggering a new chat resets the message list and restores the welcome hero
+
+
 

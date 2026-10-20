@@ -95,6 +95,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align ZoraIgnitionGlyph with canonical 4-triangle square geometry and bounded Core Spectrum gradient
 - [x] Scenario: Adaptive ZoraPromptComposer with dynamic voicewaves and send action swap
 - [x] Scenario: Align CopilotPromptHero with Centered Welcome Hero in zora-community.pen and backport to Component Library
+- [x] Scenario: In-place conversational chat stream and zero-state conditional switching in Copilot Home
 
 ---
 
