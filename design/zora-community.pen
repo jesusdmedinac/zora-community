@@ -40053,7 +40053,7 @@
                   "fill": "$onSurfaceVariant",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Fila de micro-botones circulares de 28dp con iconos de Copiar, Reintentar, Me gusta y No me gusta.",
+                  "content": "Fila de micro-botones circulares de 32dp con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y Más opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 12,
                   "fontWeight": "normal"
@@ -40065,7 +40065,7 @@
                   "fill": "$primary",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "C\u00f3mo utilizarse: Colocar al pie de cada respuesta de Zora en el feed de chat para permitir copiar o calificar la sugerencia.",
+                  "content": "Cómo utilizarse: Colocar al pie de cada respuesta de Zora en el feed de chat para permitir copiar, reproducir audio, calificar, compartir o desplegar más opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -40115,8 +40115,8 @@
                         },
                         {
                           "type": "frame",
-                          "id": "LK6K4",
-                          "name": "Retry Button (Instance)",
+                          "id": "ActBarAudioM3",
+                          "name": "Audio Button (Instance)",
                           "width": 32,
                           "height": 32,
                           "fill": "$surfaceContainerLow",
@@ -40126,11 +40126,11 @@
                           "children": [
                             {
                               "type": "icon",
-                              "id": "qEbz7",
+                              "id": "icAudioM3",
                               "name": "Mini Icon",
                               "width": 15,
                               "height": 15,
-                              "icon": "rotate-ccw",
+                              "icon": "volume-2",
                               "library": "lucide",
                               "fill": "$onSurfaceVariant"
                             }
@@ -40177,6 +40177,52 @@
                               "width": 15,
                               "height": 15,
                               "icon": "thumbs-down",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ActBarShareM3",
+                          "name": "Share Button (Instance)",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$surfaceContainerLow",
+                          "cornerRadius": "$radiusFull",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "icShareM3",
+                              "name": "Mini Icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "share-2",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ActBarMoreM3",
+                          "name": "More Button (Instance)",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$surfaceContainerLow",
+                          "cornerRadius": "$radiusFull",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "icMoreM3",
+                              "name": "Mini Icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "more-horizontal",
                               "library": "lucide",
                               "fill": "$onSurfaceVariant"
                             }
@@ -43169,7 +43215,7 @@
                   "fill": "$onSurfaceVariant",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Fila de micro-botones circulares de 28pt con iconos de Copiar, Reintentar, Me gusta y No me gusta.",
+                  "content": "Fila de micro-botones circulares de 32pt con iconos de Copiar, Audio, Me gusta, No me gusta, Compartir y Más opciones.",
                   "fontFamily": "$fontBody",
                   "fontSize": 12,
                   "fontWeight": "normal"
@@ -43230,8 +43276,8 @@
                         },
                         {
                           "type": "frame",
-                          "id": "hdLsv",
-                          "name": "Retry Button (Instance)",
+                          "id": "ActBarAudioHIG",
+                          "name": "Audio Button (Instance)",
                           "width": 32,
                           "height": 32,
                           "fill": "$surfaceContainerLow",
@@ -43241,11 +43287,11 @@
                           "children": [
                             {
                               "type": "icon",
-                              "id": "A21SzX",
+                              "id": "icAudioHIG",
                               "name": "Mini Icon",
                               "width": 15,
                               "height": 15,
-                              "icon": "rotate-ccw",
+                              "icon": "volume-2",
                               "library": "lucide",
                               "fill": "$onSurfaceVariant"
                             }
@@ -43292,6 +43338,52 @@
                               "width": 15,
                               "height": 15,
                               "icon": "thumbs-down",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ActBarShareHIG",
+                          "name": "Share Button (Instance)",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$surfaceContainerLow",
+                          "cornerRadius": "$radiusFull",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "icShareHIG",
+                              "name": "Mini Icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "share-2",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ActBarMoreHIG",
+                          "name": "More Button (Instance)",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$surfaceContainerLow",
+                          "cornerRadius": "$radiusFull",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "icMoreHIG",
+                              "name": "Mini Icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "more-horizontal",
                               "library": "lucide",
                               "fill": "$onSurfaceVariant"
                             }

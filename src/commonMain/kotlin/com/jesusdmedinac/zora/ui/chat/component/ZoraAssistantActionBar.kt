@@ -11,13 +11,16 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.Res
+import zora_community.generated.resources.cd_audio_response
 import zora_community.generated.resources.cd_copy_response
 import zora_community.generated.resources.cd_dislike_response
 import zora_community.generated.resources.cd_like_response
+import zora_community.generated.resources.cd_more_actions
 import zora_community.generated.resources.cd_retry_response
+import zora_community.generated.resources.cd_share_response
 
 /**
- * Node ekGY6 / iqjWy / WIZZ0: Assistant micro-action bar (copy, retry, like, dislike).
+ * Node ekGY6 / iqjWy / WIZZ0: Assistant micro-action bar (copy, audio, thumbs-up, thumbs-down, share, more).
  * Conforms 100% to design/zora-community.pen specification:
  * 32x32dp circular buttons with 15x15dp vector icons and 10dp gap.
  */
@@ -25,9 +28,12 @@ import zora_community.generated.resources.cd_retry_response
 fun ZoraAssistantActionBar(
     modifier: Modifier = Modifier,
     onCopy: () -> Unit = {},
-    onRetry: () -> Unit = {},
+    onAudio: () -> Unit = {},
     onLike: () -> Unit = {},
     onDislike: () -> Unit = {},
+    onShare: () -> Unit = {},
+    onMore: () -> Unit = {},
+    onRetry: () -> Unit = {},
 ) {
     Row(
         modifier = modifier,
@@ -40,9 +46,9 @@ fun ZoraAssistantActionBar(
             onClick = onCopy,
         )
         ActionButton(
-            icon = ZoraTheme.icons.retry,
-            contentDescription = stringResource(Res.string.cd_retry_response),
-            onClick = onRetry,
+            icon = ZoraTheme.icons.audio,
+            contentDescription = stringResource(Res.string.cd_audio_response),
+            onClick = onAudio,
         )
         ActionButton(
             icon = ZoraTheme.icons.thumbsUp,
@@ -53,6 +59,16 @@ fun ZoraAssistantActionBar(
             icon = ZoraTheme.icons.thumbsDown,
             contentDescription = stringResource(Res.string.cd_dislike_response),
             onClick = onDislike,
+        )
+        ActionButton(
+            icon = ZoraTheme.icons.share,
+            contentDescription = stringResource(Res.string.cd_share_response),
+            onClick = onShare,
+        )
+        ActionButton(
+            icon = ZoraTheme.icons.more,
+            contentDescription = stringResource(Res.string.cd_more_actions),
+            onClick = onMore,
         )
     }
 }

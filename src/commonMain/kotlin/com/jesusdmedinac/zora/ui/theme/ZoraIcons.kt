@@ -8,6 +8,8 @@ import org.jetbrains.compose.resources.DrawableResource
 import zora_community.generated.resources.Res
 import zora_community.generated.resources.ic_add_hig
 import zora_community.generated.resources.ic_add_m3
+import zora_community.generated.resources.ic_audio_hig
+import zora_community.generated.resources.ic_audio_m3
 import zora_community.generated.resources.ic_avatar_hig
 import zora_community.generated.resources.ic_avatar_m3
 import zora_community.generated.resources.ic_copy_hig
@@ -20,10 +22,14 @@ import zora_community.generated.resources.ic_menu_hig
 import zora_community.generated.resources.ic_menu_m3
 import zora_community.generated.resources.ic_mic_hig
 import zora_community.generated.resources.ic_mic_m3
+import zora_community.generated.resources.ic_more_hig
+import zora_community.generated.resources.ic_more_m3
 import zora_community.generated.resources.ic_retry_hig
 import zora_community.generated.resources.ic_retry_m3
 import zora_community.generated.resources.ic_send_hig
 import zora_community.generated.resources.ic_send_m3
+import zora_community.generated.resources.ic_share_hig
+import zora_community.generated.resources.ic_share_m3
 import zora_community.generated.resources.ic_thumbs_down_hig
 import zora_community.generated.resources.ic_thumbs_down_m3
 import zora_community.generated.resources.ic_thumbs_up_hig
@@ -46,9 +52,12 @@ data class ZoraIconSet(
     val voiceWaves: DrawableResource,
     val send: DrawableResource,
     val copy: DrawableResource,
+    val audio: DrawableResource,
     val retry: DrawableResource,
     val thumbsUp: DrawableResource,
     val thumbsDown: DrawableResource,
+    val share: DrawableResource,
+    val more: DrawableResource,
 )
 
 /**
@@ -64,9 +73,12 @@ val ZoraM3Icons = ZoraIconSet(
     voiceWaves = Res.drawable.ic_voice_waves_m3,
     send = Res.drawable.ic_send_m3,
     copy = Res.drawable.ic_copy_m3,
+    audio = Res.drawable.ic_audio_m3,
     retry = Res.drawable.ic_retry_m3,
     thumbsUp = Res.drawable.ic_thumbs_up_m3,
     thumbsDown = Res.drawable.ic_thumbs_down_m3,
+    share = Res.drawable.ic_share_m3,
+    more = Res.drawable.ic_more_m3,
 )
 
 /**
@@ -82,9 +94,12 @@ val ZoraHIGIcons = ZoraIconSet(
     voiceWaves = Res.drawable.ic_voice_waves_hig,
     send = Res.drawable.ic_send_hig,
     copy = Res.drawable.ic_copy_hig,
+    audio = Res.drawable.ic_audio_hig,
     retry = Res.drawable.ic_retry_hig,
     thumbsUp = Res.drawable.ic_thumbs_up_hig,
     thumbsDown = Res.drawable.ic_thumbs_down_hig,
+    share = Res.drawable.ic_share_hig,
+    more = Res.drawable.ic_more_hig,
 )
 
 /**
@@ -143,6 +158,11 @@ object ZoraIcons {
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.copy
 
+    val audio: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.audio
+
     val retry: DrawableResource
         @Composable
         @ReadOnlyComposable
@@ -157,4 +177,14 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.thumbsDown
+
+    val share: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.share
+
+    val more: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.more
 }
