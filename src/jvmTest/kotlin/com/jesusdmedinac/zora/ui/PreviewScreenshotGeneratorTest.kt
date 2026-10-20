@@ -21,6 +21,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
+import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
 import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
 import com.jesusdmedinac.zora.ui.garage.component.GarageSlotsCard
@@ -296,6 +297,20 @@ class PreviewScreenshotGeneratorTest {
                         ),
                     ),
                 )
+            }
+        }
+
+        // Chat User Message Bubble (Material 3)
+        capture("card_chat_user_bubble", width = 390, height = 80, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                UserChatBubble(text = "Tengo un Honda Civic 2018")
+            }
+        }
+
+        // Chat User Message Bubble (HIG)
+        capture("card_chat_user_bubble_hig", width = 390, height = 80, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                UserChatBubble(text = "Tengo un Honda Civic 2018")
             }
         }
     }

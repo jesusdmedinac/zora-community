@@ -71,5 +71,13 @@ Feature: UI Component Atomization and Preview Suite
     And sending new messages automatically scrolls to the bottom
     And triggering a new chat resets the message list and restores the welcome hero
 
+  Scenario: Align UserChatBubble with Component Library specification in zora-community.pen
+    Given the User Message Bubble specification (node S9vmE in M3 and BBb2K in HIG) in design/zora-community.pen
+    When rendering UserChatBubble with SurfaceContainerHigh fill, 18dp corner radius, and 10x16dp padding
+    Then the bubble aligns to the right edge with 48dp leading inset
+    And the message text is styled in OnSurface color and FontBody typography
+    And headless offscreen preview screenshots card_chat_user_bubble and card_chat_user_bubble_hig are verified
+
+
 
 
