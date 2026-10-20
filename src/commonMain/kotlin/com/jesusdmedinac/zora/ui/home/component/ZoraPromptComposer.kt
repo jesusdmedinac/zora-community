@@ -12,15 +12,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
@@ -52,7 +62,28 @@ fun ZoraPromptComposer(
     placeholder: String = stringResource(Res.string.prompt_placeholder),
 ) {
     val platform = ZoraTheme.platform
-    val hasText = value.isNotEmpty()
+
+    // Local synchronous TextFieldValue to preserve cursor position and eliminate desktop keystroke/modifier lag
+    var textFieldValue by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = value,
+                selection = TextRange(value.length),
+            )
+        )
+    }
+
+    // Keep internal text state synchronized if external value changes (e.g. cleared on send or picked from suggestions)
+    LaunchedEffect(value) {
+        if (value != textFieldValue.text) {
+            textFieldValue = textFieldValue.copy(
+                text = value,
+                selection = TextRange(value.length),
+            )
+        }
+    }
+
+    val hasText = textFieldValue.text.isNotEmpty()
 
     val containerColor = when (platform) {
         ZoraPlatformVariant.HUMAN_INTERFACE -> Color(0x14FFFFFF)
@@ -116,7 +147,7 @@ fun ZoraPromptComposer(
                     .padding(horizontal = 4.dp),
                 contentAlignment = Alignment.CenterStart,
             ) {
-                if (value.isEmpty()) {
+                if (textFieldValue.text.isEmpty()) {
                     Text(
                         text = placeholder,
                         fontFamily = ZoraTokens.FontBody,
@@ -126,8 +157,13 @@ fun ZoraPromptComposer(
                     )
                 }
                 BasicTextField(
-                    value = value,
-                    onValueChange = onValueChange,
+                    value = textFieldValue,
+                    onValueChange = { newValue ->
+                        textFieldValue = newValue
+                        if (newValue.text != value) {
+                            onValueChange(newValue.text)
+                        }
+                    },
                     textStyle = TextStyle(
                         color = ZoraTokens.OnSurface,
                         fontFamily = ZoraTokens.FontBody,
@@ -136,6 +172,18 @@ fun ZoraPromptComposer(
                     cursorBrush = SolidColor(ZoraTokens.Primary),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Send,
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onSend = {
+                            if (textFieldValue.text.isNotBlank()) {
+                                val textToSend = textFieldValue.text
+                                textFieldValue = TextFieldValue("")
+                                onSend(textToSend)
+                            }
+                        },
+                    ),
                 )
             }
 
@@ -165,7 +213,9 @@ fun ZoraPromptComposer(
                     .background(ZoraTokens.Primary)
                     .clickable {
                         if (hasText) {
-                            onSend(value)
+                            val textToSend = textFieldValue.text
+                            textFieldValue = TextFieldValue("")
+                            onSend(textToSend)
                         } else {
                             onVoiceModeClick()
                         }
