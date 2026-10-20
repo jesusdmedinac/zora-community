@@ -41,9 +41,9 @@ import zora_community.generated.resources.badge_local_first
  */
 @Composable
 fun CopilotHomeScreen(
+    modifier: Modifier = Modifier,
     onNavigateToChat: (symptom: String?) -> Unit = {},
     onNavigateToGarage: () -> Unit = {},
-    modifier: Modifier = Modifier,
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
 ) {
     val uiState by viewModel.collectAsState()
