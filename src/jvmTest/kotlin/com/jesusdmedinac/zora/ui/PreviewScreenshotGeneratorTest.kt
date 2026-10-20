@@ -38,6 +38,11 @@ import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreenContent
 import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
+import com.jesusdmedinac.zora.ui.home.component.DrawerHeader
+import com.jesusdmedinac.zora.ui.home.component.DrawerMenuItem
+import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
+import com.jesusdmedinac.zora.ui.home.component.DrawerUserFooter
+import com.jesusdmedinac.zora.ui.home.component.NewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
@@ -416,6 +421,72 @@ class PreviewScreenshotGeneratorTest {
                 toastState = rememberZoraToastState(initialMessage = "Text copied"),
             )
         }
+
+        // Drawer Header (M3 & HIG)
+        capture("card_drawer_header_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerHeader(onCloseDrawer = {})
+            }
+        }
+        capture("card_drawer_header_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerHeader(onCloseDrawer = {})
+            }
+        }
+
+        // New Chat Button (M3 & HIG)
+        capture("card_drawer_new_chat_button_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                NewChatButton(onClick = {})
+            }
+        }
+        capture("card_drawer_new_chat_button_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                NewChatButton(onClick = {})
+            }
+        }
+
+        // Drawer Menu Item (M3 & HIG)
+        capture("card_drawer_menu_item_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerMenuItem(
+                    icon = ZoraTheme.icons.wrench,
+                    label = "Mecánico",
+                    badge = "Próximamente",
+                    enabled = false,
+                )
+            }
+        }
+        capture("card_drawer_menu_item_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerMenuItem(
+                    icon = ZoraTheme.icons.wrench,
+                    label = "Mecánico",
+                    badge = "Próximamente",
+                    enabled = false,
+                )
+            }
+        }
+
+        // Drawer Recent Chats (M3 & HIG)
+        capture("card_drawer_recent_chats_m3", width = 280, height = 200, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerRecentChatsList(onRecentQuestionClick = {})
+            }
+        }
+        capture("card_drawer_recent_chats_hig", width = 280, height = 200, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                DrawerRecentChatsList(onRecentQuestionClick = {})
+            }
+        }
+
+        // Drawer User Footer (M3 & HIG)
+        capture("card_drawer_user_footer_m3", width = 280, height = 100, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            DrawerUserFooter(onSettingsClick = {})
+        }
+        capture("card_drawer_user_footer_hig", width = 280, height = 100, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            DrawerUserFooter(onSettingsClick = {})
+        }
     }
 
     @Test
@@ -535,6 +606,22 @@ class PreviewScreenshotGeneratorTest {
                 onNavigateToChat = {},
                 onNavigateToGarage = {},
             )
+        }
+
+        capture("01b_shifted_drawer_open_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraShiftedDrawerLayout(
+                drawerOpen = true,
+                onCloseDrawer = {},
+                onNewChatClick = {},
+                onYonkeClick = {},
+                onRecentQuestionClick = {},
+                onSettingsClick = {},
+            ) {
+                CopilotHomeScreen(
+                    onNavigateToChat = {},
+                    onNavigateToGarage = {},
+                )
+            }
         }
 
         capture("01c_copilot_home_active_chat_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {

@@ -108,6 +108,18 @@ Feature: UI Component Atomization and Preview Suite
     And after a duration the checkmark reverts to the copy icon and the toast slides down
     And headless offscreen preview screenshots card_toast_m3, card_toast_hig, and 01d_copilot_home_active_toast are verified
 
+  Scenario: Align ZoraShiftedDrawerLayout and atomic navigation drawer components with zora-community.pen
+    Given the navigation drawer structure defined in frames VeQvH and RktHH of zora-community.pen
+    When rendering ZoraShiftedDrawerLayout with 280dp navigation drawer and shifted screen scrim card
+    Then DrawerHeader displays the core spectrum ignition glyph and crisp circular close button
+    And NewChatButton displays the plus vector icon with Primary tint and SurfaceContainerHigh background
+    And DrawerMenuItem renders package, wrench, and fuel vector icons with pill status badges
+    And DrawerRecentChatsList lists recent diagnostic consultations with text ellipsis
+    And DrawerUserFooter renders the top shader fade strip, avatar with 0.5dp border, and settings action button
+    And all emoji characters are eliminated and replaced with platform-adaptive vector drawables
+    And headless offscreen preview screenshots 01b_shifted_drawer_open, 01b_shifted_drawer_open_hig, and atomic drawer cards are verified
+
+
 
 
 

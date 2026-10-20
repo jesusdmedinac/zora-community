@@ -14,10 +14,14 @@ import zora_community.generated.resources.ic_avatar_hig
 import zora_community.generated.resources.ic_avatar_m3
 import zora_community.generated.resources.ic_check_hig
 import zora_community.generated.resources.ic_check_m3
+import zora_community.generated.resources.ic_close_hig
+import zora_community.generated.resources.ic_close_m3
 import zora_community.generated.resources.ic_copy_hig
 import zora_community.generated.resources.ic_copy_m3
 import zora_community.generated.resources.ic_dropdown_hig
 import zora_community.generated.resources.ic_dropdown_m3
+import zora_community.generated.resources.ic_fuel_hig
+import zora_community.generated.resources.ic_fuel_m3
 import zora_community.generated.resources.ic_garage_hig
 import zora_community.generated.resources.ic_garage_m3
 import zora_community.generated.resources.ic_menu_hig
@@ -26,10 +30,14 @@ import zora_community.generated.resources.ic_mic_hig
 import zora_community.generated.resources.ic_mic_m3
 import zora_community.generated.resources.ic_more_hig
 import zora_community.generated.resources.ic_more_m3
+import zora_community.generated.resources.ic_package_hig
+import zora_community.generated.resources.ic_package_m3
 import zora_community.generated.resources.ic_retry_hig
 import zora_community.generated.resources.ic_retry_m3
 import zora_community.generated.resources.ic_send_hig
 import zora_community.generated.resources.ic_send_m3
+import zora_community.generated.resources.ic_settings_hig
+import zora_community.generated.resources.ic_settings_m3
 import zora_community.generated.resources.ic_share_hig
 import zora_community.generated.resources.ic_share_m3
 import zora_community.generated.resources.ic_thumbs_down_hig
@@ -38,6 +46,8 @@ import zora_community.generated.resources.ic_thumbs_up_hig
 import zora_community.generated.resources.ic_thumbs_up_m3
 import zora_community.generated.resources.ic_voice_waves_hig
 import zora_community.generated.resources.ic_voice_waves_m3
+import zora_community.generated.resources.ic_wrench_hig
+import zora_community.generated.resources.ic_wrench_m3
 
 /**
  * Universal icon set contract for Zora Automotive Intelligence.
@@ -61,6 +71,11 @@ data class ZoraIconSet(
     val thumbsDown: DrawableResource,
     val share: DrawableResource,
     val more: DrawableResource,
+    val close: DrawableResource,
+    val packageIcon: DrawableResource,
+    val wrench: DrawableResource,
+    val fuel: DrawableResource,
+    val settings: DrawableResource,
 )
 
 /**
@@ -83,6 +98,11 @@ val ZoraM3Icons = ZoraIconSet(
     thumbsDown = Res.drawable.ic_thumbs_down_m3,
     share = Res.drawable.ic_share_m3,
     more = Res.drawable.ic_more_m3,
+    close = Res.drawable.ic_close_m3,
+    packageIcon = Res.drawable.ic_package_m3,
+    wrench = Res.drawable.ic_wrench_m3,
+    fuel = Res.drawable.ic_fuel_m3,
+    settings = Res.drawable.ic_settings_m3,
 )
 
 /**
@@ -105,6 +125,11 @@ val ZoraHIGIcons = ZoraIconSet(
     thumbsDown = Res.drawable.ic_thumbs_down_hig,
     share = Res.drawable.ic_share_hig,
     more = Res.drawable.ic_more_hig,
+    close = Res.drawable.ic_close_hig,
+    packageIcon = Res.drawable.ic_package_hig,
+    wrench = Res.drawable.ic_wrench_hig,
+    fuel = Res.drawable.ic_fuel_hig,
+    settings = Res.drawable.ic_settings_hig,
 )
 
 /**
@@ -197,4 +222,29 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.more
+
+    val close: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.close
+
+    val packageIcon: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.packageIcon
+
+    val wrench: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.wrench
+
+    val fuel: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.fuel
+
+    val settings: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.settings
 }

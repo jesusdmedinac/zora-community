@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.jesusdmedinac.zora.ui.theme.ZoraIcons
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
@@ -41,7 +42,7 @@ import zora_community.generated.resources.drawer_menu_parts
 
 /**
  * Navigation Drawer with Shifted Screen Scrim Card transition.
- * Synchronized with nodes VeQvH & RktHH from `zora-community.pen` v2.21.
+ * Synchronized with nodes VeQvH & RktHH from `zora-community.pen`.
  */
 @Composable
 fun ZoraShiftedDrawerLayout(
@@ -84,19 +85,19 @@ fun ZoraShiftedDrawerLayout(
                     .fillMaxWidth()
                     .padding(horizontal = ZoraTokens.SpacingMd)
             ) {
-                // Header: Brand & Close Button
+                // Header: Brand & Close Button (node Q0RPQ)
                 DrawerHeader(onCloseDrawer = onCloseDrawer)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // New Chat Button
+                // New Chat Button (node ay6yS)
                 NewChatButton(onClick = onNewChatClick)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // Menu items
+                // Menu items (nodes m2wOA, kzDef, HeQx3)
                 DrawerMenuItem(
-                    icon = "📦",
+                    icon = ZoraIcons.packageIcon,
                     label = stringResource(Res.string.drawer_menu_parts),
                     onClick = onYonkeClick,
                 )
@@ -104,7 +105,7 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 DrawerMenuItem(
-                    icon = "🔧",
+                    icon = ZoraIcons.wrench,
                     label = stringResource(Res.string.drawer_menu_mechanic),
                     badge = stringResource(Res.string.badge_coming_soon),
                     enabled = false,
@@ -113,7 +114,7 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 DrawerMenuItem(
-                    icon = "⛽",
+                    icon = ZoraIcons.fuel,
                     label = stringResource(Res.string.drawer_menu_gas_stations),
                     badge = stringResource(Res.string.badge_coming_soon),
                     enabled = false,
@@ -121,22 +122,16 @@ fun ZoraShiftedDrawerLayout(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Recent Chats Section
+                // Recent Chats Section (node fnMOF)
                 DrawerRecentChatsList(
                     onRecentQuestionClick = onRecentQuestionClick,
                 )
             }
 
-            // Pinned Footer (User Account & Settings)
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = ZoraTokens.SpacingMd)
-            ) {
-                DrawerUserFooter(
-                    onSettingsClick = onSettingsClick,
-                )
-            }
+            // Pinned Footer with Shader Fade Strip (node cBBbL)
+            DrawerUserFooter(
+                onSettingsClick = onSettingsClick,
+            )
         }
 
         // --- 2. Shifted Screen Scrim Card (Node QZYQv) ---
@@ -202,4 +197,3 @@ private fun ZoraShiftedDrawerLayoutPreview() {
         }
     }
 }
-

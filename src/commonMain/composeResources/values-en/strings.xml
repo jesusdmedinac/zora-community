@@ -72,13 +72,13 @@
     <string name="suggestion_battery_12v">12V Battery Health</string>
 
     <!-- Home: Drawer Navigation -->
-    <string name="action_new_chat">NEW DIAGNOSTIC</string>
+    <string name="action_new_chat">New conversation</string>
     <string name="action_new_chat_desc">Start clean session</string>
-    <string name="drawer_recent_chats">RECENT DIAGNOSTICS</string>
+    <string name="drawer_recent_chats">Recent</string>
     <string name="drawer_menu_garage">Virtual Garage</string>
-    <string name="drawer_menu_parts">Parts Catalog &amp; Salvage</string>
+    <string name="drawer_menu_parts">Yonke virtual</string>
     <string name="drawer_menu_mechanic">Mechanic</string>
-    <string name="drawer_menu_gas_stations">Gas Stations</string>
+    <string name="drawer_menu_gas_stations">Gas stations</string>
     <string name="drawer_menu_settings">System Settings</string>
     <string name="drawer_menu_close">Close Menu</string>
     <string name="badge_coming_soon">Coming Soon</string>

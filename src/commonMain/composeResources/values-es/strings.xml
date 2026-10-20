@@ -72,13 +72,13 @@
     <string name="suggestion_battery_12v">Estado de Batería 12V</string>
 
     <!-- Home: Drawer Navigation -->
-    <string name="action_new_chat">NUEVA CONVERSACIÓN</string>
+    <string name="action_new_chat">Nueva conversación</string>
     <string name="action_new_chat_desc">Iniciar sesión limpia</string>
     <string name="drawer_recent_chats">Recientes</string>
     <string name="drawer_menu_garage">Garaje Virtual</string>
     <string name="drawer_menu_parts">Yonke virtual</string>
     <string name="drawer_menu_mechanic">Mecánico</string>
-    <string name="drawer_menu_gas_stations">Gasolineras</string>
+    <string name="drawer_menu_gas_stations">Gasolinerías</string>
     <string name="drawer_menu_settings">Ajustes del Sistema</string>
     <string name="drawer_menu_close">Cerrar Menú</string>
     <string name="badge_coming_soon">Próximamente</string>
