@@ -86,7 +86,7 @@ fun ZoraShiftedDrawerLayout(
                     .padding(horizontal = ZoraTokens.SpacingMd)
             ) {
                 // Header: Brand & Close Button (node Q0RPQ)
-                DrawerHeader(onCloseDrawer = onCloseDrawer)
+                ZoraDrawerHeader(onCloseDrawer = onCloseDrawer)
 
                 Spacer(modifier = Modifier.height(16.dp))
 

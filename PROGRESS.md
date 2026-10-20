@@ -102,6 +102,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align ActionButton with transparent background and OnSurface typography matching AssistantChatBubble
 - [x] Scenario: Animated copy-to-checkmark transition, clipboard integration, and bottom toast notification
 - [x] Scenario: Align ZoraShiftedDrawerLayout and atomic navigation drawer components with zora-community.pen
+- [x] Scenario: Align ZoraDrawerHeader with canonical ignition glyph and accessible close button
 
 ---
 

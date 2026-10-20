@@ -38,7 +38,7 @@ import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreenContent
 import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
-import com.jesusdmedinac.zora.ui.home.component.DrawerHeader
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
 import com.jesusdmedinac.zora.ui.home.component.DrawerMenuItem
 import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
 import com.jesusdmedinac.zora.ui.home.component.DrawerUserFooter
@@ -425,12 +425,12 @@ class PreviewScreenshotGeneratorTest {
         // Drawer Header (M3 & HIG)
         capture("card_drawer_header_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerHeader(onCloseDrawer = {})
+                ZoraDrawerHeader(onCloseDrawer = {}, animatedGlyph = false)
             }
         }
         capture("card_drawer_header_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
-                DrawerHeader(onCloseDrawer = {})
+                ZoraDrawerHeader(onCloseDrawer = {}, animatedGlyph = false)
             }
         }
 

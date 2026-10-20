@@ -119,6 +119,15 @@ Feature: UI Component Atomization and Preview Suite
     And all emoji characters are eliminated and replaced with platform-adaptive vector drawables
     And headless offscreen preview screenshots 01b_shifted_drawer_open, 01b_shifted_drawer_open_hig, and atomic drawer cards are verified
 
+  Scenario: Align ZoraDrawerHeader with canonical ignition glyph and accessible close button
+    Given the drawer header defined in node Q0RPQ of zora-community.pen
+    When rendering ZoraDrawerHeader with 24dp ignition glyph and 36dp circular close button
+    Then the canonical ZoraIgnitionGlyph is displayed with subtle breathing scale animation
+    And the brand title "Zora" is rendered in FontHeadline 18sp bold
+    And the close button provides circular ripple feedback and semantic Role.Button accessibility
+    And headless offscreen preview screenshots card_drawer_header_m3 and card_drawer_header_hig are verified
+
+
 
 
 
