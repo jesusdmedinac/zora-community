@@ -61,9 +61,9 @@ private object RandomSource {
 @Composable
 fun OnboardingChatScreen(
     initialSymptom: String?,
-    vehicleModel: String = "Honda Civic 2018",
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    vehicleModel: String = "Honda Civic 2018",
 ) {
     var selectedEngine by remember { mutableStateOf("2.0L_NA") }
     var inputMessage by remember { mutableStateOf("") }

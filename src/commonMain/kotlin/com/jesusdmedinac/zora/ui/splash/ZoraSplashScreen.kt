@@ -44,9 +44,9 @@ import kotlinx.coroutines.delay
  */
 @Composable
 fun ZoraSplashScreen(
+    modifier: Modifier = Modifier,
     onIgnitionComplete: () -> Unit = {},
     durationMillis: Int = 2400,
-    modifier: Modifier = Modifier
 ) {
     val topSystemPadding = zoraTopEdgePadding()
 

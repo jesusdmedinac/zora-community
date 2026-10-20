@@ -183,6 +183,15 @@ Feature: UI Component Atomization and Preview Suite
     And SelectRecentQuestion updates selectedRecentQuestion, closes drawer and emits LoadRecentChat
     And ClickSettings and ClickProfile close drawer and emit their respective navigation side effects
 
+  Scenario: Standardize Composable modifier parameter order across all UI components
+    Given the Jetpack Compose API Guidelines for Composable function parameter ordering
+    When auditing all Composable functions across the codebase
+    Then required parameters precede optional parameters
+    And modifier is the first optional parameter with default Modifier
+    And other optional parameters follow modifier
+    And trailing composable lambda is positioned last
+
+
 
 
 

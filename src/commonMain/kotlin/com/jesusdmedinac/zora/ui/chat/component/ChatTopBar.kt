@@ -32,9 +32,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun ChatTopBar(
-    vehicleModel: String = "Honda Civic 2018",
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    vehicleModel: String = "Honda Civic 2018",
 ) {
     Row(
         modifier = modifier

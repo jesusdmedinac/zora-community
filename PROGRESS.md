@@ -109,6 +109,8 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Align ZoraDrawerUserFooter with pinned layout, shader fade, and interactive gear settings button
 - [x] Scenario: Align ZoraDrawerRecentChatsList and ZoraDrawerRecentChatItem with active selection and press micro-interactions
 - [x] Scenario: Manage Shifted Drawer navigation and selection state via Orbit MVI ViewModel
+- [x] Scenario: Standardize Composable modifier parameter order across all UI components
+
 
 ---
 

@@ -36,12 +36,12 @@ import zora_community.generated.resources.telemetry_status_secure
  */
 @Composable
 fun VehicleStatusTelemetryCard(
+    modifier: Modifier = Modifier,
     vehicleName: String = "Honda Civic EX 2.0L",
     canBusStatus: String = stringResource(Res.string.telemetry_can_bus_status),
     batteryVoltage: String = "12.6 V",
     dtcCount: String = "0",
     prescriptionStatus: String = "Vault OK",
-    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier

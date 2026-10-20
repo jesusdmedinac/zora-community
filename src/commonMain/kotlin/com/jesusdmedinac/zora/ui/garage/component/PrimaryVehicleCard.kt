@@ -34,12 +34,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun PrimaryVehicleCard(
+    modifier: Modifier = Modifier,
     vehicleName: String = "2018 Honda Civic EX",
     engineSummary: String = "2.0L 4-Cylinder · FWD Hatchback",
     maskedVin: String = "VIN: 2HGFC2F59JH02****",
     odometerText: String = "82,450 km",
     healthScoreText: String = "94% Normal",
-    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
