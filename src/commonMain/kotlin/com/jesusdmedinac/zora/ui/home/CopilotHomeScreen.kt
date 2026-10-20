@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -19,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastHost
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastState
 import com.jesusdmedinac.zora.ui.chat.component.rememberZoraToastState
+import com.jesusdmedinac.zora.ui.home.ZoraShiftedDrawerViewModel
 import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
 import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
@@ -29,6 +31,7 @@ import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
+import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
@@ -54,6 +57,7 @@ fun CopilotHomeScreen(
     onNavigateToGarage: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String?) -> Unit = {},
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
+    drawerViewModel: ZoraShiftedDrawerViewModel = viewModel { ZoraShiftedDrawerViewModel() },
 ) {
     val uiState by viewModel.collectAsState()
     val toastState = rememberZoraToastState()
@@ -73,12 +77,27 @@ fun CopilotHomeScreen(
         }
     }
 
-    CopilotHomeScreenContent(
-        uiState = uiState,
-        onIntent = viewModel::processIntent,
+    LaunchedEffect(uiState.isDrawerOpen) {
+        if (uiState.isDrawerOpen) {
+            drawerViewModel.processIntent(ZoraDrawerIntent.OpenDrawer)
+        }
+    }
+
+    ZoraShiftedDrawerLayout(
         modifier = modifier,
-        toastState = toastState,
-    )
+        viewModel = drawerViewModel,
+        onNavigateToNewChat = { onNavigateToChat(null) },
+        onNavigateToParts = onNavigateToGarage,
+        onNavigateToPaywall = { sourceReason -> onNavigateToPaywall(sourceReason) },
+        onLoadRecentChat = { question -> onNavigateToChat(question) },
+    ) {
+        CopilotHomeScreenContent(
+            uiState = uiState,
+            onIntent = viewModel::processIntent,
+            onOpenDrawer = { drawerViewModel.processIntent(ZoraDrawerIntent.OpenDrawer) },
+            toastState = toastState,
+        )
+    }
 }
 
 /**
@@ -89,37 +108,28 @@ fun CopilotHomeScreenContent(
     uiState: CopilotHomeUiState,
     onIntent: (CopilotHomeIntent) -> Unit,
     modifier: Modifier = Modifier,
+    onOpenDrawer: () -> Unit = { onIntent(CopilotHomeIntent.SetDrawerOpen(true)) },
     toastState: ZoraToastState = rememberZoraToastState(),
 ) {
     val coroutineScope = rememberCoroutineScope()
     val textCopiedMessage = stringResource(Res.string.toast_text_copied)
 
-    ZoraShiftedDrawerLayout(
-        drawerOpen = uiState.isDrawerOpen,
-        onCloseDrawer = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
-        onNewChatClick = { onIntent(CopilotHomeIntent.OpenNewChat) },
-        onYonkeClick = { onIntent(CopilotHomeIntent.OpenGarage) },
-        onMechanicClick = { onIntent(CopilotHomeIntent.OpenPaywall("drawer_menu_mechanic")) },
-        onGasStationsClick = { onIntent(CopilotHomeIntent.OpenPaywall("drawer_menu_gas_stations")) },
-        onRecentQuestionClick = { question -> onIntent(CopilotHomeIntent.SelectRecentChat(question)) },
-        onSettingsClick = { onIntent(CopilotHomeIntent.SetDrawerOpen(false)) },
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(ZoraTokens.Canvas)
+            .zoraEdgePadding(),
     ) {
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .background(ZoraTokens.Canvas)
-                .zoraEdgePadding(),
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceBetween,
-            ) {
-                // 1. Top App Bar
-                ZoraTopAppBar(
-                    onOpenDrawer = { onIntent(CopilotHomeIntent.SetDrawerOpen(true)) },
-                    onGarageClick = { onIntent(CopilotHomeIntent.OpenGarage) },
-                    statusBadge = stringResource(Res.string.badge_local_first),
-                )
+            // 1. Top App Bar
+            ZoraTopAppBar(
+                onOpenDrawer = onOpenDrawer,
+                onGarageClick = { onIntent(CopilotHomeIntent.OpenGarage) },
+                statusBadge = stringResource(Res.string.badge_local_first),
+            )
 
                 // 2. Central Conversational Area: Welcome Hero vs Active Chat Stream
                 if (uiState.messages.isEmpty()) {
@@ -178,7 +188,6 @@ fun CopilotHomeScreenContent(
             )
         }
     }
-}
 
 @Preview
 @Composable

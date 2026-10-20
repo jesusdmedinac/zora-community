@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jesusdmedinac.zora.ui.theme.ZoraIcons
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
@@ -203,8 +204,8 @@ fun ZoraShiftedDrawerLayout(
  */
 @Composable
 fun ZoraShiftedDrawerLayout(
-    viewModel: ZoraShiftedDrawerViewModel,
     modifier: Modifier = Modifier,
+    viewModel: ZoraShiftedDrawerViewModel = viewModel { ZoraShiftedDrawerViewModel() },
     onNavigateToNewChat: () -> Unit = {},
     onNavigateToParts: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String) -> Unit = {},
@@ -260,6 +261,16 @@ private fun ZoraShiftedDrawerLayoutPreview() {
             onSettingsClick = {},
         ) {
             Text("Main Content")
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ZoraShiftedDrawerLayoutStatefulPreview() {
+    ZoraTheme {
+        ZoraShiftedDrawerLayout {
+            Text("Main Content with ViewModel")
         }
     }
 }

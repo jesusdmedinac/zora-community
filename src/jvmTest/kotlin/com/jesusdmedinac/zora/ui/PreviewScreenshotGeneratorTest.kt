@@ -171,9 +171,9 @@ class PreviewScreenshotGeneratorTest {
                 onRecentQuestionClick = {},
                 onSettingsClick = {},
             ) {
-                CopilotHomeScreen(
-                    onNavigateToChat = {},
-                    onNavigateToGarage = {},
+                CopilotHomeScreenContent(
+                    uiState = CopilotHomeUiState(),
+                    onIntent = {},
                 )
             }
         }
@@ -656,9 +656,9 @@ class PreviewScreenshotGeneratorTest {
                 onRecentQuestionClick = {},
                 onSettingsClick = {},
             ) {
-                CopilotHomeScreen(
-                    onNavigateToChat = {},
-                    onNavigateToGarage = {},
+                CopilotHomeScreenContent(
+                    uiState = CopilotHomeUiState(),
+                    onIntent = {},
                 )
             }
         }
