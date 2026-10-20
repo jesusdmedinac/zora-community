@@ -173,6 +173,17 @@ Feature: UI Component Atomization and Preview Suite
     And the component provides semantic Role.Button accessibility and backward compatibility aliases
     And headless offscreen preview screenshots card_drawer_recent_chats_m3, card_drawer_recent_chats_hig, card_drawer_recent_chats_selected_m3, and card_drawer_recent_chats_selected_hig are verified
 
+  Scenario: Manage Shifted Drawer navigation and selection state via Orbit MVI ViewModel
+    Given an instance of ZoraShiftedDrawerViewModel with initial state
+    When processing drawer navigation and selection intents
+    Then SetDrawerOpen, OpenDrawer, and CloseDrawer update drawer visibility and emit CloseDrawer
+    And ClickNewChat closes drawer and emits NavigateToNewChat
+    And ClickParts sets selectedMenuItem to PARTS, closes drawer and emits NavigateToPartsFeed
+    And ClickMechanic and ClickGasStations close drawer and emit NavigateToPaywall with the corresponding reason
+    And SelectRecentQuestion updates selectedRecentQuestion, closes drawer and emits LoadRecentChat
+    And ClickSettings and ClickProfile close drawer and emit their respective navigation side effects
+
+
 
 
 

@@ -39,6 +39,12 @@ import zora_community.generated.resources.badge_coming_soon
 import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
+import zora_community.generated.resources.tier_pro
+import com.jesusdmedinac.zora.ui.home.ZoraShiftedDrawerViewModel
+import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
+import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 /**
  * Navigation Drawer with Shifted Screen Scrim Card transition.
@@ -54,7 +60,11 @@ fun ZoraShiftedDrawerLayout(
     onGasStationsClick: () -> Unit = {},
     onRecentQuestionClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
+    modifier: Modifier = Modifier,
     selectedRecentQuestion: String? = null,
+    userName: String = "Jesús Medina",
+    accountTier: String = stringResource(Res.string.tier_pro),
+    onProfileClick: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
     val drawerWidth = 280.dp
@@ -70,7 +80,7 @@ fun ZoraShiftedDrawerLayout(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
     ) {
@@ -134,7 +144,10 @@ fun ZoraShiftedDrawerLayout(
 
             // Pinned Footer with Shader Fade Strip (node cBBbL)
             ZoraDrawerUserFooter(
+                userName = userName,
+                accountTier = accountTier,
                 onSettingsClick = onSettingsClick,
+                onProfileClick = onProfileClick,
             )
         }
 
@@ -183,6 +196,55 @@ fun ZoraShiftedDrawerLayout(
             }
         }
     }
+}
+
+/**
+ * Stateful overload for [ZoraShiftedDrawerLayout] connecting directly to [ZoraShiftedDrawerViewModel].
+ */
+@Composable
+fun ZoraShiftedDrawerLayout(
+    viewModel: ZoraShiftedDrawerViewModel,
+    modifier: Modifier = Modifier,
+    onNavigateToNewChat: () -> Unit = {},
+    onNavigateToParts: () -> Unit = {},
+    onNavigateToPaywall: (sourceReason: String) -> Unit = {},
+    onLoadRecentChat: (question: String) -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},
+    onNavigateToProfile: () -> Unit = {},
+    content: @Composable () -> Unit,
+) {
+    val uiState by viewModel.collectAsState()
+
+    viewModel.collectSideEffect { sideEffect ->
+        when (sideEffect) {
+            is ZoraDrawerSideEffect.NavigateToNewChat -> onNavigateToNewChat()
+            is ZoraDrawerSideEffect.NavigateToPartsFeed -> onNavigateToParts()
+            is ZoraDrawerSideEffect.NavigateToPaywall -> onNavigateToPaywall(sideEffect.sourceReason)
+            is ZoraDrawerSideEffect.LoadRecentChat -> onLoadRecentChat(sideEffect.question)
+            is ZoraDrawerSideEffect.NavigateToSettings -> onNavigateToSettings()
+            is ZoraDrawerSideEffect.NavigateToProfile -> onNavigateToProfile()
+            is ZoraDrawerSideEffect.CloseDrawer -> { /* Handled in state */ }
+        }
+    }
+
+    ZoraShiftedDrawerLayout(
+        drawerOpen = uiState.isOpen,
+        onCloseDrawer = { viewModel.processIntent(ZoraDrawerIntent.CloseDrawer) },
+        onNewChatClick = { viewModel.processIntent(ZoraDrawerIntent.ClickNewChat) },
+        onYonkeClick = { viewModel.processIntent(ZoraDrawerIntent.ClickParts) },
+        onMechanicClick = { viewModel.processIntent(ZoraDrawerIntent.ClickMechanic) },
+        onGasStationsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickGasStations) },
+        onRecentQuestionClick = { question ->
+            viewModel.processIntent(ZoraDrawerIntent.SelectRecentQuestion(question))
+        },
+        onSettingsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickSettings) },
+        modifier = modifier,
+        selectedRecentQuestion = uiState.selectedRecentQuestion,
+        userName = uiState.userName,
+        accountTier = uiState.accountTier,
+        onProfileClick = { viewModel.processIntent(ZoraDrawerIntent.ClickProfile) },
+        content = content,
+    )
 }
 
 @Preview
