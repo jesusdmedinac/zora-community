@@ -21,6 +21,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
+import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
 import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
@@ -311,6 +312,24 @@ class PreviewScreenshotGeneratorTest {
         capture("card_chat_user_bubble_hig", width = 390, height = 80, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
                 UserChatBubble(text = "Tengo un Honda Civic 2018")
+            }
+        }
+
+        // Chat Assistant Message (Containerless Material 3)
+        capture("card_chat_assistant_message", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                AssistantChatBubble(
+                    text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en rotores delanteros.",
+                )
+            }
+        }
+
+        // Chat Assistant Message (Containerless HIG)
+        capture("card_chat_assistant_message_hig", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                AssistantChatBubble(
+                    text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en rotores delanteros.",
+                )
             }
         }
     }

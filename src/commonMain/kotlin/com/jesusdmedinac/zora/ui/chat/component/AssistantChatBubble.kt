@@ -1,51 +1,67 @@
 package com.jesusdmedinac.zora.ui.chat.component
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
- * Chat bubble displaying AI assistant responses with dark surface border.
+ * AI Assistant chat message content.
+ * Conforms 100% to the containerless specification in design/zora-community.pen:
+ * rendered directly over $canvas without gray container boxes or borders.
  */
 @Composable
 fun AssistantChatBubble(
     text: String,
     modifier: Modifier = Modifier,
 ) {
+    val platform = ZoraTheme.platform
+    val fontSize = when (platform) {
+        ZoraPlatformVariant.HUMAN_INTERFACE -> 15.sp
+        ZoraPlatformVariant.MATERIAL3 -> 15.sp
+    }
+
     Box(
         modifier = modifier
-            .clip(ZoraTokens.ShapeLg)
-            .background(ZoraTokens.SurfaceContainer)
-            .border(1.dp, ZoraTokens.OutlineVariant, ZoraTokens.ShapeLg)
-            .padding(14.dp),
+            .fillMaxWidth()
+            .padding(vertical = 2.dp),
     ) {
         Text(
             text = text,
             fontFamily = ZoraTokens.FontBody,
-            fontSize = 14.sp,
+            fontSize = fontSize,
+            lineHeight = 22.sp,
             color = ZoraTokens.OnSurface,
-            lineHeight = 20.sp,
         )
     }
 }
 
 @Preview
 @Composable
-private fun AssistantChatBubblePreview() {
-    ZoraTheme {
+private fun AssistantChatBubbleM3Preview() {
+    ZoraTheme(platformVariant = ZoraPlatformVariant.MATERIAL3) {
         AssistantChatBubble(
-            text = "He detectado tu vehículo como Honda Civic 2018 mediante CAN-Bus. Diagnóstico verificado.",
+            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en los rotores de freno delanteros.",
         )
     }
 }
+
+@Preview
+@Composable
+private fun AssistantChatBubbleHIGPreview() {
+    ZoraTheme(platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+        AssistantChatBubble(
+            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en los rotores de freno delanteros.",
+        )
+    }
+}
+
 

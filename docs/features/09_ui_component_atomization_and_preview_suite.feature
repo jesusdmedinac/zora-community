@@ -78,6 +78,14 @@ Feature: UI Component Atomization and Preview Suite
     And the message text is styled in OnSurface color and FontBody typography
     And headless offscreen preview screenshots card_chat_user_bubble and card_chat_user_bubble_hig are verified
 
+  Scenario: Align AssistantChatBubble with containerless design specification in zora-community.pen
+    Given the Assistant Chat directive ("Containerless: sin burbuja gris, directo sobre $canvas") in design/zora-community.pen
+    When rendering AssistantChatBubble without container backgrounds, clips, or borders
+    Then the response text renders directly over the canvas in OnSurface color with 15sp and 22sp line height
+    And generative UI cards and ZoraAssistantActionBar align organically underneath
+    And headless offscreen preview screenshots card_chat_assistant_message and card_chat_assistant_message_hig are verified
+
+
 
 
 
