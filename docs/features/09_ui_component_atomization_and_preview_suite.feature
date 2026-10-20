@@ -127,6 +127,16 @@ Feature: UI Component Atomization and Preview Suite
     And the close button provides circular ripple feedback and semantic Role.Button accessibility
     And headless offscreen preview screenshots card_drawer_header_m3 and card_drawer_header_hig are verified
 
+  Scenario: Align ZoraNewChatButton with dynamic press feedback and parameterized slot contract
+    Given the new chat action button defined in node ay6yS of zora-community.pen
+    When rendering ZoraNewChatButton with 44dp height and full capsule corner radius
+    Then the button scales smoothly to 0.98x with border and container color transition on press
+    And the leading icon displays the plus vector drawable tinted in Primary amber
+    And the label is rendered in FontBody 14sp semibold with OnSurface fill
+    And the component provides semantic Role.Button accessibility and backward compatibility alias
+    And headless offscreen preview screenshots card_drawer_new_chat_button_m3 and card_drawer_new_chat_button_hig are verified
+
+
 
 
 

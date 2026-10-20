@@ -91,7 +91,7 @@ fun ZoraShiftedDrawerLayout(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // New Chat Button (node ay6yS)
-                NewChatButton(onClick = onNewChatClick)
+                ZoraNewChatButton(onClick = onNewChatClick)
 
                 Spacer(modifier = Modifier.height(20.dp))
 

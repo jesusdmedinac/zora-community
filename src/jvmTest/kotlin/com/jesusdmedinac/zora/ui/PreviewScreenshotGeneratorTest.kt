@@ -42,7 +42,7 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
 import com.jesusdmedinac.zora.ui.home.component.DrawerMenuItem
 import com.jesusdmedinac.zora.ui.home.component.DrawerRecentChatsList
 import com.jesusdmedinac.zora.ui.home.component.DrawerUserFooter
-import com.jesusdmedinac.zora.ui.home.component.NewChatButton
+import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
@@ -437,12 +437,12 @@ class PreviewScreenshotGeneratorTest {
         // New Chat Button (M3 & HIG)
         capture("card_drawer_new_chat_button_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
             Box(modifier = Modifier.padding(16.dp)) {
-                NewChatButton(onClick = {})
+                ZoraNewChatButton(onClick = {})
             }
         }
         capture("card_drawer_new_chat_button_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             Box(modifier = Modifier.padding(16.dp)) {
-                NewChatButton(onClick = {})
+                ZoraNewChatButton(onClick = {})
             }
         }
 
