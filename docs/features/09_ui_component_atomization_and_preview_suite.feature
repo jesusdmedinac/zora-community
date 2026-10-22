@@ -198,6 +198,14 @@ Feature: UI Component Atomization and Preview Suite
     And ZoraShiftedDrawerLayoutContent provides the stateless presentation receiving primitive parameters
     And OnboardingChatMessage provides a distinct message model hierarchy for diagnostic triage
 
+  Scenario: Synchronize chat history reactively between ZoraShiftedDrawerViewModel, MechanicalPrescriptionRepository, and CopilotHomeViewModel
+    Given the shared MechanicalPrescriptionRepository in ZoraRepositories
+    When the driver sends a diagnostic prompt in CopilotHomeViewModel
+    Then the triage entity is saved to the local prescription repository
+    And ZoraShiftedDrawerViewModel reactively updates recentQuestions from the vehicle flow
+    And selecting a recent chat loads the previous diagnostic hypothesis into CopilotHomeScreen
+
+
 
 
 

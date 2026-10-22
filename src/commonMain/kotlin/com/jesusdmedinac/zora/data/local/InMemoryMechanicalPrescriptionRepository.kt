@@ -10,8 +10,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-class InMemoryMechanicalPrescriptionRepository : MechanicalPrescriptionRepository {
-    private val store = MutableStateFlow<Map<String, MechanicalPrescriptionEntity>>(emptyMap())
+class InMemoryMechanicalPrescriptionRepository(
+    initialEntities: List<MechanicalPrescriptionEntity> = emptyList(),
+) : MechanicalPrescriptionRepository {
+    private val store = MutableStateFlow<Map<String, MechanicalPrescriptionEntity>>(
+        initialEntities.associateBy { it.symptomId }
+    )
     private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun insertLocalTriage(entity: MechanicalPrescriptionEntity): Result<Unit> {

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastHost
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastState
 import com.jesusdmedinac.zora.ui.chat.component.rememberZoraToastState
@@ -57,7 +58,9 @@ fun CopilotHomeScreen(
     onNavigateToGarage: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String?) -> Unit = {},
     viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
-    drawerViewModel: ZoraShiftedDrawerViewModel = viewModel { ZoraShiftedDrawerViewModel() },
+    drawerViewModel: ZoraShiftedDrawerViewModel = viewModel {
+        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository)
+    },
 ) {
     val uiState by viewModel.collectAsState()
     val toastState = rememberZoraToastState()
@@ -86,10 +89,12 @@ fun CopilotHomeScreen(
     ZoraShiftedDrawerLayout(
         modifier = modifier,
         viewModel = drawerViewModel,
-        onNavigateToNewChat = { onNavigateToChat(null) },
+        onNavigateToNewChat = { viewModel.processIntent(CopilotHomeIntent.OpenNewChat) },
         onNavigateToParts = onNavigateToGarage,
         onNavigateToPaywall = { sourceReason -> onNavigateToPaywall(sourceReason) },
-        onLoadRecentChat = { question -> onNavigateToChat(question) },
+        onLoadRecentChat = { question ->
+            viewModel.processIntent(CopilotHomeIntent.SelectRecentChat(question))
+        },
     ) {
         CopilotHomeScreenContent(
             uiState = uiState,

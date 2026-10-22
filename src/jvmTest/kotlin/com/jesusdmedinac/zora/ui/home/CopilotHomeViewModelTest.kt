@@ -1,14 +1,20 @@
 package com.jesusdmedinac.zora.ui.home
 
+import com.jesusdmedinac.zora.data.local.InMemoryMechanicalPrescriptionRepository
+import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.orbitmvi.orbit.test.testWithInternalState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class CopilotHomeViewModelTest {
@@ -60,7 +66,10 @@ class CopilotHomeViewModelTest {
     @Test
     fun `SendPrompt intent appends messages to chat stream and posts ScrollToBottom side effect`() = runTest {
         var idCount = 0
-        val viewModel = CopilotHomeViewModel(messageIdGenerator = { prefix -> "${prefix}_${++idCount}" })
+        val viewModel = CopilotHomeViewModel(
+            repository = InMemoryMechanicalPrescriptionRepository(),
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+        )
         val prompt = "¿Por qué vibra el volante?"
         viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(promptText = prompt)) {
             containerHost.processIntent(CopilotHomeIntent.SendPrompt(prompt))
@@ -83,7 +92,10 @@ class CopilotHomeViewModelTest {
     @Test
     fun `SelectSuggestion intent adds messages to chat stream and posts ScrollToBottom side effect`() = runTest {
         var idCount = 0
-        val viewModel = CopilotHomeViewModel(messageIdGenerator = { prefix -> "${prefix}_${++idCount}" })
+        val viewModel = CopilotHomeViewModel(
+            repository = InMemoryMechanicalPrescriptionRepository(),
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+        )
         val symptom = "Humo azul"
         viewModel.testWithInternalState(this) {
             containerHost.processIntent(CopilotHomeIntent.SelectSuggestion(symptom))
@@ -178,5 +190,112 @@ class CopilotHomeViewModelTest {
                 )
             }
         }
+    }
+
+    @Test
+    fun `SelectRecentChat loads seeded hypothesis from repository`() = runTest {
+        var idCount = 0
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val question = "¿Qué es la bujía?"
+        val customHypothesis = "La bujía genera la chispa de ignición."
+        val now = 1729000000000L
+        repo.insertLocalTriage(
+            com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity(
+                symptomId = "seed_1",
+                vehicleId = "honda_civic_2018",
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = question,
+                localPreliminaryHypothesis = customHypothesis,
+                createdAtMs = now,
+                updatedAtMs = now,
+            )
+        )
+
+        val viewModel = CopilotHomeViewModel(
+            repository = repo,
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+        )
+        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(isDrawerOpen = true)) {
+            containerHost.processIntent(CopilotHomeIntent.SelectRecentChat(question))
+            expectInternalState {
+                copy(
+                    isDrawerOpen = false,
+                    messages = listOf(
+                        CopilotChatMessage.User(text = question, id = "user_1"),
+                        CopilotChatMessage.Assistant(text = customHypothesis, id = "asst_2"),
+                    ),
+                    promptText = "",
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
+    }
+
+    @Test
+    fun `SendPrompt persists new triage entity into repository`() = runTest {
+        var idCount = 0
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val fixedTime = 1729500000000L
+        val viewModel = CopilotHomeViewModel(
+            repository = repo,
+            timeProvider = { fixedTime },
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+        )
+        val prompt = "¿Por qué vibra el volante?"
+        viewModel.testWithInternalState(this) {
+            containerHost.processIntent(CopilotHomeIntent.SendPrompt(prompt))
+            expectInternalState {
+                copy(
+                    promptText = "",
+                    messages = listOf(
+                        CopilotChatMessage.User(text = prompt, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(prompt, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                    ),
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
+
+        val entities = repo.observeByVehicle("honda_civic_2018").first()
+        val saved = entities.find { it.rawSymptomDescription == prompt }
+        assertNotNull(saved)
+        assertEquals(fixedTime, saved.createdAtMs)
+        assertEquals("2HGFC2F5", saved.vinTechnicalPrefix)
+    }
+
+    @Test
+    fun `SelectSuggestion persists new triage entity into repository`() = runTest {
+        var idCount = 0
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val fixedTime = 1729600000000L
+        val viewModel = CopilotHomeViewModel(
+            repository = repo,
+            timeProvider = { fixedTime },
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+        )
+        val symptom = "Humo azul"
+        viewModel.testWithInternalState(this) {
+            containerHost.processIntent(CopilotHomeIntent.SelectSuggestion(symptom))
+            expectInternalState {
+                copy(
+                    messages = listOf(
+                        CopilotChatMessage.User(text = symptom, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(symptom, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                    ),
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
+
+        val entities = repo.observeByVehicle("honda_civic_2018").first()
+        val saved = entities.find { it.rawSymptomDescription == symptom }
+        assertNotNull(saved)
+        assertEquals(fixedTime, saved.createdAtMs)
     }
 }

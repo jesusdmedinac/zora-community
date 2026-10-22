@@ -1,17 +1,27 @@
 package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
+import com.jesusdmedinac.zora.data.local.ZoraRepositories
+import com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity
+import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
+import kotlinx.coroutines.flow.firstOrNull
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 import org.orbitmvi.orbit.OrbitContainerHost
 import org.orbitmvi.orbit.viewmodel.orbitContainer
 
 /**
  * ViewModel managing the state, intents, and side effects for Copilot Home via Orbit MVI.
  */
+@OptIn(ExperimentalTime::class)
 class CopilotHomeViewModel(
+    private val repository: MechanicalPrescriptionRepository = ZoraRepositories.mechanicalPrescriptionRepository,
+    private val vehicleId: String = "honda_civic_2018",
+    private val timeProvider: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     private val messageIdGenerator: (prefix: String) -> String = { prefix ->
         "${prefix}_${kotlin.random.Random.nextInt(100000, 999999)}"
     },
@@ -63,8 +73,9 @@ class CopilotHomeViewModel(
             text = trimmed,
             id = messageIdGenerator("user"),
         )
+        val replyText = resolveAssistantReply(trimmed, state.activeVehicleName)
         val assistantMessage = CopilotChatMessage.Assistant(
-            text = resolveAssistantReply(trimmed, state.activeVehicleName),
+            text = replyText,
             id = messageIdGenerator("asst"),
         )
 
@@ -75,6 +86,19 @@ class CopilotHomeViewModel(
             )
         }
         postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+
+        val now = timeProvider()
+        val symptomId = "sym_${now}_${kotlin.random.Random.nextInt(100, 999)}"
+        val entity = MechanicalPrescriptionEntity(
+            symptomId = symptomId,
+            vehicleId = vehicleId,
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = trimmed,
+            localPreliminaryHypothesis = replyText,
+            createdAtMs = now,
+            updatedAtMs = now,
+        )
+        repository.insertLocalTriage(entity)
     }
 
     fun selectSuggestion(symptom: String) = intent {
@@ -82,8 +106,9 @@ class CopilotHomeViewModel(
             text = symptom,
             id = messageIdGenerator("user"),
         )
+        val replyText = resolveAssistantReply(symptom, state.activeVehicleName)
         val assistantMessage = CopilotChatMessage.Assistant(
-            text = resolveAssistantReply(symptom, state.activeVehicleName),
+            text = replyText,
             id = messageIdGenerator("asst"),
         )
 
@@ -93,6 +118,19 @@ class CopilotHomeViewModel(
             )
         }
         postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+
+        val now = timeProvider()
+        val symptomId = "sym_${now}_${kotlin.random.Random.nextInt(100, 999)}"
+        val entity = MechanicalPrescriptionEntity(
+            symptomId = symptomId,
+            vehicleId = vehicleId,
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = symptom,
+            localPreliminaryHypothesis = replyText,
+            createdAtMs = now,
+            updatedAtMs = now,
+        )
+        repository.insertLocalTriage(entity)
     }
 
     fun openNewChat() = intent {
@@ -106,9 +144,23 @@ class CopilotHomeViewModel(
     }
 
     fun selectRecentChat(question: String) = intent {
-        val userMessage = CopilotChatMessage.User(text = question)
+        val pastHypothesis = try {
+            repository.observeByVehicle(vehicleId).firstOrNull()?.find {
+                it.rawSymptomDescription.equals(question, ignoreCase = true)
+            }?.localPreliminaryHypothesis
+        } catch (_: Throwable) {
+            null
+        }
+
+        val assistantText = pastHypothesis ?: resolveAssistantReply(question, state.activeVehicleName)
+
+        val userMessage = CopilotChatMessage.User(
+            text = question,
+            id = messageIdGenerator("user"),
+        )
         val assistantMessage = CopilotChatMessage.Assistant(
-            text = resolveAssistantReply(question, state.activeVehicleName),
+            text = assistantText,
+            id = messageIdGenerator("asst"),
         )
 
         reduce {

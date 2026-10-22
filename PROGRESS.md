@@ -111,6 +111,8 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Manage Shifted Drawer navigation and selection state via Orbit MVI ViewModel
 - [x] Scenario: Standardize Composable modifier parameter order across all UI components
 - [x] Scenario: Disambiguate stateful and stateless drawer layouts with ZoraShiftedDrawerLayoutContent
+- [x] Scenario: Synchronize chat history reactively between ZoraShiftedDrawerViewModel, MechanicalPrescriptionRepository, and CopilotHomeViewModel
+
 
 
 

@@ -1,12 +1,17 @@
 package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.jesusdmedinac.zora.data.local.ZoraRepositories
+import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
+import com.jesusdmedinac.zora.ui.home.component.defaultRecentQuestions
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerMenuItemId
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.OrbitContainerHost
 import org.orbitmvi.orbit.viewmodel.orbitContainer
 
@@ -16,10 +21,27 @@ import org.orbitmvi.orbit.viewmodel.orbitContainer
  */
 class ZoraShiftedDrawerViewModel(
     initialState: ZoraDrawerUiState = ZoraDrawerUiState(),
+    private val repository: MechanicalPrescriptionRepository? = null,
+    private val vehicleId: String = "honda_civic_2018",
 ) : ViewModel(),
     OrbitContainerHost<ZoraDrawerUiState, ZoraDrawerUiState, ZoraDrawerSideEffect> {
 
     override val container = orbitContainer<ZoraDrawerUiState, ZoraDrawerSideEffect>(initialState)
+
+    init {
+        repository?.let { repo ->
+            viewModelScope.launch {
+                repo.observeByVehicle(vehicleId).collect { prescriptions ->
+                    val questions = if (prescriptions.isNotEmpty()) {
+                        prescriptions.map { it.rawSymptomDescription }
+                    } else {
+                        defaultRecentQuestions()
+                    }
+                    updateRecentQuestions(questions)
+                }
+            }
+        }
+    }
 
     val uiState: StateFlow<ZoraDrawerUiState>
         get() = container.stateFlow
@@ -40,6 +62,10 @@ class ZoraShiftedDrawerViewModel(
             is ZoraDrawerIntent.ClickSettings -> clickSettings()
             is ZoraDrawerIntent.ClickProfile -> clickProfile()
         }
+    }
+
+    fun updateRecentQuestions(questions: List<String>) = intent {
+        reduce { state.copy(recentQuestions = questions) }
     }
 
     fun setDrawerOpen(isOpen: Boolean) = intent {

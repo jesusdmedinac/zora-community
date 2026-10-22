@@ -41,6 +41,7 @@ import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
 import zora_community.generated.resources.tier_pro
+import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.ui.home.ZoraShiftedDrawerViewModel
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
@@ -60,6 +61,7 @@ fun ZoraShiftedDrawerLayoutContent(
     onRecentQuestionClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
+    recentQuestions: List<String> = defaultRecentQuestions(),
     onMechanicClick: () -> Unit = {},
     onGasStationsClick: () -> Unit = {},
     selectedRecentQuestion: String? = null,
@@ -139,6 +141,7 @@ fun ZoraShiftedDrawerLayoutContent(
                 // Recent Chats Section (node fnMOF)
                 ZoraDrawerRecentChatsList(
                     onRecentQuestionClick = onRecentQuestionClick,
+                    recentQuestions = recentQuestions,
                     selectedQuestion = selectedRecentQuestion,
                 )
             }
@@ -205,7 +208,9 @@ fun ZoraShiftedDrawerLayoutContent(
 @Composable
 fun ZoraShiftedDrawerLayout(
     modifier: Modifier = Modifier,
-    viewModel: ZoraShiftedDrawerViewModel = viewModel { ZoraShiftedDrawerViewModel() },
+    viewModel: ZoraShiftedDrawerViewModel = viewModel {
+        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository)
+    },
     onNavigateToNewChat: () -> Unit = {},
     onNavigateToParts: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String) -> Unit = {},
@@ -240,6 +245,7 @@ fun ZoraShiftedDrawerLayout(
         },
         onSettingsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickSettings) },
         modifier = modifier,
+        recentQuestions = uiState.recentQuestions,
         selectedRecentQuestion = uiState.selectedRecentQuestion,
         userName = uiState.userName,
         accountTier = uiState.accountTier,

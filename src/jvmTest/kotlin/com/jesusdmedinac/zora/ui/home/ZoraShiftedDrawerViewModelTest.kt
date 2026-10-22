@@ -1,12 +1,18 @@
 package com.jesusdmedinac.zora.ui.home
 
+import com.jesusdmedinac.zora.data.local.InMemoryMechanicalPrescriptionRepository
+import com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerMenuItemId
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerUiState
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.orbitmvi.orbit.test.testWithInternalState
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ZoraShiftedDrawerViewModelTest {
 
@@ -108,5 +114,43 @@ class ZoraShiftedDrawerViewModelTest {
             expectInternalState { copy(isOpen = false) }
             expectSideEffect(ZoraDrawerSideEffect.NavigateToProfile)
         }
+    }
+
+    @Test
+    fun `updateRecentQuestions updates recent questions in state`() = runTest {
+        val viewModel = ZoraShiftedDrawerViewModel()
+        val customQuestions = listOf("Pregunta 1", "Pregunta 2")
+        viewModel.testWithInternalState(this) {
+            containerHost.updateRecentQuestions(customQuestions)
+            expectInternalState { copy(recentQuestions = customQuestions) }
+        }
+    }
+
+    @Test
+    fun `observeByVehicle emits diagnostic questions in reverse chronological order`() = runTest {
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val entity1 = MechanicalPrescriptionEntity(
+            symptomId = "sym_1",
+            vehicleId = "honda_civic_2018",
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = "Primera consulta",
+            localPreliminaryHypothesis = "H1",
+            createdAtMs = 1000L,
+            updatedAtMs = 1000L,
+        )
+        val entity2 = MechanicalPrescriptionEntity(
+            symptomId = "sym_2",
+            vehicleId = "honda_civic_2018",
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = "Segunda consulta",
+            localPreliminaryHypothesis = "H2",
+            createdAtMs = 2000L,
+            updatedAtMs = 2000L,
+        )
+        repo.insertLocalTriage(entity1)
+        repo.insertLocalTriage(entity2)
+
+        val questions = repo.observeByVehicle("honda_civic_2018").first().map { it.rawSymptomDescription }
+        assertEquals(listOf("Segunda consulta", "Primera consulta"), questions)
     }
 }
