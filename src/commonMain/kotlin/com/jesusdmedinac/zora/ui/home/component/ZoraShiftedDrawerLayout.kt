@@ -48,11 +48,11 @@ import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 /**
- * Navigation Drawer with Shifted Screen Scrim Card transition.
+ * Stateless content composable for [ZoraShiftedDrawerLayout].
  * Synchronized with nodes VeQvH & RktHH from `zora-community.pen`.
  */
 @Composable
-fun ZoraShiftedDrawerLayout(
+fun ZoraShiftedDrawerLayoutContent(
     drawerOpen: Boolean,
     onCloseDrawer: () -> Unit,
     onNewChatClick: () -> Unit,
@@ -228,7 +228,7 @@ fun ZoraShiftedDrawerLayout(
         }
     }
 
-    ZoraShiftedDrawerLayout(
+    ZoraShiftedDrawerLayoutContent(
         drawerOpen = uiState.isOpen,
         onCloseDrawer = { viewModel.processIntent(ZoraDrawerIntent.CloseDrawer) },
         onNewChatClick = { viewModel.processIntent(ZoraDrawerIntent.ClickNewChat) },
@@ -252,7 +252,7 @@ fun ZoraShiftedDrawerLayout(
 @Composable
 private fun ZoraShiftedDrawerLayoutPreview() {
     ZoraTheme {
-        ZoraShiftedDrawerLayout(
+        ZoraShiftedDrawerLayoutContent(
             drawerOpen = true,
             onCloseDrawer = {},
             onNewChatClick = {},

@@ -46,6 +46,7 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerUserFooter
 import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
+import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayoutContent
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
@@ -163,7 +164,7 @@ class PreviewScreenshotGeneratorTest {
 
         // 3. Shifted Screen Scrim Card Drawer (Open navigation drawer)
         capture("01b_shifted_drawer_open", width = 390, height = 844) {
-            ZoraShiftedDrawerLayout(
+            ZoraShiftedDrawerLayoutContent(
                 drawerOpen = true,
                 onCloseDrawer = {},
                 onNewChatClick = {},
@@ -648,7 +649,7 @@ class PreviewScreenshotGeneratorTest {
         }
 
         capture("01b_shifted_drawer_open_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
-            ZoraShiftedDrawerLayout(
+            ZoraShiftedDrawerLayoutContent(
                 drawerOpen = true,
                 onCloseDrawer = {},
                 onNewChatClick = {},

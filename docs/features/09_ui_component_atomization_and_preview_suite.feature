@@ -191,6 +191,14 @@ Feature: UI Component Atomization and Preview Suite
     And other optional parameters follow modifier
     And trailing composable lambda is positioned last
 
+  Scenario: Disambiguate stateful and stateless drawer layouts with ZoraShiftedDrawerLayoutContent
+    Given the distinction between stateful container and stateless presentation in Compose
+    When declaring the navigation drawer layout
+    Then ZoraShiftedDrawerLayout provides the stateful container with default ZoraShiftedDrawerViewModel
+    And ZoraShiftedDrawerLayoutContent provides the stateless presentation receiving primitive parameters
+    And OnboardingChatMessage provides a distinct message model hierarchy for diagnostic triage
+
+
 
 
 
