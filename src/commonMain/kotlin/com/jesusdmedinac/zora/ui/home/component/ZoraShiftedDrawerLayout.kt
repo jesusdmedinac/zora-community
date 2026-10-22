@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -29,7 +30,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jesusdmedinac.zora.ui.theme.ZoraIcons
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
@@ -42,10 +42,10 @@ import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
 import zora_community.generated.resources.tier_pro
-import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.ui.home.ZoraShiftedDrawerViewModel
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
+import org.koin.compose.viewmodel.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -245,11 +245,7 @@ fun ZoraShiftedDrawerLayoutContent(
 @Composable
 fun ZoraShiftedDrawerLayout(
     modifier: Modifier = Modifier,
-    viewModel: ZoraShiftedDrawerViewModel = viewModel {
-        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository).apply {
-            processIntent(ZoraDrawerIntent.LoadRecentQuestions)
-        }
-    },
+    viewModel: ZoraShiftedDrawerViewModel = koinViewModel(),
     onNavigateToNewChat: () -> Unit = {},
     onNavigateToParts: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String) -> Unit = {},
@@ -259,6 +255,10 @@ fun ZoraShiftedDrawerLayout(
     onNavigateToProfile: () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
+    LaunchedEffect(viewModel) {
+        viewModel.processIntent(ZoraDrawerIntent.LoadRecentQuestions)
+    }
+
     val uiState by viewModel.collectAsState()
 
     viewModel.collectSideEffect { sideEffect ->
@@ -331,7 +331,7 @@ private fun ZoraShiftedDrawerLayoutPreview() {
 @Composable
 private fun ZoraShiftedDrawerLayoutStatefulPreview() {
     ZoraTheme {
-        ZoraShiftedDrawerLayout {
+        ZoraShiftedDrawerLayout(viewModel = ZoraShiftedDrawerViewModel()) {
             Text("Main Content with ViewModel")
         }
     }

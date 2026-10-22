@@ -70,9 +70,13 @@ import com.jesusdmedinac.zora.ui.splash.component.ZoraIgnitionGlyph
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.di.initInMemoryKoin
 import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
 import com.jesusdmedinac.zora.ui.theme.zoraTopEdgePadding
+import org.koin.core.context.stopKoin
 import java.io.File
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -81,6 +85,17 @@ import kotlin.test.assertEquals
  * Renders high-fidelity PNG screenshots for all atomized screens and key UI cards.
  */
 class PreviewScreenshotGeneratorTest {
+
+    @BeforeTest
+    fun setUp() {
+        stopKoin()
+        initInMemoryKoin()
+    }
+
+    @AfterTest
+    fun tearDown() {
+        stopKoin()
+    }
 
     private fun capture(
         name: String,

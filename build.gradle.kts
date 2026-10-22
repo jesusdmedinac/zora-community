@@ -63,16 +63,21 @@ kotlin {
             implementation(libs.orbit.core)
             implementation(libs.orbit.viewmodel)
             implementation(libs.orbit.compose)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
             implementation(libs.orbit.test)
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.sqldelight.driver.android)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.koin.android)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)

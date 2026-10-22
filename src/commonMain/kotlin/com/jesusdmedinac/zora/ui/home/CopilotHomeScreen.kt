@@ -16,8 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jesusdmedinac.zora.data.local.ZoraRepositories
+import org.koin.compose.viewmodel.koinViewModel
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastHost
 import com.jesusdmedinac.zora.ui.chat.component.ZoraToastState
 import com.jesusdmedinac.zora.ui.chat.component.rememberZoraToastState
@@ -57,10 +56,8 @@ fun CopilotHomeScreen(
     onNavigateToChat: (symptom: String?) -> Unit = {},
     onNavigateToGarage: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String?) -> Unit = {},
-    viewModel: CopilotHomeViewModel = viewModel { CopilotHomeViewModel() },
-    drawerViewModel: ZoraShiftedDrawerViewModel = viewModel {
-        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository)
-    },
+    viewModel: CopilotHomeViewModel = koinViewModel(),
+    drawerViewModel: ZoraShiftedDrawerViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.collectAsState()
     val toastState = rememberZoraToastState()

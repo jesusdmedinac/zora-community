@@ -2,7 +2,6 @@ package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.ui.home.component.defaultRecentQuestions
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent

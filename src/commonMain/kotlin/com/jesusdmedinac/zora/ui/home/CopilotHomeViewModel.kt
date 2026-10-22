@@ -1,7 +1,6 @@
 package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.jesusdmedinac.zora.data.local.ZoraRepositories
 import com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity
 import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
@@ -19,7 +18,7 @@ import org.orbitmvi.orbit.viewmodel.orbitContainer
  */
 @OptIn(ExperimentalTime::class)
 class CopilotHomeViewModel(
-    private val repository: MechanicalPrescriptionRepository = ZoraRepositories.mechanicalPrescriptionRepository,
+    private val repository: MechanicalPrescriptionRepository? = null,
     private val vehicleId: String = "honda_civic_2018",
     private val timeProvider: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     private val messageIdGenerator: (prefix: String) -> String = { prefix ->
@@ -98,7 +97,7 @@ class CopilotHomeViewModel(
             createdAtMs = now,
             updatedAtMs = now,
         )
-        repository.insertLocalTriage(entity)
+        repository?.insertLocalTriage(entity)
     }
 
     fun selectSuggestion(symptom: String) = intent {
@@ -130,7 +129,7 @@ class CopilotHomeViewModel(
             createdAtMs = now,
             updatedAtMs = now,
         )
-        repository.insertLocalTriage(entity)
+        repository?.insertLocalTriage(entity)
     }
 
     fun openNewChat() = intent {
@@ -145,7 +144,7 @@ class CopilotHomeViewModel(
 
     fun selectRecentChat(question: String) = intent {
         val pastHypothesis = try {
-            repository.observeByVehicle(vehicleId).firstOrNull()?.find {
+            repository?.observeByVehicle(vehicleId)?.firstOrNull()?.find {
                 it.rawSymptomDescription.equals(question, ignoreCase = true)
             }?.localPreliminaryHypothesis
         } catch (_: Throwable) {
