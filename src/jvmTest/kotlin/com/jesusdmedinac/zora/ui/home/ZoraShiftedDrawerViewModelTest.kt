@@ -6,17 +6,33 @@ import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerMenuItemId
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerUiState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.orbitmvi.orbit.test.testWithInternalState
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ZoraShiftedDrawerViewModelTest {
+
+    @BeforeTest
+    fun setUp() {
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+    }
+
+    @AfterTest
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
 
     @Test
     fun `SetDrawerOpen intent controls drawer visibility`() = runTest {
@@ -378,6 +394,45 @@ class ZoraShiftedDrawerViewModelTest {
         viewModel.testWithInternalState(this) {
             containerHost.processIntent(ZoraDrawerIntent.LoadRecentQuestions)
             expectInternalState { copy(recentQuestions = listOf(question)) }
+        }
+    }
+
+    @Test
+    fun `LoadRecentQuestions and SetDrawerOpen reactively load recent questions from repository`() = runTest {
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val question1 = "Primera consulta"
+        val question2 = "Segunda consulta"
+
+        val entity1 = MechanicalPrescriptionEntity(
+            symptomId = "sym_obs_1",
+            vehicleId = "honda_civic_2018",
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = question1,
+            localPreliminaryHypothesis = "Hypothesis 1",
+            createdAtMs = 1000L,
+            updatedAtMs = 1000L,
+        )
+        repo.insertLocalTriage(entity1)
+
+        val viewModel = ZoraShiftedDrawerViewModel(repository = repo, vehicleId = "honda_civic_2018")
+        viewModel.testWithInternalState(this) {
+            containerHost.processIntent(ZoraDrawerIntent.LoadRecentQuestions)
+            expectInternalState { copy(recentQuestions = listOf(question1)) }
+
+            val entity2 = MechanicalPrescriptionEntity(
+                symptomId = "sym_obs_2",
+                vehicleId = "honda_civic_2018",
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = question2,
+                localPreliminaryHypothesis = "Hypothesis 2",
+                createdAtMs = 2000L,
+                updatedAtMs = 2000L,
+            )
+            repo.insertLocalTriage(entity2)
+            expectInternalState { copy(recentQuestions = listOf(question2, question1)) }
+
+            containerHost.processIntent(ZoraDrawerIntent.SetDrawerOpen(true))
+            expectInternalState { copy(isOpen = true, recentQuestions = listOf(question2, question1)) }
         }
     }
 }

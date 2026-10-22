@@ -199,11 +199,12 @@ Feature: UI Component Atomization and Preview Suite
     And OnboardingChatMessage provides a distinct message model hierarchy for diagnostic triage
 
   Scenario: Synchronize chat history reactively between ZoraShiftedDrawerViewModel, MechanicalPrescriptionRepository, and CopilotHomeViewModel
-    Given the shared MechanicalPrescriptionRepository in ZoraRepositories
-    When the driver sends a diagnostic prompt in CopilotHomeViewModel
-    Then the triage entity is saved to the local prescription repository
+    Given the shared MechanicalPrescriptionRepository injected via Koin
+    When the driver starts a diagnostic conversation in CopilotHomeViewModel
+    Then the triage conversation is saved to the local prescription repository
     And ZoraShiftedDrawerViewModel reactively updates recentQuestions from the vehicle flow
-    And selecting a recent chat loads the previous diagnostic hypothesis into CopilotHomeScreen
+    And continuing the conversation updates the active triage record without creating duplicate entries
+    And selecting a recent chat loads the previous diagnostic conversation into CopilotHomeScreen
 
   Scenario: Present contextual options bottom sheet on recent chat item long click
     Given a list of recent diagnostic chats in the shifted drawer

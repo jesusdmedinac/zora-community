@@ -8,6 +8,8 @@ import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import org.orbitmvi.orbit.OrbitContainerHost
@@ -24,9 +26,14 @@ class CopilotHomeViewModel(
     private val messageIdGenerator: (prefix: String) -> String = { prefix ->
         "${prefix}_${kotlin.random.Random.nextInt(100000, 999999)}"
     },
+    private val symptomIdGenerator: (now: Long) -> String = { now ->
+        "sym_${now}_${kotlin.random.Random.nextInt(100, 999)}"
+    },
 ) :
     ViewModel(),
     OrbitContainerHost<CopilotHomeUiState, CopilotHomeUiState, CopilotHomeSideEffect> {
+
+    private val json = Json { ignoreUnknownKeys = true }
 
     override val container = orbitContainer<CopilotHomeUiState, CopilotHomeSideEffect>(CopilotHomeUiState())
 
@@ -78,25 +85,51 @@ class CopilotHomeViewModel(
             id = messageIdGenerator("asst"),
         )
 
+        val updatedMessages = state.messages + userMessage + assistantMessage
+        val now = timeProvider()
+        val currentSymptomId = state.activeSymptomId
+
+        val (targetSymptomId, entity) = if (currentSymptomId == null) {
+            val newSymptomId = symptomIdGenerator(now)
+            val serialized = json.encodeToString(updatedMessages)
+            val newEntity = MechanicalPrescriptionEntity(
+                symptomId = newSymptomId,
+                vehicleId = vehicleId,
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = trimmed,
+                localPreliminaryHypothesis = replyText,
+                serializedPrescriptionJson = serialized,
+                createdAtMs = now,
+                updatedAtMs = now,
+            )
+            newSymptomId to newEntity
+        } else {
+            val existing = repository?.selectById(currentSymptomId)
+            val createdAt = existing?.createdAtMs ?: now
+            val title = existing?.rawSymptomDescription ?: trimmed
+            val serialized = json.encodeToString(updatedMessages)
+            val updatedEntity = MechanicalPrescriptionEntity(
+                symptomId = currentSymptomId,
+                vehicleId = vehicleId,
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = title,
+                localPreliminaryHypothesis = replyText,
+                serializedPrescriptionJson = serialized,
+                createdAtMs = createdAt,
+                updatedAtMs = now,
+            )
+            currentSymptomId to updatedEntity
+        }
+
         reduce {
             state.copy(
                 promptText = "",
-                messages = state.messages + userMessage + assistantMessage,
+                messages = updatedMessages,
+                activeSymptomId = targetSymptomId,
             )
         }
         postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
 
-        val now = timeProvider()
-        val symptomId = "sym_${now}_${kotlin.random.Random.nextInt(100, 999)}"
-        val entity = MechanicalPrescriptionEntity(
-            symptomId = symptomId,
-            vehicleId = vehicleId,
-            vinTechnicalPrefix = "2HGFC2F5",
-            rawSymptomDescription = trimmed,
-            localPreliminaryHypothesis = replyText,
-            createdAtMs = now,
-            updatedAtMs = now,
-        )
         repository?.insertLocalTriage(entity)
     }
 
@@ -111,24 +144,50 @@ class CopilotHomeViewModel(
             id = messageIdGenerator("asst"),
         )
 
+        val updatedMessages = state.messages + userMessage + assistantMessage
+        val now = timeProvider()
+        val currentSymptomId = state.activeSymptomId
+
+        val (targetSymptomId, entity) = if (currentSymptomId == null) {
+            val newSymptomId = symptomIdGenerator(now)
+            val serialized = json.encodeToString(updatedMessages)
+            val newEntity = MechanicalPrescriptionEntity(
+                symptomId = newSymptomId,
+                vehicleId = vehicleId,
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = symptom,
+                localPreliminaryHypothesis = replyText,
+                serializedPrescriptionJson = serialized,
+                createdAtMs = now,
+                updatedAtMs = now,
+            )
+            newSymptomId to newEntity
+        } else {
+            val existing = repository?.selectById(currentSymptomId)
+            val createdAt = existing?.createdAtMs ?: now
+            val title = existing?.rawSymptomDescription ?: symptom
+            val serialized = json.encodeToString(updatedMessages)
+            val updatedEntity = MechanicalPrescriptionEntity(
+                symptomId = currentSymptomId,
+                vehicleId = vehicleId,
+                vinTechnicalPrefix = "2HGFC2F5",
+                rawSymptomDescription = title,
+                localPreliminaryHypothesis = replyText,
+                serializedPrescriptionJson = serialized,
+                createdAtMs = createdAt,
+                updatedAtMs = now,
+            )
+            currentSymptomId to updatedEntity
+        }
+
         reduce {
             state.copy(
-                messages = state.messages + userMessage + assistantMessage,
+                messages = updatedMessages,
+                activeSymptomId = targetSymptomId,
             )
         }
         postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
 
-        val now = timeProvider()
-        val symptomId = "sym_${now}_${kotlin.random.Random.nextInt(100, 999)}"
-        val entity = MechanicalPrescriptionEntity(
-            symptomId = symptomId,
-            vehicleId = vehicleId,
-            vinTechnicalPrefix = "2HGFC2F5",
-            rawSymptomDescription = symptom,
-            localPreliminaryHypothesis = replyText,
-            createdAtMs = now,
-            updatedAtMs = now,
-        )
         repository?.insertLocalTriage(entity)
     }
 
@@ -138,35 +197,50 @@ class CopilotHomeViewModel(
                 isDrawerOpen = false,
                 messages = emptyList(),
                 promptText = "",
+                activeSymptomId = null,
             )
         }
     }
 
     fun selectRecentChat(question: String) = intent {
-        val pastHypothesis = try {
+        val matchingEntity = try {
             repository?.observeByVehicle(vehicleId)?.firstOrNull()?.find {
                 it.rawSymptomDescription.equals(question, ignoreCase = true)
-            }?.localPreliminaryHypothesis
+            }
         } catch (_: Throwable) {
             null
         }
 
-        val assistantText = pastHypothesis ?: resolveAssistantReply(question, state.activeVehicleName)
+        val restoredMessages: List<CopilotChatMessage>? = matchingEntity?.serializedPrescriptionJson?.let { rawJson ->
+            try {
+                json.decodeFromString<List<CopilotChatMessage>>(rawJson)
+            } catch (_: Throwable) {
+                null
+            }
+        }
 
-        val userMessage = CopilotChatMessage.User(
-            text = question,
-            id = messageIdGenerator("user"),
-        )
-        val assistantMessage = CopilotChatMessage.Assistant(
-            text = assistantText,
-            id = messageIdGenerator("asst"),
-        )
+        val messages = if (!restoredMessages.isNullOrEmpty()) {
+            restoredMessages
+        } else {
+            val assistantText = matchingEntity?.localPreliminaryHypothesis ?: resolveAssistantReply(question, state.activeVehicleName)
+            listOf(
+                CopilotChatMessage.User(
+                    text = question,
+                    id = messageIdGenerator("user"),
+                ),
+                CopilotChatMessage.Assistant(
+                    text = assistantText,
+                    id = messageIdGenerator("asst"),
+                ),
+            )
+        }
 
         reduce {
             state.copy(
                 isDrawerOpen = false,
-                messages = listOf(userMessage, assistantMessage),
+                messages = messages,
                 promptText = "",
+                activeSymptomId = matchingEntity?.symptomId,
             )
         }
         postSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -194,7 +268,12 @@ class CopilotHomeViewModel(
     }
 
     fun clearChat() = intent {
-        reduce { state.copy(messages = emptyList()) }
+        reduce {
+            state.copy(
+                messages = emptyList(),
+                activeSymptomId = null,
+            )
+        }
     }
 
     companion object {

@@ -68,6 +68,7 @@ class CopilotHomeViewModelTest {
         val viewModel = CopilotHomeViewModel(
             repository = InMemoryMechanicalPrescriptionRepository(),
             messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+            symptomIdGenerator = { "sym_test_1" },
         )
         val prompt = "¿Por qué vibra el volante?"
         viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(promptText = prompt)) {
@@ -82,6 +83,7 @@ class CopilotHomeViewModelTest {
                             id = "asst_2",
                         ),
                     ),
+                    activeSymptomId = "sym_test_1",
                 )
             }
             expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -94,6 +96,7 @@ class CopilotHomeViewModelTest {
         val viewModel = CopilotHomeViewModel(
             repository = InMemoryMechanicalPrescriptionRepository(),
             messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+            symptomIdGenerator = { "sym_test_2" },
         )
         val symptom = "Humo azul"
         viewModel.testWithInternalState(this) {
@@ -107,6 +110,7 @@ class CopilotHomeViewModelTest {
                             id = "asst_2",
                         ),
                     ),
+                    activeSymptomId = "sym_test_2",
                 )
             }
             expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -224,6 +228,7 @@ class CopilotHomeViewModelTest {
                         CopilotChatMessage.Assistant(text = customHypothesis, id = "asst_2"),
                     ),
                     promptText = "",
+                    activeSymptomId = "seed_1",
                 )
             }
             expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -239,6 +244,7 @@ class CopilotHomeViewModelTest {
             repository = repo,
             timeProvider = { fixedTime },
             messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+            symptomIdGenerator = { "sym_prompt_1" },
         )
         val prompt = "¿Por qué vibra el volante?"
         viewModel.testWithInternalState(this) {
@@ -253,6 +259,7 @@ class CopilotHomeViewModelTest {
                             id = "asst_2",
                         ),
                     ),
+                    activeSymptomId = "sym_prompt_1",
                 )
             }
             expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -263,6 +270,7 @@ class CopilotHomeViewModelTest {
         assertNotNull(saved)
         assertEquals(fixedTime, saved.createdAtMs)
         assertEquals("2HGFC2F5", saved.vinTechnicalPrefix)
+        assertNotNull(saved.serializedPrescriptionJson)
     }
 
     @Test
@@ -274,6 +282,7 @@ class CopilotHomeViewModelTest {
             repository = repo,
             timeProvider = { fixedTime },
             messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+            symptomIdGenerator = { "sym_suggestion_1" },
         )
         val symptom = "Humo azul"
         viewModel.testWithInternalState(this) {
@@ -287,6 +296,7 @@ class CopilotHomeViewModelTest {
                             id = "asst_2",
                         ),
                     ),
+                    activeSymptomId = "sym_suggestion_1",
                 )
             }
             expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
@@ -296,5 +306,144 @@ class CopilotHomeViewModelTest {
         val saved = entities.find { it.rawSymptomDescription == symptom }
         assertNotNull(saved)
         assertEquals(fixedTime, saved.createdAtMs)
+        assertNotNull(saved.serializedPrescriptionJson)
+    }
+
+    @Test
+    fun `Continuing conversation appends messages to activeSymptomId without creating duplicate history entries`() = runTest {
+        var idCount = 0
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        var currentTime = 1729500000000L
+        val viewModel = CopilotHomeViewModel(
+            repository = repo,
+            timeProvider = { currentTime },
+            messageIdGenerator = { prefix -> "${prefix}_${++idCount}" },
+            symptomIdGenerator = { "sym_conv_1" },
+        )
+        val firstPrompt = "¿Por qué vibra el volante?"
+        val secondPrompt = "¿Y al frenar a 60 km/h?"
+
+        viewModel.testWithInternalState(this) {
+            // First turn (starts conversation)
+            containerHost.processIntent(CopilotHomeIntent.SendPrompt(firstPrompt))
+            expectInternalState {
+                copy(
+                    promptText = "",
+                    messages = listOf(
+                        CopilotChatMessage.User(text = firstPrompt, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(firstPrompt, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                    ),
+                    activeSymptomId = "sym_conv_1",
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+
+            // Second turn (continues conversation)
+            currentTime += 5000L
+            containerHost.processIntent(CopilotHomeIntent.SendPrompt(secondPrompt))
+            expectInternalState {
+                copy(
+                    promptText = "",
+                    messages = listOf(
+                        CopilotChatMessage.User(text = firstPrompt, id = "user_1"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(firstPrompt, "Honda Civic EX 2.0L"),
+                            id = "asst_2",
+                        ),
+                        CopilotChatMessage.User(text = secondPrompt, id = "user_3"),
+                        CopilotChatMessage.Assistant(
+                            text = CopilotHomeViewModel.resolveAssistantReply(secondPrompt, "Honda Civic EX 2.0L"),
+                            id = "asst_4",
+                        ),
+                    ),
+                    activeSymptomId = "sym_conv_1",
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
+
+        // Verify repository contains only ONE entity with the initial conversation title
+        val entities = repo.observeByVehicle("honda_civic_2018").first()
+        assertEquals(1, entities.size)
+        val saved = entities.first()
+        assertEquals("sym_conv_1", saved.symptomId)
+        assertEquals(firstPrompt, saved.rawSymptomDescription)
+        assertEquals(1729500000000L, saved.createdAtMs)
+        assertEquals(1729500005000L, saved.updatedAtMs)
+    }
+
+    @Test
+    fun `OpenNewChat clears activeSymptomId and messages allowing fresh conversation`() = runTest {
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val viewModel = CopilotHomeViewModel(repository = repo)
+        val initialMessages = listOf(
+            CopilotChatMessage.User("Mensaje previo"),
+            CopilotChatMessage.Assistant("Respuesta previa"),
+        )
+        viewModel.testWithInternalState(
+            this,
+            initialState = CopilotHomeUiState(
+                isDrawerOpen = true,
+                messages = initialMessages,
+                activeSymptomId = "sym_prev_1",
+            ),
+        ) {
+            containerHost.processIntent(CopilotHomeIntent.OpenNewChat)
+            expectInternalState {
+                copy(
+                    isDrawerOpen = false,
+                    messages = emptyList(),
+                    promptText = "",
+                    activeSymptomId = null,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `SelectRecentChat restores activeSymptomId and deserializes previous messages from serializedPrescriptionJson`() = runTest {
+        val repo = InMemoryMechanicalPrescriptionRepository()
+        val question = "Ruido en transmisión"
+        val serializedChat = kotlinx.serialization.json.Json.encodeToString(
+            listOf(
+                CopilotChatMessage.User(text = question, id = "u_stored_1"),
+                CopilotChatMessage.Assistant(text = "Nivel bajo de fluido CVT", id = "a_stored_2"),
+                CopilotChatMessage.User(text = "¿Qué aceite lleva?", id = "u_stored_3"),
+                CopilotChatMessage.Assistant(text = "Honda HCF-2 para transmisión CVT", id = "a_stored_4"),
+            )
+        )
+        val entity = com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity(
+            symptomId = "sym_cvt_1",
+            vehicleId = "honda_civic_2018",
+            vinTechnicalPrefix = "2HGFC2F5",
+            rawSymptomDescription = question,
+            localPreliminaryHypothesis = "Nivel bajo de fluido CVT",
+            serializedPrescriptionJson = serializedChat,
+            createdAtMs = 1000L,
+            updatedAtMs = 1000L,
+        )
+        repo.insertLocalTriage(entity)
+
+        val viewModel = CopilotHomeViewModel(repository = repo)
+        viewModel.testWithInternalState(this, initialState = CopilotHomeUiState(isDrawerOpen = true)) {
+            containerHost.processIntent(CopilotHomeIntent.SelectRecentChat(question))
+            expectInternalState {
+                copy(
+                    isDrawerOpen = false,
+                    messages = listOf(
+                        CopilotChatMessage.User(text = question, id = "u_stored_1"),
+                        CopilotChatMessage.Assistant(text = "Nivel bajo de fluido CVT", id = "a_stored_2"),
+                        CopilotChatMessage.User(text = "¿Qué aceite lleva?", id = "u_stored_3"),
+                        CopilotChatMessage.Assistant(text = "Honda HCF-2 para transmisión CVT", id = "a_stored_4"),
+                    ),
+                    promptText = "",
+                    activeSymptomId = "sym_cvt_1",
+                )
+            }
+            expectSideEffect(CopilotHomeSideEffect.ScrollToBottom)
+        }
     }
 }

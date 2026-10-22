@@ -8,6 +8,7 @@ import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerMenuItemId
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerUiState
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.firstOrNull
@@ -27,6 +28,8 @@ class ZoraShiftedDrawerViewModel(
     OrbitContainerHost<ZoraDrawerUiState, ZoraDrawerUiState, ZoraDrawerSideEffect> {
 
     override val container = orbitContainer<ZoraDrawerUiState, ZoraDrawerSideEffect>(initialState)
+
+    private var observationJob: Job? = null
 
     val uiState: StateFlow<ZoraDrawerUiState>
         get() = container.stateFlow
@@ -61,13 +64,21 @@ class ZoraShiftedDrawerViewModel(
     fun loadRecentQuestions() = intent {
         repository?.let { repo ->
             val prescriptions = repo.observeByVehicle(vehicleId).firstOrNull().orEmpty()
-            val questions = if (prescriptions.isNotEmpty()) {
-                prescriptions.map { it.rawSymptomDescription }
-            } else {
-                defaultRecentQuestions()
-            }
+            val questions = prescriptions.map { it.rawSymptomDescription }
             if (state.recentQuestions != questions) {
                 reduce { state.copy(recentQuestions = questions) }
+            }
+        }
+        startObservingRepository()
+    }
+
+    fun startObservingRepository() {
+        if (observationJob != null) return
+        val repo = repository ?: return
+        observationJob = viewModelScope.launch {
+            repo.observeByVehicle(vehicleId).collect { prescriptions ->
+                val questions = prescriptions.map { it.rawSymptomDescription }
+                updateRecentQuestions(questions)
             }
         }
     }
@@ -79,9 +90,16 @@ class ZoraShiftedDrawerViewModel(
     }
 
     fun setDrawerOpen(isOpen: Boolean) = intent {
-        reduce { state.copy(isOpen = isOpen) }
         if (!isOpen) {
+            reduce { state.copy(isOpen = false) }
             postSideEffect(ZoraDrawerSideEffect.CloseDrawer)
+        } else {
+            val questions = repository?.let { repo ->
+                repo.observeByVehicle(vehicleId).firstOrNull()?.map { it.rawSymptomDescription }
+            } ?: state.recentQuestions
+
+            reduce { state.copy(isOpen = true, recentQuestions = questions) }
+            startObservingRepository()
         }
     }
 
