@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,6 +53,7 @@ import org.orbitmvi.orbit.compose.collectSideEffect
  * Stateless content composable for [ZoraShiftedDrawerLayout].
  * Synchronized with nodes VeQvH & RktHH from `zora-community.pen`.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ZoraShiftedDrawerLayoutContent(
     drawerOpen: Boolean,
@@ -62,9 +64,20 @@ fun ZoraShiftedDrawerLayoutContent(
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
     recentQuestions: List<String> = defaultRecentQuestions(),
+    pinnedQuestions: List<String> = emptyList(),
     onMechanicClick: () -> Unit = {},
     onGasStationsClick: () -> Unit = {},
     selectedRecentQuestion: String? = null,
+    onRecentQuestionLongClick: ((String) -> Unit)? = null,
+    activeBottomSheetQuestion: String? = null,
+    onDismissBottomSheet: () -> Unit = {},
+    onShareChat: (String) -> Unit = {},
+    onPinChat: (String) -> Unit = {},
+    onRenameChat: (String) -> Unit = {},
+    onDeleteChat: (String) -> Unit = {},
+    activeRenameQuestion: String? = null,
+    onConfirmRename: (oldQuestion: String, newName: String) -> Unit = { _, _ -> },
+    onCancelRename: () -> Unit = {},
     userName: String = "Jesús Medina",
     accountTier: String = stringResource(Res.string.tier_pro),
     onProfileClick: (() -> Unit)? = null,
@@ -142,7 +155,9 @@ fun ZoraShiftedDrawerLayoutContent(
                 ZoraDrawerRecentChatsList(
                     onRecentQuestionClick = onRecentQuestionClick,
                     recentQuestions = recentQuestions,
+                    pinnedQuestions = pinnedQuestions,
                     selectedQuestion = selectedRecentQuestion,
+                    onRecentQuestionLongClick = onRecentQuestionLongClick,
                 )
             }
 
@@ -199,6 +214,28 @@ fun ZoraShiftedDrawerLayoutContent(
                 )
             }
         }
+
+        // --- 3. Contextual Options Bottom Sheet ---
+        if (activeBottomSheetQuestion != null) {
+            ZoraRecentChatOptionsBottomSheet(
+                question = activeBottomSheetQuestion,
+                isPinned = activeBottomSheetQuestion in pinnedQuestions,
+                onDismissRequest = onDismissBottomSheet,
+                onShareClick = { onShareChat(activeBottomSheetQuestion) },
+                onPinClick = { onPinChat(activeBottomSheetQuestion) },
+                onRenameClick = { onRenameChat(activeBottomSheetQuestion) },
+                onDeleteClick = { onDeleteChat(activeBottomSheetQuestion) },
+            )
+        }
+
+        // --- 4. Conversation Rename Dialog ---
+        if (activeRenameQuestion != null) {
+            ZoraRenameChatDialog(
+                initialTitle = activeRenameQuestion,
+                onConfirm = { newName -> onConfirmRename(activeRenameQuestion, newName) },
+                onDismiss = onCancelRename,
+            )
+        }
     }
 }
 
@@ -209,12 +246,15 @@ fun ZoraShiftedDrawerLayoutContent(
 fun ZoraShiftedDrawerLayout(
     modifier: Modifier = Modifier,
     viewModel: ZoraShiftedDrawerViewModel = viewModel {
-        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository)
+        ZoraShiftedDrawerViewModel(repository = ZoraRepositories.mechanicalPrescriptionRepository).apply {
+            processIntent(ZoraDrawerIntent.LoadRecentQuestions)
+        }
     },
     onNavigateToNewChat: () -> Unit = {},
     onNavigateToParts: () -> Unit = {},
     onNavigateToPaywall: (sourceReason: String) -> Unit = {},
     onLoadRecentChat: (question: String) -> Unit = {},
+    onShareChat: (question: String) -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
     onNavigateToProfile: () -> Unit = {},
     content: @Composable () -> Unit,
@@ -227,6 +267,7 @@ fun ZoraShiftedDrawerLayout(
             is ZoraDrawerSideEffect.NavigateToPartsFeed -> onNavigateToParts()
             is ZoraDrawerSideEffect.NavigateToPaywall -> onNavigateToPaywall(sideEffect.sourceReason)
             is ZoraDrawerSideEffect.LoadRecentChat -> onLoadRecentChat(sideEffect.question)
+            is ZoraDrawerSideEffect.ShareChat -> onShareChat(sideEffect.question)
             is ZoraDrawerSideEffect.NavigateToSettings -> onNavigateToSettings()
             is ZoraDrawerSideEffect.NavigateToProfile -> onNavigateToProfile()
             is ZoraDrawerSideEffect.CloseDrawer -> { /* Handled in state */ }
@@ -243,10 +284,25 @@ fun ZoraShiftedDrawerLayout(
         onRecentQuestionClick = { question ->
             viewModel.processIntent(ZoraDrawerIntent.SelectRecentQuestion(question))
         },
+        onRecentQuestionLongClick = { question ->
+            viewModel.processIntent(ZoraDrawerIntent.LongClickRecentQuestion(question))
+        },
         onSettingsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickSettings) },
         modifier = modifier,
         recentQuestions = uiState.recentQuestions,
+        pinnedQuestions = uiState.pinnedQuestions,
         selectedRecentQuestion = uiState.selectedRecentQuestion,
+        activeBottomSheetQuestion = uiState.activeBottomSheetQuestion,
+        onDismissBottomSheet = { viewModel.processIntent(ZoraDrawerIntent.DismissRecentQuestionOptions) },
+        onShareChat = { question -> viewModel.processIntent(ZoraDrawerIntent.ShareRecentQuestion(question)) },
+        onPinChat = { question -> viewModel.processIntent(ZoraDrawerIntent.PinRecentQuestion(question)) },
+        onRenameChat = { question -> viewModel.processIntent(ZoraDrawerIntent.StartRenameRecentQuestion(question)) },
+        onDeleteChat = { question -> viewModel.processIntent(ZoraDrawerIntent.DeleteRecentQuestion(question)) },
+        activeRenameQuestion = uiState.activeRenameQuestion,
+        onConfirmRename = { oldQuestion, newName ->
+            viewModel.processIntent(ZoraDrawerIntent.ConfirmRenameRecentQuestion(oldQuestion, newName))
+        },
+        onCancelRename = { viewModel.processIntent(ZoraDrawerIntent.CancelRenameRecentQuestion) },
         userName = uiState.userName,
         accountTier = uiState.accountTier,
         onProfileClick = { viewModel.processIntent(ZoraDrawerIntent.ClickProfile) },

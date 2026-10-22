@@ -5,17 +5,22 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,8 +35,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraIcons
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zora_community.generated.resources.Res
@@ -49,15 +56,18 @@ fun defaultRecentQuestions(): List<String> = listOf(
 )
 
 /**
- * Atomic recent chat item inside navigation drawer with scale damping and selection tint.
+ * Atomic recent chat item inside navigation drawer with scale damping, selection tint and long click support.
  * Synchronized with nodes VoEUY, LBLta, gO0i8 & e2vDXb from `zora-community.pen`.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ZoraDrawerRecentChatItem(
     question: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
     selected: Boolean = false,
+    isPinned: Boolean = false,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -91,21 +101,23 @@ fun ZoraDrawerRecentChatItem(
         label = "RecentChatItemColor",
     )
 
-    Box(
+    Row(
         modifier = modifier
             .fillMaxWidth()
             .height(36.dp)
             .scale(scale)
             .clip(CircleShape)
             .background(containerColor)
-            .clickable(
+            .combinedClickable(
                 interactionSource = interactionSource,
                 indication = null,
                 role = Role.Button,
+                onLongClick = onLongClick,
                 onClick = onClick,
             )
             .padding(horizontal = 8.dp),
-        contentAlignment = Alignment.CenterStart,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = question,
@@ -115,7 +127,16 @@ fun ZoraDrawerRecentChatItem(
             color = contentColor,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f, fill = false),
         )
+        if (isPinned) {
+            Icon(
+                painter = painterResource(ZoraIcons.pin),
+                contentDescription = null,
+                tint = ZoraTokens.Primary,
+                modifier = Modifier.size(14.dp).padding(start = 4.dp),
+            )
+        }
     }
 }
 
@@ -128,7 +149,9 @@ fun ZoraDrawerRecentChatsList(
     onRecentQuestionClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     recentQuestions: List<String> = defaultRecentQuestions(),
+    pinnedQuestions: List<String> = emptyList(),
     selectedQuestion: String? = null,
+    onRecentQuestionLongClick: ((String) -> Unit)? = null,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -143,11 +166,20 @@ fun ZoraDrawerRecentChatsList(
             modifier = Modifier.padding(start = 8.dp, bottom = 4.dp),
         )
 
-        recentQuestions.forEach { question ->
+        val sortedQuestions = remember(recentQuestions, pinnedQuestions) {
+            val pinned = recentQuestions.filter { it in pinnedQuestions }
+            val unpinned = recentQuestions.filterNot { it in pinnedQuestions }
+            pinned + unpinned
+        }
+
+        sortedQuestions.forEach { question ->
+            val isPinned = question in pinnedQuestions
             ZoraDrawerRecentChatItem(
                 question = question,
                 selected = question == selectedQuestion,
+                isPinned = isPinned,
                 onClick = { onRecentQuestionClick(question) },
+                onLongClick = onRecentQuestionLongClick?.let { { it(question) } },
             )
         }
     }

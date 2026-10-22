@@ -22,6 +22,9 @@ data class ZoraDrawerUiState(
     val userName: String = "Jesús Medina",
     val accountTier: String = "Cuenta Pro",
     val recentQuestions: List<String> = defaultRecentQuestions(),
+    val pinnedQuestions: List<String> = emptyList(),
     val selectedRecentQuestion: String? = null,
     val selectedMenuItem: ZoraDrawerMenuItemId? = null,
+    val activeBottomSheetQuestion: String? = null,
+    val activeRenameQuestion: String? = null,
 )

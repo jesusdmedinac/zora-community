@@ -45,6 +45,8 @@ import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerRecentChatsList
 import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerUserFooter
 import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
+import com.jesusdmedinac.zora.ui.home.component.ZoraRecentChatOptionsBottomSheetContent
+import com.jesusdmedinac.zora.ui.home.component.ZoraRenameChatDialogContent
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayoutContent
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
@@ -526,6 +528,44 @@ class PreviewScreenshotGeneratorTest {
         }
         capture("card_drawer_user_footer_hig", width = 280, height = 100, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
             ZoraDrawerUserFooter(onSettingsClick = {})
+        }
+
+        // Recent Chat Options Bottom Sheet (M3 & HIG)
+        capture("sheet_recent_chat_options_m3", width = 390, height = 340, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            ZoraRecentChatOptionsBottomSheetContent(
+                question = "¿Por qué rechinan mis frenos?",
+                isPinned = false,
+                onShareClick = {},
+                onPinClick = {},
+                onRenameClick = {},
+                onDeleteClick = {},
+            )
+        }
+        capture("sheet_recent_chat_options_hig", width = 390, height = 340, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraRecentChatOptionsBottomSheetContent(
+                question = "¿Cuánto aire necesitan mis llantas?",
+                isPinned = true,
+                onShareClick = {},
+                onPinClick = {},
+                onRenameClick = {},
+                onDeleteClick = {},
+            )
+        }
+
+        // Rename Chat Dialog (M3 & HIG)
+        capture("dialog_rename_chat_m3", width = 340, height = 240, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            ZoraRenameChatDialogContent(
+                initialTitle = "¿Por qué rechinan mis frenos?",
+                onConfirm = {},
+                onDismiss = {},
+            )
+        }
+        capture("dialog_rename_chat_hig", width = 340, height = 240, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraRenameChatDialogContent(
+                initialTitle = "¿Cuánto aire necesitan mis llantas?",
+                onConfirm = {},
+                onDismiss = {},
+            )
         }
     }
 

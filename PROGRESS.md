@@ -112,6 +112,8 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Standardize Composable modifier parameter order across all UI components
 - [x] Scenario: Disambiguate stateful and stateless drawer layouts with ZoraShiftedDrawerLayoutContent
 - [x] Scenario: Synchronize chat history reactively between ZoraShiftedDrawerViewModel, MechanicalPrescriptionRepository, and CopilotHomeViewModel
+- [x] Scenario: Present contextual options bottom sheet on recent chat item long click (Share, Pin, Rename, Delete)
+
 
 
 

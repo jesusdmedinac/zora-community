@@ -11,6 +11,7 @@ import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.OrbitContainerHost
 import org.orbitmvi.orbit.viewmodel.orbitContainer
@@ -28,21 +29,6 @@ class ZoraShiftedDrawerViewModel(
 
     override val container = orbitContainer<ZoraDrawerUiState, ZoraDrawerSideEffect>(initialState)
 
-    init {
-        repository?.let { repo ->
-            viewModelScope.launch {
-                repo.observeByVehicle(vehicleId).collect { prescriptions ->
-                    val questions = if (prescriptions.isNotEmpty()) {
-                        prescriptions.map { it.rawSymptomDescription }
-                    } else {
-                        defaultRecentQuestions()
-                    }
-                    updateRecentQuestions(questions)
-                }
-            }
-        }
-    }
-
     val uiState: StateFlow<ZoraDrawerUiState>
         get() = container.stateFlow
 
@@ -54,18 +40,43 @@ class ZoraShiftedDrawerViewModel(
             is ZoraDrawerIntent.SetDrawerOpen -> setDrawerOpen(intent.isOpen)
             is ZoraDrawerIntent.OpenDrawer -> setDrawerOpen(true)
             is ZoraDrawerIntent.CloseDrawer -> setDrawerOpen(false)
+            is ZoraDrawerIntent.LoadRecentQuestions -> loadRecentQuestions()
             is ZoraDrawerIntent.ClickNewChat -> clickNewChat()
             is ZoraDrawerIntent.ClickParts -> clickParts()
             is ZoraDrawerIntent.ClickMechanic -> clickMechanic()
             is ZoraDrawerIntent.ClickGasStations -> clickGasStations()
             is ZoraDrawerIntent.SelectRecentQuestion -> selectRecentQuestion(intent.question)
+            is ZoraDrawerIntent.LongClickRecentQuestion -> longClickRecentQuestion(intent.question)
+            is ZoraDrawerIntent.DismissRecentQuestionOptions -> dismissRecentQuestionOptions()
+            is ZoraDrawerIntent.ShareRecentQuestion -> shareRecentQuestion(intent.question)
+            is ZoraDrawerIntent.PinRecentQuestion -> pinRecentQuestion(intent.question)
+            is ZoraDrawerIntent.StartRenameRecentQuestion -> startRenameRecentQuestion(intent.question)
+            is ZoraDrawerIntent.ConfirmRenameRecentQuestion -> confirmRenameRecentQuestion(intent.oldQuestion, intent.newQuestion)
+            is ZoraDrawerIntent.CancelRenameRecentQuestion -> cancelRenameRecentQuestion()
+            is ZoraDrawerIntent.DeleteRecentQuestion -> deleteRecentQuestion(intent.question)
             is ZoraDrawerIntent.ClickSettings -> clickSettings()
             is ZoraDrawerIntent.ClickProfile -> clickProfile()
         }
     }
 
+    fun loadRecentQuestions() = intent {
+        repository?.let { repo ->
+            val prescriptions = repo.observeByVehicle(vehicleId).firstOrNull().orEmpty()
+            val questions = if (prescriptions.isNotEmpty()) {
+                prescriptions.map { it.rawSymptomDescription }
+            } else {
+                defaultRecentQuestions()
+            }
+            if (state.recentQuestions != questions) {
+                reduce { state.copy(recentQuestions = questions) }
+            }
+        }
+    }
+
     fun updateRecentQuestions(questions: List<String>) = intent {
-        reduce { state.copy(recentQuestions = questions) }
+        if (state.recentQuestions != questions) {
+            reduce { state.copy(recentQuestions = questions) }
+        }
     }
 
     fun setDrawerOpen(isOpen: Boolean) = intent {
@@ -103,6 +114,108 @@ class ZoraShiftedDrawerViewModel(
             )
         }
         postSideEffect(ZoraDrawerSideEffect.LoadRecentChat(question))
+    }
+
+    fun longClickRecentQuestion(question: String) = intent {
+        reduce { state.copy(activeBottomSheetQuestion = question) }
+    }
+
+    fun dismissRecentQuestionOptions() = intent {
+        reduce { state.copy(activeBottomSheetQuestion = null) }
+    }
+
+    fun shareRecentQuestion(question: String) = intent {
+        reduce { state.copy(activeBottomSheetQuestion = null) }
+        postSideEffect(ZoraDrawerSideEffect.ShareChat(question))
+    }
+
+    fun pinRecentQuestion(question: String) = intent {
+        val currentPinned = state.pinnedQuestions
+        val newPinned = if (currentPinned.contains(question)) {
+            currentPinned - question
+        } else {
+            currentPinned + question
+        }
+        reduce {
+            state.copy(
+                activeBottomSheetQuestion = null,
+                pinnedQuestions = newPinned,
+            )
+        }
+    }
+
+    fun startRenameRecentQuestion(question: String) = intent {
+        reduce {
+            state.copy(
+                activeBottomSheetQuestion = null,
+                activeRenameQuestion = question,
+            )
+        }
+    }
+
+    fun confirmRenameRecentQuestion(oldQuestion: String, newQuestion: String) = intent {
+        val trimmed = newQuestion.trim()
+        if (trimmed.isBlank() || trimmed == oldQuestion) {
+            reduce { state.copy(activeRenameQuestion = null) }
+            return@intent
+        }
+        val updatedQuestions = state.recentQuestions.map { if (it == oldQuestion) trimmed else it }
+        val updatedPinned = state.pinnedQuestions.map { if (it == oldQuestion) trimmed else it }
+        val updatedSelected = if (state.selectedRecentQuestion == oldQuestion) trimmed else state.selectedRecentQuestion
+
+        reduce {
+            state.copy(
+                recentQuestions = updatedQuestions,
+                pinnedQuestions = updatedPinned,
+                selectedRecentQuestion = updatedSelected,
+                activeRenameQuestion = null,
+            )
+        }
+
+        repository?.let { repo ->
+            try {
+                val existing = repo.observeByVehicle(vehicleId).firstOrNull()?.find {
+                    it.rawSymptomDescription == oldQuestion
+                }
+                if (existing != null) {
+                    repo.insertLocalTriage(existing.copy(rawSymptomDescription = trimmed))
+                }
+            } catch (_: Throwable) {
+                // Keep local state update
+            }
+        }
+    }
+
+    fun cancelRenameRecentQuestion() = intent {
+        reduce { state.copy(activeRenameQuestion = null) }
+    }
+
+    fun deleteRecentQuestion(question: String) = intent {
+        val updatedQuestions = state.recentQuestions.filterNot { it == question }
+        val updatedPinned = state.pinnedQuestions.filterNot { it == question }
+        val updatedSelected = if (state.selectedRecentQuestion == question) null else state.selectedRecentQuestion
+
+        reduce {
+            state.copy(
+                activeBottomSheetQuestion = null,
+                recentQuestions = updatedQuestions,
+                pinnedQuestions = updatedPinned,
+                selectedRecentQuestion = updatedSelected,
+            )
+        }
+
+        repository?.let { repo ->
+            try {
+                val existing = repo.observeByVehicle(vehicleId).firstOrNull()?.find {
+                    it.rawSymptomDescription == question
+                }
+                if (existing != null) {
+                    repo.purgeById(existing.symptomId)
+                }
+            } catch (_: Throwable) {
+                // Keep local state update
+            }
+        }
     }
 
     fun clickSettings() = intent {

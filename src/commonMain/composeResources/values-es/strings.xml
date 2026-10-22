@@ -84,6 +84,16 @@
     <string name="badge_coming_soon">Próximamente</string>
     <string name="user_local_driver">CONDUCTOR LOCAL</string>
     <string name="tier_pro">Cuenta Pro</string>
+    <string name="recent_chat_action_share">Compartir conversación</string>
+    <string name="recent_chat_action_pin">Fijar</string>
+    <string name="recent_chat_action_unpin">Desfijar</string>
+    <string name="recent_chat_action_rename">Cambiar nombre</string>
+    <string name="recent_chat_action_delete">Borrar</string>
+    <string name="recent_chat_options_title">Opciones de conversación</string>
+    <string name="recent_chat_rename_dialog_title">Cambiar nombre</string>
+    <string name="recent_chat_rename_dialog_confirm">Guardar</string>
+    <string name="recent_chat_rename_dialog_cancel">Cancelar</string>
+    <string name="recent_chat_delete_confirm">¿Borrar conversación?</string>
     <string name="plan_free_tier">Plan Gratuito</string>
     <string name="plan_zora_pro">ZORA PRO</string>
     <string name="plan_full_access">ACCESO TOTAL</string>

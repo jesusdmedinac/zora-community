@@ -18,8 +18,12 @@ import zora_community.generated.resources.ic_close_hig
 import zora_community.generated.resources.ic_close_m3
 import zora_community.generated.resources.ic_copy_hig
 import zora_community.generated.resources.ic_copy_m3
+import zora_community.generated.resources.ic_delete_hig
+import zora_community.generated.resources.ic_delete_m3
 import zora_community.generated.resources.ic_dropdown_hig
 import zora_community.generated.resources.ic_dropdown_m3
+import zora_community.generated.resources.ic_edit_hig
+import zora_community.generated.resources.ic_edit_m3
 import zora_community.generated.resources.ic_fuel_hig
 import zora_community.generated.resources.ic_fuel_m3
 import zora_community.generated.resources.ic_garage_hig
@@ -32,6 +36,8 @@ import zora_community.generated.resources.ic_more_hig
 import zora_community.generated.resources.ic_more_m3
 import zora_community.generated.resources.ic_package_hig
 import zora_community.generated.resources.ic_package_m3
+import zora_community.generated.resources.ic_pin_hig
+import zora_community.generated.resources.ic_pin_m3
 import zora_community.generated.resources.ic_retry_hig
 import zora_community.generated.resources.ic_retry_m3
 import zora_community.generated.resources.ic_send_hig
@@ -76,6 +82,9 @@ data class ZoraIconSet(
     val wrench: DrawableResource,
     val fuel: DrawableResource,
     val settings: DrawableResource,
+    val pin: DrawableResource,
+    val edit: DrawableResource,
+    val delete: DrawableResource,
 )
 
 /**
@@ -103,6 +112,9 @@ val ZoraM3Icons = ZoraIconSet(
     wrench = Res.drawable.ic_wrench_m3,
     fuel = Res.drawable.ic_fuel_m3,
     settings = Res.drawable.ic_settings_m3,
+    pin = Res.drawable.ic_pin_m3,
+    edit = Res.drawable.ic_edit_m3,
+    delete = Res.drawable.ic_delete_m3,
 )
 
 /**
@@ -130,6 +142,9 @@ val ZoraHIGIcons = ZoraIconSet(
     wrench = Res.drawable.ic_wrench_hig,
     fuel = Res.drawable.ic_fuel_hig,
     settings = Res.drawable.ic_settings_hig,
+    pin = Res.drawable.ic_pin_hig,
+    edit = Res.drawable.ic_edit_hig,
+    delete = Res.drawable.ic_delete_hig,
 )
 
 /**
@@ -247,4 +262,19 @@ object ZoraIcons {
         @Composable
         @ReadOnlyComposable
         get() = LocalZoraIcons.current.settings
+
+    val pin: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.pin
+
+    val edit: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.edit
+
+    val delete: DrawableResource
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalZoraIcons.current.delete
 }

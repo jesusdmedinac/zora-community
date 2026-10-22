@@ -205,6 +205,15 @@ Feature: UI Component Atomization and Preview Suite
     And ZoraShiftedDrawerViewModel reactively updates recentQuestions from the vehicle flow
     And selecting a recent chat loads the previous diagnostic hypothesis into CopilotHomeScreen
 
+  Scenario: Present contextual options bottom sheet on recent chat item long click
+    Given a list of recent diagnostic chats in the shifted drawer
+    When the driver performs a long click on a conversation item
+    Then ZoraRecentChatOptionsBottomSheet displays the options: Share, Pin, Rename, Delete
+    And selecting Share emits a share side effect
+    And selecting Pin toggles the pinned status of the chat
+    And selecting Rename allows updating the title of the conversation
+    And selecting Delete purges the conversation from history
+
 
 
 
