@@ -54,6 +54,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines)
+            implementation(libs.sqldelight.async.extensions)
             implementation(libs.sqldelight.primitive.adapters)
             implementation(libs.navigation3.runtime)
             implementation(libs.androidx.lifecycle.viewmodel)

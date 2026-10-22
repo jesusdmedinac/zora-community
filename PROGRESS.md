@@ -20,7 +20,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [ ] Scenario: Build project using declarative module.yaml
 - [x] Scenario: Maintain unidirectional MVI state flow with Orbit MVI 12 (OrbitContainerHost, side effects, and collectAsState/collectSideEffect)
 - [ ] Scenario: Inject multiplatform dependencies with Koin
-- [ ] Scenario: Persist vehicles and telemetry locally with SQLDelight
+- [x] Scenario: Persist vehicles and telemetry locally with SQLDelight
 - [ ] Scenario: Dynamically render agent generative UI with json-to-compose runtime
 - [ ] Scenario: Process structured vehicle queries with kotlin-genai and offline fallback
 

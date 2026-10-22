@@ -30,7 +30,20 @@ object ZoraRepositories {
         return InMemoryMechanicalPrescriptionRepository(initialEntities)
     }
 
-    val mechanicalPrescriptionRepository: MechanicalPrescriptionRepository by lazy {
+    private var customRepository: MechanicalPrescriptionRepository? = null
+
+    fun initialize(repository: MechanicalPrescriptionRepository) {
+        customRepository = repository
+    }
+
+    fun resetToDefault() {
+        customRepository = null
+    }
+
+    val mechanicalPrescriptionRepository: MechanicalPrescriptionRepository
+        get() = customRepository ?: defaultInMemoryRepository
+
+    private val defaultInMemoryRepository by lazy {
         createInMemoryRepository()
     }
 }
