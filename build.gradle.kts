@@ -66,6 +66,8 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koog.agents)
+            implementation(libs.koog.executor.ollama)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
