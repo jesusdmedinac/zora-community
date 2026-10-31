@@ -73,7 +73,7 @@ class KoogZoraCopilotAgent(
         garageContext: GarageVehicleContext,
     ): CopilotReply {
         val specialist = when {
-            driverPrompt.contains("fren", ignoreCase = true) || driverPrompt.contains("brake", ignoreCase = true) ||
+            driverPrompt.contains("fren", ignoreCase = true) || driverPrompt.contains("brak", ignoreCase = true) ||
                 driverPrompt.contains("humo", ignoreCase = true) || driverPrompt.contains("smoke", ignoreCase = true) ->
                 SpecialistType.MECHANIC_SHOP
 
@@ -113,7 +113,7 @@ class KoogZoraCopilotAgent(
     ): CopilotReply {
         val vehicle = garageContext.vehicleDisplayName
         return when {
-            prompt.contains("fren", ignoreCase = true) || prompt.contains("brake", ignoreCase = true) ->
+            prompt.contains("fren", ignoreCase = true) || prompt.contains("brak", ignoreCase = true) ->
                 CopilotReply(
                     message = "Análisis para $vehicle: Si el pedal vibra al frenar a alta velocidad, suele indicar alabeo en los discos de freno delanteros o desgaste irregular de balatas. Se recomienda inspección de grosor de rotores.",
                     suggestedSpecialist = SpecialistType.MECHANIC_SHOP,
