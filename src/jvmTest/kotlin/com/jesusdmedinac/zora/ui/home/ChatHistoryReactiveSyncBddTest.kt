@@ -40,6 +40,7 @@ class ChatHistoryReactiveSyncBddTest {
 
         val firstConversationPrompt = "¿Por qué vibra el volante a alta velocidad?"
         val followUpPrompt = "¿Y al frenar a 60 km/h?"
+        val followUpResolution = CopilotHomeViewModel.resolveAssistantResolution(followUpPrompt, "Honda Civic EX 2.0L")
 
         // When the driver starts a diagnostic conversation in CopilotHomeViewModel
         homeViewModel.testWithInternalState(this) {
@@ -72,7 +73,8 @@ class ChatHistoryReactiveSyncBddTest {
                         ),
                         CopilotChatMessage.User(text = followUpPrompt, id = "user_3"),
                         CopilotChatMessage.Assistant(
-                            text = CopilotHomeViewModel.resolveAssistantReply(followUpPrompt, "Honda Civic EX 2.0L"),
+                            text = followUpResolution.text,
+                            dynamicDocument = followUpResolution.dynamicDocument,
                             id = "asst_4",
                         ),
                     ),
@@ -142,7 +144,8 @@ class ChatHistoryReactiveSyncBddTest {
                         ),
                         CopilotChatMessage.User(text = followUpPrompt, id = "user_3"),
                         CopilotChatMessage.Assistant(
-                            text = CopilotHomeViewModel.resolveAssistantReply(followUpPrompt, "Honda Civic EX 2.0L"),
+                            text = followUpResolution.text,
+                            dynamicDocument = followUpResolution.dynamicDocument,
                             id = "asst_4",
                         ),
                     ),

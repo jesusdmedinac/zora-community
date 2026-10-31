@@ -1,6 +1,7 @@
 package com.jesusdmedinac.zora.ui.home.model
 
 import androidx.compose.runtime.Immutable
+import com.jesusdmedinac.jsontocompose.model.ComposeDocument
 import kotlinx.serialization.Serializable
 import kotlin.random.Random
 
@@ -24,6 +25,7 @@ sealed interface CopilotChatMessage {
     data class Assistant(
         val text: String,
         val isTyping: Boolean = false,
+        val dynamicDocument: ComposeDocument? = null,
         override val id: String = "asst_${Random.nextInt(100000, 999999)}",
     ) : CopilotChatMessage
 }

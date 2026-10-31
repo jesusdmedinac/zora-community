@@ -99,6 +99,7 @@ class CopilotHomeViewModelTest {
             symptomIdGenerator = { "sym_test_2" },
         )
         val symptom = "Humo azul"
+        val resolution = CopilotHomeViewModel.resolveAssistantResolution(symptom, "Honda Civic EX 2.0L")
         viewModel.testWithInternalState(this) {
             containerHost.processIntent(CopilotHomeIntent.SelectSuggestion(symptom))
             expectInternalState {
@@ -106,7 +107,8 @@ class CopilotHomeViewModelTest {
                     messages = listOf(
                         CopilotChatMessage.User(text = symptom, id = "user_1"),
                         CopilotChatMessage.Assistant(
-                            text = CopilotHomeViewModel.resolveAssistantReply(symptom, "Honda Civic EX 2.0L"),
+                            text = resolution.text,
+                            dynamicDocument = resolution.dynamicDocument,
                             id = "asst_2",
                         ),
                     ),
@@ -285,6 +287,7 @@ class CopilotHomeViewModelTest {
             symptomIdGenerator = { "sym_suggestion_1" },
         )
         val symptom = "Humo azul"
+        val resolution = CopilotHomeViewModel.resolveAssistantResolution(symptom, "Honda Civic EX 2.0L")
         viewModel.testWithInternalState(this) {
             containerHost.processIntent(CopilotHomeIntent.SelectSuggestion(symptom))
             expectInternalState {
@@ -292,7 +295,8 @@ class CopilotHomeViewModelTest {
                     messages = listOf(
                         CopilotChatMessage.User(text = symptom, id = "user_1"),
                         CopilotChatMessage.Assistant(
-                            text = CopilotHomeViewModel.resolveAssistantReply(symptom, "Honda Civic EX 2.0L"),
+                            text = resolution.text,
+                            dynamicDocument = resolution.dynamicDocument,
                             id = "asst_2",
                         ),
                     ),
@@ -343,6 +347,7 @@ class CopilotHomeViewModelTest {
 
             // Second turn (continues conversation)
             currentTime += 5000L
+            val secondResolution = CopilotHomeViewModel.resolveAssistantResolution(secondPrompt, "Honda Civic EX 2.0L")
             containerHost.processIntent(CopilotHomeIntent.SendPrompt(secondPrompt))
             expectInternalState {
                 copy(
@@ -355,7 +360,8 @@ class CopilotHomeViewModelTest {
                         ),
                         CopilotChatMessage.User(text = secondPrompt, id = "user_3"),
                         CopilotChatMessage.Assistant(
-                            text = CopilotHomeViewModel.resolveAssistantReply(secondPrompt, "Honda Civic EX 2.0L"),
+                            text = secondResolution.text,
+                            dynamicDocument = secondResolution.dynamicDocument,
                             id = "asst_4",
                         ),
                     ),

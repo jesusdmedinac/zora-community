@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.jesusdmedinac.jsontocompose.model.ComposeAction
 import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
 import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
@@ -30,6 +31,7 @@ fun CopilotChatList(
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),
     onCopyMessage: ((String) -> Unit)? = null,
+    onCustomAction: ((ComposeAction.Custom) -> Unit)? = null,
 ) {
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
@@ -59,7 +61,11 @@ fun CopilotChatList(
                             .padding(end = 24.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                        AssistantChatBubble(text = message.text)
+                        AssistantChatBubble(
+                            text = message.text,
+                            dynamicDocument = message.dynamicDocument,
+                            onCustomAction = onCustomAction,
+                        )
                         ZoraAssistantActionBar(
                             messageText = message.text,
                             onCopy = { onCopyMessage?.invoke(message.text) },

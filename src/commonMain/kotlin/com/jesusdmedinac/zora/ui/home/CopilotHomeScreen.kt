@@ -32,11 +32,13 @@ import com.jesusdmedinac.zora.ui.home.model.CopilotHomeIntent
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeSideEffect
 import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
+import com.jesusdmedinac.zora.ui.home.sdui.ZoraSduiTemplates
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.jsonPrimitive
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.orbitmvi.orbit.compose.collectAsState
@@ -162,6 +164,22 @@ fun CopilotHomeScreenContent(
                         onCopyMessage = {
                             coroutineScope.launch {
                                 toastState.showToast(textCopiedMessage)
+                            }
+                        },
+                        onCustomAction = { action ->
+                            when (action.customType) {
+                                ZoraSduiTemplates.ACTION_OPEN_PAYWALL -> {
+                                    val source = action.params["source"]?.jsonPrimitive?.content
+                                    onIntent(CopilotHomeIntent.OpenPaywall(source))
+                                }
+                                ZoraSduiTemplates.ACTION_CONFIRM_MEMORY -> {
+                                    val memory = action.params["memory"]?.jsonPrimitive?.content ?: ""
+                                    onIntent(CopilotHomeIntent.ConfirmGarageMemory(memory))
+                                }
+                                ZoraSduiTemplates.ACTION_DISMISS_MEMORY -> {
+                                    val memory = action.params["memory"]?.jsonPrimitive?.content ?: ""
+                                    onIntent(CopilotHomeIntent.DismissGarageMemory(memory))
+                                }
                             }
                         },
                         modifier = Modifier

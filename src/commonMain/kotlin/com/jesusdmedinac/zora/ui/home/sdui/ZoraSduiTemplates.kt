@@ -33,10 +33,12 @@ object ZoraSduiTemplates {
             SpecialistType.GAS_STATION -> "CENTRO DE SERVICIO Y COMBUSTIBLE"
         }
 
-        val eventName = "on_explore_pro_${type.name.lowercase()}"
+        val typeKey = type.name.lowercase()
+        val eventName = "on_explore_pro_$typeKey"
 
         val contentColumn = ComposeNode(
             type = ComposeType.Column,
+            id = "col_specialist_$typeKey",
             composeModifier = ComposeModifier(
                 operations = listOf(
                     ComposeModifier.Operation.FillMaxWidth,
@@ -47,6 +49,7 @@ object ZoraSduiTemplates {
                 children = listOf(
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_badge_$typeKey",
                         properties = NodeProperties.TextProps(
                             text = badgeTitle,
                             fontSize = 11.0,
@@ -56,12 +59,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_1_$typeKey",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(6)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_warning_$typeKey",
                         properties = NodeProperties.TextProps(
                             text = warningNotice,
                             fontSize = 13.0,
@@ -71,12 +76,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_2_$typeKey",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(8)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_teaser_$typeKey",
                         properties = NodeProperties.TextProps(
                             text = teaserMessage,
                             fontSize = 12.0,
@@ -86,12 +93,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_3_$typeKey",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(12)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Button,
+                        id = "btn_pro_$typeKey",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.FillMaxWidth),
                         ),
@@ -100,6 +109,7 @@ object ZoraSduiTemplates {
                             containerColor = "#894CFF",
                             child = ComposeNode(
                                 type = ComposeType.Text,
+                                id = "btn_txt_pro_$typeKey",
                                 properties = NodeProperties.TextProps(
                                     text = "Explorar Zora Pro",
                                     fontWeight = "Bold",
@@ -115,6 +125,7 @@ object ZoraSduiTemplates {
 
         val rootCard = ComposeNode(
             type = ComposeType.Card,
+            id = "card_specialist_$typeKey",
             composeModifier = ComposeModifier(
                 operations = listOf(ComposeModifier.Operation.FillMaxWidth),
             ),
@@ -153,6 +164,7 @@ object ZoraSduiTemplates {
 
         val contentColumn = ComposeNode(
             type = ComposeType.Column,
+            id = "col_confirm_memory",
             composeModifier = ComposeModifier(
                 operations = listOf(
                     ComposeModifier.Operation.FillMaxWidth,
@@ -163,6 +175,7 @@ object ZoraSduiTemplates {
                 children = listOf(
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_badge_memory",
                         properties = NodeProperties.TextProps(
                             text = "BÓVEDA DE MEMORIA DEL GARAJE",
                             fontSize = 11.0,
@@ -172,12 +185,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_1_memory",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(6)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_prompt_memory",
                         properties = NodeProperties.TextProps(
                             text = "¿Deseas recordar este detalle en tu Garaje Virtual?",
                             fontSize = 13.0,
@@ -187,12 +202,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_2_memory",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(4)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Text,
+                        id = "txt_content_memory",
                         properties = NodeProperties.TextProps(
                             text = "\"$proposedMemory\"",
                             fontSize = 12.0,
@@ -202,12 +219,14 @@ object ZoraSduiTemplates {
                     ),
                     ComposeNode(
                         type = ComposeType.Spacer,
+                        id = "spc_3_memory",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.Height(12)),
                         ),
                     ),
                     ComposeNode(
                         type = ComposeType.Row,
+                        id = "row_actions_memory",
                         composeModifier = ComposeModifier(
                             operations = listOf(ComposeModifier.Operation.FillMaxWidth),
                         ),
@@ -215,11 +234,13 @@ object ZoraSduiTemplates {
                             children = listOf(
                                 ComposeNode(
                                     type = ComposeType.Button,
+                                    id = "btn_confirm_memory",
                                     properties = NodeProperties.ButtonProps(
                                         onClickEventName = confirmEvent,
                                         containerColor = "#894CFF",
                                         child = ComposeNode(
                                             type = ComposeType.Text,
+                                            id = "txt_btn_confirm_memory",
                                             properties = NodeProperties.TextProps(
                                                 text = "Guardar en Garage",
                                                 fontSize = 12.0,
@@ -231,17 +252,20 @@ object ZoraSduiTemplates {
                                 ),
                                 ComposeNode(
                                     type = ComposeType.Spacer,
+                                    id = "spc_btn_memory",
                                     composeModifier = ComposeModifier(
                                         operations = listOf(ComposeModifier.Operation.Width(8)),
                                     ),
                                 ),
                                 ComposeNode(
                                     type = ComposeType.Button,
+                                    id = "btn_dismiss_memory",
                                     properties = NodeProperties.ButtonProps(
                                         onClickEventName = dismissEvent,
                                         containerColor = "#25262B",
                                         child = ComposeNode(
                                             type = ComposeType.Text,
+                                            id = "txt_btn_dismiss_memory",
                                             properties = NodeProperties.TextProps(
                                                 text = "Descartar",
                                                 fontSize = 12.0,
@@ -260,6 +284,7 @@ object ZoraSduiTemplates {
 
         val rootCard = ComposeNode(
             type = ComposeType.Card,
+            id = "card_confirm_memory",
             composeModifier = ComposeModifier(
                 operations = listOf(ComposeModifier.Operation.FillMaxWidth),
             ),

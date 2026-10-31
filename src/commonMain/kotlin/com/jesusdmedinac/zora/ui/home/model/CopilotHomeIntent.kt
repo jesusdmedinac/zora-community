@@ -15,4 +15,6 @@ sealed interface CopilotHomeIntent {
     data class OpenPaywall(val sourceReason: String? = null) : CopilotHomeIntent
     data object RefreshTelemetry : CopilotHomeIntent
     data object ClearChat : CopilotHomeIntent
+    data class ConfirmGarageMemory(val memory: String) : CopilotHomeIntent
+    data class DismissGarageMemory(val memory: String) : CopilotHomeIntent
 }
