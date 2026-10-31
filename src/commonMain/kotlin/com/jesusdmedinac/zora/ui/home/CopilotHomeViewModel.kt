@@ -2,7 +2,11 @@ package com.jesusdmedinac.zora.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.jesusdmedinac.jsontocompose.model.ComposeDocument
+import com.jesusdmedinac.zora.domain.ai.CopilotReply
+import com.jesusdmedinac.zora.domain.ai.GarageVehicleContext
+import com.jesusdmedinac.zora.domain.ai.KoogZoraCopilotAgent
 import com.jesusdmedinac.zora.domain.ai.SpecialistType
+import com.jesusdmedinac.zora.domain.ai.ZoraCopilotAgent
 import com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity
 import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
@@ -24,6 +28,7 @@ import org.orbitmvi.orbit.viewmodel.orbitContainer
 @OptIn(ExperimentalTime::class)
 class CopilotHomeViewModel(
     private val repository: MechanicalPrescriptionRepository? = null,
+    private val copilotAgent: ZoraCopilotAgent = KoogZoraCopilotAgent(),
     private val vehicleId: String = "honda_civic_2018",
     private val timeProvider: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     private val messageIdGenerator: (prefix: String) -> String = { prefix ->
@@ -84,10 +89,18 @@ class CopilotHomeViewModel(
             text = trimmed,
             id = messageIdGenerator("user"),
         )
-        val resolution = resolveAssistantResolution(trimmed, state.activeVehicleName)
+        val garageContext = GarageVehicleContext(
+            make = "Honda",
+            model = "Civic",
+            year = 2018,
+            learnedMemories = emptyList(),
+            vehicleDisplayName = state.activeVehicleName,
+        )
+        val reply = copilotAgent.interact(trimmed, garageContext)
+        val dynamicDocument = Companion.buildDynamicDocumentForReply(reply)
         val assistantMessage = CopilotChatMessage.Assistant(
-            text = resolution.text,
-            dynamicDocument = resolution.dynamicDocument,
+            text = reply.message,
+            dynamicDocument = dynamicDocument,
             id = messageIdGenerator("asst"),
         )
 
@@ -103,7 +116,7 @@ class CopilotHomeViewModel(
                 vehicleId = vehicleId,
                 vinTechnicalPrefix = "2HGFC2F5",
                 rawSymptomDescription = trimmed,
-                localPreliminaryHypothesis = resolution.text,
+                localPreliminaryHypothesis = reply.message,
                 serializedPrescriptionJson = serialized,
                 createdAtMs = now,
                 updatedAtMs = now,
@@ -119,7 +132,7 @@ class CopilotHomeViewModel(
                 vehicleId = vehicleId,
                 vinTechnicalPrefix = "2HGFC2F5",
                 rawSymptomDescription = title,
-                localPreliminaryHypothesis = resolution.text,
+                localPreliminaryHypothesis = reply.message,
                 serializedPrescriptionJson = serialized,
                 createdAtMs = createdAt,
                 updatedAtMs = now,
@@ -144,10 +157,18 @@ class CopilotHomeViewModel(
             text = symptom,
             id = messageIdGenerator("user"),
         )
-        val resolution = resolveAssistantResolution(symptom, state.activeVehicleName)
+        val garageContext = GarageVehicleContext(
+            make = "Honda",
+            model = "Civic",
+            year = 2018,
+            learnedMemories = emptyList(),
+            vehicleDisplayName = state.activeVehicleName,
+        )
+        val reply = copilotAgent.interact(symptom, garageContext)
+        val dynamicDocument = Companion.buildDynamicDocumentForReply(reply)
         val assistantMessage = CopilotChatMessage.Assistant(
-            text = resolution.text,
-            dynamicDocument = resolution.dynamicDocument,
+            text = reply.message,
+            dynamicDocument = dynamicDocument,
             id = messageIdGenerator("asst"),
         )
 
@@ -163,7 +184,7 @@ class CopilotHomeViewModel(
                 vehicleId = vehicleId,
                 vinTechnicalPrefix = "2HGFC2F5",
                 rawSymptomDescription = symptom,
-                localPreliminaryHypothesis = resolution.text,
+                localPreliminaryHypothesis = reply.message,
                 serializedPrescriptionJson = serialized,
                 createdAtMs = now,
                 updatedAtMs = now,
@@ -179,7 +200,7 @@ class CopilotHomeViewModel(
                 vehicleId = vehicleId,
                 vinTechnicalPrefix = "2HGFC2F5",
                 rawSymptomDescription = title,
-                localPreliminaryHypothesis = resolution.text,
+                localPreliminaryHypothesis = reply.message,
                 serializedPrescriptionJson = serialized,
                 createdAtMs = createdAt,
                 updatedAtMs = now,
@@ -189,6 +210,7 @@ class CopilotHomeViewModel(
 
         reduce {
             state.copy(
+                promptText = "",
                 messages = updatedMessages,
                 activeSymptomId = targetSymptomId,
             )
@@ -333,70 +355,49 @@ class CopilotHomeViewModel(
     )
 
     companion object {
+        private val defaultAgent = KoogZoraCopilotAgent()
+
+        fun buildDynamicDocumentForReply(reply: CopilotReply): ComposeDocument? {
+            return when {
+                reply.suggestedSpecialist == SpecialistType.MECHANIC_SHOP ->
+                    ZoraSduiTemplates.buildSpecialistTeaserDocument(
+                        type = SpecialistType.MECHANIC_SHOP,
+                        warningNotice = "La revisión del sistema de frenos requiere inspección física en taller especializado por seguridad del conductor.",
+                        teaserMessage = "La conexión con mecánicos certificados y diagnóstico telemático asistido estará disponible próximamente en Zora Pro.",
+                    )
+                reply.suggestedSpecialist == SpecialistType.SALVAGE_YARD ->
+                    ZoraSduiTemplates.buildSpecialistTeaserDocument(
+                        type = SpecialistType.SALVAGE_YARD,
+                        warningNotice = "Las piezas mostradas en Zora Community son hipotéticas y con fines informativos.",
+                        teaserMessage = "Para consultar inventario en vivo, verificar piezas en yonkes locales reales y activar oportunidades de compra, actualiza a Zora Pro.",
+                    )
+                reply.suggestedSpecialist == SpecialistType.GAS_STATION ->
+                    ZoraSduiTemplates.buildSpecialistTeaserDocument(
+                        type = SpecialistType.GAS_STATION,
+                        warningNotice = "Zora Community ofrece datos de referencia de consumo y especificaciones de octanaje.",
+                        teaserMessage = "La localización inteligente y precios de gasolineras/centros de servicio en tiempo real estarán próximamente en Zora Pro.",
+                    )
+                reply.memoryToConfirm != null ->
+                    ZoraSduiTemplates.buildConfirmMemoryDocument(reply.memoryToConfirm)
+                else -> null
+            }
+        }
+
         fun resolveAssistantReply(prompt: String, vehicle: String): String =
             resolveAssistantResolution(prompt, vehicle).text
 
         fun resolveAssistantResolution(prompt: String, vehicle: String): AssistantResolution {
-            return when {
-                prompt.contains("fren", ignoreCase = true) || prompt.contains("brake", ignoreCase = true) ->
-                    AssistantResolution(
-                        text = "Análisis para $vehicle: Si el pedal vibra al frenar a alta velocidad, suele indicar alabeo en los discos de freno delanteros o desgaste irregular de balatas. Se recomienda inspección de grosor de rotores.",
-                        dynamicDocument = ZoraSduiTemplates.buildSpecialistTeaserDocument(
-                            type = SpecialistType.MECHANIC_SHOP,
-                            warningNotice = "La revisión del sistema de frenos requiere inspección física en taller especializado por seguridad del conductor.",
-                            teaserMessage = "La conexión con mecánicos certificados y diagnóstico telemático asistido estará disponible próximamente en Zora Pro.",
-                        ),
-                    )
-                prompt.contains("aceite", ignoreCase = true) || prompt.contains("oil", ignoreCase = true) -> {
-                    val isMaintenanceRecord = prompt.contains("cambi", ignoreCase = true) || prompt.contains("pus", ignoreCase = true)
-                    AssistantResolution(
-                        text = "Especificación de servicio para $vehicle: Capacidad 4.2 L con cambio de filtro. Viscosidad recomendada: 0W-20 sintético. Intervalo cada 8,000 km.",
-                        dynamicDocument = if (isMaintenanceRecord) {
-                            ZoraSduiTemplates.buildConfirmMemoryDocument("Aceite sintético 0W-20 con cambio de filtro")
-                        } else null,
-                    )
-                }
-                prompt.contains("bater", ignoreCase = true) || prompt.contains("battery", ignoreCase = true) -> {
-                    val isBatteryChange = prompt.contains("nueva", ignoreCase = true) || prompt.contains("cambi", ignoreCase = true)
-                    AssistantResolution(
-                        text = "Diagnóstico de batería para $vehicle: Voltaje nominal 12.6V verificado. Alternador cargando dentro de rango (14.2V). Bóveda de salud al 100%.",
-                        dynamicDocument = if (isBatteryChange) {
-                            ZoraSduiTemplates.buildConfirmMemoryDocument("Batería 12.6V reemplazada")
-                        } else null,
-                    )
-                }
-                prompt.contains("humo", ignoreCase = true) || prompt.contains("smoke", ignoreCase = true) ->
-                    AssistantResolution(
-                        text = "Alerta para $vehicle: Humo azul indica quema de aceite en cámara de combustión (posibles sellos de válvula o anillos de pistón gastados).",
-                        dynamicDocument = ZoraSduiTemplates.buildSpecialistTeaserDocument(
-                            type = SpecialistType.MECHANIC_SHOP,
-                            warningNotice = "La emisión anómala de humo puede provocar daños severos al convertidor catalítico y motor.",
-                            teaserMessage = "Próximamente en Zora Pro: telemetría en tiempo real y enlace directo con talleres mecánicos especializados.",
-                        ),
-                    )
-                prompt.contains("yonke", ignoreCase = true) || prompt.contains("pieza", ignoreCase = true) || prompt.contains("refaccion", ignoreCase = true) || prompt.contains("part", ignoreCase = true) ->
-                    AssistantResolution(
-                        text = "Catálogo de Yonke para $vehicle: Puedes consultar estimaciones de piezas de salvamento compatibles con la carrocería y motor de tu vehículo.",
-                        dynamicDocument = ZoraSduiTemplates.buildSpecialistTeaserDocument(
-                            type = SpecialistType.SALVAGE_YARD,
-                            warningNotice = "Las piezas mostradas en Zora Community son hipotéticas y con fines informativos.",
-                            teaserMessage = "Para consultar inventario en vivo, verificar piezas en yonkes locales reales y activar oportunidades de compra, actualiza a Zora Pro.",
-                        ),
-                    )
-                prompt.contains("gasolin", ignoreCase = true) || prompt.contains("combustible", ignoreCase = true) ->
-                    AssistantResolution(
-                        text = "Orientación de combustible para $vehicle: Se recomienda gasolina de mínimo 87 octanos (Regular) o superior para un rendimiento óptimo de motor.",
-                        dynamicDocument = ZoraSduiTemplates.buildSpecialistTeaserDocument(
-                            type = SpecialistType.GAS_STATION,
-                            warningNotice = "Zora Community ofrece datos de referencia de consumo y especificaciones de octanaje.",
-                            teaserMessage = "La localización inteligente y precios de gasolineras/centros de servicio en tiempo real estarán próximamente en Zora Pro.",
-                        ),
-                    )
-                else ->
-                    AssistantResolution(
-                        text = "He registrado \"$prompt\" en tu bóveda mecánica local para $vehicle. Consultando telemetría de abordo y especificaciones de taller...",
-                    )
-            }
+            val garageContext = GarageVehicleContext(
+                make = "Honda",
+                model = "Civic",
+                year = 2018,
+                vehicleDisplayName = vehicle,
+            )
+            val reply = defaultAgent.resolveLocalHeuristic(prompt, garageContext)
+            return AssistantResolution(
+                text = reply.message,
+                dynamicDocument = buildDynamicDocumentForReply(reply),
+            )
         }
     }
 }

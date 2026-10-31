@@ -5,6 +5,8 @@ import com.jesusdmedinac.zora.data.local.MechanicalPrescriptionVaultDatabase
 import com.jesusdmedinac.zora.data.local.SqlDelightMechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.data.local.driver.DatabaseDriverFactory
 import com.jesusdmedinac.zora.data.local.driver.createMechanicalPrescriptionVaultDatabase
+import com.jesusdmedinac.zora.domain.ai.KoogZoraCopilotAgent
+import com.jesusdmedinac.zora.domain.ai.ZoraCopilotAgent
 import com.jesusdmedinac.zora.domain.model.prescription.MechanicalPrescriptionEntity
 import com.jesusdmedinac.zora.domain.repository.MechanicalPrescriptionRepository
 import com.jesusdmedinac.zora.ui.home.CopilotHomeViewModel
@@ -27,9 +29,18 @@ val dataModule = module {
     }
 }
 
+val aiModule = module {
+    single<ZoraCopilotAgent> {
+        KoogZoraCopilotAgent()
+    }
+}
+
 val viewModelModule = module {
     viewModel {
-        CopilotHomeViewModel(repository = get())
+        CopilotHomeViewModel(
+            repository = getOrNull(),
+            copilotAgent = getOrNull() ?: KoogZoraCopilotAgent(),
+        )
     }
     viewModel {
         ZoraShiftedDrawerViewModel(repository = get())
@@ -44,7 +55,7 @@ fun inMemoryDataModule(
     }
 }
 
-val zoraAppModules: List<Module> = listOf(dataModule, viewModelModule)
+val zoraAppModules: List<Module> = listOf(dataModule, aiModule, viewModelModule)
 
 fun initKoin(
     additionalModules: List<Module> = emptyList(),
@@ -64,6 +75,6 @@ fun initInMemoryKoin(
     if (GlobalContext.getOrNull() != null) return null
     return startKoin {
         appDeclaration?.invoke(this)
-        modules(listOf(inMemoryDataModule(), viewModelModule) + additionalModules)
+        modules(listOf(inMemoryDataModule(), aiModule, viewModelModule) + additionalModules)
     }
 }

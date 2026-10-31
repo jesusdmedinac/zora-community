@@ -17,6 +17,7 @@ data class GarageVehicleContext(
     val model: String,
     val year: Int,
     val learnedMemories: List<String> = emptyList(), // Max 5 dynamic memories in the free community tier
+    val vehicleDisplayName: String = "$year $make $model",
 )
 
 data class CopilotReply(
