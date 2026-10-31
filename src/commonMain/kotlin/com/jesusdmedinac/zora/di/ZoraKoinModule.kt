@@ -31,7 +31,9 @@ val dataModule = module {
 
 val aiModule = module {
     single<ZoraCopilotAgent> {
-        KoogZoraCopilotAgent()
+        KoogZoraCopilotAgent(
+            llmClient = getOrNull(),
+        )
     }
 }
 

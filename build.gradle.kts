@@ -81,6 +81,7 @@ kotlin {
             implementation(libs.sqldelight.driver.android)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.koin.android)
+            implementation(libs.mlkit.genai.prompt)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)

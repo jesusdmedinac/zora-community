@@ -22,7 +22,7 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Inject multiplatform dependencies with Koin
 - [x] Scenario: Persist vehicles and telemetry locally with SQLDelight
 - [x] Scenario: Dynamically render agent generative UI with json-to-compose runtime
-- [ ] Scenario: Process structured vehicle queries with kotlin-genai and offline fallback
+- [x] Scenario: Process on-device generative vehicle queries with Gemini Nano via JetBrains Koog (Google ML Kit GenAI Prompt API / AICore) and offline heuristic fallback
 
 ---
 
