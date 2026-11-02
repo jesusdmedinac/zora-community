@@ -20,17 +20,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.chat_top_bar_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Top navigation header for Onboarding Chat with back button and active vehicle title.
  */
 @Composable
 fun ChatTopBar(
-    vehicleModel: String = "Honda Civic 2018",
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    vehicleModel: String = "Honda Civic 2018",
 ) {
     Row(
         modifier = modifier
@@ -62,7 +66,7 @@ fun ChatTopBar(
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.chat_top_bar_title),
+                text = stringResource(Res.string.chat_top_bar_title),
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
@@ -95,10 +99,10 @@ fun ChatTopBar(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ChatTopBarPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ChatTopBar(
             vehicleModel = "Honda Civic 2018",
             onBack = {},

@@ -86,4 +86,10 @@ object ZoraTokens {
     val FontHeadline = FontFamily.Default // Mapeado a Manrope
     val FontBody = FontFamily.Default     // Mapeado a Inter
     val FontMono = FontFamily.Monospace   // Mapeado a JetBrains Mono
+
+    // 9. Dimensiones de Sistema y Bordes (Top & Bottom Edges)
+    val StatusBarHeightM3 = 28.dp
+    val StatusBarHeightHIG = 54.dp
+    val NavigationBarHeightM3 = 16.dp
+    val HomeIndicatorHeightHIG = 24.dp
 }

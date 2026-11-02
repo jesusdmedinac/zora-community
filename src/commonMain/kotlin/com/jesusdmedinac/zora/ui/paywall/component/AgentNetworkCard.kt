@@ -19,10 +19,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.AgentNode
+import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.resources.stringResource
 import zora_community.generated.resources.Res
 import zora_community.generated.resources.network_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Status card showcasing the multi-agent autonomous network and local-first privacy guarantee.
@@ -124,12 +127,12 @@ fun AgentNetworkCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun AgentNetworkCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         AgentNetworkCard(
-            agentNodes = com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes(),
+            agentNodes = defaultAgentNodes(),
         )
     }
 }

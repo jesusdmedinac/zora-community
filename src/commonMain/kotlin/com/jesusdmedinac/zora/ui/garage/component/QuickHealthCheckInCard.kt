@@ -17,13 +17,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.fluid_coolant
 import zora_community.generated.resources.fluid_engine_oil
 import zora_community.generated.resources.last_calibration_recent
 import zora_community.generated.resources.quick_checkin_title
 import zora_community.generated.resources.telemetry_battery
 import zora_community.generated.resources.telemetry_tire_pressure
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Rapid 30-second fluid and battery health check-in card.
@@ -43,14 +47,14 @@ fun QuickHealthCheckInCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.quick_checkin_title),
+                text = stringResource(Res.string.quick_checkin_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = ZoraTokens.Primary,
             )
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.last_calibration_recent),
+                text = stringResource(Res.string.last_calibration_recent),
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
                 color = ZoraTokens.OnSurfaceVariant,
@@ -67,19 +71,19 @@ fun QuickHealthCheckInCard(
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 TelemetryRow(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.fluid_engine_oil),
+                    label = stringResource(Res.string.fluid_engine_oil),
                     value = telemetry.engineOil
                 )
                 TelemetryRow(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.fluid_coolant),
+                    label = stringResource(Res.string.fluid_coolant),
                     value = telemetry.coolant
                 )
                 TelemetryRow(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_tire_pressure),
+                    label = stringResource(Res.string.telemetry_tire_pressure),
                     value = telemetry.tirePressure
                 )
                 TelemetryRow(
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.telemetry_battery),
+                    label = stringResource(Res.string.telemetry_battery),
                     value = telemetry.battery
                 )
             }
@@ -87,10 +91,10 @@ fun QuickHealthCheckInCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun QuickHealthCheckInCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         QuickHealthCheckInCard(
             telemetry = TelemetryCheckInState(),
         )

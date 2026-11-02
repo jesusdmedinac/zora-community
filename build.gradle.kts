@@ -54,20 +54,39 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines)
+            implementation(libs.sqldelight.async.extensions)
             implementation(libs.sqldelight.primitive.adapters)
             implementation(libs.navigation3.runtime)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.orbit.core)
+            implementation(libs.orbit.viewmodel)
+            implementation(libs.orbit.compose)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koog.agents)
+            implementation(libs.koog.executor.ollama)
+            implementation(libs.json.to.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.orbit.test)
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.sqldelight.driver.android)
+            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.koin.android)
+            implementation(libs.mlkit.genai.prompt)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.sqldelight.driver.sqlite)
+            implementation(libs.kotlinx.coroutines.swing)
         }
         jvmTest.dependencies {
             implementation(libs.sqldelight.driver.sqlite)

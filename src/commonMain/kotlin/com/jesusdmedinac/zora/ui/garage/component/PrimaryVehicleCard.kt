@@ -19,23 +19,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.general_health_label
 import zora_community.generated.resources.obd2_linked
 import zora_community.generated.resources.odometer_label
 import zora_community.generated.resources.primary_vehicle_label
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Card showcasing the driver's primary vehicle, OBD-II link, masked VIN, and general health.
  */
 @Composable
 fun PrimaryVehicleCard(
+    modifier: Modifier = Modifier,
     vehicleName: String = "2018 Honda Civic EX",
     engineSummary: String = "2.0L 4-Cylinder · FWD Hatchback",
     maskedVin: String = "VIN: 2HGFC2F59JH02****",
     odometerText: String = "82,450 km",
     healthScoreText: String = "94% Normal",
-    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -59,7 +63,7 @@ fun PrimaryVehicleCard(
                         .padding(horizontal = 8.dp, vertical = 3.dp),
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.primary_vehicle_label),
+                        text = stringResource(Res.string.primary_vehicle_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -75,7 +79,7 @@ fun PrimaryVehicleCard(
                         .padding(horizontal = 8.dp, vertical = 3.dp),
                 ) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.obd2_linked),
+                        text = stringResource(Res.string.obd2_linked),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -124,7 +128,7 @@ fun PrimaryVehicleCard(
             ) {
                 Column {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.odometer_label),
+                        text = stringResource(Res.string.odometer_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         color = ZoraTokens.OnSurfaceVariant,
@@ -139,7 +143,7 @@ fun PrimaryVehicleCard(
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.general_health_label),
+                        text = stringResource(Res.string.general_health_label),
                         fontFamily = ZoraTokens.FontBody,
                         fontSize = 11.sp,
                         color = ZoraTokens.OnSurfaceVariant,
@@ -157,10 +161,10 @@ fun PrimaryVehicleCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PrimaryVehicleCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PrimaryVehicleCard()
     }
 }

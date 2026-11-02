@@ -37,6 +37,22 @@ class Navigation3ApiTest {
         assertEquals(ZoraRoute.GarageVault, popped)
         assertEquals(2, backStack.size)
         assertEquals(current, backStack.last())
+
+        // Navigate to Pro Paywall from drawer mechanic item
+        backStack.add(ZoraRoute.ProPaywall(sourceReason = "drawer_menu_mechanic"))
+        assertEquals(3, backStack.size)
+        val mechanicPaywall = backStack.last() as ZoraRoute.ProPaywall
+        assertEquals("drawer_menu_mechanic", mechanicPaywall.sourceReason)
+
+        // Pop back
+        backStack.removeAt(backStack.lastIndex)
+        assertEquals(2, backStack.size)
+
+        // Navigate to Pro Paywall from drawer gas stations item
+        backStack.add(ZoraRoute.ProPaywall(sourceReason = "drawer_menu_gas_stations"))
+        assertEquals(3, backStack.size)
+        val gasPaywall = backStack.last() as ZoraRoute.ProPaywall
+        assertEquals("drawer_menu_gas_stations", gasPaywall.sourceReason)
     }
 
     @Test
@@ -54,6 +70,9 @@ class Navigation3ApiTest {
             entry<ZoraRoute.GarageVault> {
                 Text("Garage Vault")
             }
+            entry<ZoraRoute.ProPaywall> { route ->
+                Text("Pro Paywall: ${route.sourceReason}")
+            }
         }
 
         val splashEntry = provider(ZoraRoute.Splash)
@@ -68,5 +87,9 @@ class Navigation3ApiTest {
 
         val garageEntry = provider(ZoraRoute.GarageVault)
         assertEquals(ZoraRoute.GarageVault.toString(), garageEntry.contentKey)
+
+        val paywallRoute = ZoraRoute.ProPaywall(sourceReason = "drawer_menu_mechanic")
+        val paywallEntry = provider(paywallRoute)
+        assertEquals(paywallRoute.toString(), paywallEntry.contentKey)
     }
 }

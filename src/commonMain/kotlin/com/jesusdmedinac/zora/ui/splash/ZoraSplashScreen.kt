@@ -27,7 +27,10 @@ import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootState
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraTopEdgePadding
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 
 /**
@@ -41,12 +44,11 @@ import kotlinx.coroutines.delay
  */
 @Composable
 fun ZoraSplashScreen(
+    modifier: Modifier = Modifier,
     onIgnitionComplete: () -> Unit = {},
     durationMillis: Int = 2400,
-    modifier: Modifier = Modifier
 ) {
-    val platform = LocalZoraPlatform.current
-    val topSystemPadding = if (platform == ZoraPlatformVariant.HUMAN_INTERFACE) 54.dp else 28.dp
+    val topSystemPadding = zoraTopEdgePadding()
 
     val progressAnimatable = remember { Animatable(0f) }
     var bootState by remember { mutableStateOf(TelemetryBootState()) }
@@ -120,10 +122,10 @@ fun ZoraSplashScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraSplashScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraSplashScreen()
     }
 }

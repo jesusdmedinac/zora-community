@@ -23,7 +23,10 @@ import com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState
 import com.jesusdmedinac.zora.ui.parts.model.PartCategory
 import com.jesusdmedinac.zora.ui.parts.model.VisualBlueprintState
 import com.jesusdmedinac.zora.ui.parts.model.defaultPartsCatalog
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Screen / M3 - Contextual Parts Feed, Salvage Yonke Network & 3D Component Engine.
@@ -55,7 +58,7 @@ fun PartsFeedScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
     ) {
         // 1. Top Bar with Fitment Pill & Subtitle
         PartsTopBar(
@@ -106,10 +109,10 @@ fun PartsFeedScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PartsFeedScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PartsFeedScreen(
             onBack = {},
             onReviewOptInSettings = {},

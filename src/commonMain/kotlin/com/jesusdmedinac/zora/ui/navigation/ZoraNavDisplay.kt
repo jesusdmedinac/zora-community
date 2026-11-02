@@ -7,10 +7,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 
 /**
  * Pure Kotlin Multiplatform NavDisplay for Navigation 3.
@@ -40,15 +43,15 @@ fun <T : Any> NavDisplay(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun NavDisplayPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         NavDisplay(
             backstack = listOf("Home"),
             entryProvider = { key ->
                 NavEntry(key) {
-                    androidx.compose.material3.Text("Route: $key")
+                    Text("Route: $key")
                 }
             }
         )

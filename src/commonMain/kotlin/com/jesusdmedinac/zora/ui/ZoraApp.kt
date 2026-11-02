@@ -16,6 +16,7 @@ import com.jesusdmedinac.zora.ui.paywall.ZoraProPaywallScreen
 import com.jesusdmedinac.zora.ui.splash.ZoraSplashScreen
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Root Composable for Zora Automotive Intelligence.
@@ -23,14 +24,14 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTheme
  */
 @Composable
 fun ZoraApp(
-    platformVariant: ZoraPlatformVariant = ZoraPlatformVariant.MATERIAL3,
     modifier: Modifier = Modifier,
+    platformVariant: ZoraPlatformVariant = ZoraPlatformVariant.MATERIAL3,
 ) {
     ZoraTheme(platformVariant = platformVariant) {
         val backStack = remember { NavBackStack<ZoraRoute>(ZoraRoute.Splash) }
 
         val entryProvider = remember(backStack) {
-            entryProvider<ZoraRoute> {
+            entryProvider {
                 entry<ZoraRoute.Splash> {
                     ZoraSplashScreen(
                         onIgnitionComplete = {
@@ -47,6 +48,9 @@ fun ZoraApp(
                         },
                         onNavigateToGarage = {
                             backStack.add(ZoraRoute.GarageVault)
+                        },
+                        onNavigateToPaywall = { sourceReason ->
+                            backStack.add(ZoraRoute.ProPaywall(sourceReason = sourceReason))
                         },
                     )
                 }
@@ -86,8 +90,9 @@ fun ZoraApp(
                     )
                 }
 
-                entry<ZoraRoute.ProPaywall> {
+                entry<ZoraRoute.ProPaywall> { route ->
                     ZoraProPaywallScreen(
+                        sourceReason = route.sourceReason,
                         onClose = {
                             if (backStack.size > 1) {
                                 backStack.removeAt(backStack.lastIndex)
@@ -106,7 +111,7 @@ fun ZoraApp(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraAppPreview() {
     ZoraApp()

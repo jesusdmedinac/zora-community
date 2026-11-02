@@ -23,7 +23,10 @@ import com.jesusdmedinac.zora.ui.paywall.component.SubscriptionPlansSelector
 import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
 import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Screen / M3 - Zora Pro Multi-Agent Network & Subscription Paywall.
@@ -37,6 +40,7 @@ import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 fun ZoraProPaywallScreen(
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
+    sourceReason: String? = null,
     onStartTrial: (() -> Unit)? = null,
 ) {
     var selectedBilling by remember { mutableStateOf(SubscriptionBilling.ANNUAL) }
@@ -47,7 +51,7 @@ fun ZoraProPaywallScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         // 1. Top Header with Close Button
@@ -80,10 +84,10 @@ fun ZoraProPaywallScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraProPaywallScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraProPaywallScreen(
             onClose = {},
             onStartTrial = {},

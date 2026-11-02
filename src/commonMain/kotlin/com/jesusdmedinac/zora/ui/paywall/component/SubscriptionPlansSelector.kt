@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
 import org.jetbrains.compose.resources.stringResource
 import zora_community.generated.resources.Res
@@ -31,6 +32,7 @@ import zora_community.generated.resources.plan_annual_savings
 import zora_community.generated.resources.plan_monthly
 import zora_community.generated.resources.plan_monthly_price
 import zora_community.generated.resources.subscription_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Radio selector for Annual vs Monthly subscription tiers.
@@ -195,12 +197,12 @@ fun SubscriptionPlansSelector(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun SubscriptionPlansSelectorPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         SubscriptionPlansSelector(
-            selectedBilling = com.jesusdmedinac.zora.ui.paywall.model.SubscriptionBilling.ANNUAL,
+            selectedBilling = SubscriptionBilling.ANNUAL,
             onSelectBilling = {},
         )
     }

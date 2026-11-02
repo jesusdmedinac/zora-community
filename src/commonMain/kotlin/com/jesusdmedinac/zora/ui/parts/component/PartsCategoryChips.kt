@@ -18,7 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.parts.model.PartCategory
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Horizontal row of category filter chips for parts catalog.
@@ -50,7 +53,7 @@ fun PartsCategoryChips(
                     .padding(horizontal = 10.dp, vertical = 6.dp),
             ) {
                 Text(
-                    text = org.jetbrains.compose.resources.stringResource(category.titleRes),
+                    text = stringResource(category.titleRes),
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
@@ -61,12 +64,12 @@ fun PartsCategoryChips(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PartsCategoryChipsPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PartsCategoryChips(
-            selectedCategory = com.jesusdmedinac.zora.ui.parts.model.PartCategory.ALL,
+            selectedCategory = PartCategory.ALL,
             onSelectCategory = {},
         )
     }

@@ -18,11 +18,11 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 
 ## Feature 05: Clean Architecture and Modern Tech Stack (Foundation)
 - [ ] Scenario: Build project using declarative module.yaml
-- [ ] Scenario: Maintain unidirectional MVI state flow with ViewModel and StateFlow
-- [ ] Scenario: Inject multiplatform dependencies with Koin
-- [ ] Scenario: Persist vehicles and telemetry locally with SQLDelight
-- [ ] Scenario: Dynamically render agent generative UI with json-to-compose runtime
-- [ ] Scenario: Process structured vehicle queries with kotlin-genai and offline fallback
+- [x] Scenario: Maintain unidirectional MVI state flow with Orbit MVI 12 (OrbitContainerHost, side effects, and collectAsState/collectSideEffect)
+- [x] Scenario: Inject multiplatform dependencies with Koin
+- [x] Scenario: Persist vehicles and telemetry locally with SQLDelight
+- [x] Scenario: Dynamically render agent generative UI with json-to-compose runtime
+- [x] Scenario: Process on-device generative vehicle queries with Gemini Nano via JetBrains Koog (Google ML Kit GenAI Prompt API / AICore) and offline heuristic fallback
 
 ---
 
@@ -93,6 +93,30 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 - [x] Scenario: Render headless offscreen screenshots of all core screen previews and atomic UI cards
 - [x] Scenario: Audit ZoraIgnitionGlyph against zora-community.pen and backport atomic component to Component Library
 - [x] Scenario: Align ZoraIgnitionGlyph with canonical 4-triangle square geometry and bounded Core Spectrum gradient
+- [x] Scenario: Adaptive ZoraPromptComposer with dynamic voicewaves and send action swap
+- [x] Scenario: Align CopilotPromptHero with Centered Welcome Hero in zora-community.pen and backport to Component Library
+- [x] Scenario: In-place conversational chat stream and zero-state conditional switching in Copilot Home
+- [x] Scenario: Align UserChatBubble with Component Library specification in zora-community.pen
+- [x] Scenario: Align AssistantChatBubble with containerless design specification in zora-community.pen
+- [x] Scenario: Align ZoraAssistantActionBar with Component Library specification in zora-community.pen
+- [x] Scenario: Align ActionButton with transparent background and OnSurface typography matching AssistantChatBubble
+- [x] Scenario: Animated copy-to-checkmark transition, clipboard integration, and bottom toast notification
+- [x] Scenario: Align ZoraShiftedDrawerLayout and atomic navigation drawer components with zora-community.pen
+- [x] Scenario: Align ZoraDrawerHeader with canonical ignition glyph and accessible close button
+- [x] Scenario: Align ZoraNewChatButton with dynamic press feedback and parameterized slot contract
+- [x] Scenario: Align ZoraDrawerMenuItem with active selection state and press micro-interactions
+- [x] Scenario: Navigate to Zora Pro Paywall from drawer mechanic and gas stations menu items
+- [x] Scenario: Align ZoraDrawerUserFooter with pinned layout, shader fade, and interactive gear settings button
+- [x] Scenario: Align ZoraDrawerRecentChatsList and ZoraDrawerRecentChatItem with active selection and press micro-interactions
+- [x] Scenario: Manage Shifted Drawer navigation and selection state via Orbit MVI ViewModel
+- [x] Scenario: Standardize Composable modifier parameter order across all UI components
+- [x] Scenario: Disambiguate stateful and stateless drawer layouts with ZoraShiftedDrawerLayoutContent
+- [x] Scenario: Synchronize chat history reactively between ZoraShiftedDrawerViewModel, MechanicalPrescriptionRepository, and CopilotHomeViewModel
+- [x] Scenario: Present contextual options bottom sheet on recent chat item long click (Share, Pin, Rename, Delete)
+
+
+
+
 
 ---
 
@@ -105,9 +129,17 @@ Adheres strictly to the 5-Step AI Planning Process (`ai-planning-process`).
 ---
 
 ## Feature 11: Multiplatform Internationalization and String Resources (`docs/features/11_multiplatform_i18n_and_string_resources.feature`)
-- [ ] Scenario: Define base English string resources in composeResources/values/strings.xml
-- [ ] Scenario: Define localized Spanish string resources in composeResources/values-es/strings.xml
-- [ ] Scenario: Refactor UI components to consume stringResource from Res.string
+- [x] Scenario: Define base English string resources in composeResources/values/strings.xml
+- [x] Scenario: Define localized Spanish string resources in composeResources/values-es/strings.xml
+- [x] Scenario: Refactor UI components to consume stringResource from Res.string
+
+---
+
+## Feature 12: Platform Adaptive System Insets and Edge Spacing (`docs/features/12_platform_adaptive_system_insets_and_edge_spacing.feature`)
+- [x] Scenario: Calculate adaptive top edge spacing for Android and iOS
+- [x] Scenario: Calculate adaptive bottom edge spacing for Android and iOS
+- [x] Scenario: Apply adaptive edge padding across all core application screens
+
 
 
 

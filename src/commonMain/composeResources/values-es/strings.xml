@@ -21,6 +21,21 @@
     <string name="status_full_unlock">DESBLOQUEO TOTAL</string>
     <string name="chat_top_bar_title">DIAGNÓSTICO ZORA</string>
     <string name="garage_telemetry_subtitle">TELEMETRÍA Y BÓVEDA LOCAL</string>
+    <string name="cd_open_drawer">Abrir menú de navegación</string>
+    <string name="cd_open_garage">Abrir garaje virtual</string>
+    <string name="cd_add_attachment">Adjuntar archivo</string>
+    <string name="cd_dictation">Dictado por voz</string>
+    <string name="cd_live_voice">Iniciar llamada de voz en vivo</string>
+    <string name="cd_send_message">Enviar mensaje</string>
+    <string name="cd_copy_response">Copiar respuesta</string>
+    <string name="cd_copied_response">Texto copiado</string>
+    <string name="toast_text_copied">Texto copiado</string>
+    <string name="cd_audio_response">Reproducir respuesta de audio</string>
+    <string name="cd_retry_response">Reintentar respuesta</string>
+    <string name="cd_like_response">Buena respuesta</string>
+    <string name="cd_dislike_response">Mala respuesta</string>
+    <string name="cd_share_response">Compartir respuesta</string>
+    <string name="cd_more_actions">Más opciones</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">VEHÍCULO PRINCIPAL</string>
@@ -57,18 +72,28 @@
     <string name="suggestion_battery_12v">Estado de Batería 12V</string>
 
     <!-- Home: Drawer Navigation -->
-    <string name="action_new_chat">NUEVA CONVERSACIÓN</string>
+    <string name="action_new_chat">Nueva conversación</string>
     <string name="action_new_chat_desc">Iniciar sesión limpia</string>
     <string name="drawer_recent_chats">Recientes</string>
     <string name="drawer_menu_garage">Garaje Virtual</string>
     <string name="drawer_menu_parts">Yonke virtual</string>
     <string name="drawer_menu_mechanic">Mecánico</string>
-    <string name="drawer_menu_gas_stations">Gasolineras</string>
+    <string name="drawer_menu_gas_stations">Gasolinerías</string>
     <string name="drawer_menu_settings">Ajustes del Sistema</string>
     <string name="drawer_menu_close">Cerrar Menú</string>
     <string name="badge_coming_soon">Próximamente</string>
     <string name="user_local_driver">CONDUCTOR LOCAL</string>
     <string name="tier_pro">Cuenta Pro</string>
+    <string name="recent_chat_action_share">Compartir conversación</string>
+    <string name="recent_chat_action_pin">Fijar</string>
+    <string name="recent_chat_action_unpin">Desfijar</string>
+    <string name="recent_chat_action_rename">Cambiar nombre</string>
+    <string name="recent_chat_action_delete">Borrar</string>
+    <string name="recent_chat_options_title">Opciones de conversación</string>
+    <string name="recent_chat_rename_dialog_title">Cambiar nombre</string>
+    <string name="recent_chat_rename_dialog_confirm">Guardar</string>
+    <string name="recent_chat_rename_dialog_cancel">Cancelar</string>
+    <string name="recent_chat_delete_confirm">¿Borrar conversación?</string>
     <string name="plan_free_tier">Plan Gratuito</string>
     <string name="plan_zora_pro">ZORA PRO</string>
     <string name="plan_full_access">ACCESO TOTAL</string>
@@ -111,7 +136,7 @@
     <string name="memory_vault_title">COPILOT MEMORY VAULT</string>
     <string name="memory_vault_capacity">3 / 3 SLOTS USADOS</string>
     <string name="memory_vault_local_assurance">🔒 Almacenado estrictamente en el dispositivo. Cero fugas a la nube.</string>
-    <string name="badge_local_first">LOCAL-FIRST</string>
+    <string name="badge_local_first">LOCAL</string>
     <string name="memory_item_1">Prefiere aceite Mobil 1 Sintético 0W-20</string>
     <string name="memory_item_2">Balatas delanteras cambiadas a los 42,000 km</string>
     <string name="memory_item_3">Ligero silbido en bomba de dirección en frío</string>

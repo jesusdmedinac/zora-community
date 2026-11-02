@@ -19,7 +19,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -27,24 +30,57 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.jesusdmedinac.zora.ui.theme.ZoraIcons
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.badge_coming_soon
 import zora_community.generated.resources.drawer_menu_gas_stations
 import zora_community.generated.resources.drawer_menu_mechanic
 import zora_community.generated.resources.drawer_menu_parts
+import zora_community.generated.resources.tier_pro
+import com.jesusdmedinac.zora.ui.home.ZoraShiftedDrawerViewModel
+import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerIntent
+import com.jesusdmedinac.zora.ui.home.model.ZoraDrawerSideEffect
+import org.koin.compose.viewmodel.koinViewModel
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 /**
- * Navigation Drawer with Shifted Screen Scrim Card transition.
- * Synchronized with nodes VeQvH & RktHH from `zora-community.pen` v2.21.
+ * Stateless content composable for [ZoraShiftedDrawerLayout].
+ * Synchronized with nodes VeQvH & RktHH from `zora-community.pen`.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ZoraShiftedDrawerLayout(
+fun ZoraShiftedDrawerLayoutContent(
     drawerOpen: Boolean,
     onCloseDrawer: () -> Unit,
     onNewChatClick: () -> Unit,
     onYonkeClick: () -> Unit,
     onRecentQuestionClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    recentQuestions: List<String> = defaultRecentQuestions(),
+    pinnedQuestions: List<String> = emptyList(),
+    onMechanicClick: () -> Unit = {},
+    onGasStationsClick: () -> Unit = {},
+    selectedRecentQuestion: String? = null,
+    onRecentQuestionLongClick: ((String) -> Unit)? = null,
+    activeBottomSheetQuestion: String? = null,
+    onDismissBottomSheet: () -> Unit = {},
+    onShareChat: (String) -> Unit = {},
+    onPinChat: (String) -> Unit = {},
+    onRenameChat: (String) -> Unit = {},
+    onDeleteChat: (String) -> Unit = {},
+    activeRenameQuestion: String? = null,
+    onConfirmRename: (oldQuestion: String, newName: String) -> Unit = { _, _ -> },
+    onCancelRename: () -> Unit = {},
+    userName: String = "Jesús Medina",
+    accountTier: String = stringResource(Res.string.tier_pro),
+    onProfileClick: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
     val drawerWidth = 280.dp
@@ -60,7 +96,7 @@ fun ZoraShiftedDrawerLayout(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
     ) {
@@ -70,7 +106,7 @@ fun ZoraShiftedDrawerLayout(
                 .width(drawerWidth)
                 .fillMaxHeight()
                 .background(ZoraTokens.Canvas)
-                .padding(vertical = ZoraTokens.SpacingMd),
+                .zoraEdgePadding(),
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Column(
@@ -78,59 +114,60 @@ fun ZoraShiftedDrawerLayout(
                     .fillMaxWidth()
                     .padding(horizontal = ZoraTokens.SpacingMd)
             ) {
-                // Header: Brand & Close Button
-                DrawerHeader(onCloseDrawer = onCloseDrawer)
+                // Header: Brand & Close Button (node Q0RPQ)
+                ZoraDrawerHeader(onCloseDrawer = onCloseDrawer)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // New Chat Button
-                NewChatButton(onClick = onNewChatClick)
+                // New Chat Button (node ay6yS)
+                ZoraNewChatButton(onClick = onNewChatClick)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // Menu items
-                DrawerMenuItem(
-                    icon = "📦",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_parts),
+                // Menu items (nodes m2wOA, kzDef, HeQx3)
+                ZoraDrawerMenuItem(
+                    icon = ZoraIcons.packageIcon,
+                    label = stringResource(Res.string.drawer_menu_parts),
                     onClick = onYonkeClick,
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                DrawerMenuItem(
-                    icon = "🔧",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_mechanic),
-                    badge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_coming_soon),
-                    enabled = false,
+                ZoraDrawerMenuItem(
+                    icon = ZoraIcons.wrench,
+                    label = stringResource(Res.string.drawer_menu_mechanic),
+                    badge = stringResource(Res.string.badge_coming_soon),
+                    onClick = onMechanicClick,
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                DrawerMenuItem(
-                    icon = "⛽",
-                    label = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.drawer_menu_gas_stations),
-                    badge = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.badge_coming_soon),
-                    enabled = false,
+                ZoraDrawerMenuItem(
+                    icon = ZoraIcons.fuel,
+                    label = stringResource(Res.string.drawer_menu_gas_stations),
+                    badge = stringResource(Res.string.badge_coming_soon),
+                    onClick = onGasStationsClick,
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Recent Chats Section
-                DrawerRecentChatsList(
+                // Recent Chats Section (node fnMOF)
+                ZoraDrawerRecentChatsList(
                     onRecentQuestionClick = onRecentQuestionClick,
+                    recentQuestions = recentQuestions,
+                    pinnedQuestions = pinnedQuestions,
+                    selectedQuestion = selectedRecentQuestion,
+                    onRecentQuestionLongClick = onRecentQuestionLongClick,
                 )
             }
 
-            // Pinned Footer (User Account & Settings)
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = ZoraTokens.SpacingMd)
-            ) {
-                DrawerUserFooter(
-                    onSettingsClick = onSettingsClick,
-                )
-            }
+            // Pinned Footer with Shader Fade Strip (node cBBbL)
+            ZoraDrawerUserFooter(
+                userName = userName,
+                accountTier = accountTier,
+                onSettingsClick = onSettingsClick,
+                onProfileClick = onProfileClick,
+            )
         }
 
         // --- 2. Shifted Screen Scrim Card (Node QZYQv) ---
@@ -177,14 +214,107 @@ fun ZoraShiftedDrawerLayout(
                 )
             }
         }
+
+        // --- 3. Contextual Options Bottom Sheet ---
+        if (activeBottomSheetQuestion != null) {
+            ZoraRecentChatOptionsBottomSheet(
+                question = activeBottomSheetQuestion,
+                isPinned = activeBottomSheetQuestion in pinnedQuestions,
+                onDismissRequest = onDismissBottomSheet,
+                onShareClick = { onShareChat(activeBottomSheetQuestion) },
+                onPinClick = { onPinChat(activeBottomSheetQuestion) },
+                onRenameClick = { onRenameChat(activeBottomSheetQuestion) },
+                onDeleteClick = { onDeleteChat(activeBottomSheetQuestion) },
+            )
+        }
+
+        // --- 4. Conversation Rename Dialog ---
+        if (activeRenameQuestion != null) {
+            ZoraRenameChatDialog(
+                initialTitle = activeRenameQuestion,
+                onConfirm = { newName -> onConfirmRename(activeRenameQuestion, newName) },
+                onDismiss = onCancelRename,
+            )
+        }
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+/**
+ * Stateful overload for [ZoraShiftedDrawerLayout] connecting directly to [ZoraShiftedDrawerViewModel].
+ */
+@Composable
+fun ZoraShiftedDrawerLayout(
+    modifier: Modifier = Modifier,
+    viewModel: ZoraShiftedDrawerViewModel = koinViewModel(),
+    onNavigateToNewChat: () -> Unit = {},
+    onNavigateToParts: () -> Unit = {},
+    onNavigateToPaywall: (sourceReason: String) -> Unit = {},
+    onLoadRecentChat: (question: String) -> Unit = {},
+    onShareChat: (question: String) -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},
+    onNavigateToProfile: () -> Unit = {},
+    content: @Composable () -> Unit,
+) {
+    LaunchedEffect(viewModel) {
+        viewModel.processIntent(ZoraDrawerIntent.LoadRecentQuestions)
+    }
+
+    val uiState by viewModel.collectAsState()
+
+    viewModel.collectSideEffect { sideEffect ->
+        when (sideEffect) {
+            is ZoraDrawerSideEffect.NavigateToNewChat -> onNavigateToNewChat()
+            is ZoraDrawerSideEffect.NavigateToPartsFeed -> onNavigateToParts()
+            is ZoraDrawerSideEffect.NavigateToPaywall -> onNavigateToPaywall(sideEffect.sourceReason)
+            is ZoraDrawerSideEffect.LoadRecentChat -> onLoadRecentChat(sideEffect.question)
+            is ZoraDrawerSideEffect.ShareChat -> onShareChat(sideEffect.question)
+            is ZoraDrawerSideEffect.NavigateToSettings -> onNavigateToSettings()
+            is ZoraDrawerSideEffect.NavigateToProfile -> onNavigateToProfile()
+            is ZoraDrawerSideEffect.CloseDrawer -> { /* Handled in state */ }
+        }
+    }
+
+    ZoraShiftedDrawerLayoutContent(
+        drawerOpen = uiState.isOpen,
+        onCloseDrawer = { viewModel.processIntent(ZoraDrawerIntent.CloseDrawer) },
+        onNewChatClick = { viewModel.processIntent(ZoraDrawerIntent.ClickNewChat) },
+        onYonkeClick = { viewModel.processIntent(ZoraDrawerIntent.ClickParts) },
+        onMechanicClick = { viewModel.processIntent(ZoraDrawerIntent.ClickMechanic) },
+        onGasStationsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickGasStations) },
+        onRecentQuestionClick = { question ->
+            viewModel.processIntent(ZoraDrawerIntent.SelectRecentQuestion(question))
+        },
+        onRecentQuestionLongClick = { question ->
+            viewModel.processIntent(ZoraDrawerIntent.LongClickRecentQuestion(question))
+        },
+        onSettingsClick = { viewModel.processIntent(ZoraDrawerIntent.ClickSettings) },
+        modifier = modifier,
+        recentQuestions = uiState.recentQuestions,
+        pinnedQuestions = uiState.pinnedQuestions,
+        selectedRecentQuestion = uiState.selectedRecentQuestion,
+        activeBottomSheetQuestion = uiState.activeBottomSheetQuestion,
+        onDismissBottomSheet = { viewModel.processIntent(ZoraDrawerIntent.DismissRecentQuestionOptions) },
+        onShareChat = { question -> viewModel.processIntent(ZoraDrawerIntent.ShareRecentQuestion(question)) },
+        onPinChat = { question -> viewModel.processIntent(ZoraDrawerIntent.PinRecentQuestion(question)) },
+        onRenameChat = { question -> viewModel.processIntent(ZoraDrawerIntent.StartRenameRecentQuestion(question)) },
+        onDeleteChat = { question -> viewModel.processIntent(ZoraDrawerIntent.DeleteRecentQuestion(question)) },
+        activeRenameQuestion = uiState.activeRenameQuestion,
+        onConfirmRename = { oldQuestion, newName ->
+            viewModel.processIntent(ZoraDrawerIntent.ConfirmRenameRecentQuestion(oldQuestion, newName))
+        },
+        onCancelRename = { viewModel.processIntent(ZoraDrawerIntent.CancelRenameRecentQuestion) },
+        userName = uiState.userName,
+        accountTier = uiState.accountTier,
+        onProfileClick = { viewModel.processIntent(ZoraDrawerIntent.ClickProfile) },
+        content = content,
+    )
+}
+
+@Preview
 @Composable
 private fun ZoraShiftedDrawerLayoutPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
-        ZoraShiftedDrawerLayout(
+    ZoraTheme {
+        ZoraShiftedDrawerLayoutContent(
             drawerOpen = true,
             onCloseDrawer = {},
             onNewChatClick = {},
@@ -192,8 +322,17 @@ private fun ZoraShiftedDrawerLayoutPreview() {
             onRecentQuestionClick = {},
             onSettingsClick = {},
         ) {
-            androidx.compose.material3.Text("Main Content")
+            Text("Main Content")
         }
     }
 }
 
+@Preview
+@Composable
+private fun ZoraShiftedDrawerLayoutStatefulPreview() {
+    ZoraTheme {
+        ZoraShiftedDrawerLayout(viewModel = ZoraShiftedDrawerViewModel()) {
+            Text("Main Content with ViewModel")
+        }
+    }
+}

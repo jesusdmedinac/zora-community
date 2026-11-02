@@ -20,7 +20,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.security_protocol_footer
 
 /**
@@ -40,7 +45,7 @@ fun SecurityProtocolFooter(
                 start = 16.dp,
                 end = 16.dp,
                 top = 8.dp,
-                bottom = if (platform == ZoraPlatformVariant.HUMAN_INTERFACE) 12.dp else 16.dp
+                bottom = zoraBottomEdgePadding()
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -84,7 +89,7 @@ fun SecurityProtocolFooter(
 
             // Security Text
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.security_protocol_footer),
+                text = stringResource(Res.string.security_protocol_footer),
                 style = TextStyle(
                     fontFamily = ZoraTokens.FontBody,
                     fontSize = 11.sp,
@@ -107,10 +112,10 @@ fun SecurityProtocolFooter(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun SecurityProtocolFooterPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         SecurityProtocolFooter()
     }
 }

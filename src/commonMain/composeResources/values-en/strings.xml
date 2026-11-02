@@ -21,6 +21,21 @@
     <string name="status_full_unlock">FULL UNLOCK</string>
     <string name="chat_top_bar_title">ZORA DIAGNOSTIC</string>
     <string name="garage_telemetry_subtitle">LOCAL TELEMETRY &amp; VAULT</string>
+    <string name="cd_open_drawer">Open Navigation Drawer</string>
+    <string name="cd_open_garage">Open Garage Vault</string>
+    <string name="cd_add_attachment">Add attachment</string>
+    <string name="cd_dictation">Voice dictation</string>
+    <string name="cd_live_voice">Start live voice call</string>
+    <string name="cd_send_message">Send message</string>
+    <string name="cd_copy_response">Copy response</string>
+    <string name="cd_copied_response">Text copied</string>
+    <string name="toast_text_copied">Text copied</string>
+    <string name="cd_audio_response">Play audio response</string>
+    <string name="cd_retry_response">Retry response</string>
+    <string name="cd_like_response">Good response</string>
+    <string name="cd_dislike_response">Poor response</string>
+    <string name="cd_share_response">Share response</string>
+    <string name="cd_more_actions">More options</string>
 
     <!-- Home: Telemetry & Status -->
     <string name="primary_vehicle_label">PRIMARY VEHICLE</string>
@@ -57,13 +72,13 @@
     <string name="suggestion_battery_12v">12V Battery Health</string>
 
     <!-- Home: Drawer Navigation -->
-    <string name="action_new_chat">NEW DIAGNOSTIC</string>
+    <string name="action_new_chat">New conversation</string>
     <string name="action_new_chat_desc">Start clean session</string>
-    <string name="drawer_recent_chats">RECENT DIAGNOSTICS</string>
+    <string name="drawer_recent_chats">Recent</string>
     <string name="drawer_menu_garage">Virtual Garage</string>
-    <string name="drawer_menu_parts">Parts Catalog &amp; Salvage</string>
+    <string name="drawer_menu_parts">Yonke virtual</string>
     <string name="drawer_menu_mechanic">Mechanic</string>
-    <string name="drawer_menu_gas_stations">Gas Stations</string>
+    <string name="drawer_menu_gas_stations">Gas stations</string>
     <string name="drawer_menu_settings">System Settings</string>
     <string name="drawer_menu_close">Close Menu</string>
     <string name="badge_coming_soon">Coming Soon</string>
@@ -111,7 +126,7 @@
     <string name="memory_vault_title">COPILOT MEMORY VAULT</string>
     <string name="memory_vault_capacity">3 / 3 SLOTS USED</string>
     <string name="memory_vault_local_assurance">🔒 Stored strictly on-device in local SQLite. Zero cloud leakage.</string>
-    <string name="badge_local_first">LOCAL-FIRST</string>
+    <string name="badge_local_first">LOCAL</string>
     <string name="memory_item_1">Prefers Mobil 1 Synthetic 0W-20</string>
     <string name="memory_item_2">Front brakes replaced at 42,000 km</string>
     <string name="memory_item_3">Slight power steering pump whine in cold start</string>

@@ -24,18 +24,21 @@ import com.jesusdmedinac.zora.ui.chat.component.ZoraCarePrioritiesCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraEngineSelectionCard
 import com.jesusdmedinac.zora.ui.chat.component.ZoraVisualReferenceProposalCard
 import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.ui.theme.zoraEdgePadding
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Chat message model hierarchy for dynamic onboarding stream.
  */
-sealed interface ChatMessage {
+sealed interface OnboardingChatMessage {
     val id: String
 
     data class User(
         val text: String,
         override val id: String = "user_${text.hashCode()}_${RandomSource.next()}",
-    ) : ChatMessage
+    ) : OnboardingChatMessage
 
     data class Assistant(
         val text: String,
@@ -43,8 +46,10 @@ sealed interface ChatMessage {
         val hasCarePriorities: Boolean = false,
         val hasVisualProposal: Boolean = false,
         override val id: String = "asst_${text.hashCode()}_${RandomSource.next()}",
-    ) : ChatMessage
+    ) : OnboardingChatMessage
 }
+
+typealias ChatMessage = OnboardingChatMessage
 
 private object RandomSource {
     private var counter = 0
@@ -58,20 +63,20 @@ private object RandomSource {
 @Composable
 fun OnboardingChatScreen(
     initialSymptom: String?,
-    vehicleModel: String = "Honda Civic 2018",
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    vehicleModel: String = "Honda Civic 2018",
 ) {
     var selectedEngine by remember { mutableStateOf("2.0L_NA") }
     var inputMessage by remember { mutableStateOf("") }
 
     val messages = remember {
-        mutableStateListOf<ChatMessage>().apply {
+        mutableStateListOf<OnboardingChatMessage>().apply {
             if (initialSymptom != null) {
-                add(ChatMessage.User(initialSymptom))
+                add(OnboardingChatMessage.User(initialSymptom))
             }
             add(
-                ChatMessage.Assistant(
+                OnboardingChatMessage.Assistant(
                     text = "He detectado tu vehículo como $vehicleModel mediante CAN-Bus. Para calibrar el diagnóstico y la prescripción mecánica precisa, por favor confirma la variante del motor:",
                     hasEngineCard = true,
                 )
@@ -83,7 +88,7 @@ fun OnboardingChatScreen(
         modifier = modifier
             .fillMaxSize()
             .background(ZoraTokens.Canvas)
-            .padding(vertical = ZoraTokens.SpacingSm),
+            .zoraEdgePadding(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         // 1. Top Header with Back Button
@@ -103,11 +108,11 @@ fun OnboardingChatScreen(
         ) {
             messages.forEach { msg ->
                 when (msg) {
-                    is ChatMessage.User -> {
+                    is OnboardingChatMessage.User -> {
                         UserChatBubble(text = msg.text)
                     }
 
-                    is ChatMessage.Assistant -> {
+                    is OnboardingChatMessage.Assistant -> {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -122,19 +127,19 @@ fun OnboardingChatScreen(
                                     onSelectEngine = { selectedEngine = it },
                                     onConfirm = { engineId ->
                                         messages.add(
-                                            ChatMessage.Assistant(
+                                            OnboardingChatMessage.Assistant(
                                                 text = "✓ Motor confirmado: $engineId. Diagnóstico local sincronizado con CAN-Bus y registrado en la bóveda mecánica.",
                                                 hasEngineCard = false,
                                             )
                                         )
                                         messages.add(
-                                            ChatMessage.Assistant(
+                                            OnboardingChatMessage.Assistant(
                                                 text = "Evaluando necesidades de mantenimiento y partes para tu vehículo:",
                                                 hasCarePriorities = true,
                                             )
                                         )
                                         messages.add(
-                                            ChatMessage.Assistant(
+                                            OnboardingChatMessage.Assistant(
                                                 text = "He preparado una propuesta de referencia visual para tu Garage Slot #01:",
                                                 hasVisualProposal = true,
                                             )
@@ -151,14 +156,14 @@ fun OnboardingChatScreen(
                                 ZoraVisualReferenceProposalCard(
                                     onGenerate = {
                                         messages.add(
-                                            ChatMessage.Assistant(
+                                            OnboardingChatMessage.Assistant(
                                                 text = "✓ Referencia visual generada para Garage Slot #01. Archivada en tu bóveda local.",
                                             )
                                         )
                                     },
                                     onSkip = {
                                         messages.add(
-                                            ChatMessage.Assistant(
+                                            OnboardingChatMessage.Assistant(
                                                 text = "Generación visual omitida. Tu perfil de vehículo sigue guardado con normalidad.",
                                             )
                                         )
@@ -179,11 +184,11 @@ fun OnboardingChatScreen(
             onValueChange = { inputMessage = it },
             onSend = { text ->
                 if (text.isNotBlank()) {
-                    messages.add(ChatMessage.User(text))
+                    messages.add(OnboardingChatMessage.User(text))
                     inputMessage = ""
                     // Assistant response simulation
                     messages.add(
-                        ChatMessage.Assistant(
+                        OnboardingChatMessage.Assistant(
                             text = "Consultando el manual de taller local y telemetría DTC para \"$text\"...",
                             hasEngineCard = false,
                         )
@@ -195,10 +200,10 @@ fun OnboardingChatScreen(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun OnboardingChatScreenPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         OnboardingChatScreen(
             initialSymptom = "¿Por qué hace ruido el motor al acelerar?",
             onBack = {},

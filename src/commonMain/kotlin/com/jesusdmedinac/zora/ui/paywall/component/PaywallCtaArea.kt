@@ -18,9 +18,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.action_start_trial
 import zora_community.generated.resources.paywall_trial_disclaimer
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Bottom call-to-action area with trial initiation and app store disclaimer.
@@ -47,7 +51,7 @@ fun PaywallCtaArea(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.action_start_trial),
+                text = stringResource(Res.string.action_start_trial),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
@@ -56,7 +60,7 @@ fun PaywallCtaArea(
         }
 
         Text(
-            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.paywall_trial_disclaimer),
+            text = stringResource(Res.string.paywall_trial_disclaimer),
             fontFamily = ZoraTokens.FontBody,
             fontSize = 11.sp,
             color = ZoraTokens.OnSurfaceVariant,
@@ -64,10 +68,10 @@ fun PaywallCtaArea(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun PaywallCtaAreaPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         PaywallCtaArea(onStartTrial = {})
     }
 }

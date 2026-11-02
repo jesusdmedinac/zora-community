@@ -20,9 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.garage.model.CopilotMemoryItem
+import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.memory_vault_local_assurance
 import zora_community.generated.resources.memory_vault_title
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * On-device copilot memory vault tracking 3 capacity slots with granular deletion.
@@ -46,7 +51,7 @@ fun CopilotMemoryVaultCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.memory_vault_title),
+                text = stringResource(Res.string.memory_vault_title),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -69,7 +74,7 @@ fun CopilotMemoryVaultCard(
                 .padding(horizontal = 10.dp, vertical = 6.dp),
         ) {
             Text(
-                text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.memory_vault_local_assurance),
+                text = stringResource(Res.string.memory_vault_local_assurance),
                 fontFamily = ZoraTokens.FontBody,
                 fontSize = 11.sp,
                 color = ZoraTokens.StatusSuccess,
@@ -144,12 +149,12 @@ fun CopilotMemoryVaultCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CopilotMemoryVaultCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CopilotMemoryVaultCard(
-            memories = com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories(),
+            memories = defaultCopilotMemories(),
             onDeleteMemory = {},
         )
     }

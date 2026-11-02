@@ -22,7 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Privacy-gated community insights card with Cloud AI Opt-In dialog.
@@ -138,12 +140,12 @@ fun CommunityInsightsCard(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CommunityInsightsCardPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CommunityInsightsCard(
-            communityState = com.jesusdmedinac.zora.ui.parts.model.CommunityInsightsState(),
+            communityState = CommunityInsightsState(),
             showOptInModal = false,
             onOptInClick = {},
         )

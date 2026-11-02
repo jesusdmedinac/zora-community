@@ -11,9 +11,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import zora_community.generated.resources.Res
 import zora_community.generated.resources.app_name
 import zora_community.generated.resources.splash_tagline
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Brand wordmark and precision tagline for splash screen.
@@ -28,7 +32,7 @@ fun ZoraBrandHeader(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.app_name).uppercase(),
+            text = stringResource(Res.string.app_name).uppercase(),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontHeadline,
                 fontSize = 34.sp,
@@ -40,7 +44,7 @@ fun ZoraBrandHeader(
         )
 
         Text(
-            text = org.jetbrains.compose.resources.stringResource(zora_community.generated.resources.Res.string.splash_tagline),
+            text = stringResource(Res.string.splash_tagline),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
@@ -53,10 +57,10 @@ fun ZoraBrandHeader(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraBrandHeaderPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraBrandHeader()
     }
 }

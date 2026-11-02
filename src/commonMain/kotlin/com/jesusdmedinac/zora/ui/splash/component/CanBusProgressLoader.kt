@@ -19,7 +19,10 @@ import androidx.compose.ui.unit.sp
 import com.jesusdmedinac.zora.ui.splash.model.TelemetryBootStage
 import com.jesusdmedinac.zora.ui.theme.LocalZoraPlatform
 import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * CAN-bus Loader Block with telemetry ticker text and 135° ignition progress bar.
@@ -68,7 +71,7 @@ fun CanBusProgressLoader(
 
         // 2. CAN-bus Telemetry Ticker Text
         Text(
-            text = org.jetbrains.compose.resources.stringResource(stage.textRes),
+            text = stringResource(stage.textRes),
             style = TextStyle(
                 fontFamily = ZoraTokens.FontMono,
                 fontSize = 10.sp,
@@ -82,10 +85,10 @@ fun CanBusProgressLoader(
     }
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun CanBusProgressLoaderPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         CanBusProgressLoader(
             progress = 0.65f,
             stage = TelemetryBootStage.CAN_BUS_INIT,

@@ -5,12 +5,28 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.jetbrains.skia.EncodedImageFormat
 import com.jesusdmedinac.zora.ui.chat.OnboardingChatScreen
+import com.jesusdmedinac.zora.ui.chat.component.ActionButton
+import com.jesusdmedinac.zora.ui.chat.component.AssistantChatBubble
+import com.jesusdmedinac.zora.ui.chat.component.UserChatBubble
+import com.jesusdmedinac.zora.ui.chat.component.ZoraAssistantActionBar
+import com.jesusdmedinac.zora.ui.chat.component.ZoraToast
+import com.jesusdmedinac.zora.ui.chat.component.rememberZoraToastState
 import com.jesusdmedinac.zora.ui.garage.GarageVaultScreen
 import com.jesusdmedinac.zora.ui.garage.component.CopilotMemoryVaultCard
 import com.jesusdmedinac.zora.ui.garage.component.GarageSlotsCard
@@ -19,7 +35,22 @@ import com.jesusdmedinac.zora.ui.garage.component.QuickHealthCheckInCard
 import com.jesusdmedinac.zora.ui.garage.model.TelemetryCheckInState
 import com.jesusdmedinac.zora.ui.garage.model.defaultCopilotMemories
 import com.jesusdmedinac.zora.ui.home.CopilotHomeScreen
+import com.jesusdmedinac.zora.ui.home.CopilotHomeScreenContent
+import com.jesusdmedinac.zora.ui.home.component.CopilotChatList
+import com.jesusdmedinac.zora.ui.home.component.CopilotPromptHero
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerHeader
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerMenuItem
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerRecentChatItem
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerRecentChatsList
+import com.jesusdmedinac.zora.ui.home.component.ZoraDrawerUserFooter
+import com.jesusdmedinac.zora.ui.home.component.ZoraNewChatButton
+import com.jesusdmedinac.zora.ui.home.component.ZoraPromptComposer
+import com.jesusdmedinac.zora.ui.home.component.ZoraRecentChatOptionsBottomSheetContent
+import com.jesusdmedinac.zora.ui.home.component.ZoraRenameChatDialogContent
 import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayout
+import com.jesusdmedinac.zora.ui.home.component.ZoraShiftedDrawerLayoutContent
+import com.jesusdmedinac.zora.ui.home.model.CopilotChatMessage
+import com.jesusdmedinac.zora.ui.home.model.CopilotHomeUiState
 import com.jesusdmedinac.zora.ui.parts.PartsFeedScreen
 import com.jesusdmedinac.zora.ui.parts.component.CommunityInsightsCard
 import com.jesusdmedinac.zora.ui.parts.component.PartCard
@@ -36,10 +67,18 @@ import com.jesusdmedinac.zora.ui.paywall.model.defaultAgentNodes
 import com.jesusdmedinac.zora.ui.paywall.model.defaultProSuperpowers
 import com.jesusdmedinac.zora.ui.splash.ZoraSplashScreen
 import com.jesusdmedinac.zora.ui.splash.component.ZoraIgnitionGlyph
+import com.jesusdmedinac.zora.ui.theme.ZoraPlatformVariant
 import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import com.jesusdmedinac.zora.di.initInMemoryKoin
+import com.jesusdmedinac.zora.ui.theme.zoraBottomEdgePadding
+import com.jesusdmedinac.zora.ui.theme.zoraTopEdgePadding
+import org.koin.core.context.stopKoin
 import java.io.File
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * Headless off-screen screenshot generator using Compose Desktop's ImageComposeScene.
@@ -47,21 +86,51 @@ import kotlin.test.Test
  */
 class PreviewScreenshotGeneratorTest {
 
+    @BeforeTest
+    fun setUp() {
+        stopKoin()
+        initInMemoryKoin()
+    }
+
+    @AfterTest
+    fun tearDown() {
+        stopKoin()
+    }
+
     private fun capture(
         name: String,
         width: Int = 390,
         height: Int = 844,
+        platformVariant: ZoraPlatformVariant = ZoraPlatformVariant.MATERIAL3,
         content: @Composable () -> Unit,
     ) {
         val scene = ImageComposeScene(width = width, height = height, density = Density(1f))
         scene.setContent {
-            ZoraTheme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(ZoraTokens.Canvas)
-                ) {
-                    content()
+            val lifecycleOwner: LifecycleOwner = remember {
+                object : LifecycleOwner {
+                    override val lifecycle: Lifecycle = LifecycleRegistry.createUnsafe(this).apply {
+                        currentState = Lifecycle.State.RESUMED
+                    }
+                }
+            }
+            val viewModelStoreOwner: ViewModelStoreOwner = remember {
+                val store = ViewModelStore()
+                object : ViewModelStoreOwner {
+                    override val viewModelStore: ViewModelStore = store
+                }
+            }
+            CompositionLocalProvider(
+                LocalLifecycleOwner provides lifecycleOwner,
+                LocalViewModelStoreOwner provides viewModelStoreOwner,
+            ) {
+                ZoraTheme(platformVariant = platformVariant) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(ZoraTokens.Canvas)
+                    ) {
+                        content()
+                    }
                 }
             }
         }
@@ -91,9 +160,28 @@ class PreviewScreenshotGeneratorTest {
             )
         }
 
+        // 2b. Copilot Home (Active chat stream with user and assistant bubbles)
+        capture("01c_copilot_home_active_chat", width = 390, height = 844) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
+            )
+        }
+
         // 3. Shifted Screen Scrim Card Drawer (Open navigation drawer)
         capture("01b_shifted_drawer_open", width = 390, height = 844) {
-            ZoraShiftedDrawerLayout(
+            ZoraShiftedDrawerLayoutContent(
                 drawerOpen = true,
                 onCloseDrawer = {},
                 onNewChatClick = {},
@@ -101,9 +189,9 @@ class PreviewScreenshotGeneratorTest {
                 onRecentQuestionClick = {},
                 onSettingsClick = {},
             ) {
-                CopilotHomeScreen(
-                    onNavigateToChat = {},
-                    onNavigateToGarage = {},
+                CopilotHomeScreenContent(
+                    uiState = CopilotHomeUiState(),
+                    onIntent = {},
                 )
             }
         }
@@ -222,6 +310,278 @@ class PreviewScreenshotGeneratorTest {
                 )
             }
         }
+
+        // Copilot Chat List Card
+        capture("card_copilot_chat_list", width = 390, height = 320) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                CopilotChatList(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                )
+            }
+        }
+
+        // Chat User Message Bubble (Material 3)
+        capture("card_chat_user_bubble", width = 390, height = 80, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                UserChatBubble(text = "Tengo un Honda Civic 2018")
+            }
+        }
+
+        // Chat User Message Bubble (HIG)
+        capture("card_chat_user_bubble_hig", width = 390, height = 80, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                UserChatBubble(text = "Tengo un Honda Civic 2018")
+            }
+        }
+
+        // Chat Assistant Message (Containerless Material 3)
+        capture("card_chat_assistant_message", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                AssistantChatBubble(
+                    text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en rotores delanteros.",
+                )
+            }
+        }
+
+        // Chat Assistant Message (Containerless HIG)
+        capture("card_chat_assistant_message_hig", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                AssistantChatBubble(
+                    text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad comúnmente indica desbalanceo de neumáticos o ligera deformación en rotores delanteros.",
+                )
+            }
+        }
+
+        // Assistant Action Bar (Material 3)
+        capture("card_assistant_action_bar", width = 390, height = 64, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraAssistantActionBar()
+            }
+        }
+
+        // Assistant Action Bar (HIG)
+        capture("card_assistant_action_bar_hig", width = 390, height = 64, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraAssistantActionBar()
+            }
+        }
+
+        // Action Button Atomic Previews (32x32dp, transparent background, OnSurface icon tint)
+        capture("card_action_button_m3", width = 80, height = 64, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ActionButton(
+                    icon = ZoraTheme.icons.copy,
+                    contentDescription = "Copy",
+                    onClick = {},
+                )
+            }
+        }
+
+        capture("card_action_button_hig", width = 80, height = 64, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ActionButton(
+                    icon = ZoraTheme.icons.copy,
+                    contentDescription = "Copy",
+                    onClick = {},
+                )
+            }
+        }
+
+        // Toast Previews (Floating Dark Titanium capsule)
+        capture("card_toast_m3", width = 200, height = 56, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ZoraToast(text = "Text copied")
+            }
+        }
+
+        capture("card_toast_hig", width = 200, height = 56, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                ZoraToast(text = "Texto copiado")
+            }
+        }
+
+        // Full-screen Copilot Home with active Toast notification
+        capture("01d_copilot_home_active_toast", width = 390, height = 844, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
+                toastState = rememberZoraToastState(initialMessage = "Text copied"),
+            )
+        }
+
+        // Drawer Header (M3 & HIG)
+        capture("card_drawer_header_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerHeader(onCloseDrawer = {}, animatedGlyph = false)
+            }
+        }
+        capture("card_drawer_header_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerHeader(onCloseDrawer = {}, animatedGlyph = false)
+            }
+        }
+
+        // New Chat Button (M3 & HIG)
+        capture("card_drawer_new_chat_button_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraNewChatButton(onClick = {})
+            }
+        }
+        capture("card_drawer_new_chat_button_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraNewChatButton(onClick = {})
+            }
+        }
+
+        // Drawer Menu Item (M3 & HIG)
+        capture("card_drawer_menu_item_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.wrench,
+                    label = "Mecánico",
+                    badge = "Próximamente",
+                    enabled = false,
+                )
+            }
+        }
+        capture("card_drawer_menu_item_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.wrench,
+                    label = "Mecánico",
+                    badge = "Próximamente",
+                    enabled = false,
+                )
+            }
+        }
+
+        // Drawer Menu Item Selected / Active (M3 & HIG)
+        capture("card_drawer_menu_item_selected_m3", width = 280, height = 60, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.packageIcon,
+                    label = "Yonke virtual",
+                    selected = true,
+                    onClick = {},
+                )
+            }
+        }
+        capture("card_drawer_menu_item_selected_hig", width = 280, height = 60, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerMenuItem(
+                    icon = ZoraTheme.icons.packageIcon,
+                    label = "Yonke virtual",
+                    selected = true,
+                    onClick = {},
+                )
+            }
+        }
+
+        // Drawer Recent Chats (M3 & HIG)
+        capture("card_drawer_recent_chats_m3", width = 280, height = 220, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(onRecentQuestionClick = {})
+            }
+        }
+        capture("card_drawer_recent_chats_hig", width = 280, height = 220, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(onRecentQuestionClick = {})
+            }
+        }
+        capture("card_drawer_recent_chats_selected_m3", width = 280, height = 220, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(
+                    onRecentQuestionClick = {},
+                    selectedQuestion = "¿Qué es la bujía?",
+                )
+            }
+        }
+        capture("card_drawer_recent_chats_selected_hig", width = 280, height = 220, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraDrawerRecentChatsList(
+                    onRecentQuestionClick = {},
+                    selectedQuestion = "¿Qué es la bujía?",
+                )
+            }
+        }
+
+        // Drawer User Footer (M3 & HIG)
+        capture("card_drawer_user_footer_m3", width = 280, height = 100, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            ZoraDrawerUserFooter(onSettingsClick = {})
+        }
+        capture("card_drawer_user_footer_hig", width = 280, height = 100, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraDrawerUserFooter(onSettingsClick = {})
+        }
+
+        // Recent Chat Options Bottom Sheet (M3 & HIG)
+        capture("sheet_recent_chat_options_m3", width = 390, height = 340, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            ZoraRecentChatOptionsBottomSheetContent(
+                question = "¿Por qué rechinan mis frenos?",
+                isPinned = false,
+                onShareClick = {},
+                onPinClick = {},
+                onRenameClick = {},
+                onDeleteClick = {},
+            )
+        }
+        capture("sheet_recent_chat_options_hig", width = 390, height = 340, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraRecentChatOptionsBottomSheetContent(
+                question = "¿Cuánto aire necesitan mis llantas?",
+                isPinned = true,
+                onShareClick = {},
+                onPinClick = {},
+                onRenameClick = {},
+                onDeleteClick = {},
+            )
+        }
+
+        // Rename Chat Dialog (M3 & HIG)
+        capture("dialog_rename_chat_m3", width = 340, height = 240, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            ZoraRenameChatDialogContent(
+                initialTitle = "¿Por qué rechinan mis frenos?",
+                onConfirm = {},
+                onDismiss = {},
+            )
+        }
+        capture("dialog_rename_chat_hig", width = 340, height = 240, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraRenameChatDialogContent(
+                initialTitle = "¿Cuánto aire necesitan mis llantas?",
+                onConfirm = {},
+                onDismiss = {},
+            )
+        }
     }
 
     @Test
@@ -230,7 +590,7 @@ class PreviewScreenshotGeneratorTest {
         capture("glyph_zora_ignition_96", width = 200, height = 200) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 ZoraIgnitionGlyph(
                     size = 96.dp,
@@ -243,7 +603,7 @@ class PreviewScreenshotGeneratorTest {
         capture("glyph_zora_ignition_160", width = 300, height = 300) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 ZoraIgnitionGlyph(
                     size = 160.dp,
@@ -251,6 +611,181 @@ class PreviewScreenshotGeneratorTest {
                 )
             }
         }
+    }
+
+    @Test
+    fun captureCopilotPromptHero() {
+        // M3 Prompt Hero (node IP21f)
+        capture("card_copilot_prompt_hero", width = 390, height = 260, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(ZoraTokens.Canvas)
+                    .padding(24.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                CopilotPromptHero(animated = false)
+            }
+        }
+
+        // HIG Prompt Hero (node J062l)
+        capture("card_copilot_prompt_hero_hig", width = 390, height = 260, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(ZoraTokens.Canvas)
+                    .padding(24.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                CopilotPromptHero(animated = false)
+            }
+        }
+    }
+
+    @Test
+    fun capturePromptComposerVariants() {
+        // M3 - Empty (Voice waves button)
+        capture("composer_m3_voice_waves", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // M3 - Populated (Send button)
+        capture("composer_m3_send", width = 390, height = 90, platformVariant = ZoraPlatformVariant.MATERIAL3) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "¿Por qué tiembla el volante a 80 km/h?",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // HIG - Empty (Voice waves button)
+        capture("composer_hig_voice_waves", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+
+        // HIG - Populated (Send button)
+        capture("composer_hig_send", width = 390, height = 90, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                ZoraPromptComposer(
+                    value = "¿Por qué tiembla el volante a 80 km/h?",
+                    onValueChange = {},
+                    onSend = {},
+                )
+            }
+        }
+    }
+
+    @Test
+    fun captureHigScreenPreviews() {
+        // HIG Variant Screen Previews (iOS Dynamic Island 54dp + Home Indicator 24dp)
+        capture("00_splash_screen_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraSplashScreen()
+        }
+
+        capture("01_copilot_home_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            CopilotHomeScreen(
+                onNavigateToChat = {},
+                onNavigateToGarage = {},
+            )
+        }
+
+        capture("01b_shifted_drawer_open_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraShiftedDrawerLayoutContent(
+                drawerOpen = true,
+                onCloseDrawer = {},
+                onNewChatClick = {},
+                onYonkeClick = {},
+                onRecentQuestionClick = {},
+                onSettingsClick = {},
+            ) {
+                CopilotHomeScreenContent(
+                    uiState = CopilotHomeUiState(),
+                    onIntent = {},
+                )
+            }
+        }
+
+        capture("01c_copilot_home_active_chat_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            CopilotHomeScreenContent(
+                uiState = CopilotHomeUiState(
+                    messages = listOf(
+                        CopilotChatMessage.User(
+                            text = "¿Por qué tiembla el volante a más de 80 km/h?",
+                            id = "preview_user_1",
+                        ),
+                        CopilotChatMessage.Assistant(
+                            text = "Para tu Honda Civic EX 2.0L: la vibración a alta velocidad suele indicar deformación en rotores de freno o desbalanceo en neumáticos delanteros.",
+                            id = "preview_asst_1",
+                        ),
+                    ),
+                ),
+                onIntent = {},
+            )
+        }
+
+        capture("02_onboarding_chat_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            OnboardingChatScreen(
+                initialSymptom = "Vibración al frenar a más de 80 km/h",
+                onBack = {},
+            )
+        }
+
+        capture("03_garage_vault_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            GarageVaultScreen(onBack = {})
+        }
+
+        capture("04_parts_feed_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            PartsFeedScreen(onBack = {})
+        }
+
+        capture("05_zora_pro_paywall_hig", width = 390, height = 844, platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+            ZoraProPaywallScreen(onClose = {})
+        }
+    }
+
+    @Test
+    fun verifyAdaptiveEdgePaddingCalculations() {
+        var m3Top = 0.dp
+        var m3Bottom = 0.dp
+        var higTop = 0.dp
+        var higBottom = 0.dp
+
+        val sceneM3 = ImageComposeScene(width = 390, height = 844, density = Density(1f))
+        sceneM3.setContent {
+            ZoraTheme(platformVariant = ZoraPlatformVariant.MATERIAL3) {
+                m3Top = zoraTopEdgePadding()
+                m3Bottom = zoraBottomEdgePadding()
+            }
+        }
+        sceneM3.render()
+
+        val sceneHIG = ImageComposeScene(width = 390, height = 844, density = Density(1f))
+        sceneHIG.setContent {
+            ZoraTheme(platformVariant = ZoraPlatformVariant.HUMAN_INTERFACE) {
+                higTop = zoraTopEdgePadding()
+                higBottom = zoraBottomEdgePadding()
+            }
+        }
+        sceneHIG.render()
+
+        assertEquals(ZoraTokens.StatusBarHeightM3, m3Top)
+        assertEquals(ZoraTokens.NavigationBarHeightM3, m3Bottom)
+        assertEquals(ZoraTokens.StatusBarHeightHIG, higTop)
+        assertEquals(ZoraTokens.HomeIndicatorHeightHIG, higBottom)
     }
 }
 

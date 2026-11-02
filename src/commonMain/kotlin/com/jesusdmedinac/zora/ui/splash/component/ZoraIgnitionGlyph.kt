@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -17,7 +19,9 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.jesusdmedinac.zora.ui.theme.ZoraTheme
 import com.jesusdmedinac.zora.ui.theme.ZoraTokens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Zora Precision Geometric Ignition Glyph.
@@ -42,7 +46,7 @@ fun ZoraIgnitionGlyph(
             label = "IgnitionScale"
         )
     } else {
-        androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(1f) }
+        remember { mutableStateOf(1f) }
     }
 
     val glowAlpha by if (animated) {
@@ -56,7 +60,7 @@ fun ZoraIgnitionGlyph(
             label = "GlowAlpha"
         )
     } else {
-        androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(0.4f) }
+        remember { mutableStateOf(0.4f) }
     }
 
     Box(
@@ -152,10 +156,10 @@ private fun DrawScope.drawZoraGlyph(canvasSize: Size) {
     )
 }
 
-@org.jetbrains.compose.ui.tooling.preview.Preview
+@Preview
 @Composable
 private fun ZoraIgnitionGlyphPreview() {
-    com.jesusdmedinac.zora.ui.theme.ZoraTheme {
+    ZoraTheme {
         ZoraIgnitionGlyph()
     }
 }
