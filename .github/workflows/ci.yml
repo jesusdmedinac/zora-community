@@ -19,6 +19,30 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Cache mavenLocal dependencies
+        id: cache-maven-local
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository/com/jesusdmedinac
+          key: ${{ runner.os }}-json-to-compose-1.2.0
+
+      - name: Checkout json-to-compose dependency
+        if: steps.cache-maven-local.outputs.cache-hit != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: jesusdmedinac/json-to-compose
+          ref: 1.2.0
+          path: .deps/json-to-compose
+
+      - name: Publish json-to-compose to mavenLocal
+        if: steps.cache-maven-local.outputs.cache-hit != 'true'
+        run: |
+          cd .deps/json-to-compose
+          chmod +x gradlew
+          ./gradlew :library:publishToMavenLocal --no-daemon
+          cd ../..
+          rm -rf .deps
+
       - name: Run Domain & Multiplatform Unit Tests
         run: ./gradlew --no-daemon jvmTest
 
