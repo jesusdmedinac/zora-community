@@ -48,7 +48,27 @@ Ambos sistemas comparten el ADN automotriz de Zora: el lienzo oscuro **Obsidian 
 
 1. **`$fontHeadline` (Manrope / SF Pro Display):** Títulos, números grandes de odómetro (`75,000 km`) y nombres de vehículos (`Honda Civic EX 2018`).
 2. **`$fontBody` (Inter / SF Pro Text):** Texto de conversación, opciones de motor, subtítulos técnicos y etiquetas de botones.
-3. **`$fontMono` (JetBrains Mono / SF Mono):** Especificaciones de cilindrada, caballos de fuerza, tolerancias mecánicas y códigos OEM.
+3. **`$fontMono` (JetBrains Mono en ambas plataformas):** Especificaciones de cilindrada, caballos de fuerza, tolerancias mecánicas y códigos OEM. Se conserva JetBrains Mono en iOS porque SF Mono no se distribuye como familia seleccionable para diseño.
+
+En `zora-community.pen` la tipografía es por plataforma: las pantallas M3 usan `$fontHeadline` / `$fontBody` / `$fontMono` y las HIG usan `$fontHeadlineHIG` (SF Pro Display) / `$fontBodyHIG` (SF Pro Text) / `$fontMonoHIG` (JetBrains Mono). La única excepción es el wordmark `ZORA` del splash, que siempre usa Manrope por ser marca.
+
+### 2.3.1. Mínimos de legibilidad y área táctil
+
+- Texto informativo: mínimo **11 px** (equivale a `labelSmall` de M3 y `caption2` de HIG).
+- Área táctil: mínimo **48 × 48 dp** en M3 y **44 × 44 pt** en HIG para botones, chips, ítems de drawer y acciones del asistente.
+
+### 2.3.2. Tokens translúcidos, de estado y de chasis
+
+| Token | Valor | Uso |
+| :--- | :--- | :--- |
+| `$glassContainerLow` / `$glassContainer` / `$glassContainerHigh` | `#FFFFFF12` / `#FFFFFF14` / `#FFFFFF18` | Botones circulares y superficies "frosted" (sobre todo HIG) |
+| `$surfaceTranslucent` / `$canvasTranslucent` | `#181B24CC` / `#0D0F12CC` | Cards y docks translúcidos |
+| `$onAccent` | `#0D0F12` | Texto e iconos sobre `$primary` / `$statusSuccess` |
+| `$scrim` | `#00000066` | Velo detrás del drawer |
+| `$statusSuccessContainer` / `$statusInfoContainer` / `$statusErrorContainer` | `#10B98120` / `#3B82F620` / `#EF444426` | Fondos de badges y del botón de colgar |
+| `$proContainer` | `#181424` | Fondo del Pro Badge |
+| `$onGradient` | `#FFFFFF` | Barras de voz y etiquetas sobre degradados |
+| `$homeIndicator`, `$deviceIsland`, `$deviceCamera` | `#FFFFFF`, `#000000`, `#1A1A1A` | Chasis del dispositivo (no es UI de producto) |
 
 ### 2.4. Escala de Curvatura Geométrica (Corner Radii)
 
@@ -107,7 +127,7 @@ Derivada del análisis riguroso de las 10 pantallas del producto:
 | **Superficies y Materiales** | **Tonal Elevation:** Contenedores sólidos sin opacidad (`surfaceContainer`, `high`, `highest`) | **Translucent Materials:** Cristal esmerilado translúcido (`#FFFFFF14`, `#0D0F12CC`) con *Backdrop Blur* |
 | **Burbuja de Usuario** | Alineada a la derecha, fondo `$surfaceContainerHigh`, `cornerRadius: 20` | Alineada a la derecha estilo iMessage, fondo `$surfaceContainerHigh`, `cornerRadius: 18` |
 | **Respuestas de Zora** | **Containerless:** Sin burbuja ni caja gris; texto e interacciones reposan directamente sobre el `$canvas` | **Containerless:** Sin burbuja contenedora; texto directo sobre el lienzo oscuro |
-| **Barra de Asistente** | 6 acciones de microinteracción: `copy`, `volume-2`, `thumbs-up`, `thumbs-down`, `share-2`, `ellipsis` (32 × 32 px) | 6 acciones de microinteracción con acabado circular translúcido iOS (32 × 32 px) |
+| **Barra de Asistente** | 6 acciones de microinteracción: `copy`, `volume-2`, `thumbs-up`, `thumbs-down`, `share-2`, `ellipsis` (48 × 48 dp) | 6 acciones de microinteracción con acabado circular translúcido iOS (44 × 44 pt) |
 
 ---
 
