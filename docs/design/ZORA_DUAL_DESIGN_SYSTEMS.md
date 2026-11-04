@@ -63,8 +63,9 @@ En `zora-community.pen` la tipografía es por plataforma: las pantallas M3 usan 
 | :--- | :--- | :--- |
 | `$glassContainerLow` / `$glassContainer` / `$glassContainerHigh` | `#FFFFFF12` / `#FFFFFF14` / `#FFFFFF18` | Botones circulares y superficies "frosted" (sobre todo HIG) |
 | `$surfaceTranslucent` / `$canvasTranslucent` | `#181B24CC` / `#0D0F12CC` | Cards y docks translúcidos |
+| `$surfaceTranslucentHigh` | `#181B24F0` | Bottom sheets HIG (más opacos que las cards) |
 | `$onAccent` | `#0D0F12` | Texto e iconos sobre `$primary` / `$statusSuccess` |
-| `$scrim` | `#00000066` | Velo detrás del drawer |
+| `$scrim` | `#00000066` | Velo detrás del drawer y de los bottom sheets modales |
 | `$statusSuccessContainer` / `$statusInfoContainer` / `$statusErrorContainer` | `#10B98120` / `#3B82F620` / `#EF444426` | Fondos de badges y del botón de colgar |
 | `$proContainer` | `#181424` | Fondo del Pro Badge |
 | `$onGradient` | `#FFFFFF` | Barras de voz y etiquetas sobre degradados |

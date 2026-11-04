@@ -11705,11 +11705,7 @@
                           "ref": "weQye",
                           "name": "M3 Composer",
                           "width": "fill_container",
-                          "descendants": {
-                            "HLujJ": {
-                              "content": "Pregunta a Zora…"
-                            }
-                          }
+                          "descendants": {}
                         }
                       ]
                     }
@@ -11724,7 +11720,7 @@
                   "name": "Modal Scrim Dimmer",
                   "fill": "$scrim",
                   "width": 110,
-                  "height": 816
+                  "height": 796
                 }
               ]
             }
@@ -12753,11 +12749,7 @@
                           "ref": "YuHaa",
                           "name": "HIG Frosted Composer",
                           "width": "fill_container",
-                          "descendants": {
-                            "m9HiUb": {
-                              "content": "Pregunta a Zora…"
-                            }
-                          }
+                          "descendants": {}
                         }
                       ]
                     }
@@ -21960,8 +21952,8 @@
               "type": "frame",
               "id": "gLVOY",
               "name": "Slot Leading (Spacer)",
-              "width": 40,
-              "height": 40
+              "width": 48,
+              "height": 48
             },
             {
               "type": "frame",
@@ -22425,7 +22417,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -22480,14 +22474,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "DAUiF",
+                          "type": "frame",
+                          "id": "6RtUST",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-vertical",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 48,
+                          "height": 48,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "DAUiF",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-vertical",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -22499,7 +22504,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -22554,14 +22561,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "LR5XJ",
+                          "type": "frame",
+                          "id": "BPMWI1",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-vertical",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 48,
+                          "height": 48,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "LR5XJ",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-vertical",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -22573,7 +22591,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -22628,14 +22648,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "V5Pm8",
+                          "type": "frame",
+                          "id": "Lbn1jT",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-vertical",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 48,
+                          "height": 48,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "V5Pm8",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-vertical",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -23035,8 +23066,8 @@
               "type": "frame",
               "id": "sMRj6",
               "name": "Slot Leading (Spacer)",
-              "width": 34,
-              "height": 34
+              "width": 44,
+              "height": 44
             },
             {
               "type": "frame",
@@ -23500,7 +23531,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -23555,14 +23588,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "xzEKO",
+                          "type": "frame",
+                          "id": "ZMq408",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-horizontal",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 44,
+                          "height": 44,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "xzEKO",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-horizontal",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -23574,7 +23618,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -23629,14 +23675,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "rmWRU",
+                          "type": "frame",
+                          "id": "Z8pYyD",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-horizontal",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 44,
+                          "height": 44,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "rmWRU",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-horizontal",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -23648,7 +23705,9 @@
                       "fill": "$surfaceContainerLow",
                       "cornerRadius": 10,
                       "padding": [
-                        8,
+                        0,
+                        0,
+                        0,
                         10
                       ],
                       "justifyContent": "space_between",
@@ -23703,14 +23762,25 @@
                           ]
                         },
                         {
-                          "type": "icon",
-                          "id": "AZmRR",
+                          "type": "frame",
+                          "id": "34SZ9Q",
                           "name": "More Options Button",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "more-horizontal",
-                          "library": "lucide",
-                          "fill": "$onSurfaceVariant"
+                          "width": 44,
+                          "height": 44,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "AZmRR",
+                              "name": "More Options Icon",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "more-horizontal",
+                              "library": "lucide",
+                              "fill": "$onSurfaceVariant"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -23838,7 +23908,7 @@
                           "name": "Badge Label",
                           "fill": "$onGradient",
                           "content": "ZORA PRO",
-                          "fontFamily": "$fontHeadlineHIG",
+                          "fontFamily": "$fontHeadline",
                           "fontSize": 11,
                           "fontWeight": "700"
                         }
@@ -24186,8 +24256,8 @@
               "type": "frame",
               "id": "QWrUH",
               "name": "Slot Leading (Spacer)",
-              "width": 40,
-              "height": 40
+              "width": 48,
+              "height": 48
             },
             {
               "type": "frame",
@@ -25391,8 +25461,8 @@
               "type": "frame",
               "id": "ps0Ur",
               "name": "Slot Leading (Spacer)",
-              "width": 34,
-              "height": 34
+              "width": 44,
+              "height": 44
             },
             {
               "type": "frame",
@@ -27765,7 +27835,12 @@
               "type": "ref",
               "ref": "idvq4",
               "x": 16,
-              "y": 16
+              "y": 16,
+              "descendants": {
+                "e0utuu": {
+                  "fontFamily": "$fontHeadlineHIG"
+                }
+              }
             },
             {
               "type": "frame",
@@ -28865,7 +28940,7 @@
           "name": "Dimmed Backdrop",
           "width": "fill_container",
           "height": "fill_container",
-          "fill": "#00000080",
+          "fill": "$scrim",
           "layout": "vertical",
           "justifyContent": "end",
           "children": [
@@ -28886,7 +28961,7 @@
               "padding": [
                 12,
                 20,
-                24,
+                0,
                 20
               ],
               "children": [
@@ -29328,16 +29403,18 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "ref",
+                  "id": "r50ir0",
+                  "ref": "t8aTtA",
+                  "name": "Android Gesture Nav Bar (Instance)",
+                  "width": "fill_container",
+                  "fill": "#00000000"
                 }
               ]
             }
           ]
-        },
-        {
-          "type": "ref",
-          "id": "r50ir0",
-          "ref": "t8aTtA",
-          "name": "Android Gesture Nav Bar (Instance)"
         }
       ]
     },
@@ -29361,7 +29438,7 @@
           "name": "Dimmed Backdrop",
           "width": "fill_container",
           "height": "fill_container",
-          "fill": "#00000080",
+          "fill": "$scrim",
           "layout": "vertical",
           "justifyContent": "end",
           "children": [
@@ -29370,7 +29447,7 @@
               "id": "CRuGj",
               "name": "HIG Bottom Sheet",
               "width": "fill_container",
-              "fill": "#181B24F0",
+              "fill": "$surfaceTranslucentHigh",
               "cornerRadius": [
                 24,
                 24,
@@ -35691,16 +35768,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "HLujJ",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "yvM94F",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "HLujJ",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -38942,16 +39028,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "m9HiUb",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "0LmY1H",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBodyHIG",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "m9HiUb",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBodyHIG",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -50375,16 +50470,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "BKv6V",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "3P3S5c",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "BKv6V",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -50950,16 +51054,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "E2G1LN",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "BCJmbO",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "E2G1LN",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -51525,16 +51638,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "Amxs7",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "l4Hedf",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Amxs7",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -52834,16 +52956,25 @@
                                       ]
                                     },
                                     {
-                                      "type": "text",
-                                      "id": "sOduE",
-                                      "name": "Input Placeholder",
-                                      "fill": "$onSurfaceVariant",
-                                      "textGrowth": "fixed-width",
+                                      "type": "frame",
+                                      "id": "TMuCXd",
+                                      "name": "Placeholder Clip",
+                                      "clip": true,
                                       "width": "fill_container",
-                                      "content": "Pregunta a Zora…",
-                                      "fontFamily": "$fontBody",
-                                      "fontSize": 14,
-                                      "fontWeight": "normal"
+                                      "height": 20,
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "sOduE",
+                                          "name": "Input Placeholder",
+                                          "fill": "$onSurfaceVariant",
+                                          "content": "Escribe un síntoma o pregunta mecánica...",
+                                          "fontFamily": "$fontBody",
+                                          "fontSize": 14,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
                                     },
                                     {
                                       "type": "frame",
@@ -54501,16 +54632,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "MUJdt",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "iWgIH3",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MUJdt",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -56405,16 +56545,25 @@
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "S9xU23",
-                          "name": "Input Placeholder",
-                          "fill": "$onSurfaceVariant",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "PVhDEO",
+                          "name": "Placeholder Clip",
+                          "clip": true,
                           "width": "fill_container",
-                          "content": "Pregunta a Zora…",
-                          "fontFamily": "$fontBody",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "height": 20,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "S9xU23",
+                              "name": "Input Placeholder",
+                              "fill": "$onSurfaceVariant",
+                              "content": "Escribe un síntoma o pregunta mecánica...",
+                              "fontFamily": "$fontBody",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
                           "type": "frame",
@@ -57725,7 +57874,9 @@
                           "fill": "$surfaceContainerLow",
                           "cornerRadius": 10,
                           "padding": [
-                            8,
+                            0,
+                            0,
+                            0,
                             10
                           ],
                           "justifyContent": "space_between",
@@ -57780,14 +57931,25 @@
                               ]
                             },
                             {
-                              "type": "icon",
-                              "id": "nrVOn",
+                              "type": "frame",
+                              "id": "OWw2IH",
                               "name": "More Options Button",
-                              "width": 16,
-                              "height": 16,
-                              "icon": "more-horizontal",
-                              "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "width": 44,
+                              "height": 44,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "nrVOn",
+                                  "name": "More Options Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "more-horizontal",
+                                  "library": "lucide",
+                                  "fill": "$onSurfaceVariant"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -57799,7 +57961,9 @@
                           "fill": "$surfaceContainerLow",
                           "cornerRadius": 10,
                           "padding": [
-                            8,
+                            0,
+                            0,
+                            0,
                             10
                           ],
                           "justifyContent": "space_between",
@@ -57854,14 +58018,25 @@
                               ]
                             },
                             {
-                              "type": "icon",
-                              "id": "iJNfB",
+                              "type": "frame",
+                              "id": "3Xu0hb",
                               "name": "More Options Button",
-                              "width": 16,
-                              "height": 16,
-                              "icon": "more-horizontal",
-                              "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "width": 44,
+                              "height": 44,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "iJNfB",
+                                  "name": "More Options Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "more-horizontal",
+                                  "library": "lucide",
+                                  "fill": "$onSurfaceVariant"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -57873,7 +58048,9 @@
                           "fill": "$surfaceContainerLow",
                           "cornerRadius": 10,
                           "padding": [
-                            8,
+                            0,
+                            0,
+                            0,
                             10
                           ],
                           "justifyContent": "space_between",
@@ -57928,14 +58105,25 @@
                               ]
                             },
                             {
-                              "type": "icon",
-                              "id": "RZn3C",
+                              "type": "frame",
+                              "id": "jpSegR",
                               "name": "More Options Button",
-                              "width": 16,
-                              "height": 16,
-                              "icon": "more-horizontal",
-                              "library": "lucide",
-                              "fill": "$onSurfaceVariant"
+                              "width": 44,
+                              "height": 44,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "RZn3C",
+                                  "name": "More Options Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "more-horizontal",
+                                  "library": "lucide",
+                                  "fill": "$onSurfaceVariant"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -57990,7 +58178,12 @@
                           "type": "ref",
                           "id": "ULyTv",
                           "ref": "idvq4",
-                          "name": "Pro Badge"
+                          "name": "Pro Badge",
+                          "descendants": {
+                            "e0utuu": {
+                              "fontFamily": "$fontHeadlineHIG"
+                            }
+                          }
                         },
                         {
                           "type": "frame",
@@ -58732,11 +58925,7 @@
                   "ref": "YuHaa",
                   "name": "HIG Frosted Composer",
                   "width": "fill_container",
-                  "descendants": {
-                    "m9HiUb": {
-                      "content": "Pregunta a Zora…"
-                    }
-                  }
+                  "descendants": {}
                 }
               ]
             },
@@ -58928,8 +59117,8 @@
                   "type": "frame",
                   "id": "T6aZK",
                   "name": "Slot Leading (Spacer)",
-                  "width": 34,
-                  "height": 34
+                  "width": 44,
+                  "height": 44
                 },
                 {
                   "type": "frame",
@@ -61300,11 +61489,7 @@
                               "ref": "YuHaa",
                               "name": "HIG Frosted Composer",
                               "width": "fill_container",
-                              "descendants": {
-                                "m9HiUb": {
-                                  "content": "Pregunta a Zora…"
-                                }
-                              }
+                              "descendants": {}
                             }
                           ]
                         }
@@ -63888,11 +64073,7 @@
                   "ref": "YuHaa",
                   "name": "HIG Frosted Composer",
                   "width": "fill_container",
-                  "descendants": {
-                    "m9HiUb": {
-                      "content": "Pregunta a Zora…"
-                    }
-                  }
+                  "descendants": {}
                 }
               ]
             },
@@ -64050,7 +64231,7 @@
               "name": "Dimmed Backdrop",
               "width": "fill_container",
               "height": "fill_container",
-              "fill": "#00000080",
+              "fill": "$scrim",
               "layout": "vertical",
               "justifyContent": "end",
               "children": [
@@ -64059,7 +64240,7 @@
                   "id": "JEplE",
                   "name": "HIG Bottom Sheet",
                   "width": "fill_container",
-                  "fill": "#181B24F0",
+                  "fill": "$surfaceTranslucentHigh",
                   "cornerRadius": [
                     28,
                     28,
@@ -66125,11 +66306,7 @@
                   "ref": "YuHaa",
                   "name": "HIG Frosted Composer",
                   "width": "fill_container",
-                  "descendants": {
-                    "m9HiUb": {
-                      "content": "Pregunta a Zora…"
-                    }
-                  }
+                  "descendants": {}
                 }
               ]
             },
@@ -69300,11 +69477,7 @@
                   "ref": "YuHaa",
                   "name": "HIG Frosted Composer",
                   "width": "fill_container",
-                  "descendants": {
-                    "m9HiUb": {
-                      "content": "Pregunta a Zora…"
-                    }
-                  }
+                  "descendants": {}
                 }
               ]
             },
@@ -69825,6 +69998,10 @@
     "fontMonoHIG": {
       "type": "string",
       "value": "JetBrains Mono"
+    },
+    "surfaceTranslucentHigh": {
+      "type": "color",
+      "value": "#181B24F0"
     }
   },
   "fileToken": "ea97c14b-0a4a-44aa-809d-4155be8e9f26"
