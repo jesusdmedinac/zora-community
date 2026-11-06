@@ -1,0 +1,90 @@
+{
+  "$comment": "Reacciones de Zora: se superponen al estado activo. Sonidos: tonos seno con barrido exponencial de frecuencia, ataque de 8 ms y caída exponencial hasta el final de la duración. prototype.html copia estos valores: mantenlos sincronizados.",
+  "version": 1,
+  "soundRules": {
+    "waveform": "sine",
+    "maxDurationS": 0.5,
+    "attackS": 0.008,
+    "volume": "bajo; respeta siempre el modo silencio del sistema y el interruptor de sonidos de la app",
+    "silentStates": ["idle", "thinking", "sleeping", "voice"],
+    "neverDuringTts": true,
+    "noVoice": true
+  },
+  "sounds": {
+    "ignition": [
+      { "fromHz": 330, "toHz": 330, "durationS": 0.12, "gain": 0.06, "delayS": 0 },
+      { "fromHz": 495, "toHz": 495, "durationS": 0.18, "gain": 0.06, "delayS": 0.12 }
+    ],
+    "tick": [
+      { "fromHz": 1500, "toHz": 1100, "durationS": 0.05, "gain": 0.05, "delayS": 0 }
+    ],
+    "celebrate": [
+      { "fromHz": 523, "toHz": 523, "durationS": 0.13, "gain": 0.05, "delayS": 0 },
+      { "fromHz": 659, "toHz": 659, "durationS": 0.13, "gain": 0.05, "delayS": 0.09 },
+      { "fromHz": 784, "toHz": 784, "durationS": 0.13, "gain": 0.05, "delayS": 0.18 }
+    ],
+    "attention": [
+      { "fromHz": 220, "toHz": 220, "durationS": 0.14, "gain": 0.07, "delayS": 0 },
+      { "fromHz": 220, "toHz": 220, "durationS": 0.14, "gain": 0.07, "delayS": 0.26 }
+    ],
+    "remember": [
+      { "fromHz": 880, "toHz": 880, "durationS": 0.05, "gain": 0.04, "delayS": 0 },
+      { "fromHz": 1175, "toHz": 1175, "durationS": 0.05, "gain": 0.04, "delayS": 0.07 }
+    ],
+    "farewell": [
+      { "fromHz": 660, "toHz": 660, "durationS": 0.15, "gain": 0.05, "delayS": 0 },
+      { "fromHz": 440, "toHz": 440, "durationS": 0.2, "gain": 0.05, "delayS": 0.14 }
+    ]
+  },
+  "reactions": {
+    "appear": {
+      "label": "Aparecer (barrido de encendido)",
+      "trigger": "Abrir la app o el splash de ignición.",
+      "durationS": 0.95,
+      "sweepMultiplier": { "keyframes": [ { "t": 0, "value": 0 }, { "t": 0.6, "value": 1.12 }, { "t": 1.0, "value": 1.0 } ], "easing": "easeInOutQuad" },
+      "opacity": { "from": 0, "to": 1, "reachAtT": 0.25 },
+      "sound": "ignition",
+      "intent": "Rasgo propio: como las agujas al girar la llave."
+    },
+    "tap": {
+      "label": "Tocar",
+      "trigger": "El usuario toca a Zora.",
+      "doubleBlink": true,
+      "sound": "tick",
+      "voiceModeOverride": "En Modo Voz el toque no parpadea ni suena."
+    },
+    "celebrate": {
+      "label": "Celebrar",
+      "trigger": "Servicio o check-in completado.",
+      "durationS": 1.4,
+      "state": "happy",
+      "bounce": { "amplitude": 0.38, "formula": "offsetY = -A · |sin(3π·u)| · (1 - u), u = t / durationS" },
+      "returnToPreviousAfterS": 2.3,
+      "sound": "celebrate"
+    },
+    "remember": {
+      "label": "Recordar",
+      "trigger": "Zora guarda algo en la memoria local.",
+      "state": "curious",
+      "returnToPreviousAfterS": 2.5,
+      "sound": "remember"
+    },
+    "farewell": {
+      "label": "Despedirse",
+      "trigger": "Cerrar sesión o salir del Modo Voz.",
+      "durationS": 0.9,
+      "sweepMultiplier": { "from": 1, "to": 0, "easing": "easeInOutQuad" },
+      "opacity": { "from": 1, "to": 0, "easing": "easeInOutQuad" },
+      "sound": "farewell",
+      "rule": "Nunca explota, se rompe ni desaparece de golpe."
+    }
+  },
+  "latency": {
+    "$comment": "Ritmo del estado thinking según la latencia real de la respuesta del chat.",
+    "under2s": "Solo cambia a violeta y entrecierra (170°); no inicia la coreografía completa.",
+    "from2to7s": "Un ciclo completo de la coreografía thinking.",
+    "over7s": "Repite el ciclo con 1 s de pausa entre vueltas.",
+    "onResponse": "Interrumpe en cualquier fase y vuelve a idle en ≈0.6 s; un parpadeo simple al terminar.",
+    "onError": "Vuelve a idle; nunca attention ni tristeza. El error lo explica el texto."
+  }
+}

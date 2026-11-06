@@ -1,0 +1,182 @@
+{
+  "$comment": "Especificación de los estados de Zora. Longitudes relativas al radio del ojo R; ángulos en grados con 0° a la derecha y crecimiento en sentido horario (convención SVG, y hacia abajo), así que 270° apunta arriba y 90° abajo. Cada estado es un conjunto de parámetros por ojo; la app interpola hacia el estado destino. prototype.html copia estos valores: mantenlos sincronizados.",
+  "version": 1,
+  "theme": "dark-only",
+  "geometry": {
+    "eyeCount": 2,
+    "eyeCenterDistance": 4.0,
+    "eyeRadius": 1.0,
+    "strokeWidth": 0.35,
+    "strokeCap": "round",
+    "defaultSweepDeg": 270,
+    "defaultDirectionDeg": 270,
+    "gapDeg": 90,
+    "boundingBox": { "width": 6.35, "height": 2.06 },
+    "needle": {
+      "length": 0.78,
+      "strokeWidth": 0.19,
+      "origin": "eye center",
+      "rule": "El ángulo es inicioDelArco + nivel · barrido, con nivel 0 = silencio (extremo izquierdo) y 1 = máximo (extremo derecho)."
+    },
+    "rules": [
+      "Ambos ojos tienen siempre el mismo radio; la asimetría solo cambia el barrido.",
+      "Sin rellenos, núcleos ni círculos dentro del arco.",
+      "Los arcos nunca se aplastan, rotan ni deforman para parpadear."
+    ]
+  },
+  "colors": {
+    "background": "#0D0F12",
+    "idle": "#4FE3F2",
+    "thinking": "#8A4DFF",
+    "attention": "#F5A623",
+    "forbidden": ["rojo de alarma", "verde", "cualquier color fuera de esta paleta"],
+    "colorTransition": "Interpolación RGB con la misma tasa que el resto de parámetros."
+  },
+  "transition": {
+    "lerpRatePerSecond": 6,
+    "formula": "cur += (tgt - cur) * min(1, dt * lerpRatePerSecond)"
+  },
+  "blink": {
+    "type": "opacity-flicker",
+    "durationS": 0.16,
+    "fadeOutS": 0.05,
+    "holdAtZeroS": 0.04,
+    "fadeInS": 0.07,
+    "minOpacity": 0.0,
+    "intervalS": { "min": 3, "max": 6 },
+    "doubleBlinkProbability": 0.35,
+    "doubleBlinkGapS": 0.26,
+    "signature": "El doble parpadeo es la firma de Zora."
+  },
+  "breathe": {
+    "type": "opacity",
+    "formula": "opacity *= 1 - amplitude * (0.5 + 0.5 * sin(2π · frequencyHz · t))"
+  },
+  "parameters": {
+    "sweep": "Barrido del arco en grados (360 = anillo cerrado)",
+    "direction": "Hacia dónde apunta el centro del arco (270 arriba, 90 abajo)",
+    "radius": "Radio del ojo en unidades R",
+    "strokeWidth": "Grosor del trazo en unidades R",
+    "offsetX": "Desplazamiento horizontal de la mirada en unidades R",
+    "offsetY": "Desplazamiento vertical en unidades R (negativo = arriba)",
+    "opacity": "Opacidad del ojo (0–1)",
+    "needle": "Visibilidad de la aguja de nivel (0–1)",
+    "color": "Clave de colors",
+    "breatheAmplitude": "Amplitud de la respiración de opacidad (0–1)",
+    "breatheHz": "Frecuencia de la respiración",
+    "blink": "Si el parpadeo automático está activo"
+  },
+  "base": {
+    "sweep": 270,
+    "direction": 270,
+    "radius": 1.0,
+    "strokeWidth": 0.35,
+    "offsetX": 0,
+    "offsetY": 0,
+    "opacity": 1,
+    "needle": 0,
+    "color": "idle"
+  },
+  "states": {
+    "idle": {
+      "label": "En reposo",
+      "trigger": "Todo en orden: sin servicios ni avisos pendientes.",
+      "eyes": {},
+      "breatheAmplitude": 0.08,
+      "breatheHz": 0.5,
+      "blink": true,
+      "sound": null,
+      "intent": "Presencia tranquila, como un tablero encendido sin testigos."
+    },
+    "thinking": {
+      "label": "Pensando",
+      "trigger": "El agente está generando una respuesta en el chat.",
+      "eyes": { "color": "thinking" },
+      "breatheAmplitude": 0,
+      "breatheHz": 0,
+      "blink": false,
+      "choreography": "thinking",
+      "sound": null,
+      "intent": "Se nota que piensa sin parecer nerviosa."
+    },
+    "happy": {
+      "label": "Contenta",
+      "trigger": "El usuario completó un servicio o un check-in.",
+      "eyes": { "sweep": 150, "strokeWidth": 0.42, "offsetY": -0.23 },
+      "breatheAmplitude": 0.05,
+      "breatheHz": 0.8,
+      "blink": true,
+      "sound": null,
+      "intent": "Alegría contenida, sin euforia."
+    },
+    "curious": {
+      "label": "Curiosa",
+      "trigger": "Zora guarda algo nuevo en su memoria.",
+      "left": { "sweep": 320 },
+      "right": { "sweep": 200 },
+      "breatheAmplitude": 0.06,
+      "breatheHz": 0.7,
+      "blink": true,
+      "swapAfterS": 2.0,
+      "sound": null,
+      "intent": "Como arquear una ceja: mismo tamaño, distinta longitud de arco."
+    },
+    "attention": {
+      "label": "Atención",
+      "trigger": "Servicio próximo o refacción por revisar.",
+      "eyes": { "sweep": 360, "radius": 0.92, "color": "attention" },
+      "breatheAmplitude": 0.25,
+      "breatheHz": 1.2,
+      "blink": false,
+      "sound": "attention",
+      "intent": "Un aviso, no una alarma. Nunca rojo."
+    },
+    "voice": {
+      "label": "Modo Voz",
+      "trigger": "Modo Voz en cabina; la aguja sigue la amplitud del audio TTS.",
+      "eyes": { "radius": 0.85, "strokeWidth": 0.27, "opacity": 0.75, "needle": 1 },
+      "breatheAmplitude": 0,
+      "breatheHz": 0,
+      "blink": false,
+      "needleSource": "Amplitud RMS del audio TTS por cuadro, normalizada a 0–1, con subida rápida (≈28/s) y caída más lenta (≈12/s).",
+      "sound": null,
+      "intent": "Presencia mínima al volante: solo se mueve la aguja."
+    },
+    "sleeping": {
+      "label": "Dormida",
+      "trigger": "Auto estacionado y sin novedades por varios días.",
+      "eyes": { "sweep": 120, "direction": 90, "strokeWidth": 0.27, "opacity": 0.45, "offsetY": 0.23 },
+      "breatheAmplitude": 0.10,
+      "breatheHz": 0.25,
+      "blink": false,
+      "sound": null,
+      "intent": "Descanso, nunca tristeza."
+    }
+  },
+  "choreographies": {
+    "thinking": {
+      "loopS": 6.8,
+      "rule": "Los ojos se cierran acortando el arco sobre su misma circunferencia; abierto = 270°, entrecerrado = 120–170°. Nunca se aplastan.",
+      "keyframes": [
+        { "atS": 0.0, "phase": "Entrecierra y mira arriba", "left": { "sweep": 170, "offsetX": 0.23, "offsetY": -0.19 }, "right": { "sweep": 170, "offsetX": 0.23, "offsetY": -0.19 } },
+        { "atS": 1.2, "phase": "Doble parpadeo", "doubleBlink": true },
+        { "atS": 1.6, "phase": "Ojo izquierdo abierto, derecho entrecerrado", "left": { "sweep": 270, "offsetX": 0.35, "offsetY": -0.08 }, "right": { "sweep": 120, "offsetX": 0.35, "offsetY": 0.04 } },
+        { "atS": 3.2, "phase": "Doble parpadeo", "doubleBlink": true, "left": { "sweep": 220, "offsetX": 0 }, "right": { "sweep": 220, "offsetX": 0 } },
+        { "atS": 3.6, "phase": "Cambia de lado", "left": { "sweep": 120, "offsetX": -0.35, "offsetY": 0.04 }, "right": { "sweep": 270, "offsetX": -0.35, "offsetY": -0.08 } },
+        { "atS": 5.2, "phase": "Doble parpadeo", "doubleBlink": true, "left": { "sweep": 230 }, "right": { "sweep": 230 } },
+        { "atS": 5.6, "phase": "Vuelve al centro y pausa", "left": { "sweep": 240 }, "right": { "sweep": 240 } }
+      ]
+    }
+  },
+  "sizes": {
+    "fullMinPx": 32,
+    "simplified": {
+      "useBelowPx": 32,
+      "strokeWidth": 0.6,
+      "sweep": 250,
+      "needle": false,
+      "breathe": false,
+      "rule": "Atención y Pensando se mantienen solo con el cambio de color."
+    }
+  }
+}
