@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="250" viewBox="0 0 680 250" role="img">
+  <title>Zora en reposo</title>
+  <desc>Maestro de Zora con R = 100: dos arcos de tacómetro de 270° en cian #4FE3F2, trazo 0.35R con punta redonda, abertura de 90° abajo y 4R entre centros. Fondo transparente; usar solo sobre fondo oscuro.</desc>
+  <g fill="none" stroke="#4FE3F2" stroke-width="35" stroke-linecap="round">
+    <path id="eye-left" d="M69.29 210.71 A100 100 0 1 1 210.71 210.71"/>
+    <path id="eye-right" d="M469.29 210.71 A100 100 0 1 1 610.71 210.71"/>
+  </g>
+</svg>

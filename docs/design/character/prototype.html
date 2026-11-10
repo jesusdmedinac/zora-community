@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zora · Prototipo del personaje</title>
+<style>
+  :root { color-scheme: dark; --bg:#0D0F12; --surface:#12151C; --line:#2A2D36; --text:#E6E8EC; --muted:#9AA0AB; --accent:#4FE3F2; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 Inter, "SF Pro Text", system-ui, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:20px; font-weight:600; margin:0 0 4px; }
+  p.lead { color:var(--muted); margin:0 0 16px; }
+  svg#zs { width:100%; height:auto; display:block; background:var(--bg); border:1px solid var(--line); border-radius:16px; cursor:pointer; }
+  .label { font-size:13px; color:var(--muted); margin:14px 0 6px; }
+  .row { display:flex; flex-wrap:wrap; gap:6px; }
+  button { font:inherit; font-size:13px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); background:var(--surface); color:var(--text); cursor:pointer; }
+  button:hover { border-color:#3A3E4A; }
+  button.on { border-color:var(--accent); color:var(--accent); }
+  .status { font-size:13px; color:var(--muted); margin:4px 0; min-height:20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Zora</h1>
+  <p class="lead">Prototipo de estados, reacciones y ritmo según la latencia. Los valores vienen de <code>states.json</code> y <code>reactions.json</code>; mantenlos sincronizados.</p>
+  <svg id="zs" viewBox="0 0 680 280" role="img" aria-label="Ojos de Zora">
+    <g id="eyeL"><path id="pL" fill="none" stroke-linecap="round"/><line id="nL" stroke-linecap="round"/></g>
+    <g id="eyeR"><path id="pR" fill="none" stroke-linecap="round"/><line id="nR" stroke-linecap="round"/></g>
+  </svg>
+  <div class="label">Estados</div>
+  <div class="row" id="bs"></div>
+  <div class="label">Reacciones</div>
+  <div class="row" id="br"></div>
+  <div class="label">Simular respuesta del chat</div>
+  <div class="row" id="bl"></div>
+  <div class="status" id="trig"></div>
+  <div class="status" id="phase"></div>
+</main>
+<script>
+const RU = 26;            // 1 R en píxeles del prototipo
+const CX = 340, CY = 145; // centro entre ambos ojos
+const C = { idle:[79,227,242], thinking:[138,77,255], attention:[245,166,35] };
+const base = { sweep:270, dir:270, r:1, w:.35, dx:0, dy:0, op:1, nd:0, col:'idle' };
+const S = {
+  idle:      { label:'En reposo', t:'Todo en orden: sin servicios ni avisos pendientes', e:{}, ba:.08, bs:.5, blink:true },
+  thinking:  { label:'Pensando', t:'El agente está generando una respuesta en el chat', e:{ col:'thinking' }, ba:0, bs:0, think:true },
+  happy:     { label:'Contenta', t:'Completaste un servicio o un check-in', e:{ sweep:150, w:.42, dy:-.23 }, ba:.05, bs:.8, blink:true },
+  curious:   { label:'Curiosa', t:'Zora guarda algo nuevo en su memoria', L:{ sweep:320 }, R:{ sweep:200 }, e:{}, ba:.06, bs:.7, blink:true, swapAfter:2 },
+  attention: { label:'Atención', t:'Servicio próximo o refacción por revisar (aviso, no alarma)', e:{ sweep:360, r:.92, col:'attention' }, ba:.25, bs:1.2, sound:'attention' },
+  voice:     { label:'Modo Voz', t:'Modo Voz: la aguja sigue la amplitud de la voz de Zora', e:{ r:.85, w:.27, op:.75, nd:1 }, ba:0, bs:0, voice:true },
+  sleeping:  { label:'Dormida', t:'Auto estacionado y sin novedades por días', e:{ sweep:120, dir:90, w:.27, op:.45, dy:.23 }, ba:.1, bs:.25 }
+};
+const SOUNDS = {
+  ignition:[[330,330,.12,.06,0],[495,495,.18,.06,.12]],
+  tick:[[1500,1100,.05,.05,0]],
+  celebrate:[[523,523,.13,.05,0],[659,659,.13,.05,.09],[784,784,.13,.05,.18]],
+  attention:[[220,220,.14,.07,0],[220,220,.14,.07,.26]],
+  remember:[[880,880,.05,.04,0],[1175,1175,.05,.04,.07]],
+  farewell:[[660,660,.15,.05,0],[440,440,.2,.05,.14]]
+};
+const THINK = [
+  { at:0.0, ph:'Entrecierra y mira arriba', L:{ sweep:170, dx:.23, dy:-.19 }, R:{ sweep:170, dx:.23, dy:-.19 } },
+  { at:1.2, ph:'Doble parpadeo', blink:true, L:{ sweep:170, dx:.23, dy:-.19 }, R:{ sweep:170, dx:.23, dy:-.19 } },
+  { at:1.6, ph:'Ojo izquierdo abierto, derecho entrecerrado', L:{ sweep:270, dx:.35, dy:-.08 }, R:{ sweep:120, dx:.35, dy:.04 } },
+  { at:3.2, ph:'Doble parpadeo', blink:true, L:{ sweep:220, dx:0 }, R:{ sweep:220, dx:0 } },
+  { at:3.6, ph:'Cambia de lado', L:{ sweep:120, dx:-.35, dy:.04 }, R:{ sweep:270, dx:-.35, dy:-.08 } },
+  { at:5.2, ph:'Doble parpadeo', blink:true, L:{ sweep:230 }, R:{ sweep:230 } },
+  { at:5.6, ph:'Vuelve al centro y pausa', L:{ sweep:240 }, R:{ sweep:240 } }
+];
+const LOOP = 6.8;
+const keys = ['sweep','dir','r','w','dx','dy','op','nd'];
+
+function mk(o){ const e = Object.assign({}, base, o||{}); e.c = C[e.col].slice(); return e; }
+let cur = { L:mk(), R:mk(), ba:.08, bs:.5 }, tgt = { L:mk(), R:mk(), ba:.08, bs:.5 };
+let state = 'idle', stT = 0, time = 0, blinks = [], react = null, hidden = false, nextBlink = 2.5;
+let swapped = false, lvl = 0, syl = { t0:0, d:0, peak:0 }, talking = true, lastBlinkKey = '';
+let chat = null;
+
+function ease(x){ return x < .5 ? 2*x*x : 1 - Math.pow(-2*x + 2, 2)/2; }
+function tone(f0,f1,dur,gain,delay){ try{ const ac = window.__ac || (window.__ac = new AudioContext()); const o = ac.createOscillator(), g = ac.createGain(), s = ac.currentTime + delay; o.type = 'sine'; o.frequency.setValueAtTime(f0, s); o.frequency.exponentialRampToValueAtTime(f1, s + dur); g.gain.setValueAtTime(.0001, s); g.gain.exponentialRampToValueAtTime(gain, s + .008); g.gain.exponentialRampToValueAtTime(.0001, s + dur); o.connect(g).connect(ac.destination); o.start(s); o.stop(s + dur + .02); }catch(e){} }
+function play(name){ (SOUNDS[name]||[]).forEach(t => tone(...t)); }
+
+function setTarget(k){ const s = S[k]; ['L','R'].forEach(side => { tgt[side] = mk(Object.assign({}, s.e, s[side])); }); tgt.ba = s.ba; tgt.bs = s.bs; }
+function sel(k){
+  state = k; stT = time; swapped = false; setTarget(k);
+  document.querySelectorAll('#bs button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  document.getElementById('trig').textContent = 'Disparador: ' + S[k].t;
+  if (S[k].sound) play(S[k].sound);
+}
+function blink(at){ blinks.push(at); }
+function dblink(at){ blinks.push(at, at + .26); }
+function blinkAmt(){
+  let m = 0; blinks = blinks.filter(b => time - b < .3);
+  blinks.forEach(b => { const d = time - b; let a = 0;
+    if (d >= 0 && d < .05) a = d/.05; else if (d >= .05 && d < .09) a = 1; else if (d >= .09 && d < .16) a = 1 - (d - .09)/.07;
+    m = Math.max(m, a); });
+  return m;
+}
+function thinkPose(t){
+  let u, cycle;
+  if (chat && chat.mode === 'short') return { L:{ sweep:170 }, R:{ sweep:170 }, ph:'Respuesta corta: solo entrecierra' };
+  const period = chat && chat.mode === 'long' ? LOOP + 1 : LOOP;
+  cycle = Math.floor(t / period); u = t % period;
+  if (u >= LOOP) return { L:{ sweep:240 }, R:{ sweep:240 }, ph:'Pausa entre ciclos' };
+  let kf = THINK[0]; THINK.forEach(k => { if (u >= k.at) kf = k; });
+  const key = cycle + ':' + kf.at;
+  if (kf.blink && lastBlinkKey !== key) { lastBlinkKey = key; dblink(time); }
+  return { L:kf.L, R:kf.R, ph:kf.ph };
+}
+function pt(cx,cy,r,a){ a = a*Math.PI/180; return [cx + r*Math.cos(a), cy + r*Math.sin(a)]; }
+function arc(cx,cy,r,sweep,dir){
+  sweep = Math.max(.5, Math.min(359.9, sweep));
+  const [x0,y0] = pt(cx,cy,r,dir - sweep/2), [x1,y1] = pt(cx,cy,r,dir + sweep/2);
+  return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r.toFixed(2)} ${r.toFixed(2)} 0 ${sweep > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+}
+function rgb(c){ return `rgb(${c.map(v => Math.round(v)).join(',')})`; }
+function voiceLevel(dt){
+  if (!talking) { lvl += (0 - lvl)*Math.min(1, dt*10); return lvl; }
+  if (time - syl.t0 > syl.d) { const gap = Math.random() < .18 ? .35 + Math.random()*.3 : .03 + Math.random()*.06; syl = { t0:time + gap, d:.11 + Math.random()*.16, peak:.35 + Math.random()*.65 }; }
+  const u = (time - syl.t0)/syl.d; const env = u < 0 || u > 1 ? 0 : Math.sin(Math.PI*u)*syl.peak*(.85 + .15*Math.sin(time*60));
+  lvl += (env - lvl)*Math.min(1, dt*(env > lvl ? 28 : 12)); return lvl;
+}
+
+let last = performance.now();
+function frame(now){
+  const dt = Math.min(.05, (now - last)/1000); last = now; time += dt;
+  const k = Math.min(1, dt*6), s = S[state], phase = document.getElementById('phase');
+  let pose = null;
+  if (s.think) { pose = thinkPose(time - stT); phase.textContent = 'Fase: ' + pose.ph; }
+  else if (s.voice) phase.textContent = talking ? 'Fase: Zora está hablando (toca los ojos para callarla)' : 'Fase: en silencio, aguja en reposo (toca para que hable)';
+  else phase.textContent = '';
+  if (s.swapAfter && !swapped && time - stT > s.swapAfter) { swapped = true; const a = tgt.L.sweep; tgt.L.sweep = tgt.R.sweep; tgt.R.sweep = a; }
+  if (s.blink && time > nextBlink) { Math.random() < .35 ? dblink(time) : blink(time); nextBlink = time + 3 + Math.random()*3; }
+
+  ['L','R'].forEach(side => { const t = Object.assign({}, tgt[side], pose ? pose[side] : {}), c = cur[side];
+    keys.forEach(p => c[p] += (t[p] - c[p])*k); c.c = c.c.map((v,i) => v + (tgt[side].c[i] - v)*k); });
+  cur.ba += (tgt.ba - cur.ba)*k; cur.bs += (tgt.bs - cur.bs)*k;
+
+  let sweepMul = 1, opMul = hidden ? 0 : 1, bounce = 0;
+  if (react) { const u = (time - react.t0)/react.d;
+    if (u >= 1) { const end = react.end; react = null; if (end) end(); }
+    else {
+      if (react.k === 'appear') { sweepMul = u < .6 ? ease(u/.6)*1.12 : 1.12 - ease((u - .6)/.4)*.12; opMul = Math.min(1, u*4); }
+      if (react.k === 'farewell') { sweepMul = 1 - ease(u); opMul = 1 - ease(u); }
+      if (react.k === 'celebrate') bounce = -.38*RU*Math.abs(Math.sin(Math.PI*u*3))*(1 - u);
+    } }
+  const breathe = 1 - cur.ba*(.5 + .5*Math.sin(time*Math.PI*2*cur.bs)), blinkMul = 1 - blinkAmt(), v = voiceLevel(dt);
+  [['L',-2],['R',2]].forEach(([side,off]) => { const c = cur[side];
+    const r = c.r*RU, w = c.w*RU, cx = CX + off*RU + c.dx*RU, cy = CY + c.dy*RU + bounce;
+    const p = document.getElementById('p' + side);
+    p.setAttribute('d', arc(cx, cy, r, c.sweep*sweepMul, c.dir)); p.setAttribute('stroke', rgb(c.c)); p.setAttribute('stroke-width', w.toFixed(2));
+    const n = document.getElementById('n' + side), ang = c.dir - c.sweep/2 + v*c.sweep, [nx,ny] = pt(cx, cy, r*.78, ang);
+    n.setAttribute('x1', cx); n.setAttribute('y1', cy); n.setAttribute('x2', nx.toFixed(2)); n.setAttribute('y2', ny.toFixed(2));
+    n.setAttribute('stroke', rgb(c.c)); n.setAttribute('stroke-width', (.19*RU).toFixed(2)); n.setAttribute('opacity', Math.max(0, c.nd).toFixed(3));
+    document.getElementById('eye' + side).setAttribute('opacity', (c.op*breathe*opMul*blinkMul).toFixed(3)); });
+  requestAnimationFrame(frame);
+}
+
+const R = {
+  tap:       { n:'Tocar', f:() => { if (S[state].voice) { talking = !talking; return; } dblink(time); play('tick'); } },
+  appear:    { n:'Aparecer', f:() => { hidden = false; react = { k:'appear', t0:time, d:.95 }; play('ignition'); } },
+  celebrate: { n:'Celebrar', f:() => { const prev = state === 'happy' ? 'idle' : state; sel('happy'); react = { k:'celebrate', t0:time, d:1.4, end:() => setTimeout(() => sel(prev), 900) }; play('celebrate'); } },
+  remember:  { n:'Recordar', f:() => { const prev = state === 'curious' ? 'idle' : state; sel('curious'); play('remember'); setTimeout(() => { if (state === 'curious') sel(prev); }, 2500); } },
+  farewell:  { n:'Despedirse', f:() => { react = { k:'farewell', t0:time, d:.9, end:() => { hidden = true; } }; play('farewell'); } }
+};
+const LAT = [ { n:'Respuesta en 1.5 s', s:1.5, mode:'short' }, { n:'Respuesta en 5 s', s:5, mode:'one' }, { n:'Respuesta en 16 s', s:16, mode:'long' } ];
+
+const bs = document.getElementById('bs');
+Object.keys(S).forEach(k => { const b = document.createElement('button'); b.textContent = S[k].label; b.dataset.k = k; b.onclick = () => { stopChat(); sel(k); }; bs.appendChild(b); });
+const br = document.getElementById('br');
+Object.keys(R).forEach(k => { const b = document.createElement('button'); b.textContent = R[k].n; b.onclick = R[k].f; br.appendChild(b); });
+const bl = document.getElementById('bl');
+LAT.forEach(l => { const b = document.createElement('button'); b.textContent = l.n; b.onclick = () => {
+  stopChat(); sel('thinking');
+  // Reloj real: la latencia simulada no depende de la tasa de cuadros.
+  chat = { mode:l.mode, timer:setTimeout(() => { chat = null; sel('idle'); setTimeout(() => blink(time), 600); }, l.s*1000) };
+}; bl.appendChild(b); });
+function stopChat(){ if (chat) clearTimeout(chat.timer); chat = null; }
+document.getElementById('zs').onclick = () => R.tap.f();
+
+sel('idle'); react = { k:'appear', t0:0, d:.95 };
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

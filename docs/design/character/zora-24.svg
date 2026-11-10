@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
+  <title>Zora simplificada</title>
+  <desc>Versión para tamaños menores de 32 px: arcos de 250° con trazo 0.6R, sin aguja ni respiración. Fondo transparente; usar solo sobre fondo oscuro.</desc>
+  <g fill="none" stroke="#4FE3F2" stroke-width="2" stroke-linecap="round">
+    <path d="M2.60 14.91 A3.33 3.33 0 1 1 8.06 14.91"/>
+    <path d="M15.94 14.91 A3.33 3.33 0 1 1 21.40 14.91"/>
+  </g>
+</svg>
