@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Zora Community</title>
+    <meta name="description" content="Privacy Policy for Zora Community Edition: Zero-Trust, local-first on-device AI automotive intelligence.">
+    <style>
+        :root {
+            --bg-color: #0D0F12;
+            --surface-color: #161A20;
+            --surface-border: #262C36;
+            --text-primary: #F0F4F8;
+            --text-secondary: #9BA3AF;
+            --accent-cyan: #4FE3F2;
+            --accent-purple: #8A4DFF;
+            --accent-amber: #F5A623;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 24px 16px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        header {
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 24px;
+            margin-bottom: 28px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(79, 227, 242, 0.12);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(79, 227, 242, 0.3);
+            border-radius: 9999px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--accent-cyan);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 10px;
+        }
+        p, ul {
+            margin-bottom: 14px;
+            color: #D1D5DB;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        strong {
+            color: #FFFFFF;
+        }
+        .highlight-box {
+            background: rgba(138, 77, 255, 0.08);
+            border: 1px solid rgba(138, 77, 255, 0.25);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .highlight-box h3 {
+            color: var(--accent-purple);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--surface-border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="badge">Zero-Trust · Local-First Architecture</span>
+            <h1>Privacy Policy</h1>
+            <p class="meta"><strong>Application:</strong> Zora Community Edition (Android & iOS)<br>
+            <strong>Developer:</strong> Jesus Daniel Medina Cruz<br>
+            <strong>Effective Date:</strong> November 16, 2026</p>
+        </header>
+
+        <section>
+            <h2>1. Core Architectural Commitment: Local-First</h2>
+            <p><strong>Zora Community</strong> is an open-source, automotive diagnostic and maintenance copilot designed from the ground up around a <em>Zero-Trust, Local-First</em> privacy principle. We believe vehicle diagnostic data and telemetry belong strictly to the vehicle owner.</p>
+            <p>Unlike conventional telematics and automotive applications, <strong>Zora Community processes and stores your diagnostic logs, maintenance records, and copilot memory entirely on your local device</strong> (in an encrypted local SQLite database via SQLDelight). We do not operate central user tracking databases, we do not require third-party account registration for core features, and we never sell, monetize, or harvest personal identifiable information (PII).</p>
+        </section>
+
+        <section>
+            <h2>2. On-Device AI Inference & Zero Token Leaks</h2>
+            <div class="highlight-box">
+                <h3>Edge AI Execution Guarantee</h3>
+                <p>On supported devices (such as Android devices equipped with Google AICore), Zora Copilot executes generative AI queries completely <strong>on-device</strong> via Google ML Kit GenAI Prompt API running on your device's Neural Processing Unit (NPU).</p>
+            </div>
+            <p>When you ask diagnostic or maintenance questions:</p>
+            <ul>
+                <li><strong>No audio or text prompts leave your phone:</strong> Inference is executed locally by Gemini Nano.</li>
+                <li><strong>No cloud telemetry logging:</strong> Queries are never transmitted to remote server enclaves without explicit, per-session user consent.</li>
+                <li><strong>Offline Fallback:</strong> When on-device neural hardware is unavailable, the application relies on an internal, deterministic rule-based heuristic engine with zero network dependencies.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Information Collected and Stored Locally</h2>
+            <p>All data stored by the application remains under your complete control in your device's sandboxed storage:</p>
+            <ul>
+                <li><strong>Vehicle Profiles & Garage Context:</strong> Vehicle make, model, year, and technical configuration (e.g., engine type, recommended fluid specifications).</li>
+                <li><strong>Diagnostic & Maintenance Prescriptions:</strong> Symptoms reported by the driver, local triage records, and maintenance logs (e.g., battery checks, fluid renewals).</li>
+                <li><strong>Copilot Memory Slots:</strong> Ephemeral notes confirmed by the driver for garage reference (e.g., "Synthetic oil 0W-20 changed at 110,000 km"). These can be inspected and permanently deleted on-demand at any time from the Virtual Garage screen.</li>
+                <li><strong>VIN Prefix Sanitation:</strong> If a Vehicle Identification Number (VIN) is entered for part fitment verification, the app applies an automated Zero-Trust sanitizer that strips unique serial components, retaining only the generic World Manufacturer Identifier and vehicle descriptor section (WMI/VDS prefix, e.g. <code>2HGFC2F5</code>), preventing vehicle or driver re-identification.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Network Communications & Cloud AI Opt-In</h2>
+            <p>Zora Community functions 100% offline. Network connectivity is exclusively utilized in the following explicit scenarios:</p>
+            <ul>
+                <li><strong>Explicit Cloud AI Opt-In:</strong> Fleet-wide crowdsourced part telemetry and live catalog verification are strictly disabled by default. Accessing these features requires driver acknowledgment through an explicit opt-in gate.</li>
+                <li><strong>No Advertising ID (AD_ID):</strong> Zora Community does not request, access, or track the Android Advertising ID (<code>com.google.android.gms.permission.AD_ID</code>) or Apple Identifier for Advertisers (IDFA). The app contains zero commercial advertisement SDKs.</li>
+                <li><strong>No Third-Party Analytics Trackers:</strong> We do not integrate tracking frameworks (such as Firebase Analytics, Adjust, AppsFlyer, or Facebook Pixel).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Device Permissions & Hardware Access</h2>
+            <p>The application only requests device capabilities strictly necessary for driver interaction:</p>
+            <ul>
+                <li><strong>Microphone (Voice Mode):</strong> Audio input is captured strictly for live voice dictation and speech-to-text. Raw audio streams are never recorded to disk, uploaded to remote cloud repositories, or used for commercial profiling.</li>
+                <li><strong>System Clipboard:</strong> Read and write access to clipboard is triggered solely when the driver taps the "Copy" action in the assistant action bar.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>6. Data Retention, Export & Deletion</h2>
+            <p>Because all data is stored on-device:</p>
+            <ul>
+                <li><strong>Immediate Deletion:</strong> You can purge individual memory entries directly in the Virtual Garage interface.</li>
+                <li><strong>Complete Eradication:</strong> Clearing the application's data via Android/iOS system settings or uninstalling the app permanently erases all databases, logs, and telemetry vaults.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>7. Children's Privacy</h2>
+            <p>Zora Community does not knowingly address or collect personal information from children under the age of 13. The application is an automotive reference utility intended for vehicle drivers and maintenance operators.</p>
+        </section>
+
+        <section>
+            <h2>8. Contact & Legal Inquiries</h2>
+            <p>If you have any questions or feedback regarding this Privacy Policy or the security practices of Zora Community, please contact the developer directly:</p>
+            <p><strong>Jesus Daniel Medina Cruz</strong><br>
+            Email: <a href="mailto:jesus.daniel.medina.cruz@gmail.com">jesus.daniel.medina.cruz@gmail.com</a><br>
+            GitHub Repository: <a href="https://github.com/jesusdmedinac/zora-community" target="_blank" rel="noopener noreferrer">https://github.com/jesusdmedinac/zora-community</a></p>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Zora Community Edition. Open-source under MIT License.</p>
+        </footer>
+    </div>
+</body>
+</html>
