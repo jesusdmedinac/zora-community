@@ -19,4 +19,8 @@ DerivedData
 # Kotlin Toolchain
 .toolchain
 kotlin-js-store/
-bin/
+# Keystores & Signing
+*.jks
+*.keystore
+keystore/
+signing.properties

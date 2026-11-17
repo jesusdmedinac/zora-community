@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
@@ -107,6 +110,36 @@ android {
     namespace = "com.jesusdmedinac.zora"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+    val signingPropertiesFile = rootProject.file("signing.properties")
+    val signingProperties = Properties()
+    if (signingPropertiesFile.exists()) {
+        signingProperties.load(FileInputStream(signingPropertiesFile))
+    }
+
+    signingConfigs {
+        create("release") {
+            val storeFilePath: String? = System.getenv("RELEASE_STORE_FILE")
+                ?: signingProperties.getProperty("RELEASE_STORE_FILE")
+            val storePasswordProp: String? = System.getenv("RELEASE_STORE_PASSWORD")
+                ?: signingProperties.getProperty("RELEASE_STORE_PASSWORD")
+            val keyAliasProp: String? = System.getenv("RELEASE_KEY_ALIAS")
+                ?: signingProperties.getProperty("RELEASE_KEY_ALIAS")
+            val keyPasswordProp: String? = System.getenv("RELEASE_KEY_PASSWORD")
+                ?: signingProperties.getProperty("RELEASE_KEY_PASSWORD")
+
+            if (!storeFilePath.isNullOrBlank() &&
+                !storePasswordProp.isNullOrBlank() &&
+                !keyAliasProp.isNullOrBlank() &&
+                !keyPasswordProp.isNullOrBlank()
+            ) {
+                storeFile = rootProject.file(storeFilePath)
+                storePassword = storePasswordProp
+                keyAlias = keyAliasProp
+                keyPassword = keyPasswordProp
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "com.jesusdmedinac.zora"
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -124,6 +157,7 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
