@@ -24,3 +24,10 @@ kotlin-js-store/
 *.keystore
 keystore/
 signing.properties
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
